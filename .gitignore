@@ -4,9 +4,10 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 *.DS_Store
+*.gitkeep
 /.codekit-cache/
 /design/
-/rocket/
+/bower_components/
 README.md
 LICENSE
 *.codekit
