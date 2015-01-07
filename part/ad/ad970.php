@@ -1,0 +1,1 @@
+<div class="ad ad970" am-visible="dt"><a href=""><img src="http://placehold.it/970x90" alt=""></a></div>

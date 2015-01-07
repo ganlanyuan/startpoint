@@ -1,0 +1,5 @@
+// @codekit-prepend "core.js"
+// @codekit-prepend "reach.js"
+// @codekit-prepend "scrollTo.js"
+// @codekit-prepend "numIncrease.js"
+// @codekit-prepend "animate.js"

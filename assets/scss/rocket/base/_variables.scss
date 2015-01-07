@@ -1,0 +1,51 @@
+// pure variables
+//-----------------------------
+
+// table
+$table-border-color: #cbcbcb;
+$thead-bg-color: #e0e0e0;
+$striping-bg-color: #f2f2f2;
+
+// am-nav
+$generate-nav-css: (
+  move: true,
+  translate: false,
+  reveal: false,
+  rotate: false,
+  scale: false,
+
+  left: true,
+  right: false,
+  top: false,
+  bottom: false,
+
+  subnav: true,
+  styled-icon: true
+) !default;
+
+$am-nav-bg: #000 !default;
+$am-nav-width: 200px !default;
+$am-nav-fontsize: 14 !default;
+$am-nav-a-padding: .9em 1.6em !default;
+$am-cover-bg: rgba(0,0,0,.35) !default;
+
+$nav-icon-color: #333 !default;
+$nav-icon-active-color: #fd5619 !default;
+$nav-icon-bg-color: #fff !default;
+$nav-icon-inverted: false !default;
+
+// nav-icon-styled
+$nav-icon-color: #333 !default;
+$nav-icon-active-color: #fd5619 !default;
+$nav-icon-bg-color: #fff !default;
+$nav-icon-inverted: false !default;
+
+
+// dropdown 
+$dropdown-css: true !default;
+$dropdown-menu-bgc: #fff !default;
+$dropdown-menu-border: 1px solid #dbdbdb !default;
+$dropdown-menu-shadow: rgba(0,0,0,0.15) 0px 6px 12px !default;
+$dropdown-menu-link-padding: 0.31em 1.25em !default;
+
+

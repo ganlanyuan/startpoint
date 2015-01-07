@@ -1,0 +1,36 @@
+// media query
+//-----------------------------
+// min
+// min & max 
+// max
+
+// min
+@include bp-mi(640) {
+	// 
+}
+@include bp-mi(768) {
+	// 
+}
+@include bp-mi(1024) {
+	// 
+}
+@include bp-mi(1200) {
+	// 
+}
+
+
+// min & max
+@include bp-mm(499, 640) {
+	// 
+}
+
+// max
+@include bp-ma(1023) {
+	// 
+}
+@include bp-ma(767) {
+	// 
+}
+@include bp-ma(639) {
+	// 
+}

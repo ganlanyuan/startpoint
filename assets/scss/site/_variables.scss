@@ -1,0 +1,48 @@
+// variables
+//-----------------------------
+// font
+// color
+// z-index
+// transition
+
+
+// font
+$ff-o: 'Oswald', sans-serif;
+$ff-g: Georgia, serif;
+$ff-a: Arial, serif;
+
+// color
+$text-color: #212121;
+$blue: #1f4385;
+$light-blue: #1e6bb5;
+$red: #cc0000;
+$yellow: #fca205;
+$border-color: #e1e1e1;
+
+$social: (
+  facebook-like: #4660b5, 
+  facebook: #39579a, 
+  twitter: #23cbff, 
+  pinterest: #df2109, 
+  google: #567EF0, 
+  google-plus: #DA4835, 
+  linkedin: #005987, 
+  rss: #EF922F, 
+  email: #1D90DD, 
+  primary: #0078E7
+) !default;
+
+$alerts:(
+  success: #3A945B,
+  info: #2270C1,
+  warning: #DE770F,
+  alert: #DE2D0F
+) !default;
+
+// z-index
+$z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
+
+// transition
+$global-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+

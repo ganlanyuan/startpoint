@@ -1,0 +1,29 @@
+// site placeholder selectors
+//----------------------------
+// font
+// list style
+// transition
+
+%clearfix { @include clearfix; }
+
+// font
+%ff-header {font-family: $ff-g; }
+%ff-content {font-family: $ff-a; }
+%hover-tdn {&:hover { text-decoration: none; } }
+
+// list style
+%li-style {
+  padding-top: em(10);
+  padding-bottom: em(10);
+  border-top: 1px solid $border-color;
+  :last-child { margin-bottom: 0; }
+}
+%img-left, %img-right { @extend %clearfix; }
+%img-left img {float: left; margin-right: em(15); }
+%img-right img {float: right; margin-left: em(15); }
+
+// transition
+%global-transition {
+  -webkit-transition: all 0.4s $global-bezier 0s;
+  transition: all 0.4s $global-bezier 0s;
+}

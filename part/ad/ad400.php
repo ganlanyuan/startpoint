@@ -1,0 +1,1 @@
+<div class="ad ad400" am-hidden="mb"><img src="http://placehold.it/400x300" alt=""></div>

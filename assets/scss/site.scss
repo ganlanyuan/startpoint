@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+@import "bourbon/bourbon"; 
+
+// global setting
+@import "site/variables"; 
+@import "site/placeholders";
+
+// frameworks
+@import "normalize/normalize"; // css reset
+// @import "OwlCarousel/OwlCarousel"; // slidershow
+// @import "animate/animate";
+// @import "font-awesome/font-awesome"; // icon font
+@import "rocket/rocket";  // template
+
+// common style
+@import "site/common";
+
+// individual pages
+@import "site/index";
+@import "site/article";
+@import "site/video";
+
+// media query
+@import "site/mq";
