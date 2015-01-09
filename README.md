@@ -12,7 +12,6 @@
 <h3>What's inside</h3>
 <p>There are 4 folders under the root: <strong>assets</strong>, <strong>bower_components</strong>, <strong>dev</strong> and <strong>part</strong>. <strong>Bower_components</strong> contains the packages we get through bower. <strong>Dev</strong> contains SCSS and js files. <strong>Part</strong> contains php components (e.g. header, footer). <strong>Assets</strong> contains final css, js, fonts and images.</p>
 <ol>
-  <li><strong>.htaccess</strong> and <strong>crossdomain.xml</strong>. Borrowed from html5-boilerplate, please refer to <a href="https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/usage.md">here</a>.</li>
   <li><strong>Cross-domain</strong> folder (inside assets folder) is for respond.js when you use css on CDN. Please refer to <a href="https://github.com/scottjehl/Respond" target="_blank">here</a>.</li>
   <li><strong>Ie.js</strong> (assets/js/) contains Respond.js, NWMatcher 1.2.5 and selectivizr. Respond.js make old browser support css-mediaquery, and selectivizr make old browser support css3 selectors.</li>
 </ol>

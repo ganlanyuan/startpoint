@@ -8,6 +8,8 @@ install_manifest.txt
 /design/
 /bower_components/
 README.md
+README.html
+changelog.html
 LICENSE
 *.codekit
 *.sublime-project
