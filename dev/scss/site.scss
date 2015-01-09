@@ -1,22 +1,21 @@
 @charset "UTF-8";
 
-// @import "bourbon/bourbon"; 
+// SASS Tools
+@import "../../bower_components/bourbon/app/assets/stylesheets/_bourbon.scss"; 
 
 // global setting
 @import "setting/variables"; 
 @import "setting/placeholders";
 
 // frameworks
-// @import "normalize/normalize"; // css reset
-// @import "OwlCarousel/OwlCarousel"; // slidershow
-// @import "animate/animate";
-// @import "font-awesome/font-awesome"; // icon font
-// @import "rocket/rocket";  // template
-
-// common style
-@import "common";
+@import "../../bower_components/inuit-normalize.css/generic.normalize"; // css reset
+@import "owl-carousel2"; // slidershow
+// @import "animate";
+// @import "fontawesome"; // icon font
+@import "../../bower_components/rocket/src/scss/_rocket.scss";  // template
 
 // individual pages
+@import "common";
 @import "index";
 @import "article";
 

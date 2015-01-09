@@ -36,15 +36,15 @@
 	<!-- 152x152 img/touch_icon_152.png, 120x120 img/touch_icon_120.png, 114x114 img/touch-icon_114.png, 76x76 img/touch_icon_76.png, 72x72 img/touch-icon_72.png, 60x60 img/touch_icon_60.png, 32x32 img/favicon.png -->
 
 	<!-- Prefetch DNS for external assets -->
-	<link href="http://fonts.googleapis.com" rel="dns-prefetch">
+	<link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch">
 	
 	<!-- Prefetch Resourses -->
-	<link href="sprite.png" rel="prefetch">
-	<link href="webfont.woff" rel="prefetch">
-	<link href="http://mydomain.com/my-next-page.htm" rel="prerender">
+	<!-- <link href="sprite.png" rel="prefetch"> -->
+	<!-- <link href="webfont.woff" rel="prefetch"> -->
+	<!-- <link href="http://mydomain.com/my-next-page.htm" rel="prerender"> -->
 
 	<!-- css -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:700,500' rel='stylesheet' type='text/css'>
+	<link href="https://fontastic.s3.amazonaws.com/MSJHPuJFXkve8cKEDAVMKT/icons.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/site.css">
 
 	<!-- javascript -->
@@ -63,6 +63,6 @@
 			echo '';
 		}
 	?>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 	<script src="assets/js/script.min.js"></script>
 </head>

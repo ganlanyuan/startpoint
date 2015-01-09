@@ -1,0 +1,68 @@
+// Vendor Helpers
+// ==============
+
+// List of support vendor prefixes.
+$vendors: "-webkit-" "-moz-" "-o-" "";
+
+@mixin vendorize($property, $values...) {
+  @each $vendor in $vendors {
+    #{$vendor}#{$property}: $values;
+  }
+}
+
+@mixin animation-duration($arguments...) {
+  @include vendorize(animation-duration, $arguments);
+}
+
+@mixin animation-fill-mode($arguments...) {
+  @include vendorize(animation-fill-mode, $arguments);
+}
+
+@mixin animation-name($arguments...) {
+  @include vendorize(animation-name, $arguments);
+}
+
+@mixin animation-timing-function($arguments...) {
+  @include vendorize(animation-timing-function, $arguments);
+}
+
+@mixin transform-origin($arguments...) {
+  @include vendorize(transform-origin, $arguments);
+}
+
+@mixin transform-style($arguments...) {
+  @include vendorize(transform-style, $arguments);
+}
+
+@mixin backface-visibility($arguments...) {
+  @include vendorize(backface-visibility, $arguments);
+}
+
+// General
+// =======
+
+// Set some defaults that can be overriden on a per-animation basis.
+.animated {
+  @include animation-duration(0.75s);
+  @include animation-fill-mode(both);
+}
+
+// Animations
+// ==========
+
+// @import "../../bower_components/animate.scss/scss/animations/bounce";
+// @import "../../bower_components/animate.scss/scss/animations/fade";
+// @import "../../bower_components/animate.scss/scss/animations/flash";
+// @import "../../bower_components/animate.scss/scss/animations/fold";
+// @import "../../bower_components/animate.scss/scss/animations/grow";
+// @import "../../bower_components/animate.scss/scss/animations/hinge";
+// @import "../../bower_components/animate.scss/scss/animations/light-speed";
+// @import "../../bower_components/animate.scss/scss/animations/pulse";
+// @import "../../bower_components/animate.scss/scss/animations/roll";
+// @import "../../bower_components/animate.scss/scss/animations/rotate";
+// @import "../../bower_components/animate.scss/scss/animations/shake";
+// @import "../../bower_components/animate.scss/scss/animations/shrink";
+// @import "../../bower_components/animate.scss/scss/animations/swing";
+// @import "../../bower_components/animate.scss/scss/animations/tada";
+// @import "../../bower_components/animate.scss/scss/animations/wiggle";
+// @import "../../bower_components/animate.scss/scss/animations/wobble";

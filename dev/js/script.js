@@ -1,7 +1,6 @@
 // @codekit-prepend "lib/Modernizr.js"
-// @codekit-prepend "lib/rem.js"
-// @codekit-prepend "lib/responsive-img.js"
-// @codekit-prepend "kit/kit.js"
-// @codekit-prepend "pure/pure.js"
+// @codekit-prepend "../../bower_components/REM-unit-polyfill/js/rem.js"
+// @codekit-prepend "../../bower_components/responsive-img.js"
+// codekit-prepend "../../bower_components/rocket/src/js/kit.js"
 
 
