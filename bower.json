@@ -16,9 +16,9 @@
     "responsive-img.js": "~1.0.0",
     "owl-carousel2": "*",
     "animate.scss": "*",
-    "bourbon": "~4.1.0",
+    "bourbon": "~4.1.1",
     "inuit-normalize.css": "~3.0.1",
-    "rocket": "~0.0.2",
+    "rocket": "~0.1.0",
     "REM-unit-polyfill": "~1.3.2"
   }
 }
