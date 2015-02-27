@@ -17,6 +17,7 @@ button:focus,input:focus,select:focus,textarea:focus {outline: 0; }
 figure,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p { margin: 0; }
 dl,ul,ol { padding: 0; }
 ol,ul { list-style:none; }
+label { cursor: pointer; }
 
 
 // common style
