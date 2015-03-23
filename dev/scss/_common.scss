@@ -6,7 +6,7 @@
 //site footer 
 
 // reset
-img, svg { max-width: 100%; height: auto; }
+img { max-width: 100%; height: auto; }
 @media \0screen {img, svg { width: auto; }}
 [class^="icon-"]::before, 
 [class*=" icon-"]::before,
@@ -21,12 +21,10 @@ label { cursor: pointer; }
 
 
 // common style
+html { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 body { overflow-x: hidden; }
 img.full { width: 100%; display: block; }
-a {
-  text-decoration: none;
-  color: $text-color;
-}
+a { text-decoration: none; color: $text-color; }
 .hidden { display: none; }
 .top { margin-top: 0 !important; padding-top: 0 !important; }
 .bottom { margin-bottom: 0 !important; padding-bottom: 0 !important; }
