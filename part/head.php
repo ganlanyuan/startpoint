@@ -39,7 +39,7 @@
 	<!-- javascript -->
 	<!--[if (lt IE 9)]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="assets/js/ie.js"></script>
+		<script src="assets/js/ie.min.js"></script>
 		
 		<link href="http://externalcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
 		<link href="assets/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
