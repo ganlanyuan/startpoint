@@ -4,7 +4,6 @@
 <?php include 'part/helper/browsehappy.php'; ?>
 <?php include 'part/header.php'; ?>
 
-
 <?php include 'part/footer.php'; ?>
 </body>
 </html>
