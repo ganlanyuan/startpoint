@@ -1,3 +1,9 @@
+// *** Run the commands below  in Terminal
+// cd your/project/directory/
+// npm init 
+// npm install gulp gulp-svgmin gulp-svgstore gulp-imagemin
+
+
 var gulp = require('gulp'),
     svgmin = require('gulp-svgmin'),
     svgstore = require('gulp-svgstore'),
