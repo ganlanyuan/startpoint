@@ -1,5 +1,9 @@
 #Changlog
 
+### v0.1.0
++ Installed `gulp`
++ Add `svg-min`, `svg-store` and `image-min` tasks
+
 ### v0.0.4 
 + Update rocket#1.1.6
 + Add svg4everybody

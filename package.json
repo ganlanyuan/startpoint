@@ -1,0 +1,25 @@
+{
+  "name": "startpoint",
+  "version": "1.0.0",
+  "description": "<p>A simple boilerplate for building website.</p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganlanyuan/startpoint.git"
+  },
+  "author": "William Lin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganlanyuan/startpoint/issues"
+  },
+  "homepage": "https://github.com/ganlanyuan/startpoint#readme",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-svgmin": "^1.1.2",
+    "gulp-svgstore": "^5.0.1"
+  }
+}
