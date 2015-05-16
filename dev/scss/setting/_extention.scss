@@ -1,4 +1,4 @@
-// site placeholder selectors
+// extentions
 //----------------------------
 // font
 // list style
@@ -7,8 +7,8 @@
 %clearfix { @include clearfix; }
 
 // font
-%ff-header {font-family: $ff-g; }
-%ff-content {font-family: $ff-a; }
+%font-header {font-family: $helvetica; }
+%font-content {font-family: $arial; }
 %hover-tdn {&:hover { text-decoration: none; } }
 
 // list style

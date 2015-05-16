@@ -4,8 +4,8 @@
 @import "../../bower_components/bourbon/app/assets/stylesheets/_bourbon.scss"; 
 
 // global setting
-@import "setting/variables"; 
-@import "setting/placeholders";
+@import "setting/config"; 
+@import "setting/extention";
 
 // frameworks
 @import "../../bower_components/inuit-normalize.css/generic.normalize"; // css reset

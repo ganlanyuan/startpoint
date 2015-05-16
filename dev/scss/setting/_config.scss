@@ -1,22 +1,24 @@
-// variables
+// config
 //-----------------------------
 // font
 // color
+// size
 // z-index
 // transition
 
 
 // font
-$ff-o: 'Oswald', sans-serif;
-$ff-g: Georgia, serif;
-$ff-a: Arial, serif;
+$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$arial: Arial, Helvetica, sans-serif;
+$opensans: 'Open Sans', Arial, sans-serif;
+$oswald: 'Oswald', Arial, sans-serif;
+
+$georgia: Georgia, "Times New Roman", Times, Baskerville, serif;
+
 
 // color
+$brand-color: #000;
 $text-color: #212121;
-$blue: #1f4385;
-$light-blue: #1e6bb5;
-$red: #cc0000;
-$yellow: #fca205;
 $border-color: #e1e1e1;
 
 $social: (
@@ -39,8 +41,14 @@ $alerts:(
   alert: #DE2D0F
 ) !default;
 
+
+// size
+$global-gutter: 30px;
+
+
 // z-index
 $z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
+
 
 // transition
 $global-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
