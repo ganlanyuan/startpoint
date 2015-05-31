@@ -34,7 +34,7 @@
 
 	<!-- css -->
 	<link href="https://fontastic.s3.amazonaws.com/MSJHPuJFXkve8cKEDAVMKT/icons.css" rel="stylesheet">
-	<link rel="stylesheet" href="assets/css/site.css">
+	<link rel="stylesheet" href="assets/css/main.css">
 
 	<!-- javascript -->
 	<!--[if (lt IE 9)]>
@@ -45,13 +45,7 @@
 		<link href="assets/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
 		<script src="assets/cross-domain/respond.proxy.js"></script>	
 	<![endif]-->
-	<?php 
-		if ($pagename == 'index') {
-			echo '';
-		} else {
-			echo '';
-		}
-	?>
+
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 	<script src="assets/js/script.js"></script>
   <?php // include_once("svg-ajax.php") ?>
