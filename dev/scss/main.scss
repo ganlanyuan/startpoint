@@ -16,15 +16,15 @@
 @import "base/ad";
 @import "base/typography";
 
+// components
+@import "components/button";
+@import "components/dropdown";
+
 // layout
 @import "layout/header";
 @import "layout/footer";
 @import "layout/navigation";
 @import "layout/sidebar";
-
-// components
-@import "components/button";
-@import "components/dropdown";
 
 // pages
 @import "pages/home";
