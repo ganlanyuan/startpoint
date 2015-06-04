@@ -24,7 +24,6 @@ img.full { width: 100%; display: block; }
 [class*=" icon-"]:before { display: none; } 
 
 // reset form styles
-button,input,select { line-height: normal !important; }
 button:focus,input:focus,select:focus,textarea:focus {outline: 0; }
 label { cursor: pointer; }
 
