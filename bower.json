@@ -18,12 +18,8 @@
     "animate.scss": "*",
     "bourbon": "4.2.2",
     "inuit-normalize.css": "~3.0.1",
-    "rocket": "1.1.8",
+    "rocket": "2.0.0",
     "REM-unit-polyfill": "~1.3.2",
     "svg4everybody": "~1.0.0"
-  },
-  "resolutions": {
-    "bourbon": "4.2.2",
-    "rocket": "1.1.5"
   }
 }

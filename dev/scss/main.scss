@@ -17,7 +17,14 @@
 @import "base/typography";
 
 // components
+// @import "components/icon-font";
+@import "components/icon";
+@import "components/panel";
+@import "components/alert";
 @import "components/button";
+@import "components/form";
+@import "components/table";
+@import "components/pagination";
 @import "components/dropdown";
 
 // layout
