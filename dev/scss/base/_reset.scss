@@ -38,5 +38,9 @@ ol,ul { list-style:none; }
 a { text-decoration: none; color: $text-color; }
 
 .hidden { display: none; }
+.hidden-checkbox {
+  position: absolute;
+  left: -9999em;
+}
 .top { margin-top: 0 !important; padding-top: 0 !important; }
 .bottom { margin-bottom: 0 !important; padding-bottom: 0 !important; }
