@@ -35,12 +35,12 @@ dl,ul,ol { padding: 0; }
 ol,ul { list-style:none; }
 
 // reset link style
-a { text-decoration: none; color: $text-color; }
+a { text-decoration: none; color: map-get($color, 'text'); }
 
 .hidden { display: none; }
 .hidden-checkbox {
   position: absolute;
-  left: -9999em;
+  left: -10000px;
 }
 .top { margin-top: 0 !important; padding-top: 0 !important; }
 .bottom { margin-bottom: 0 !important; padding-bottom: 0 !important; }

@@ -1,6 +1,14 @@
 // variables
 // ============
 
+// size
+$global-gutter: 30px;
+
+
+// z-index
+$z-index: (
+);
+
 // font
 $helvetica: "'Helvetica Neue', Helvetica, Arial, sans-serif";
 $arial: "Arial, Helvetica, sans-serif";
@@ -10,38 +18,31 @@ $oswald: "'Oswald', Arial, sans-serif";
 $georgia: "Georgia, 'Times New Roman', Times, Baskerville, serif";
 
 // color
-$brand-color: #000;
-$text-color: #212121;
-$border-color: #e1e1e1;
+$color: (
+  'brand': #000,
+  'text': #212121,
+  'border': #e1e1e1,
+);
 
 $social: (
-  facebook-like: #4660b5, 
-  facebook: #39579a, 
-  twitter: #23cbff, 
-  pinterest: #df2109, 
-  google: #567EF0, 
-  google-plus: #DA4835, 
-  linkedin: #005987, 
-  rss: #EF922F, 
-  email: #1D90DD, 
-  primary: #0078E7
-) !default;
+  'facebook-like': #4660b5, 
+  'facebook': #39579a, 
+  'twitter': #23cbff, 
+  'pinterest': #df2109, 
+  'google': #567EF0, 
+  'google-plus': #DA4835, 
+  'linkedin': #005987, 
+  'rss': #EF922F, 
+  'email': #1D90DD, 
+  'primary': #0078E7
+);
 
 $alerts:(
-  success: #3A945B,
-  info: #2270C1,
-  warning: #DE770F,
-  alert: #DE2D0F
-) !default;
-
-
-// size
-$global-gutter: 30px;
-
-
-// z-index
-$z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
-
+  'success': #3A945B,
+  'info': #2270C1,
+  'warning': #DE770F,
+  'alert': #DE2D0F
+);
 
 // transition
 $global-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);

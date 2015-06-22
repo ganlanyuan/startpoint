@@ -24,6 +24,7 @@
 @import "components/button";
 @import "components/form";
 @import "components/table";
+@import "components/breadcrumb";
 @import "components/pagination";
 @import "components/dropdown";
 
@@ -35,6 +36,8 @@
 
 // pages
 @import "pages/home";
+@import "pages/section";
+@import "pages/article";
 @import "pages/contact";
 
 @import "base/print";
