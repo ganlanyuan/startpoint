@@ -1,3 +1,8 @@
 // form
 // ============
 
+input,
+textarea,
+select {
+  @include button(15px '0.7em 1em' radius);
+}

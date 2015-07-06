@@ -1,6 +1,6 @@
 <script type="text/javascript">
   var ajax = new XMLHttpRequest();
-  ajax.open("GET", "assets/svg/icons.svg", true);
+  ajax.open("GET", "assets/svgs/map.svg", true);
   ajax.send();
   ajax.onload = function(e) {
     var div = document.createElement("div");
