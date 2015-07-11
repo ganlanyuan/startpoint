@@ -19,6 +19,7 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
 	<!-- favicons -->
 	<link rel="shortcut icon" href="img/favicon.ico">
