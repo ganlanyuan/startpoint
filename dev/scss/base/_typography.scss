@@ -7,3 +7,60 @@
 // .heading4 { @include type(15px 700 uppercase); }
 // .heading5 { @include type(15px 700); }
 // .heading6 { @include type(47px 600 l.2); }
+
+// has-style
+.has-style {
+  h1, h2, h3, h4, h5 { margin-bottom: 10px; }
+  h1 { @include type(34px 1.2); }
+  h2 { @include type(26px 1.2); }
+  h3 { @include type(22px 1.3); }
+  h4 { @include type(16px 1.3); }
+  h5 { @include type(13px 1.4); }
+  p { 
+    @include type(15px 1.6); 
+    margin-bottom: 1.6em;
+  }
+  a {
+    color: lighten(map-get($color, brand), 20%);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  address {
+    @include type(15px 1.5 style-normal);
+  }
+  ul, ol {
+    margin-left: 1.5em;
+  }
+  ol {
+    counter-reset: ol;
+    > li:before {
+      counter-increment: ol;
+      content: counters(ol, '.') ' ';
+    }
+  }
+  ul > li { list-style-type: square; }
+  li {
+    @include type(14px 1.7);
+    margin-bottom: 1em;
+  }
+  form {
+    label {
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    ul, ol {
+      list-style: none;
+      margin-left: 0;
+    }
+    li {
+      &:before {
+        content: '';
+      }
+    }
+  }
+  .required label:after {
+    content: ' *';
+    color: map-get($alerts, danger);
+  }
+}

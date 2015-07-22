@@ -41,37 +41,6 @@ ol,ul { list-style:none; }
 // reset link style
 a { text-decoration: none; color: map-get($color, 'text'); }
 
-// has-style
-.has-style {
-  h1, h2, h3, h4, h5 { margin-bottom: 1em; }
-  h1 { @include type(36px 1.2); }
-  h2 { @include type(25px 1.2); }
-  h3 { @include type(19px 1.3); }
-  h4 { @include type(15px 1.3); }
-  h5 { @include type(16px 1.4); }
-  p { 
-    @include type(14px 1.6); 
-    margin-bottom: 1.6em;
-  }
-  ul, ol {
-    margin-left: 1.5em;
-  }
-  ol {
-    counter-reset: ol;
-    > li:before {
-      counter-increment: ol;
-      content: counters(ol, '.') ' ';
-    }
-  }
-  ul {
-    li { list-style-type: square; }
-  }
-  li {
-    @include type(14px 1.7);
-    margin-bottom: 1em;
-  }
-}
-
 .hidden { display: none; }
 .hidden-checkbox {
   position: absolute;
