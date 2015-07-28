@@ -1,11 +1,11 @@
 {
   "name": "startpoint",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/ganlanyuan/startpoint",
   "description": "A simple boilerplate for building website.",
   "keywords": [
     "html",
-    "borlerplate"
+    "boilerplate"
   ],
   "authors": [
     "William Lin (ganlanyuan@gmail.com)"
@@ -18,7 +18,7 @@
     "animate.scss": "*",
     "bourbon": "4.2.3",
     "inuit-normalize.css": "~3.0.1",
-    "rocket": "2.2.1",
+    "rocket": "2.x",
     "REM-unit-polyfill": "1.3.4",
     "svg4everybody": "~1.0.0"
   }
