@@ -1,5 +1,10 @@
 #Changlog
 
+### v0.1.1
++ Add `responsive-table`
++ Add `tabs`
++ Remove `gulp`
+
 ### v0.1.0
 + Installed `gulp`
 + Add `svg-min`, `svg-store` and `image-min` tasks
