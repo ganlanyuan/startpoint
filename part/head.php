@@ -34,6 +34,9 @@
 	<!-- <link href="http://mydomain.com/my-next-page.htm" rel="prerender"> -->
 
 	<!-- css -->
+	<!--[if !IE]><!-->
+		<!-- <link href="assets/css/responsive-table.css" rel="stylesheet" > -->
+	<!--<![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css">
 
 	<!-- javascript -->

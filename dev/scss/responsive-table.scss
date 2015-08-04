@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+// responsive table
+// =================
+
+// vendors
+@import "../../bower_components/bourbon/app/assets/stylesheets/_bourbon.scss"; 
+@import "../../bower_components/rocket/src/scss/_rocket.scss";
+
+// helpers
+@import "helpers/variables";
+@import "helpers/placeholders";
+
+
+.table {
+  // Force table to not be like tables anymore
+  @include bp(max 670)  {
+    &-responsive.table {
+      &, thead, tbody, th, td, tr {
+        display: block; 
+      }
+      // Hide table headers (but not display: none;, for accessibility)
+      thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tr:first-of-type td:first-of-type { 
+        border-top: 1px solid map-get($color, border); 
+      }
+      // Behave  like a "row"
+      td { 
+        position: relative;
+        padding-left: 35%; 
+        border-right-width: 0;
+        // Now like a table header
+        &:before { 
+          @include type(15px 600 uppercase); 
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          padding: 7px;
+          width: 30%; 
+          height: 100%;
+          color: map-get($color, brand);
+          // white-space: nowrap;
+          border-right: 1px solid map-get($color, border);
+          box-sizing: border-box;
+        }
+      }
+    }
+    // Label the data
+    &-job-list {
+      td:nth-of-type(1):before { content: ""; }
+      td:nth-of-type(2):before { content: ""; }
+      td:nth-of-type(3):before { content: ""; }
+      td:nth-of-type(4):before { content: ""; }
+      td:nth-of-type(5):before { content: ""; }
+    }
+  }
+}
