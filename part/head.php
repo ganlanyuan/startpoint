@@ -25,8 +25,18 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<link rel="shortcut icon" href="img/favicon.png">
 
+	<!-- Prerendering pages: be careful with this option -->
+	<!-- <link rel="prerender" href="http://css-tricks.com"> -->
+
+	<!-- Subresources:  -->
+	<!-- Identify the resources that are the highest priority and should be requested before prefetched items -->
+	<!-- <link rel="subresource" href="styles.css"> -->
+	
 	<!-- Prefetch DNS for external assets -->
 	<link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch">
+
+	<!-- Preconnect for dynamic request URLs -->
+	<!-- <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin> -->
 	
 	<!-- Prefetch Resourses -->
 	<!-- <link href="sprite.png" rel="prefetch"> -->
