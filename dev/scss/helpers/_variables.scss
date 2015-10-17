@@ -3,7 +3,6 @@
 
 $ro-layout: (
   container: 1150px,
-  columns: 12,
   gutter: 20px,
 );
 
@@ -25,6 +24,7 @@ $opensans: "'Open Sans', Arial, sans-serif";
 $lato: "'Lato', Arial, sans-serif";
 $oswald: "'Oswald', Arial, sans-serif";
 $georgia: "Georgia, 'Times New Roman', Times, Baskerville, serif";
+$times: "'Times New Roman', Times, Baskerville, Georgia, serif";
 
 // color
 $color: (

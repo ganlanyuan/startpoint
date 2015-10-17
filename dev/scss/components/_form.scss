@@ -4,5 +4,6 @@
 input,
 textarea,
 select {
-  @include button(15px '0.7em 1em' radius);
+  @include button('0.5em 1.2em');
+  border: 1px solid map-get($color, 'border');
 }
