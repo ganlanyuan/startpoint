@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
 // vendors
-@import "../../bower_components/bourbon/app/assets/stylesheets/_bourbon.scss"; 
 @import "../../bower_components/rocket/src/scss/_rocket.scss";
 @import "vendors/browsehappy";
+@import "vendors/ellipsis";
+@import "vendors/hide-text";
 // @import "vendors/owl-carousel2";
 
 // helpers

@@ -48,6 +48,12 @@
 		<!-- <link href="assets/css/responsive-table.css" rel="stylesheet" > -->
 	<!--<![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script>
+		<?php 
+			include 'bower_components/prefixfree/prefixfree.min.js'; 
+			include 'assets/js/Modernizr.js'; 
+		?>
+	</script>
 
 	<!-- javascript -->
 	<!--[if (lt IE 9)]>
@@ -58,9 +64,6 @@
 		<link href="assets/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
 		<script src="assets/cross-domain/respond.proxy.js"></script>	
 	<![endif]-->
-	<script>
-		<?php include 'assets/js/Modernizr.js'; ?>
-	</script>
 
   <?php // include_once("svg-ajax.php") ?>
 </head>
