@@ -1,9 +1,13 @@
 #Changlog
 
-### v0.1.1
+### v0.2.0
++ Add `prefixfree` to `<head>`
 + Add `responsive-table`
 + Add `tabs`
 + Remove `gulp`
++ Move `modernizr` to `<head>`
++ Fix a horizontal scroll issue on safari
++ Rename dev folder to src
 
 ### v0.1.0
 + Installed `gulp`
