@@ -1,6 +1,5 @@
 {
   "minify": true,
-  "classPrefix": "no",
   "options": [
     "addTest",
     "atRule",

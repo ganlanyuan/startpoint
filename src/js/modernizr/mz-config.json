@@ -1,7 +1,8 @@
 {
   "minify": true,
-  "classPrefix": "no",
-  "options": [],
+  "options": [
+    "setClasses"
+  ],
   "feature-detects": [
     "test/touchevents",
     "test/webanimations",
