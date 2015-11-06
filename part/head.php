@@ -48,12 +48,7 @@
 		<!-- <link href="assets/css/responsive-table.css" rel="stylesheet" > -->
 	<!--<![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css">
-	<script>
-		<?php 
-			include 'bower_components/prefixfree/prefixfree.min.js'; 
-			include 'assets/js/Modernizr.js'; 
-		?>
-	</script>
+	<script> <?php include 'assets/js/base.js'; ?> </script>
 
 	<!-- javascript -->
 	<!--[if (lt IE 9)]>
