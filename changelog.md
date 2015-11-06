@@ -1,22 +1,25 @@
 #Changlog
 
+### v0.3.0 beta
++ Added: modernizr `mz-config.json`
+
 ### v0.2.0
-+ Add `prefixfree` to `<head>`
-+ Add `responsive-table`
-+ Add `tabs`
-+ Remove `gulp`
++ Added: `prefixfree` to `<head>`
++ Added: `responsive-table`
++ Added: `tabs`
++ Removed: `gulp`
 + Move `modernizr` to `<head>`
-+ Fix a horizontal scroll issue on safari
-+ Rename dev folder to src
++ Fixed: a horizontal scroll issue on safari
++ Renamed: dev folder to src
 
 ### v0.1.0
 + Installed `gulp`
-+ Add `svg-min`, `svg-store` and `image-min` tasks
++ Added: `svg-min`, `svg-store` and `image-min` tasks
 
 ### v0.0.4 
 + Update rocket#1.1.6
-+ Add svg4everybody
-+ Fix an issue in script.js
++ Added: svg4everybody
++ Fixed: an issue in script.js
 
 ### v0.0.3
 + Upgrade ie.js. Now CSS3 selectors inside `media query` are supported on IE7,8
@@ -25,6 +28,6 @@
 + Update rocket and bourbon
 
 ### v0.0.1
-+ Remove .htaccess and crossdomain.xml
-+ Add print stylesheet (borrow from html5boilerplate)
-+ Add browsehappy (borrow from html5boilerplate)
++ Removed: .htaccess and crossdomain.xml
++ Added: print stylesheet (borrow from html5boilerplate)
++ Added: browsehappy (borrow from html5boilerplate)
