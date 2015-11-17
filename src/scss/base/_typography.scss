@@ -10,24 +10,22 @@
 
 // has-style
 // .has-style {
+//   section { margin-bottom: 50px; }
 //   h1, h2, h3, h4, h5 { margin-bottom: 10px; }
 //   h1 { @include type(34px 1.2); }
 //   h2 { @include type(26px 1.2); }
 //   h3 { @include type(22px 1.3); }
-//   h4 { @include type(16px 1.3); }
+//   h4 { @include type(18px 1.3); }
 //   h5 { @include type(13px 1.4); }
-//   p { 
-//     @include type(15px 1.6); 
-//     margin-bottom: 1.6em;
+//   p,address { 
+//     @include type(15px 1.5); 
+//     margin-bottom: 1.5em;
 //   }
 //   a {
 //     color: lighten(map-get($color, brand), 20%);
 //     &:hover {
 //       text-decoration: underline;
 //     }
-//   }
-//   address {
-//     @include type(15px 1.5 style-normal);
 //   }
 //   ul, ol {
 //     margin-left: 1.5em;
@@ -53,13 +51,9 @@
 //       list-style: none;
 //       margin-left: 0;
 //     }
-//     li {
-//       &:before {
-//         content: '';
-//       }
-//     }
+//     li:before { display: none; }
 //   }
-//   .required label:after {
+//   label.required:after {
 //     content: ' *';
 //     color: map-get($alerts, danger);
 //   }
