@@ -1,9 +1,12 @@
+.sass-cache
+*.css.map
+*.scssc
+*.swp
+
 *.DS_Store
 *.codekit
 *.sublime-project
 *.sublime-workspace
-*.scssc
-*.swp
 
 /.codekit-cache/
 /design/

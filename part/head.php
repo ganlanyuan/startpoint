@@ -7,7 +7,7 @@
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie10 lt-ie9" lang="en"><![endif]-->
 <!--[if (IE 9)&!(IEMobile)]><html class="no-js lt-ie10" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
@@ -33,7 +33,7 @@
 	<!-- <link rel="subresource" href="styles.css"> -->
 	
 	<!-- Prefetch DNS for external assets -->
-	<link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch">
+	<!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
 
 	<!-- Preconnect for dynamic request URLs -->
 	<!-- <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin> -->
@@ -44,11 +44,8 @@
 	<!-- <link href="http://mydomain.com/my-next-page.htm" rel="prerender"> -->
 
 	<!-- css -->
-	<!--[if !IE]><!-->
-		<!-- <link href="assets/css/responsive-table.css" rel="stylesheet" > -->
-	<!--<![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css">
-	<script> <?php include 'assets/js/base.js'; ?> </script>
+	<script type="text/javascript"> <?php include 'assets/js/base.js'; ?> </script>
 
 	<!-- javascript -->
 	<!--[if (lt IE 9)]>

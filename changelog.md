@@ -2,6 +2,7 @@
 
 ### v0.3.0 beta
 + Added: modernizr `mz-config.json`
++ Removed: `responsive-table` since we added it in [rocket](https://github.com/ganlanyuan/rocket).
 
 ### v0.2.0
 + Added: `prefixfree` to `<head>`
