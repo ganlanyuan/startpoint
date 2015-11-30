@@ -17,24 +17,25 @@
 //   h3 { @include type(22px 1.3); }
 //   h4 { @include type(18px 1.3); }
 //   h5 { @include type(13px 1.4); }
-//   p,address { 
+//   p, address { 
 //     @include type(15px 1.5); 
 //     margin-bottom: 1.5em;
 //   }
 //   a {
-//     color: lighten(map-get($color, brand), 20%);
-//     &:hover {
-//       text-decoration: underline;
-//     }
+//     color: map-get($color, 'light-blue');
+//     &:hover { text-decoration: underline; }
 //   }
 //   ul, ol {
-//     margin-left: 1.5em;
+//     margin-left: $ul-mg;
 //   }
 //   ol {
 //     counter-reset: ol;
 //     > li:before {
 //       counter-increment: ol;
 //       content: counters(ol, '.') ' ';
+//       display: inline-block;
+//       width: $ul-mg;
+//       margin-left: -$ul-mg;
 //     }
 //   }
 //   ul > li { list-style-type: square; }
