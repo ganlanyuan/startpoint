@@ -5,5 +5,5 @@ input,
 textarea,
 select {
   @include button('0.5em 1.2em');
-  border: 1px solid map-get($color, 'border');
+  border: 1px solid $co-border;
 }

@@ -1,6 +1,39 @@
-// typography
+// common
 // ===============
 
+// == small parts == //
+// .container { @include container(); }
+
+// figure {
+//   &.centered {
+//     max-width: 600px;
+//     margin: 0 auto;
+//     img { width: 100%; }
+//   }
+//   @include breakpoint('min' 600) {
+//     &.left,
+//     &.right {
+//       img { width: 100%; }
+//     }
+//   }
+//   @include breakpoint('min' 600) {
+//     &.left,
+//     &.right {
+//       max-width: 300px;
+//       margin-bottom: 10px;
+//     }
+//     &.left {
+//       float: left;
+//       margin-right: 20px;
+//     }
+//     &.right {
+//       float: right;
+//       margin-left: 20px;
+//     }
+//   }
+// }
+
+// == typography == //
 // .h1 { @include type(47px 600 1.2); }
 // .h2 { @include type(47px 600 1.2); }
 // .h3 { @include type(20px 700 uppercase); }
@@ -8,9 +41,7 @@
 // .h5 { @include type(15px 700); }
 // .h6 { @include type(47px 600 1.2); }
 
-// has-style
 // .has-style {
-//   section { margin-bottom: 50px; }
 //   h1, h2, h3, h4, h5 { margin-bottom: 10px; }
 //   h1 { @include type(34px 1.2); }
 //   h2 { @include type(26px 1.2); }
@@ -22,12 +53,16 @@
 //     margin-bottom: 1.5em;
 //   }
 //   a {
-//     color: map-get($color, 'light-blue');
+//     color: $co-link;
 //     &:hover { text-decoration: underline; }
 //   }
-//   ul, ol {
-//     margin-left: $ul-mg;
-//   }
+// }
+
+// == basis == //
+// $ul-mg: 2em;
+// .has-style {
+//   section { margin-bottom: 50px; }
+//   ul, ol { margin-left: $ul-mg; }
 //   ol {
 //     counter-reset: ol;
 //     > li:before {
@@ -59,3 +94,4 @@
 //     color: map-get($alerts, danger);
 //   }
 // }
+
