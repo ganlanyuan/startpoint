@@ -44,9 +44,9 @@
 
 	<!-- css -->
 	<link rel="stylesheet" href="assets/css/main.css">
-	<script type="text/javascript"> <?php include 'assets/js/base.js'; ?> </script>
 
 	<!-- javascript -->
+	<script src="assets/js/base.js"></script>
 	<!--[if (lt IE 9)]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="assets/js/ie.min.js"></script>
