@@ -12,7 +12,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "prefixfree": "*",
     "svg4everybody": "~1.0.0",
     "inuit-normalize.css": "~3.0.1",
     "rocket": "3.x"

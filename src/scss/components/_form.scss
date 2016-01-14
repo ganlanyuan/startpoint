@@ -4,6 +4,6 @@
 input,
 textarea,
 select {
-  @include button('0.5em 1.2em');
-  border: 1px solid $co-border;
+  @include button('0.6em 1em' #fff);
+  border: 1px solid $color-border;
 }

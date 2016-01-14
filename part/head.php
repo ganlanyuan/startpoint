@@ -46,7 +46,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 
 	<!-- javascript -->
-	<script src="assets/js/base.js"></script>
+	<script src="assets/js/modernizr.js"></script>
 	<!--[if (lt IE 9)]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="assets/js/ie.min.js"></script>
