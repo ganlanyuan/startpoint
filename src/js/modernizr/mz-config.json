@@ -4,18 +4,19 @@
     "setClasses"
   ],
   "feature-detects": [
-    "test/touchevents",
-    "test/webanimations",
-    "test/css/animations",
-    "test/css/calc",
-    "test/css/flexbox",
-    "test/css/flexboxlegacy",
-    "test/css/flexboxtweener",
-    "test/css/flexwrap",
-    "test/css/gradients",
-    "test/css/multiplebgs",
-    "test/css/transforms",
-    "test/css/transforms3d",
-    "test/svg/inline"
+    "css/animations",
+    "css/calc",
+    "css/columns",
+    "css/flexbox",
+    "css/flexboxlegacy",
+    "css/flexboxtweener",
+    "css/flexwrap",
+    "css/gradients",
+    "css/multiplebgs",
+    "css/transforms",
+    "css/transforms3d",
+    "svg/inline"
+    "touchevents",
+    "webanimations",
   ]
 }
