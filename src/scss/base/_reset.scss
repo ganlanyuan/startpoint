@@ -11,10 +11,7 @@ html, body { overflow-x: hidden; }
 body { min-width: 320px; }
 
 // make images flexible
-img { 
-  max-width: 100%; 
-  height: auto; 
-}
+img { max-width: 100%; height: auto; }
 
 // full width image
 img.full { width: 100%; display: block; }
@@ -44,10 +41,6 @@ ol,ul { list-style:none; }
 // reset link style
 a { text-decoration: none; color: inherit; }
 
-.hidden { display: none; }
-.hidden-checkbox {
-  position: absolute;
-  left: -10000px;
-}
+.hidden-checkbox { position: absolute; left: -10000px; }
 .top { margin-top: 0 !important; padding-top: 0 !important; }
 .bottom { margin-bottom: 0 !important; padding-bottom: 0 !important; }
