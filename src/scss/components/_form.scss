@@ -1,9 +1,20 @@
 // form
 // ============
 
+//*** control input height 
+input,
+button,
+select {
+  box-sizing: border-box; // Core: use border-box to reduce the difference between browsers.
+  height: 1.8em; // use em unit to make it responsive when font-size changes.
+  padding: 0 0.6em; // remove top & bottom padding.
+  vertical-align: middle; // fix IE8, Safari input and button alignment issue. 
+  .lt-ie9 & { line-height: 1.8em; } // fix IE8 input text alignment issue.
+}
+
 input,
 textarea,
 select {
-  @include button('0.6em 1em' #fff);
+  background: #fff;
   border: 1px solid $color-border;
 }
