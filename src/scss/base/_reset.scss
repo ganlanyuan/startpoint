@@ -4,11 +4,8 @@
 // reset html font family, to prevent a layout issue in some language system (e.g. korean system)
 html { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
-// hide extra elements, (html is for safari)
-html, body { overflow-x: hidden; } 
-
 // set min-width to 320
-body { min-width: 320px; }
+body { min-width: 320px; overflow-x: hidden; }
 
 // make images flexible
 img { max-width: 100%; height: auto; }

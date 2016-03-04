@@ -1,1 +1,1 @@
-<div class="ad ad250"><img src="http://placehold.it/250x250" alt=""></div>
+<div class="ad"><img src="http://placehold.it/250x250" alt=""></div>

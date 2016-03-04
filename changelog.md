@@ -3,6 +3,8 @@
 ### v0.3.0 beta
 + Added: modernizr `mz-config.json`
 + Removed: `responsive-table` since we added it in [rocket](https://github.com/ganlanyuan/rocket).
++ Removed: ads placeholder specific width classes.
++ Removed: html `overflow-x: hidden`, in order to make `position: sticky` works.
 
 ### v0.2.0
 + Added: `prefixfree` to `<head>`
