@@ -13,8 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "svg4everybody": "~1.0.0",
-    "inuit-normalize.css": "~3.0.1",
     "rocket": "3.x",
-    "classlist": "~2014.12.13"
+    "classlist": "~2014.12.13",
+    "normalize-css": "normalize.css#^4.0.0"
   }
 }
