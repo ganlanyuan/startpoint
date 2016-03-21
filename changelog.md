@@ -1,5 +1,8 @@
 #Changlog
 
+### v0.3.1
++ Fixed: normalize-css path in main.scss
+
 ### v0.3.0
 + Added: modernizr `mz-config.json`
 + Improved: update normalize-css
