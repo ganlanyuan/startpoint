@@ -15,8 +15,8 @@
     "css/multiplebgs",
     "css/transforms",
     "css/transforms3d",
-    "svg/inline"
+    "svg/inline",
     "touchevents",
-    "webanimations",
+    "webanimations"
   ]
 }

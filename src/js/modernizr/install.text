@@ -1,0 +1,15 @@
+CURRENT VERSION
+v3.3.1
+
+GLOBAL INSTALL
+npm install -g modernizr
+
+UPDATE
+npm update -g modernizr
+
+LOCAL INSTALL
+cd path/to/modernizr/folder
+modernizr -c config.json
+
+GITHUB
+https://github.com/Modernizr/Modernizr/blob/master/lib/config-all.json
