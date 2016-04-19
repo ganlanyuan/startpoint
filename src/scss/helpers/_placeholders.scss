@@ -3,9 +3,3 @@
 
 // clearfix
 %clearfix { @include clearfix; }
-
-// transition
-%global-transition {
-  -webkit-transition: all 0.4s $global-bezier 0s;
-  transition: all 0.4s $global-bezier 0s;
-}

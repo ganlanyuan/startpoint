@@ -2,22 +2,4 @@
 .ad {
   @include center();
   margin: 0 auto em(20);
-  // &-bg { 
-  //   @extend %clearfix;
-  //   padding-top: 1px;
-  //   background-color: #eee;
-  // }
-  // &-group {
-  //   text-align: center;
-  //   > * {
-  //     display: inline-block;
-  //     margin-left: 3px;
-  //     margin-right: 3px;
-  //   }
-  // }
-  // &-combined { 
-  //   @extend %clearfix;
-  //   background-color: #f2f2f2; 
-  //   margin-bottom: em(20);
-  // }
 }

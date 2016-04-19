@@ -55,6 +55,4 @@
 		<link href="assets/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
 		<script src="assets/cross-domain/respond.proxy.js"></script>	
 	<![endif]-->
-
-  <?php // include_once("svg-ajax.php") ?>
 </head>
