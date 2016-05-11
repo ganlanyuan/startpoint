@@ -10,15 +10,13 @@
 //     margin: 0 auto;
 //     img { width: 100%; }
 //   }
-//   @include breakpoint('min' 600) {
-//     &.left,
-//     &.right {
+//   @include bp(max 500) {
+//     &.left, &.right {
 //       img { width: 100%; }
 //     }
 //   }
-//   @include breakpoint('min' 600) {
-//     &.left,
-//     &.right {
+//   @include bp(min 500) {
+//     &.left, &.right {
 //       max-width: 300px;
 //       margin-bottom: 10px;
 //     }
