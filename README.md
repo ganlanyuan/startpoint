@@ -37,5 +37,5 @@ startpoint/
 **Assets**: final files (css, js, images, fonts, svg).     
 
 1. **cross-domain** folder (inside assets folder) is for `respond.js` in case you put css file on CDN. Please refer to <a href="https://github.com/scottjehl/Respond" target="_blank">here</a> for details of usage.   
-2. **ie.js** (assets/js/) contains `Respond.js`, `NWMatcher 1.2.5` and `selectivizr`. `Respond.js` adds CSS-mediaquery supports to old browsers, and `selectivizr` adds CSS3-Selectors supports to old browsers.
+2. **ie.js** (assets/js/) contains `Respond.js`, `NWMatcher` and `selectivizr`. `Respond.js` adds CSS3 media query supports to old browsers, and `selectivizr` adds CSS3 Selectors supports to old browsers.
 

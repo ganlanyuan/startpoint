@@ -1,5 +1,11 @@
 #Changlog
 
+### v0.3.3
+- Added: ie scripts via bower.
+- Added: selectivizr test.
+- Fixed: IE8 selector issue caused by using old version of nwmatcher.js.
+- Updated: change `figure` to `.imageBox` in common.scss.
+
 ### v0.3.2
 - Removed: svg folder, js/lib folder, owl-carousel2.scss.
 - Renamed: mz-config-all.json => config-all.json, mz-config.json => config.json.
