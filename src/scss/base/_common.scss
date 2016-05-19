@@ -2,34 +2,36 @@
 // ===============
 
 // == small parts == //
+// .lt-ie9 { min-width: 1000px; overflow: auto; }
 // .container { @include container(); }
 
-// figure {
-//   &.centered {
-//     max-width: 600px;
-//     margin: 0 auto;
-//     img { width: 100%; }
-//   }
-//   @include bp(max 500) {
-//     &.left, &.right {
-//       img { width: 100%; }
-//     }
-//   }
-//   @include bp(min 500) {
-//     &.left, &.right {
-//       max-width: 300px;
-//       margin-bottom: 10px;
-//     }
-//     &.left {
-//       float: left;
-//       margin-right: 20px;
-//     }
-//     &.right {
-//       float: right;
-//       margin-left: 20px;
-//     }
-//   }
-// }
+/* .imageBox {
+  &.centered {
+    max-width: 600px;
+    margin: 0 auto;
+    img { width: 100%; }
+  }
+  @include bp(max 500 ie8) {
+    &.left, &.right {
+      img { width: 100%; }
+    }
+  }
+  @include bp(min 500 ie8) {
+    &.left, &.right {
+      max-width: 300px;
+      margin-bottom: 10px;
+      + p { margin-top: 0; }
+    }
+    &.left img {
+      float: left;
+      margin-right: 20px;
+    }
+    &.right img {
+      float: right;
+      margin-left: 20px;
+    }
+  }
+} */
 
 // == typography == //
 // .header-1 { @include type(47px 600 1.2); }

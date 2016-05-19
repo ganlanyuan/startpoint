@@ -5,7 +5,6 @@
 <?php include 'part/header.php'; ?>
 
 <?php include 'part/footer.php'; ?>
-
 <script src="assets/js/script.js"></script>
 </body>
 </html>

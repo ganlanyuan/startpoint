@@ -1,13 +1,12 @@
 /*
  *
- * NWMatcher 1.2.5 (for selectivizr)
+ * NWMatcher (for selectivizr)
  * selectivizr
  * Respond.js
  *
  * no html5.js
  */
 
-// @codekit-prepend "ie/nwmatcher.js"
-// @codekit-prepend "ie/selectivizr.js"
-// @codekit-prepend "ie/matchmedia.polyfill.js"
-// @codekit-prepend "ie/respond.js"
+// @codekit-prepend "../../bower_components/nwmatcher/src/nwmatcher.js"
+// @codekit-prepend "../../bower_components/Selectivizr-bower/selectivizr.js"
+// @codekit-prepend "../../bower_components/respond/dest/respond.src.js"

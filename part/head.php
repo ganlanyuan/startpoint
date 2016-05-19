@@ -48,7 +48,7 @@
 	<!-- javascript -->
 	<script src="assets/js/modernizr.js"></script>
 	<!--[if (lt IE 9)]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="assets/js/html5.js"></script>
 		<script src="assets/js/ie.js"></script>
 		
 		<link href="http://externalcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
