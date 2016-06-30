@@ -28,6 +28,7 @@ img.full { width: 100%; display: block; }
 // reset form styles
 button:focus,input:focus,select:focus,textarea:focus {outline: 0; }
 label { cursor: pointer; }
+select { -webkit-appearance: none; }
 
 // remove margin and padding
 figure,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p { margin: 0; }
