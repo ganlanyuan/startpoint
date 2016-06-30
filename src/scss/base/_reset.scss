@@ -7,8 +7,9 @@ html { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 // set min-width to 320
 html, body { min-width: 320px; overflow-x: hidden; }
 
-// make images flexible
-img { max-width: 100%; height: auto; }
+// make images & videos flexible
+img, video { max-width: 100%; height: auto; }
+iframe { max-width: 100%; }
 
 // full width image
 img.full { width: 100%; display: block; }
