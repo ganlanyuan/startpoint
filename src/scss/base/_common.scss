@@ -2,7 +2,6 @@
 // ===============
 
 // == small parts == //
-// .lt-ie9 { min-width: 1000px; overflow: auto; }
 // .container { @include container(); }
 
 /* .imageBox {
@@ -35,11 +34,6 @@
 
 // == typography == //
 // .header-1 { @include type(47px 600 1.2); }
-// .header-2 { @include type(47px 600 1.2); }
-// .header-3 { @include type(20px 700 uppercase); }
-// .header-4 { @include type(15px 700 uppercase); }
-// .header-5 { @include type(15px 700); }
-// .header-6 { @include type(47px 600 1.2); }
 
 // .has-style {
 //   h1, h2, h3, h4, h5 { margin-bottom: 10px; }

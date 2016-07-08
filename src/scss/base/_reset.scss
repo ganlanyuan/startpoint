@@ -11,6 +11,9 @@ html, body { min-width: 320px; overflow-x: hidden; }
 img, video { max-width: 100%; height: auto; }
 iframe { max-width: 100%; }
 
+// remove the padding under img
+figure img { display: block; }
+
 // full width image
 img.full { width: 100%; display: block; }
 
