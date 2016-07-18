@@ -1,50 +1,17 @@
-// common
-// ===============
-
-// == small parts == //
-// .container { @include container(); }
-
-/* .imageBox {
-  &.centered {
-    max-width: 600px;
-    margin: 0 auto;
-    img { width: 100%; }
-  }
-  @include bp(max 500 ie8) {
-    &.left, &.right {
-      img { width: 100%; }
-    }
-  }
-  @include bp(min 500 ie8) {
-    &.left, &.right {
-      max-width: 300px;
-      margin-bottom: 10px;
-      + p { margin-top: 0; }
-    }
-    &.left img {
-      float: left;
-      margin-right: 20px;
-    }
-    &.right img {
-      float: right;
-      margin-left: 20px;
-    }
-  }
-} */
-
-// == typography == //
-// .header-1 { @include type(47px 600 1.2); }
+// about
+// =============
 
 // .has-style {
-//   h1, h2, h3, h4, h5 { margin-bottom: 10px; }
+//   h1, h2, h3, h4, h5 { margin-bottom: 0.5em; text-transform: capitalize; }
 //   h1 { @include type(34px 1.2); }
 //   h2 { @include type(26px 1.2); }
 //   h3 { @include type(22px 1.3); }
 //   h4 { @include type(18px 1.3); }
 //   h5 { @include type(13px 1.4); }
 //   p, address { 
-//     @include type(15px 1.5); 
+//     @include type(15px 1.4); 
 //     margin-bottom: 1.5em;
+//     color: #000;
 //   }
 //   a {
 //     color: $color-link;
@@ -52,8 +19,7 @@
 //   }
 // }
 
-// == basis == //
-// $ul-mg: 2em;
+// $ul-mg: 38px;
 // .has-style {
 //   section { margin-bottom: 50px; }
 //   ul, ol { margin-left: $ul-mg; }
@@ -88,4 +54,3 @@
 //     color: map-get($alerts, danger);
 //   }
 // }
-

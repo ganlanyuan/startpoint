@@ -4,19 +4,6 @@
     "setClasses"
   ],
   "feature-detects": [
-    "css/animations",
-    "css/calc",
-    "css/columns",
-    "css/flexbox",
-    "css/flexboxlegacy",
-    "css/flexboxtweener",
-    "css/flexwrap",
-    "css/gradients",
-    "css/multiplebgs",
-    "css/transforms",
-    "css/transforms3d",
-    "svg/inline",
-    "touchevents",
-    "webanimations"
+    "touchevents"
   ]
 }

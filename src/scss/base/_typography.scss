@@ -1,0 +1,36 @@
+// == typography ==
+// html { @include type($helvetica); }
+// .heading-1,
+// .heading-2,
+// .heading-3 { line-height: 1.2; }
+// .heading-4,
+// .heading-5,
+// .heading-6 { line-height: 1.3; }
+
+// heading-1 ~ 3
+// http://www.modularscale.com/?11&px&1.2&web&text
+// heading-4 ~ 6
+// http://www.modularscale.com/?12&px&1.2&web&text
+// .heading-1,
+// .heading-2 { @include type(19px); }
+// .heading-3 { @include type(16px); }
+
+// .heading-4 { @include type(17px); }
+// .heading-5 { @include type(14px); }
+// .heading-6 { @include type(12px); }
+
+// @include bp(min $bp-heading-md) {
+//   .heading-1 { @include type(27px); }
+//   .heading-2 { @include type(23px); }
+//   .heading-3 { @include type(19px); }
+// }
+// @include bp(min $bp-heading-lg) {
+//   .heading-1 { @include type(33px); } 
+//   .heading-2 { @include type(27px); }
+// }
+
+// p {
+//   @include type(13px 1.38);
+//   margin-bottom: 10px;
+//   color: $gray;
+// }
