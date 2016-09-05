@@ -1,1 +1,0 @@
-<div class="ad"><img src="http://placehold.it/300x250" alt=""></div>
