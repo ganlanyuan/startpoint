@@ -34,6 +34,21 @@ var config = {
     ],
     name: 'script.js',
     dest: 'assets/js',
+    options: {
+      // mangle: false,
+      output: {
+        quote_keys: true,
+      },
+      compress: {
+        properties: false,
+      }
+    }
+  },
+
+  // move
+  move: {
+    src: ['bower_components/html5shiv/dist/html5shiv.js', 'bower_components/go-native/dist/go-native.ie8.min.js'],
+    dest: 'assets/js'
   },
 
   // inject
@@ -129,22 +144,22 @@ function fileContentsStyle(filePath, file) {
 if (config.sassLang === 'libsass') {
   sass = require('gulp-sass');
   gulp.task('sass', function () {  
-    return gulp.src(config.sass.src)  
-      .pipe(sourcemaps.init())
-      .pipe(sass(config.sass.libsass_options).on('error', sass.logError))  
-      .pipe(sourcemaps.write(config.map_dest))
-      .pipe(gulp.dest(config.sass.dest))
-      .pipe(browserSync.stream());
+    gulp.src(config.sass.src)  
+        .pipe(sourcemaps.init())
+        .pipe(sass(config.sass.libsass_options).on('error', sass.logError))  
+        .pipe(sourcemaps.write(config.map_dest))
+        .pipe(gulp.dest(config.sass.dest))
+        .pipe(browserSync.stream());
   });  
 } else {
   sass = require('gulp-ruby-sass');
   gulp.task('sass', function () {  
-    return sass(config.sass.src, config.sass.rubysass_options)  
-      .pipe(sourcemaps.init())
-      .on('error', sass.logError)  
-      .pipe(sourcemaps.write(config.map_dest))
-      .pipe(gulp.dest(config.sass.dest))
-      .pipe(browserSync.stream());
+    sass(config.sass.src, config.sass.rubysass_options)  
+        .pipe(sourcemaps.init())
+        .on('error', sass.logError)  
+        .pipe(sourcemaps.write(config.map_dest))
+        .pipe(gulp.dest(config.sass.dest))
+        .pipe(browserSync.stream());
   });  
 }
 
@@ -160,111 +175,117 @@ gulp.task('js', function () {
         gulp.src(srcs[i])
             .pipe(sourcemaps.init())
             .pipe(concat(names[i]))
-            .pipe(uglify())
+            .pipe(uglify(config.js.options))
             .on('error', errorlog)  
             .pipe(sourcemaps.write(config.map_dest))
             .pipe(gulp.dest(config.js.dest))
       );
     }
 
-    return mergeStream(tasks)
+    mergeStream(tasks)
         .pipe(browserSync.stream());
 
   } else if(typeof config.js.name === 'string') {
-    return gulp.src(config.js.src)
-      .pipe(sourcemaps.init())
-      .pipe(concat(config.js.name))
-      .pipe(uglify())
-      .on('error', errorlog)  
-      .pipe(sourcemaps.write(config.map_dest))
-      .pipe(gulp.dest(config.js.dest))
-      .pipe(browserSync.stream());
+    gulp.src(config.js.src)
+        .pipe(sourcemaps.init())
+        .pipe(concat(config.js.name))
+        .pipe(uglify())
+        .on('error', errorlog)  
+        .pipe(sourcemaps.write(config.map_dest))
+        .pipe(gulp.dest(config.js.dest))
+        .pipe(browserSync.stream());
   }
 });  
 
 // svg min
 gulp.task('svgmin', function () {
-  return gulp.src(config.svg_min.src)
-    .pipe(svgmin())
-    .pipe(gulp.dest(config.svg_min.dest))
+  gulp.src(config.svg_min.src)
+      .pipe(svgmin())
+      .pipe(gulp.dest(config.svg_min.dest))
 });
 
 // svg fallback
 gulp.task('svgfallback', function () {
-  return gulp.src(config.svg_fallback.src)
-    .pipe(svg2png(config.svg_fallback.options))
-    .pipe(imagemin())
-    .pipe(gulp.dest(config.svg_fallback.dest))
+  gulp.src(config.svg_fallback.src)
+      .pipe(svg2png(config.svg_fallback.options))
+      .pipe(imagemin())
+      .pipe(gulp.dest(config.svg_fallback.dest))
+});
+
+// move
+gulp.task('move', function () {
+  gulp.src(config.move.src)
+      .pipe(gulp.dest(config.move.dest));
 });
 
 // inject
 gulp.task('inject_svgsprites', function () {
   var svgSprites = gulp.src(config.inject.svg.src)
-    .pipe(svgmin(function (file) {
-      var prefix = path.basename(file.relative, path.extname(file.relative));
-      return {
-        plugins: [{
-          cleanupIDs: {
-            prefix: prefix + '-',
-            minify: true
-          }
-        }],
-        // js2svg: { pretty: true }
-      }
-    }))
-    .pipe(svgstore({ inlineSvg: true }))
-    .pipe(rename(config.inject.svg.name))
-    .pipe(gulp.dest(config.inject.svg.dest));
+      .pipe(svgmin(function (file) {
+        var prefix = path.basename(file.relative, path.extname(file.relative));
+        return {
+          plugins: [{
+            cleanupIDs: {
+              prefix: prefix + '-',
+              minify: true
+            }
+          }],
+          // js2svg: { pretty: true }
+        }
+      }))
+      .pipe(svgstore({ inlineSvg: true }))
+      .pipe(rename(config.inject.svg.name))
+      .pipe(gulp.dest(config.inject.svg.dest));
 
   gulp.src(config.inject.svg.target)
-    .pipe(inject(svgSprites, {
-      // starttag: config.svg_inject.starttag,
-      transform: fileContents
-    }))
-    .pipe(gulp.dest(config.inject.dest));
+      .pipe(inject(svgSprites, {
+        // starttag: config.svg_inject.starttag,
+        transform: fileContents
+      }))
+      .pipe(gulp.dest(config.inject.dest));
 });
 gulp.task('inject_css', function () {
   var critical = gulp.src(config.inject.head.css);
 
   gulp.src(config.inject.head.target)
-    .pipe(inject(critical, {
-      name: 'critical',
-      transform: fileContentsStyle
-    }))
-    .pipe(gulp.dest(config.inject.dest));
+      .pipe(inject(critical, {
+        name: 'critical',
+        transform: fileContentsStyle
+      }))
+      .pipe(gulp.dest(config.inject.dest));
 });
 gulp.task('inject', ['inject_svgsprites'], function () {
   var loadcss = gulp.src(config.inject.head.loadcss)
-    .pipe(concat('loadcss.js'))
-    .pipe(uglify());
+      .pipe(concat('loadcss.js'))
+      .pipe(uglify());
 
   var critical = gulp.src(config.inject.head.css);
 
   var svg4everybody = gulp.src(config.inject.head.svg4everybody)
-    .pipe(uglify());
+      .pipe(uglify());
 
   var modernizrJs = gulp.src('src/js/*.js')
-    .pipe(modernizr(config.modernizr_options))
-    .pipe(uglify());
+      .pipe(modernizr(config.modernizr_options))
+      .pipe(uglify());
 
   gulp.src(config.inject.head.target)
-    .pipe(inject(loadcss, {
-      name: 'loadcss',
-      transform: fileContentsScript
-    }))
-    .pipe(inject(critical, {
-      name: 'critical',
-      transform: fileContentsStyle
-    }))
-    .pipe(inject(svg4everybody, {
-      name: 'svg4everybody',
-      transform: fileContentsScriptSvg4everybody
-    }))
-    .pipe(inject(modernizrJs, {
-      name: 'modernizr',
-      transform: fileContentsScript
-    }))
-    .pipe(gulp.dest(config.inject.dest));
+      .pipe(inject(loadcss, {
+        name: 'loadcss',
+        transform: fileContentsScript
+      }))
+      .pipe(inject(critical, {
+        name: 'critical',
+        transform: fileContentsStyle
+      }))
+      .pipe(inject(svg4everybody, {
+        name: 'svg4everybody',
+        transform: fileContentsScriptSvg4everybody
+      }))
+      .pipe(inject(modernizrJs, {
+        name: 'modernizr',
+        transform: fileContentsScript
+      }))
+      .pipe(gulp.dest(config.inject.dest));
 });
 // Server
 gulp.task('server', function () {
@@ -291,6 +312,7 @@ gulp.task('default', [
   'sass', 
   'js', 
   'svgmin', 
+  'move',
   'inject',
   'browser-sync', 
   'watch',
