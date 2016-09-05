@@ -15,10 +15,8 @@
     "rocket": "3.x",
     "normalize-css": "normalize.css#^4.0.0",
     "html5shiv": "^3.7.3",
-    "Selectivizr-bower": "selectivizr-bower#^1.0.3",
-    "respond": "^1.4.2",
-    "nwmatcher": "^1.3.6",
-    "go-native": "^0.0.3",
+    "svg4everybody": "^2.1.0",
+    "go-native": "^0.0.5",
     "loadcss": "^1.2.0"
   }
 }

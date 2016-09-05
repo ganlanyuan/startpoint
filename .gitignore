@@ -10,7 +10,10 @@
 
 /.codekit-cache/
 /bower_components/
+/node_modules/
+/tests/
 
+package.json
 README.html
 changelog.html
 LICENSE
