@@ -89,12 +89,11 @@ var config = {
   server: {
     base: '.',
     hostname: '0.0.0.0',
-    port: 8000,
-    keepalive: true
+    keepalive: true,
+    stdio: 'ignore',
   },
   browserSync: {
     proxy: '0.0.0.0:8000',
-    port: '3000',
     open: true,
     notify: false
   },
@@ -118,6 +117,7 @@ var svgstore = require('gulp-svgstore');
 var path = require('path');
 var svgmin = require('gulp-svgmin');
 var svg2png = require('gulp-svg2png');
+var colorize = require('gulp-colorize-svgs');
 var inject = require('gulp-inject');
 var browserSync = require('browser-sync').create();
 var rename = require('gulp-rename');
@@ -234,6 +234,16 @@ gulp.task('inject_svgsprites', function () {
         }
       }))
       .pipe(svgstore({ inlineSvg: true }))
+      // colorize: remove vector-effect
+      .pipe(colorize({
+        colors: { default: { black: '#000' } },
+        replaceColor: function(content, hex) {
+          return content.replace('vector-effect="non-scaling-stroke"', '');
+        },
+        replacePath: function(path, colorKey) {
+          return path.replace(/\.svg/, '.svg');
+        }
+      }))
       .pipe(rename(config.inject.svg.name))
       .pipe(gulp.dest(config.inject.svg.dest));
 
