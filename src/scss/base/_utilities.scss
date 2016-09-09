@@ -1,4 +1,11 @@
 // == utilities == //
+svg {
+  path, 
+  circle, 
+  ellipse, 
+  polygon, 
+  polyline { vector-effect: non-scaling-stroke; }
+}
 // .container { @include container(); }
 // .clearfix { @extend %clearfix; }
 
