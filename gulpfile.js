@@ -1,6 +1,26 @@
 var config = {
   sassLang: 'libsass',
-  map_dest: '../sourcemap',
+  sourcemaps: '../sourcemaps',
+  server: {
+    base: '.',
+    hostname: '0.0.0.0',
+    keepalive: true,
+    stdio: 'ignore',
+  },
+  browserSync: {
+    proxy: '0.0.0.0:8000',
+    open: true,
+    notify: false
+  },
+  libsass_options: {
+    outputStyle: 'compressed', 
+    precision: 7
+  },
+  rubysass_options: {
+    style: 'compressed', 
+    precision: 7,
+    sourcemap: true
+  },
   modernizr_options: {
     "minify": true,
     "options": [
@@ -8,22 +28,13 @@ var config = {
     ],
     "feature-detects": [
       "touchevents"
-    ]
+    ],
   },
   
   // styles
   sass: {
     src: 'src/scss/**/*.scss',
     dest: 'assets/css',
-    libsass_options: {
-      outputStyle: 'compressed', 
-      precision: 7
-    },
-    rubysass_options: {
-      style: 'compressed', 
-      precision: 7,
-      sourcemap: true
-    },
   },
   
   // scripts
@@ -85,19 +96,6 @@ var config = {
     }
   },
 
-  // server
-  server: {
-    base: '.',
-    hostname: '0.0.0.0',
-    keepalive: true,
-    stdio: 'ignore',
-  },
-  browserSync: {
-    proxy: '0.0.0.0:8000',
-    open: true,
-    notify: false
-  },
-
   // watch
   watch: {
     php: '**/*.php',
@@ -107,7 +105,8 @@ var config = {
 
 var gulp = require('gulp');
 var php = require('gulp-connect-php');
-var sass;
+var libsass = require('gulp-sass');
+var rubysass = require('gulp-ruby-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var modernizr = require('gulp-modernizr');
 var concat = require('gulp-concat');
@@ -142,22 +141,20 @@ function fileContentsStyle(filePath, file) {
 
 // SASS Task
 if (config.sassLang === 'libsass') {
-  sass = require('gulp-sass');
   gulp.task('sass', function () {  
-    gulp.src(config.sass.src)  
+    return gulp.src(config.sass.src)  
         .pipe(sourcemaps.init())
-        .pipe(sass(config.sass.libsass_options).on('error', sass.logError))  
-        .pipe(sourcemaps.write(config.map_dest))
+        .pipe(libsass(config.libsass_options).on('error', libsass.logError))  
+        .pipe(sourcemaps.write(config.sourcemaps))
         .pipe(gulp.dest(config.sass.dest))
         .pipe(browserSync.stream());
   });  
 } else {
-  sass = require('gulp-ruby-sass');
   gulp.task('sass', function () {  
-    sass(config.sass.src, config.sass.rubysass_options)  
+    return rubysass(config.sass.src, config.rubysass_options)  
         .pipe(sourcemaps.init())
-        .on('error', sass.logError)  
-        .pipe(sourcemaps.write(config.map_dest))
+        .on('error', rubysass.logError)  
+        .pipe(sourcemaps.write(config.sourcemaps))
         .pipe(gulp.dest(config.sass.dest))
         .pipe(browserSync.stream());
   });  
@@ -177,21 +174,21 @@ gulp.task('js', function () {
             .pipe(concat(names[i]))
             .pipe(uglify(config.js.options))
             .on('error', errorlog)  
-            .pipe(sourcemaps.write(config.map_dest))
+            .pipe(sourcemaps.write(config.sourcemaps))
             .pipe(gulp.dest(config.js.dest))
       );
     }
 
-    mergeStream(tasks)
+    return mergeStream(tasks)
         .pipe(browserSync.stream());
 
   } else if(typeof config.js.name === 'string') {
-    gulp.src(config.js.src)
+    return gulp.src(config.js.src)
         .pipe(sourcemaps.init())
         .pipe(concat(config.js.name))
         .pipe(uglify())
         .on('error', errorlog)  
-        .pipe(sourcemaps.write(config.map_dest))
+        .pipe(sourcemaps.write(config.sourcemaps))
         .pipe(gulp.dest(config.js.dest))
         .pipe(browserSync.stream());
   }
@@ -199,14 +196,14 @@ gulp.task('js', function () {
 
 // svg min
 gulp.task('svgmin', function () {
-  gulp.src(config.svg_min.src)
+  return gulp.src(config.svg_min.src)
       .pipe(svgmin())
       .pipe(gulp.dest(config.svg_min.dest))
 });
 
 // svg fallback
 gulp.task('svgfallback', function () {
-  gulp.src(config.svg_fallback.src)
+  return gulp.src(config.svg_fallback.src)
       .pipe(svg2png(config.svg_fallback.options))
       .pipe(imagemin())
       .pipe(gulp.dest(config.svg_fallback.dest))
@@ -214,7 +211,7 @@ gulp.task('svgfallback', function () {
 
 // move
 gulp.task('move', function () {
-  gulp.src(config.move.src)
+  return gulp.src(config.move.src)
       .pipe(gulp.dest(config.move.dest));
 });
 
@@ -247,7 +244,7 @@ gulp.task('inject_svgsprites', function () {
       .pipe(rename(config.inject.svg.name))
       .pipe(gulp.dest(config.inject.svg.dest));
 
-  gulp.src(config.inject.svg.target)
+  return gulp.src(config.inject.svg.target)
       .pipe(inject(svgSprites, {
         // starttag: config.svg_inject.starttag,
         transform: fileContents
@@ -257,7 +254,7 @@ gulp.task('inject_svgsprites', function () {
 gulp.task('inject_css', function () {
   var critical = gulp.src(config.inject.head.css);
 
-  gulp.src(config.inject.head.target)
+  return gulp.src(config.inject.head.target)
       .pipe(inject(critical, {
         name: 'critical',
         transform: fileContentsStyle
@@ -278,7 +275,7 @@ gulp.task('inject', ['inject_svgsprites'], function () {
       .pipe(modernizr(config.modernizr_options))
       .pipe(uglify());
 
-  gulp.src(config.inject.head.target)
+  return gulp.src(config.inject.head.target)
       .pipe(inject(loadcss, {
         name: 'loadcss',
         transform: fileContentsScript
@@ -301,7 +298,7 @@ gulp.task('inject', ['inject_svgsprites'], function () {
 gulp.task('server', function () {
   php.server(config.server);
 });
-gulp.task('browser-sync', ['server'], function() {
+gulp.task('sync', ['server'], function() {
   browserSync.init(config.browserSync);
 });
 
@@ -324,6 +321,6 @@ gulp.task('default', [
   'svgmin', 
   'move',
   'inject',
-  'browser-sync', 
+  'sync', 
   'watch',
 ]);  
