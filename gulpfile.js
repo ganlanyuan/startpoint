@@ -19,6 +19,7 @@ var config = {
   rubysass_options: {
     style: 'compressed', 
     precision: 7,
+    'default-encoding': 'utf-8',
     sourcemap: true
   },
   modernizr_options: {
