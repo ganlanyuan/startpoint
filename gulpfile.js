@@ -27,14 +27,14 @@ var config = {
     "options": [
       "setClasses"
     ],
-    "feature-detects": [
+    "tests": [
       "touchevents"
     ],
   },
   
   // styles
   sass: {
-    src: 'src/scss/**/*.scss',
+    src: 'src/scss/*.scss',
     dest: 'assets/css',
   },
   
@@ -99,6 +99,7 @@ var config = {
 
   // watch
   watch: {
+    sass: 'src/scss/**/*.scss',
     php: '**/*.php',
     html: '**/*.html'
   },
@@ -309,7 +310,7 @@ gulp.task('sync', ['server'], function() {
 
 // watch
 gulp.task('watch', function () {
-  gulp.watch(config.sass.src, ['sass']);
+  gulp.watch(config.watch.sass, ['sass']);
   gulp.watch(config.js.src, ['js']);
   gulp.watch(config.svg_min.src, ['svgmin']);
   gulp.watch(config.inject.head.css, ['inject_css']);
