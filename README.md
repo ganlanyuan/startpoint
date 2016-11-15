@@ -1,11 +1,11 @@
 # startpoint
 
-A simple boilerplate for building website.    
+A simple boilerplate for websites.    
 
 ###Before you start
-We use `php` to organize our `html` part. You can run php file locally, if you set up a local sever environment via <a href="http://www.mamp.info/en/" target="_blank">MAMP</a> or <a href="https://www.apachefriends.org/index.html" target="_blank">XAMPP</a>.     
-We use <a href="http://bower.io/" target="_blank">bower</a> to manage our packages. You can use [npm](https://www.npmjs.com/) too.     
-We use <a href="http://incident57.com/codekit/" target="_blank">codekit</a> to compile `scss` and minify `js`. You can use <a href="http://koala-app.com/" target="_blank">koala</a>, <a href="http://gruntjs.com/" target="_blank">grunt</a> or <a href="http://gulpjs.com/">gulp</a> instead.
+We use `php` to organize our markup. You can run php file locally by setting up a local sever environment via <a href="http://www.mamp.info/en/" target="_blank">MAMP</a>.     
+We use <a href="http://bower.io/" target="_blank">bower</a> to manage our packages. 
+We use task runner <a href="http://gulpjs.com/">gulp</a> to automate our front-end tasks.
 
 ###Content
 ```html
@@ -13,6 +13,7 @@ startpoint/
 |── src/ <!-- scss, js source code -->  
 |   |── js/              
 |   |── scss/              
+|   |── svg/              
 |
 |── part/ <!-- page components: header, footer, navigation, sidebar -->  
 |   |── ad/ <!-- ad placement -->             
@@ -31,11 +32,8 @@ startpoint/
 |── bower_components/ <!-- components downloaded via bower -->  
 |── bower.json <!-- bower configuration -->  
 ```
-**Bower_components**: the packages downloaded through bower.    
 **src**: source files (SCSS, js).    
 **Part**: php components (header, footer, sidebar, ...).    
 **Assets**: final files (css, js, images, fonts, svg).     
-
-1. **cross-domain** folder (inside assets folder) is for `respond.js` in case you put css file on CDN. Please refer to <a href="https://github.com/scottjehl/Respond" target="_blank">here</a> for details of usage.   
-2. **ie.js** (assets/js/) contains `Respond.js`, `NWMatcher` and `selectivizr`. `Respond.js` adds CSS3 media query supports to old browsers, and `selectivizr` adds CSS3 Selectors supports to old browsers.
+**assets/cross-domain**: for `respond.js` in case you put css file on CDN. Click <a href="https://github.com/scottjehl/Respond" target="_blank">here</a> for more details.   
 

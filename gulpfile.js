@@ -59,7 +59,10 @@ var config = {
 
   // move
   move: {
-    src: ['bower_components/html5shiv/dist/html5shiv.js', 'bower_components/go-native/dist/go-native.ie8.min.js'],
+    src: [
+      'bower_components/html5shiv/dist/html5shiv.js', 
+      'bower_components/go-native/dist/go-native.ie8.min.js'
+    ],
     dest: 'assets/js'
   },
 
@@ -67,29 +70,23 @@ var config = {
   inject: {
     dest: 'part',
     head: {
-      css: 'assets/css/critical.css',
-      loadcss: [
-        'bower_components/loadcss/src/loadCSS.js', 
-        'bower_components/loadcss/src/onloadCSS.js',
-      ],
-      svg4everybody: 'bower_components/svg4everybody/dist/svg4everybody.legacy.js',
+      svg4everybody: 'bower_components/svg4everybody/dist/svg4everybody.legacy.min.js',
       target: 'part/head.php',
-    },
-    svg: {
-      src: 'src/svg/sprites/*.svg',
-      dest: 'assets/svg/sprites',
-      target: 'part/inline-svg.php',
-      name: 'svg-sprites.svg',
     },
   },
 
   // svgs
+  svg_sprites: {
+    src: 'src/svg/sprites/*.svg',
+    dest: 'assets/svg',
+    name: 'sprites.svg',
+  },
   svg_min: {
     src: ['src/svg/**/*.svg', '!src/svg/sprites/*.svg', '!src/svg/fallback/*.svg'],
     dest: 'assets/svg'
   },
   svg_fallback: {
-    src: 'src/svg/fallback/*.svg',
+    src: ['src/svg/fallback/*.svg'],
     dest: 'assets/svg/fallback',
     options: {
       width: 60,
@@ -128,18 +125,6 @@ function errorlog (error) {
   console.error.bind(error);  
   this.emit('end');  
 }  
-function fileContents (filePath, file) {
-  return file.contents.toString();
-}
-function fileContentsScript(filePath, file) {
-  return '<script>' + file.contents.toString() + '</script>';
-}
-function fileContentsScriptSvg4everybody(filePath, file) {
-  return '<script>' + file.contents.toString().replace('height:100%;width:100%', '') + '</script>';
-}
-function fileContentsStyle(filePath, file) {
-  return '<style>' + file.contents.toString() + '</style>';
-}
 
 // SASS Task
 if (config.sassLang === 'libsass') {
@@ -217,86 +202,57 @@ gulp.task('svgfallback', function () {
       .pipe(gulp.dest(config.svg_fallback.dest))
 });
 
+gulp.task('svg_sprites', function () {
+  return gulp.src(config.svg_sprites.src)
+    .pipe(svgmin(function (file) {
+      var prefix = path.basename(file.relative, path.extname(file.relative));
+      return {
+        plugins: [{
+          cleanupIDs: {
+            prefix: prefix + '-',
+            minify: true
+          }
+        }],
+        // js2svg: { pretty: true }
+      }
+    }))
+    .pipe(svgstore({ inlineSvg: true }))
+    // // colorize: remove vector-effect
+    // .pipe(colorize({
+    //   colors: { default: { black: '#000' } },
+    //   replaceColor: function(content, hex) {
+    //     return content.replace('vector-effect="non-scaling-stroke"', '');
+    //   },
+    //   replacePath: function(path, colorKey) {
+    //     return path.replace(/\.svg/, '.svg');
+    //   }
+    // }))
+    .pipe(rename(config.svg_sprites.name))
+    .pipe(gulp.dest(config.svg_sprites.dest));
+});
+
 // inject
-gulp.task('inject_svgsprites', function () {
-  var svgSprites = gulp.src(config.inject.svg.src)
-      .pipe(svgmin(function (file) {
-        var prefix = path.basename(file.relative, path.extname(file.relative));
-        return {
-          plugins: [{
-            cleanupIDs: {
-              prefix: prefix + '-',
-              minify: true
-            }
-          }],
-          // js2svg: { pretty: true }
-        }
-      }))
-      .pipe(svgstore({ inlineSvg: true }))
-      // colorize: remove vector-effect
-      .pipe(colorize({
-        colors: { default: { black: '#000' } },
-        replaceColor: function(content, hex) {
-          return content.replace('vector-effect="non-scaling-stroke"', '');
-        },
-        replacePath: function(path, colorKey) {
-          return path.replace(/\.svg/, '.svg');
-        }
-      }))
-      .pipe(rename(config.inject.svg.name))
-      .pipe(gulp.dest(config.inject.svg.dest));
-
-  return gulp.src(config.inject.svg.target)
-      .pipe(inject(svgSprites, {
-        // starttag: config.svg_inject.starttag,
-        transform: fileContents
-      }))
-      .pipe(gulp.dest(config.inject.dest));
-});
-
-gulp.task('inject_css', function () {
-  var critical = gulp.src(config.inject.head.css);
-
-  return gulp.src(config.inject.head.target)
-      .pipe(inject(critical, {
-        name: 'critical',
-        transform: fileContentsStyle
-      }))
-      .pipe(gulp.dest(config.inject.dest));
-});
-
-
-gulp.task('inject', ['inject_svgsprites'], function () {
-  var loadcss = gulp.src(config.inject.head.loadcss)
-      .pipe(concat('loadcss.js'))
-      .pipe(uglify());
-
-  var critical = gulp.src(config.inject.head.css);
-
+gulp.task('inject', function () {
   var svg4everybody = gulp.src(config.inject.head.svg4everybody)
       .pipe(uglify());
 
-  var modernizrJs = gulp.src('src/js/*.js')
-      .pipe(modernizr(config.modernizr_options))
-      .pipe(uglify());
+  // var modernizrJs = gulp.src('src/js/*.js')
+  //     .pipe(modernizr(config.modernizr_options))
+  //     .pipe(uglify());
 
   return gulp.src(config.inject.head.target)
-      .pipe(inject(loadcss, {
-        name: 'loadcss',
-        transform: fileContentsScript
-      }))
-      .pipe(inject(critical, {
-        name: 'critical',
-        transform: fileContentsStyle
-      }))
       .pipe(inject(svg4everybody, {
         name: 'svg4everybody',
-        transform: fileContentsScriptSvg4everybody
+        transform: function (filePath, file) {
+          return '<script>' + file.contents.toString().replace('height:100%;width:100%', '') + '</script>';
+        }
       }))
-      .pipe(inject(modernizrJs, {
-        name: 'modernizr',
-        transform: fileContentsScript
-      }))
+      // .pipe(inject(modernizrJs, {
+      //   name: 'modernizr',
+      //   transform: function (filePath, file) {
+      //     return '<script>' + file.contents.toString() + '</script>';
+      //   }
+      // }))
       .pipe(gulp.dest(config.inject.dest));
 });
 
@@ -312,9 +268,8 @@ gulp.task('sync', ['server'], function() {
 gulp.task('watch', function () {
   gulp.watch(config.watch.sass, ['sass']);
   gulp.watch(config.js.src, ['js']);
+  gulp.watch(config.svg_sprites.src, ['svg_sprites']);
   gulp.watch(config.svg_min.src, ['svgmin']);
-  gulp.watch(config.inject.head.css, ['inject_css']);
-  gulp.watch(config.inject.svg.src, ['inject_svgsprites']);
   gulp.watch(config.svg_fallback.src, ['svgfallback']);
   gulp.watch(config.watch.php).on('change', browserSync.reload);
   gulp.watch(config.watch.html).on('change', browserSync.reload);
@@ -326,6 +281,7 @@ gulp.task('default', [
   'js', 
   'move',
   'svgmin', 
+  'svg_sprites',
   'inject',
   'sync', 
   'watch',
