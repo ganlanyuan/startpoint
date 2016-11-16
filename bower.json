@@ -1,6 +1,6 @@
 {
   "name": "startpoint",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "homepage": "https://github.com/ganlanyuan/startpoint",
   "description": "A simple boilerplate for building website.",
   "keywords": [
@@ -16,6 +16,7 @@
     "normalize-css": "normalize.css#^4.0.0",
     "html5shiv": "^3.7.3",
     "svg4everybody": "^2.1.2",
-    "go-native": "0.0.x"
+    "go-native": "0.0.x",
+    "icons": "*"
   }
 }
