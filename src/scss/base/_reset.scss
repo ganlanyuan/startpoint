@@ -43,4 +43,4 @@ ol,ul { list-style:none; }
 // reset link style
 a { text-decoration: none; color: inherit; }
 
-.hidden-checkbox { position: absolute; left: -10000px; }
+.hidden-checkbox { position: fixed; left: -10000px; }
