@@ -23,12 +23,12 @@ var config = {
     sourcemap: true
   },
   modernizr_options: {
-    "minify": true,
-    "options": [
-      "setClasses"
+    'minify': true,
+    'options': [
+      'setClasses'
     ],
-    "tests": [
-      "touchevents"
+    'tests': [
+      'touchevents'
     ],
   },
   
@@ -38,11 +38,51 @@ var config = {
     dest: 'assets/css',
   },
   
+  // uncss
+  uncss: {
+    src: 'assets/css/main.css',
+    amp: {
+      options: {
+        html: ['http://localhost:3000/article.php'],
+        ignore: ['#sidebar', '#sidebar>ul>li>a', '.hasImgs li amp-img', '.hidden-svg'],
+      },
+      name: 'amp.css',
+    },
+    main: {
+      options: {
+        html: [
+          'http://localhost:3000/about.php',
+          'http://localhost:3000/article.php',
+          'http://localhost:3000/contact.php',
+          'http://localhost:3000/index.php',
+          'http://localhost:3000/permissions.php',
+          'http://localhost:3000/privacy.php',
+          'http://localhost:3000/search.php',
+          'http://localhost:3000/section.php',
+          'http://localhost:3000/terms.php',
+        ],
+        // ignore: ['#sidebar'],
+      },
+      name: 'main.uncss.css',
+    },
+  },
+
+  svg_amp: {
+    src: 'assets/svg/sprites.svg'
+  },
+
+  amp: {
+    target: 'amp.html',
+    src: 'assets/css/amp.css',
+    dest: '',
+  },  
+
   // scripts
   js: {
     src:[
-      "bower_components/go-native/dist/go-native.js",
-      "src/js/script.js"
+      'bower_components/go-native/dist/go-native.js',
+      'bower_components/sticky/dist/sticky.native.js',
+      'src/js/script.js'
     ],
     name: 'script.js',
     dest: 'assets/js',
@@ -61,7 +101,8 @@ var config = {
   move: {
     src: [
       'bower_components/html5shiv/dist/html5shiv.js', 
-      'bower_components/go-native/dist/go-native.ie8.min.js'
+      'bower_components/go-native/dist/go-native.ie8.min.js',
+      'bower_components/tiny-slider/dist/min/tiny-slider.native.js'
     ],
     dest: 'assets/js'
   },
@@ -89,8 +130,8 @@ var config = {
     src: ['src/svg/fallback/*.svg'],
     dest: 'assets/svg/fallback',
     options: {
-      width: 60,
-      height: 60,
+      width: 32,
+      height: 32,
     }
   },
 
@@ -120,6 +161,7 @@ var inject = require('gulp-inject');
 var browserSync = require('browser-sync').create();
 var rename = require('gulp-rename');
 var mergeStream = require('merge-stream');
+var uncss = require('gulp-uncss');
 
 function errorlog (error) {  
   console.error.bind(error);  
@@ -146,6 +188,41 @@ if (config.sassLang === 'libsass') {
         .pipe(browserSync.stream());
   });  
 }
+
+// uncss
+gulp.task('uncss-main', ['sass'], function () {
+  return gulp.src(config.uncss.src)
+    .pipe(uncss(config.uncss.main.options))
+    .pipe(rename(config.uncss.main.name))
+    .pipe(gulp.dest(config.sass.dest));
+})
+
+gulp.task('uncss-amp', function () {
+  return gulp.src(config.uncss.src)
+    .pipe(uncss(config.uncss.amp.options))
+    .pipe(rename(config.uncss.amp.name))
+    .pipe(gulp.dest(config.sass.dest));
+})
+
+gulp.task('svg-amp', function () {
+  return gulp.src(config.amp.target)
+    .pipe(inject(gulp.src(config.svg_amp.src), {
+      transform: function (filePath, file) {
+        return file.contents.toString();
+      }
+    }))
+    .pipe(gulp.dest(config.amp.dest));
+})
+
+gulp.task('amp', ['svg-amp', 'uncss-amp'], function () {
+  return gulp.src(config.amp.target)
+    .pipe(inject(gulp.src(config.amp.src), {
+      transform: function (filePath, file) {
+        return '<style amp-custom>' + file.contents.toString().replace(/fonts\/mnr/g, 'assets/css/fonts/mnr').replace(/!important/g, '').replace('@page{margin:0.5cm}', '').replace(/"..\/img/g, '"assets/img') + '</style>';
+      }
+    }))
+    .pipe(gulp.dest(config.amp.dest));
+})
 
 // JS Task  
 gulp.task('js', function () {  
@@ -202,7 +279,7 @@ gulp.task('svgfallback', function () {
       .pipe(gulp.dest(config.svg_fallback.dest))
 });
 
-gulp.task('svg_sprites', function () {
+gulp.task('svgsprites', function () {
   return gulp.src(config.svg_sprites.src)
     .pipe(svgmin(function (file) {
       var prefix = path.basename(file.relative, path.extname(file.relative));
@@ -268,7 +345,7 @@ gulp.task('sync', ['server'], function() {
 gulp.task('watch', function () {
   gulp.watch(config.watch.sass, ['sass']);
   gulp.watch(config.js.src, ['js']);
-  gulp.watch(config.svg_sprites.src, ['svg_sprites']);
+  gulp.watch(config.svg_sprites.src, ['svgsprites']);
   gulp.watch(config.svg_min.src, ['svgmin']);
   gulp.watch(config.svg_fallback.src, ['svgfallback']);
   gulp.watch(config.watch.php).on('change', browserSync.reload);
@@ -277,12 +354,12 @@ gulp.task('watch', function () {
 
 // Default Task
 gulp.task('default', [
-  'sass', 
-  'js', 
-  'move',
-  'svgmin', 
-  'svg_sprites',
-  'inject',
+  // 'sass', 
+  // 'js', 
+  // 'move',
+  // 'svgmin', 
+  // 'svgsprites',
+  // 'inject',
   'sync', 
   'watch',
 ]);  
