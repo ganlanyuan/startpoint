@@ -27,38 +27,67 @@
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       text-transform: capitalize;
       font-size: 36px;
+      text-transform: uppercase;
+      margin-bottom: 1em !important;
     }
     .container {
       margin: 30px 0;
     }
-    .container a, .container h2 {
+    .container a > span, .container h2 {
+      display: block;
       max-width: 600px;
       margin: 0 auto;
       padding-left: 20px !important;
       padding-right: 20px !important;
     }
-    .container li:hover { background: #f5f5f5; }
     .container a {
       display: block;
-      font-size: 18px;
-      line-height: 1.3;
-      padding: 0.7em 0;
+      font-size: 28px;
+      line-height: 2.6;
       color: #000;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       text-transform: capitalize;
-      font-weight: 300;
+      font-weight: 100;
+      letter-spacing: 1px;
       text-decoration: none;
+      transition: all 0.3s;
     }
     .container a:hover {
-      color: #FF00FF;
+      /*color: #FF00FF;*/
+      font-weight: bold;
+      /*font-style: italic;*/
+      background: #f7f7f7;
+    }
+    .extension span:after {
+      content: 'php';
+      display: inline-block;
+      text-transform: lowercase;
+      font-size: 0.4em;
+      margin-left: 0.5em;
+      position: relative;
+      top: -1em;
+      color: #fff;
+      font-weight: 300;
+      background: #0080FF;
+      line-height: 1.6;
+      padding: 0 0.4em;
+      border-radius: 2px;
       font-style: italic;
+    }
+    .php span:after {
+      content: 'php';
+      background: #3A91FF;
+    }
+    .html span:after {
+      content: 'html';
+      background: #84D830;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>All Links</h2>
+  <h2>Coding Links</h2>
   <ul>
   <?php
   $dir = realpath(dirname(__FILE__));
@@ -66,9 +95,11 @@
   if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
       while (($file = readdir($dh)) !== false) {
-        if(strpos($file, '.php') || strpos($file, '.html') && $file !== 'links.php') {
-          $filename = (strpos($file, '.php'))? str_replace(".php","",$file) : str_replace(".html","",$file);
-          echo '<li><a href="' . $file . '" target="_blank">' . $filename . '</a></li>';
+        $path = $dir . '/' . $file;
+        if((strpos($file, '.php') || strpos($file, '.html')) && $file !== 'links.php') {
+          $filename = pathinfo($path, PATHINFO_FILENAME);
+          $fileextension = pathinfo($path, PATHINFO_EXTENSION);
+          echo '<li class="extension ' . $fileextension . '"><a href="' . $file . '" target="_blank"><span>' . $filename . '</span></a></li>';
         }
       }
       closedir($dh);
