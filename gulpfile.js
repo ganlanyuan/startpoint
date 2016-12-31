@@ -111,7 +111,15 @@ var config = {
   inject: {
     dest: 'part',
     head: {
-      svg4everybody: 'bower_components/svg4everybody/dist/svg4everybody.legacy.min.js',
+      svg4everybody: {
+        src: 'bower_components/svg4everybody/dist/svg4everybody.legacy.min.js',
+        starttag: '/* svg4everybody:js */',
+        endtag: '/* endinject */'
+      },
+      modernizr: {
+        starttag: '/* modernizr:js */',
+        endtag: '/* endinject */'
+      },
       target: 'part/head.php',
     },
   },
@@ -310,7 +318,7 @@ gulp.task('svgsprites', function () {
 
 // inject
 gulp.task('inject', function () {
-  var svg4everybody = gulp.src(config.inject.head.svg4everybody)
+  var svg4everybody = gulp.src(config.inject.head.svg4everybody.src)
       .pipe(uglify());
 
   // var modernizrJs = gulp.src('src/js/*.js')
@@ -319,15 +327,17 @@ gulp.task('inject', function () {
 
   return gulp.src(config.inject.head.target)
       .pipe(inject(svg4everybody, {
-        name: 'svg4everybody',
+        starttag: config.inject.head.svg4everybody.starttag,
+        endtag: config.inject.head.svg4everybody.endtag,
         transform: function (filePath, file) {
-          return '<script>' + file.contents.toString().replace('height:100%;width:100%', '') + '</script>';
+          return file.contents.toString().replace('height:100%;width:100%', '');
         }
       }))
       // .pipe(inject(modernizrJs, {
-      //   name: 'modernizr',
+      //   starttag: config.inject.head.modernizr.starttag,
+      //   endtag: config.inject.head.modernizr.endtag,
       //   transform: function (filePath, file) {
-      //     return '<script>' + file.contents.toString() + '</script>';
+      //     return file.contents.toString();
       //   }
       // }))
       .pipe(gulp.dest(config.inject.dest));
