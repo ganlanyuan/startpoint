@@ -9,7 +9,7 @@ var config = {
   },
   browserSync: {
     proxy: '0.0.0.0:8000',
-    open: true,
+    open: false,
     notify: false
   },
   libsass_options: {
