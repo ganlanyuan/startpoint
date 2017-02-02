@@ -27,11 +27,15 @@ let NAMES = {
   cssAmp: 'amp',
   svgSprites: 'sprites'
 };
+let moveFiles = [
+  'bower_components/html5shiv/dist/html5shiv.js', 
+  'bower_components/go-native/dist/go-native.ie8.min.js',
+  'bower_components/tiny-slider/dist/min/tiny-slider.native.js'
+];
 
 const config = {
   // uncss
   uncss: {
-    src: 'assets/css/main.css',
     amp: {
       options: {
         html: ['http://localhost:3000/article.php'],
@@ -73,15 +77,6 @@ const config = {
       'src/js/script.js'
     ],
     name: 'script.js',
-  },
-
-  // move
-  move: {
-    src: [
-      'bower_components/html5shiv/dist/html5shiv.js', 
-      'bower_components/go-native/dist/go-native.ie8.min.js',
-      'bower_components/tiny-slider/dist/min/tiny-slider.native.js'
-    ],
   },
 
   // inject
@@ -220,7 +215,7 @@ gulp.task('js', function () {
 
 // move
 gulp.task('move', function () {
-  return gulp.src(config.move.src)
+  return gulp.src(moveFiles)
       .pipe(gulp.dest(PATHS.assets + 'js'));
 });
 
