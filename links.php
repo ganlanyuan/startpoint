@@ -50,7 +50,6 @@
       font-weight: 100;
       letter-spacing: 1px;
       text-decoration: none;
-      transition: all 0.3s;
     }
     .container a:hover {
       /*color: #FF00FF;*/
