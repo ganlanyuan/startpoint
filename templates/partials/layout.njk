@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Site Title</title>
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="HandheldFriendly" content="True">
@@ -76,12 +76,15 @@
 <!--[if lt IE 9]>
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-{% include 'partials/header.njk' %}
+<header class="site-header">
+</header>
 
 {% block main %}
 {% endblock %}
 
-{% include 'partials/footer.njk' %}
+<footer class="site-footer">
+  <p class="copyright">&copy; {{ year }}, INC. All Rights Reserved.</p>
+</footer>
 <script src="assets/js/script.js"></script>
 </body>
 </html>
