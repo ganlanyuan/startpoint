@@ -187,7 +187,7 @@ gulp.task('svgsprites', function () {
     }))
     .pipe(svgstore({ inlineSvg: true }))
     .pipe(rename(NAMES.svgSprites))
-    .pipe(gulp.dest(PATHS.asssets + 'svg'));
+    .pipe(gulp.dest(PATHS.assets + 'svg'));
 });
 
 // Inject Task
