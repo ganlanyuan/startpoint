@@ -1,4 +1,5 @@
 // == utilities == //
+.hidden-checkbox { position: fixed; left: -10000px; }
 svg {
   display: inline-block;
   path, circle, ellipse, polygon, polyline { vector-effect: non-scaling-stroke; }

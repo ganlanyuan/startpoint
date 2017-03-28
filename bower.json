@@ -13,10 +13,10 @@
   "license": "MIT",
   "dependencies": {
     "rocket": "3.X",
-    "normalize-css": "5.0.0",
+    "normalize-css": "^6.0.0",
     "html5shiv": "^3.7.3",
     "svg4everybody": "^2.1.2",
-    "go-native": "0.0.x",
+    "go-native": "^1.0.0",
     "icons": "*"
   }
 }

@@ -2,4 +2,9 @@
 .ad {
   @include center();
   margin: 0 auto em(20);
+  
+  > div,
+  > iframe,
+  > a,
+  > img { margin: auto; }
 }
