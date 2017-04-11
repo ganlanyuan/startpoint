@@ -7,7 +7,7 @@ let customEnv = new nunjucks.Environment();
 customEnv.addFilter('shorten', function(str, count) {
   return str.slice(0, count || 3);
 });
-let dev = false;
+let dev = true;
 
 function errorlog (error) {  
   console.error.bind(error);  
@@ -72,7 +72,7 @@ gulp.task('nunjucks', function() {
     .pipe($.if(dev, $.htmltidy({
       doctype: 'html5',
       wrap: 0,
-      hideComments: true,
+      hideComments: false,
       indent: true,
       'indent-attributes': false,
       'drop-empty-elements': false,
