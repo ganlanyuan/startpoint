@@ -84,7 +84,7 @@ gulp.task('nunjucks', function() {
       decodeEntities: true,
       minifyCSS: true,
       minifyJs: true,
-      removeComments: true,
+      removeComments: false,
     })))
     .pipe($.cached('nunjucks'))
     .pipe(gulp.dest('.'));
