@@ -20,6 +20,15 @@ ol { padding: 0; }
 // reset list styles
 li { list-style: none; }
 
+button,
+input,
+select,
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 // make images & videos flexible
 img, video { max-width: 100%; height: auto; }
 iframe { max-width: 100%; }
