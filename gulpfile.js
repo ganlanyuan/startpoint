@@ -1,25 +1,10 @@
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync').create();
-const nunjucks = require('nunjucks');
+const autoprefixer = require('autoprefixer');
+const path = require('path');
 
-let customEnv = new nunjucks.Environment();
-customEnv.addFilter('shorten', function(str, count) {
-  return str.slice(0, count || 3);
-});
 let dev = true;
-
-function errorlog (error) {  
-  console.error.bind(error);  
-  this.emit('end');  
-}  
-
-function requireUncached( $module ) {
-  delete require.cache[require.resolve( $module )];
-  return require( $module );
-}
-
-let sassLang = 'libsass';
 let sourcemapDest = '../sourcemaps';
 let PATHS = {
   src: 'src/',
@@ -53,6 +38,31 @@ let scripts = {
   ],
   name: 'script.js',
 };
+
+function errorlog (error) {  
+  console.error.bind(error);  
+  this.emit('end');  
+}  
+
+function requireUncached( $module ) {
+  delete require.cache[require.resolve( $module )];
+  return require( $module );
+}
+
+function runPostCss(src, dest) {
+  return gulp.src(src)
+    .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.postcss([ autoprefixer() ]))  // add prefix
+    .pipe($.postcss([require('postcss-normalize')({ /* options */ }) ])) // add normalize
+    .pipe($.rename(function (path) { path.basename += '.final'; })) // add name-postfix
+    .pipe($.csso()) // minify
+    .pipe($.if(dev, $.sourcemaps.write('.')))
+    .pipe(gulp.dest(dest));
+}
+gulp.task('style', function () {
+  runPostCss('assets/css/*.css', 'assets/css');
+});
 
 // Nunjucks Task
 gulp.task('nunjucks', function() {
@@ -91,37 +101,19 @@ gulp.task('nunjucks', function() {
 });
 
 // Sass Task
-if (sassLang === 'libsass') {
-  gulp.task('sass', function () {  
-    return gulp.src(PATHS.src + 'scss/*.scss')  
-      .pipe($.plumber())
-      .pipe($.if(dev, $.sourcemaps.init()))
-      .pipe($.sass({
-        outputStyle: 'compressed', 
-        precision: 7
-      }).on('error', $.sass.logError))  
-      .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
-      .pipe(gulp.dest(PATHS.assets + 'css'))
-      .pipe($.cached('sass'))
-      .pipe(browserSync.stream());
-  });  
-} else {
-  gulp.task('sass', function () {  
-    return $.rubysass(PATHS.src + 'scss/*.scss', {
-          style: 'compressed', 
-          precision: 7,
-          'default-encoding': 'utf-8',
-          sourcemap: true
-        })  
-      .pipe($.plumber())
-      .pipe($.if(dev, $.sourcemaps.init()))
-      .on('error', $.rubysass.logError)  
-      .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
-      .pipe(gulp.dest(PATHS.assets + 'css'))
-      .pipe($.cached('sass'))
-      .pipe(browserSync.stream());
-  });  
-}
+gulp.task('sass', function () {  
+  return gulp.src(PATHS.src + 'scss/*.scss')  
+    .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.sass({
+      outputStyle: 'compressed', 
+      precision: 7
+    }).on('error', $.sass.logError))  
+    .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
+    .pipe(gulp.dest(PATHS.assets + 'css'))
+    .pipe($.cached('sass'))
+    .pipe(browserSync.stream());
+});  
 
 // JS Task  
 gulp.task('js', function () {  
@@ -303,6 +295,7 @@ gulp.task('default', [
   // 'svgsprites',
   // 'inject',
   // 'normalize',
-  'browserSync', 
-  'watch',
+  'autoprefixer'
+  // 'browserSync', 
+  // 'watch',
 ]);  
