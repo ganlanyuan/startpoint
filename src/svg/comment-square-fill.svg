@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>comment-square-fill</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="comment-square-fill" fill="#000000">
+            <path d="M13,34 L40.0023401,34 C41.6475599,34 43,32.6601521 43,31.0073661 L43,9.99263394 C43,8.3389342 41.657902,7 40.0023401,7 L7.99765987,7 C6.35244012,7 5,8.33984785 5,9.99263394 L5,27.003683 L5,42 L13,34 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

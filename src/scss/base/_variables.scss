@@ -74,3 +74,6 @@ $alerts:(
   'warning': #DE770F,
   'danger': #DE2D0F
 );
+
+// clearfix
+%clearfix { @include clearfix; }

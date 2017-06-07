@@ -1,20 +1,12 @@
-@charset "UTF-8";
-
 // vendors
 @import "../../bower_components/rocket/src/scss/_rocket.scss";
 @import "vendors/ellipsis";
 @import "vendors/hide-text";
-
 @import "vendors/browsehappy";
 
-// helpers
-@import "helpers/variables";
-@import "helpers/placeholders";
-
 // base
-@import "base/normalize";
+@import "base/variables";
 @import "base/reset";
-@import "base/ad";
 @import "base/typography";
 @import "base/utilities";
 

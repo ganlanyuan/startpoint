@@ -12,6 +12,7 @@
 /bower_components/
 /node_modules/
 /tests/
+**/sourcemaps/
 
 package.json
 README.html
