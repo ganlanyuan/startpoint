@@ -109,7 +109,7 @@ gulp.task('build', [
   // 'compile:styles',
   // 'compile:scripts',
   // 'optimize:svg',
-  'optimize:image',
+  // 'optimize:image',
   // 'build:move',
   // 'build:inject',
   // 'build:amp',
@@ -126,7 +126,7 @@ gulp.task('watch', [
 // Default Task
 gulp.task('default', [
   'build',
-  // 'server', 
+  'server', 
   'watch',
 ]);  
 
