@@ -12,8 +12,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "rocket": "3.X",
-    "normalize-css": "^6.0.0",
+    "rocket": "4.X",
     "html5shiv": "^3.7.3",
     "svg4everybody": "^2.1.2",
     "go-native": "^1.0.0",
