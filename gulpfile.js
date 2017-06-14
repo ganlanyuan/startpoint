@@ -192,12 +192,12 @@ function doNunjucks(data, src, dest) {
 function doSass(src, dest) {
   return gulp.src(src)  
     .pipe($.plumber())
-    .pipe($.if(dev, $.sourcemaps.init()))
+    // .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.sass({
       outputStyle: 'compressed', 
       precision: 7
     }).on('error', $.sass.logError))  
-    .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
+    // .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
     .pipe(gulp.dest(dest));
 }
 
