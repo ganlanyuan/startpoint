@@ -77,6 +77,10 @@
 <footer class="site-footer">
   <p class="copyright">&copy; {{ year }}, INC. All Rights Reserved.</p>
 </footer>
+
+<!-- Placeholder polyfill for IE9- -->
+<!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
+
 <script src="assets/js/script.js"></script>
 </body>
 </html>
