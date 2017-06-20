@@ -1,0 +1,88 @@
+{% set page = 'article' %}
+{% extends "parts/layout.njk" %}
+
+{% block main %}
+  <article class="full-article"
+           itemscope itemtype="http://schema.org/NewsArticle" 
+           itemid="http://www.site.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/"
+           itemref="branding">
+    <link itemprop="mainEntityOfPage" href="http://www.site.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/">
+    <header>
+      <h1 class="heading" itemprop="headline">{{ headings[23] }}</h1>
+      <div class="byline">
+        <span itemprop="author creator" 
+              itemscope itemtype="http://schema.org/Person" 
+              itemid="http://www.site.com/author/Ben-Chapman/">
+          <a class="reporter" href="http://www.site.com/author/Ben-Chapman/">
+            <meta itemprop="jobTitle" content="Company Name Contributor">
+            <span itemprop="name">Ben Chapman</span>
+          </a> 
+        </span>
+        <time datetime="2017-05-26" itemprop="datePublished dateModified"> | Friday 26 May 2017 14:28 BST</time></div>
+    </header>
+
+    {# content #}
+    <p>Is chaos life's one consistency? After another shocking turn in political events, prompting cheers from some, tears from others, one can't help wonder – was God at work in Britain's general election?</p>
+
+    {# figure main #}
+    <figure class="align-center" 
+            itemprop="image" 
+            itemscope itemtype="http://schema.org/ImageObject" 
+            itemid="{{ images[13] }}?w=500&h=281&l=50&t=40">
+      <img 
+        src="{{ images[13] }}?w=500&h=281&l=50&t=40"
+        srcset="
+          {{ images[13] }}?w=320&h=180&l=50&t=40 320w, 
+          {{ images[13] }}?w=680&h=382&l=50&t=40 680w, 
+          {{ images[13] }}?w=900&h=508&l=50&t=40 900w"
+        sizes="
+          (max-width: 900px) 100vw,
+          (max-width: 1120px) 60vw,
+          680px"
+        alt="" 
+        itemprop="url">
+        <meta itemprop="width" content="900">
+        <meta itemprop="height" content="508">
+      <figcaption itemprop="caption description"><span class="credit">Photo:  Reuters/Rick Wilking</span>The handcuffed suspected gunman at the Planned Parenthood clinic is moved to a police vehicle in Colorado Springs, November 27, 2015. </figcaption>
+    </figure>
+
+    <p>Oh, what a night. British Prime Minister Teresa May's gamble on a snap general election has spectacularly backfired: her shot at a sweeping parliamentary majority has left Britain with a hung parliament. Labour made surprising gains meanwhile, not winning but doing far better than expected. Jeremy Corbyn seems ready to lead the country, already declaring that 'we are ready to serve'.</p>
+
+    {# related #}
+    <aside class="related">
+      <h2 class="">Related</h2>
+    </aside>
+
+    {# content continue #}
+    <p>When a previous shock election came – the rise of Donald Trump last year – it was a miracle many white evangelicals (who overwhelmingly backed Trump) discerned as the hand of God at work. Trump had promised power and protection for the Christian community and his victory was a divine vindication of that platform. Trump was frequently likened to King David – not perfect but nonetheless 'God's man of power for the hour'.</p>
+    <p>It's popular, particularly in conservative, Calvinist theology, to see God powerfully at work in politics. Of course, there is biblical precedent for the idea that God chooses, or deposes, certain rulers, but in contemporary terms this thinking is always a little fuzzy. Does God choose all political leaders? Does he elect dictators too? Why would we expect God to work especially through democracies, when in the Bible such models are never endorsed?</p>
+    <p>Perhaps it's inevitable that we look to higher powers when national futures are concerned. Many now suspect Russia to have had a meddling hand in Trump's surprise victory. Staunch Trump-ally and evangelist Franklin Graham offered a puzzling response to the notion on Twitter:</p>
+    <p>I recently spoke to an American academic who suspected that God was involved in Trump's triumph, but not as you might expect. He was flabbergasted by Christian enthusiasm for Trump, a man he described as 'the incarnation of greed, lust, selfishness and love of power'.</p>
+    <p>The only theological explanation he had for the phenomenon was that God had spiritually blinded evangelicals to Trump's folly, and that Trump, evidently unfit for office, was the embodiment of divine judgment on the United States.</p>
+    <p>It's understandable that we try and divine what God might be doing in the world, but it's hard to be objective. We often just see what we want to see.</p>
+    <p>Corbyn or May - does God have a favourite?Reuters</p>
+    <p>The awkwardness of it all is clearer in British politics – where we have more parties, and vote for local MPs, not a president. It subsequently lacks the rhetorical punch that the more polarised, zero-sum game the US system provides. When there's no clear 'winner', it gets confusing to think about what God might have been up to if he was involved.</p>
+    <p>Today, it looks like God 'chose' no one; the bogeyman of the 'coalition of chaos' looms large for the UK. Or perhaps that is the point? Maybe God doesn't choose winners and losers, but works through many, in diverse ways, and won't validate our desire for a 'Christian candidate'? Perhaps God wants to teach the UK about the value of cooperation, forcing warring parties to work together to govern well?</p>
+    <p>Perhaps May's gambling failure is a divine judgment on human hubris. The Corbyn-surge might be God's endorsement of an agenda that protects the NHS and a society 'for the many, not the privileged few'.</p>
+
+    {# figure aside #}
+    <figure class="align-right" 
+            itemprop="image" 
+            itemscope itemtype="http://schema.org/ImageObject" 
+            itemid="{{ images[14] }}?w=500&h=281&l=50&t=40">
+      <img src="{{ images[14] }}?w=300&h=180&l=50&t=40" alt=""
+        itemprop="url">
+        <meta itemprop="width" content="300">
+        <meta itemprop="height" content="180">
+      <figcaption itemprop="caption description"><span class="credit">Photo:  Reuters/Rick Wilking</span>The handcuffed suspected gunman at the Planned Parenthood clinic is moved to a police vehicle in Colorado Springs, November 27, 2015. </figcaption>
+    </figure>
+
+    <p>Former Lib Dem leader Nick Clegg was unseated and gave a dramatic, scriptural interpretation of his loss: 'those who live by the sword, die by the sword'. The SNP lost seats – so is God against a second referendum on Scottish independence?</p>
+    <p>You can probably over-think it. We'll largely see what we want to, and that's OK too. What's crucial for Christians is that they remember the King that God truly has anointed. It feels cliché to invoke 'Jesus' as the answer, but he really is the one Christians are meant to be about. He didn't do party politics, but he certainly implored his followers to seek justice, pursue peace and pray for God's kingdom to come to earth as in heaven. It's worth taking the time to seriously ask what that might mean.</p>
+    <p>The Church remains God's truly chosen body through which to bless the world – we can forget the gravity of that.</p>
+    <p>Did God rig this election...or was it the Russians? We're at sea in a complex world that we barely understand, whose sands are shifting every day. We want political answers from God, to know the reason for the season – but he might not give us what we want.</p>
+    <p>Christian MP David Burrowes lost his seat last night. In his speech afterwards he praised democracy, wished his successor well, and thanked 'my sovereign Lord in whom I trust'. That seems like a wise, healthy politics.</p>
+    <p>Is God pulling strings? How could we ever know? Christians do know that God is for the world, and cares about politics because he cares about people. But I don't think he does divine endorsements.</p>
+    <p>And in our messed-up world, thank God for that.</p>
+  </article>
+{% endblock %}

@@ -1,0 +1,79 @@
+{# news list #}
+{% macro news(num) %}
+  {% for i in range(0, num) %}
+    {% set hCount = getHCount() %}
+    <li><h3 class="heading"><a href="">{{ headings[hCount] }}</a></h3></li>
+  {% endfor %}
+{% endmacro %}
+
+{# news list with images #}
+{% macro newsImg(num, width='70', height='70', video = false) %}
+  {% for i in range(0, num) %}
+    {% set iCount = getICount() %}
+    {% set hCount = getHCount() %}
+    <li>
+      <article>
+        <figure class="{{ 'has-icon is-video icon-center' if video }} {{ 'media-bg' if width >= 180 }}"><a href="" aria-label="{{ 'Play Video' if video}}"><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}">
+        {% if video %}
+          <span class="icon-wrapper"><svg role="img" width="26" height="26"><use xlink:href="assets/svg/sprites.svg#playarrow-fill" /></svg></span>
+        {% endif %}
+        </a></figure>
+        <h3 class="heading"><a href="">{{ headings[hCount] | truncate(55, false, "") }}</a></h3>
+      </article>
+    </li>
+  {% endfor %}
+{% endmacro %}
+
+{# news lsit with images, summaries #}
+{% macro newsImgSum(num, width='70', height='70') %}
+  {% for i in range(0, num) %}
+    {% set iCount = getICount() %}
+    {% set hCount = getHCount() %}
+    {% set gCount = getPCount() %}
+    <li>
+      <article>
+        <figure class="{{ 'media-bg' if width >= 100 }}"><a href=""><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}"></a></figure>
+        <div>
+          <h3 class="heading"><a href="">{{ headings[hCount] }}</a></h3>
+          <p>{{ paragraphs[gCount] }}</p>
+        </div>
+      </article>
+    </li>
+  {% endfor %}
+{% endmacro %}
+
+{# news list with images, bylines #}
+{% macro newsByline(num, width='70', height='70') %}
+  {% for i in range(0, num) %}
+    {% set iCount = getICount() %}
+    {% set hCount = getHCount() %}
+    <li>
+      <article>
+        <figure><a href=""><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}"></a></figure>
+        <div>
+          <h3 class="heading"><a href="">{{ headings[hCount] }}</a></h3>
+          <div class="byline"><a href="" class="reporter">Ben Chapman</a> <time datetime="2017-05-26">Friday 26 May 2017 14:28 BST</time></div>
+        </div>
+      </article>
+    </li>
+  {% endfor %}
+{% endmacro %}
+
+{# news list with images, bylines, summaries #}
+{% macro newsBylineSum(num, width='70', height='70') %}
+  {% for i in range(0, num) %}
+    {% set iCount = getICount() %}
+    {% set hCount = getHCount() %}
+    {% set gCount = getPCount() %}
+    <li>
+      <article>
+        <figure class="{{ 'media-bg' if width >= 180 }}"><a href=""><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}"></a></figure>
+        <div>
+          <h3 class="heading"><a href="">{{ headings[hCount] }}</a></h3>
+          <div class="byline"><a href="" class="reporter">Ben Chapman</a> <time datetime="2017-05-26">Friday 26 May 2017 14:28 BST</time></div>
+          <p>{{ paragraphs[gCount] }}</p>
+        </div>
+      </article>
+    </li>
+  {% endfor %}
+{% endmacro %}

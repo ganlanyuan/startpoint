@@ -1,12 +1,18 @@
+{% import './macros.njk' as mc with context %}
 <!doctype html>
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie10 lt-ie9" lang="en"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]><html class="no-js lt-ie10" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-script lt-ie10 lt-ie9" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-script lt-ie10" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
+<!--[if gt IE 9]><!--><html class="no-script" lang="en" itemscope itemtype="http://schema.org/WebPage"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Site Title</title>
+  <meta name="title" content="Site Title">
   <meta name="description" content="">
+  <meta name="Keywords" content="">
+  <title>Site Name</title>
+  <link rel="canonical" href="http://www.site.com/url/to/full/document.html">
+  <link itemprop="url" href="http://www.site.com/url/to/full/document.html">
+  <meta itemprop="name alternateName" content="Site Name">
   <meta name="author" content="">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
@@ -15,13 +21,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   <!-- favicons -->
-
-  <!-- Prerendering pages: be careful with this option -->
-  <!-- <link rel="prerender" href="http://css-tricks.com"> -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
   <!-- Subresources:  -->
   <!-- Identify the resources that are the highest priority and should be requested before prefetched items -->
-  <!-- <link rel="subresource" href="styles.css"> -->
+  <link rel="subresource" href="assets/css/main.final.css">
   
   <!-- Prefetch DNS for external assets -->
   <!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
@@ -30,8 +34,7 @@
   <!-- <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin> -->
   
   <!-- Prefetch Resourses -->
-  <!-- <link href="sprite.png" rel="prefetch"> -->
-  <!-- <link href="http://mydomain.com/my-next-page.htm" rel="prerender"> -->
+  <link rel="prefetch" href="assets/svg/sprites.svg">
 
   <link rel="stylesheet" href="assets/css/main.final.css">
   <script>
@@ -59,7 +62,7 @@
   </script>
   <!--[if (lt IE 9)]><script src="assets/js/html5shiv.js"></script><![endif]-->
 </head>
-<body>
+<body class="{{ page + '-page' if page == 'home' or page == 'article' else 'section-page' }}">
 <noscript>
   <p class="enable-js">
     To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
@@ -68,15 +71,15 @@
 <!--[if lt IE 9]>
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-<header class="site-header">
-</header>
 
+{% include './header.njk' %}
+
+{# main #}
 {% block main %}
 {% endblock %}
 
-<footer class="site-footer">
-  <p class="copyright">&copy; {{ year }}, INC. All Rights Reserved.</p>
-</footer>
+{# page footer #}
+{% include "./footer.njk" %}
 
 <!-- Placeholder polyfill for IE9- -->
 <!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->

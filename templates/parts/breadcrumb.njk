@@ -1,0 +1,23 @@
+{# breadcrumb #}
+<nav class="breadcrumb" role="navigation" aria-label="You are here:" 
+  itemscope itemtype="http://schema.org/BreadcrumbList">
+  <span itemprop="itemListElement"
+        itemscope itemtype="http://schema.org/ListItem">
+    <a href="/" itemprop="url">
+      <span itemprop="name">Home</span>
+    </a>
+  </span>
+  <span itemprop="itemListElement"
+        itemscope itemtype="http://schema.org/ListItem">
+    <a href="section.html" itemprop="url">
+      <span itemprop="name">World</span>
+    </a>
+  </span>
+  <span itemprop="itemListElement"
+        itemscope itemtype="http://schema.org/ListItem">
+    <span class="is-active" href="article.html" itemprop="url">
+      <span class="visually-hidden">Current: </span>
+      <span itemprop="name">US</span>
+    </span>
+  </span>
+</nav>

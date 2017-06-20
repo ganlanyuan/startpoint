@@ -55,7 +55,6 @@ gulp.task('compile:markup', () => {
 gulp.task('compile:yaml', () => { doYamlToJson(markupSrc + '/*.yml', markupSrc); });
 gulp.task('watch:markup', () => { gulp.watch([markupSrc + '/**/*.njk', markupSrc + '/data.json'], (e) => {
   if (e.type === 'deleted') {
-    console.log(path.parse(e.path).name + '.html');
     return del(path.parse(e.path).name + '.html');
   } else {
     let data = requireUncached('./' + markupSrc + '/data.json');
