@@ -43,3 +43,50 @@ body {
 //   margin-bottom: 10px;
 //   color: $gray;
 // }
+
+@function powers($num, $power) {
+  $return: 1;
+  @if $power > 0 {
+    @for $i from 1 through $power {
+      $return: $return * $num;
+    }
+  }
+  @return $return;
+}
+$font-scale: 1.15;
+$font-base: 1em;
+$p-line-height: 1.4;
+
+
+h1, h2, h3, h4, h5, h6 { margin-bottom: 0.8em; line-height: 1.1; }
+h1 { font-size: $font-base * powers($font-scale, 5); }
+h2 { font-size: $font-base * powers($font-scale, 4); }
+h3 { font-size: $font-base * powers($font-scale, 3); }
+h4 { font-size: $font-base * powers($font-scale, 2); }
+h5 { font-size: $font-base * powers($font-scale, 1); }
+h6 { font-size: $font-base; }
+> ul, > ol,
+blockquote, p {
+  @include type(18px $p-line-height);
+  a {
+    color: $color-link;
+    &:hover { text-decoration: underline; }
+  }
+}
+> ul, > ol,
+blockquote ul,
+blockquote ol { margin: $p-line-height * 1em 0 $p-line-height * 1em 2em; }
+> ul, blockquote ul { list-style-type: disc; }
+> ol, blockquote ol { list-style-type: decimal; }
+li { 
+  margin-bottom: 0.5em;
+  a:hover { color: #000; }
+}
+blockquote {
+  margin: 0 0 $p-line-height * 1em 0;
+  padding-left: $p-line-height * 1em;
+  border-left: 0.45em solid $color-border;
+  font-style: italic;
+  color: #715e5e;
+  p { color: inherit; }
+}
