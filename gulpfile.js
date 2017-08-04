@@ -1,5 +1,9 @@
 const gulp = require('gulp');
-const $ = require('gulp-load-plugins')();
+const packages = require('/www/package.json');
+const $ = require('gulp-load-plugins')({
+  config: packages
+});
+
 const rollup = require('rollup').rollup;
 const resolve = require('rollup-plugin-node-resolve');
 const browserSync = require('browser-sync').create();
@@ -122,7 +126,16 @@ gulp.task('build:ampInject', () => { doAmpInject(ampTarget, ampCss, '.'); });
 gulp.task('watch:ampUncss', () => { gulp.watch(ampCssSource, () => { doAmpUncss(ampCssSource, cssDest, ampUncssOptions); })})
 gulp.task('watch:ampInject', () => { gulp.watch(ampCss, () => { doAmpInject(ampTarget, ampCss, '.'); } ) });
 
-gulp.task('server', () => { browserSync.init({ server: { baseDir: './'}, open: false, notify: false }); });
+gulp.task('server', () => { browserSync.init({
+  server: { baseDir: './'},
+  ghostMode: {
+    clicks: false,
+    forms: false,
+    scroll: false
+  },
+  open: false,
+  notify: false
+}); });
 
 
 
