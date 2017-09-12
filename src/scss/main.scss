@@ -38,3 +38,22 @@
 @import "pages/search";
 
 @import "base/print";
+
+// @function luminance($color) {
+//   $rgb: rgb()
+//   @return 1;
+// }
+
+// @function ratio($color1, $color2) {
+//   $ratio: 1;
+//   $l1: luminance($color1) + 0.05;
+//   $l2: luminance($color2) + 0.05;
+
+//   @if $l1 > $l2 {
+//     $ratio: $l1/$l2;
+//   } @else {
+//     $ratio: $l2/$l1;
+//   }
+
+//   @return $ratio;
+// }

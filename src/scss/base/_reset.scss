@@ -13,6 +13,7 @@ dd,
 ul,
 ol,
 li { margin: 0; }
+
 dl,
 ul,
 ol { padding: 0; }
@@ -34,8 +35,7 @@ img, video { max-width: 100%; height: auto; }
 iframe { max-width: 100%; }
 
 // remove the white space under images
-figure img,
-a > img { vertical-align: bottom; }
+figure img, a > img { vertical-align: bottom; }
 
 // prevent an image issue on IE 8
 @media \0screen { img { width: auto; } }
@@ -45,4 +45,9 @@ label { cursor: pointer; }
 select { -webkit-appearance: none; }
 
 // reset link style
-a { text-decoration: none; color: inherit; }
+a {
+  text-decoration: none;
+  color: inherit;
+  &:focus { outline: 1px dotted $color-brand; }
+}
+main:focus { outline: 1px dotted $color-brand; }

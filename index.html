@@ -1,34 +1,35 @@
 <!DOCTYPE html>
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie10 lt-ie9" lang="en"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]><html class="no-js lt-ie10" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-script lt-ie10 lt-ie9" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-script lt-ie10" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
 <!--[if gt IE 9]><!-->
-<html class="no-js" lang="en">
+<html class="no-script" lang="en" itemscope itemtype="http://schema.org/WebPage">
   <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-      Site Title
-    </title>
+    <meta name="title" content="Site Title">
     <meta name="description" content="">
+    <meta name="news_keywords" content="">
+    <title>
+      Site Name
+    </title>
+    <link rel="canonical" href="http://www.site.com/url/to/full/document.html">
+    <link itemprop="url" href="http://www.site.com/url/to/full/document.html">
+    <meta itemprop="name alternateName" content="Site Name">
     <meta name="author" content="">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"><!-- favicons -->
-    <!-- Prerendering pages: be careful with this option -->
-    <!-- <link rel="prerender" href="http://css-tricks.com"> -->
-    <!-- Subresources:  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"><!-- favicons -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"><!-- Subresources:  -->
     <!-- Identify the resources that are the highest priority and should be requested before prefetched items -->
-    <!-- <link rel="subresource" href="styles.css"> -->
-    <!-- Prefetch DNS for external assets -->
+    <link rel="subresource" href="assets/css/main.final.css"><!-- Prefetch DNS for external assets -->
     <!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
     <!-- Preconnect for dynamic request URLs -->
     <!-- <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin> -->
     <!-- Prefetch Resourses -->
-    <!-- <link href="sprite.png" rel="prefetch"> -->
-    <!-- <link href="http://mydomain.com/my-next-page.htm" rel="prerender"> -->
+    <link rel="prefetch" href="assets/svg/sprites.svg">
     <link rel="stylesheet" href="assets/css/main.final.css">
     <script>
     /* svg4everybody:js */
@@ -52,28 +53,57 @@
 
     /* modernizr:js */
     /* endinject */
-    </script><!--[if (lt IE 9)]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/go-native.ie8.min.js"></script>
-    
-    <link href="http://externalcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
-    <link href="assets/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
-    <script src="assets/cross-domain/respond.proxy.js"></script>  
-  <![endif]-->
+    </script><!--[if (lt IE 9)]><script src="assets/js/html5shiv.js"></script><![endif]-->
   </head>
-  <body>
-    <noscript>
+  <body class="home-page">
+    <a href="#main" class="visually-hidden">Skip to main content</a> <noscript>
     <p class="enable-js">
       To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
     </p></noscript> <!--[if lt IE 9]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-    <header class="site-header"></header>
-    <footer class="site-footer">
-      <p class="copyright">
-        © 2017, INC. All Rights Reserved.
-      </p>
-    </footer>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+    <header class="page-header" role="banner">
+      <div class="branding" id="branding" itemprop="publisher" itemscope itemtype="http://schema.org/Organization" itemid="Company Name">
+        <a href="http://www.site.com" itemprop="url">
+        <meta itemprop="legalName name" content="Company Name">
+        <link itemprop="image" href="path/to/logo.png"><span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><img src="path/to/logo.png" alt="Company Name" itemprop="url" class="visually-hidden"> <svg role="img" width="494" height="36">
+        <use xlink:href="assets/svg/sprites.svg#logo"></use></svg></span></a>
+      </div>
+      <nav role="navigation">
+        <ul>
+          <li>
+            <a href="">Lorem.</a>
+          </li>
+          <li>
+            <a href="">Odit.</a>
+          </li>
+          <li>
+            <a href="">Veniam.</a>
+          </li>
+          <li>
+            <a href="">Iure.</a>
+          </li>
+          <li>
+            <a href="">Id!</a>
+          </li>
+          <li>
+            <a href="">Quia.</a>
+          </li>
+          <li>
+            <a href="">A?</a>
+          </li>
+        </ul>
+      </nav>
+      <form action="" role="search"></form>
+    </header>
+    <footer class="page-footer" role="contentinfo">
+      <div class="copyright">
+        <div class="container">
+          Copyright © <span itemprop="copyrightYear">2017</span> <span itemprop="copyrightHolder provider sourceOrganization" itemscope itemtype="http://schema.org/Organization" itemid="http://www.site.com"><span itemprop="name">Company Name</span></span> . All Rights Reserved.
+        </div>
+      </div>
+    </footer><!-- Placeholder polyfill for IE9- -->
+    <!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
     <script src="assets/js/script.js"></script>
   </body>
 </html>

@@ -67,7 +67,9 @@ h5 { font-size: $font-base * powers($font-scale, 1); }
 h6 { font-size: $font-base; }
 > ul, > ol,
 blockquote, p {
-  @include type(18px $p-line-height);
+  font-size: 18px;
+  font-size: rem(18px);
+  line-height: $p-line-height;
   a {
     color: $color-link;
     &:hover { text-decoration: underline; }

@@ -63,27 +63,35 @@
   <!--[if (lt IE 9)]><script src="assets/js/html5shiv.js"></script><![endif]-->
 </head>
 <body class="{{ page + '-page' if page == 'home' or page == 'article' else 'section-page' }}">
-<noscript>
-  <p class="enable-js">
-    To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
-  </p>
-</noscript>
-<!--[if lt IE 9]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+  {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
+  <a href="#main" class="visually-hidden">Skip to main content</a>
+  <noscript>
+    <p class="enable-js">
+      To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
+    </p>
+  </noscript>
+  <!--[if lt IE 9]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-{% include './header.njk' %}
+  {% include './header.njk' %}
 
-{# main #}
-{% block main %}
-{% endblock %}
+  {# main #}
+  {% block main %}
+    {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
+    {# tabindex for Webkit based browsers: https://bugs.chromium.org/p/chromium/issues/detail?id=37721 #}
+    <main id="main" role="main" tabindex="-1">
+    </main>
+    <aside role="complementary">
+    </aside>
+  {% endblock %}
 
-{# page footer #}
-{% include "./footer.njk" %}
+  {# page footer #}
+  {% include "./footer.njk" %}
 
-<!-- Placeholder polyfill for IE9- -->
-<!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
+  <!-- Placeholder polyfill for IE9- -->
+  <!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
 
-<script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

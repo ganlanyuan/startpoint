@@ -5,7 +5,10 @@
   letter-spacing: -0.34em;
   > a,
   > span {
-    @include type(14px bold uppercase);
+    font-size: 14px;
+    font-size: rem(14px);
+    font-weight: bold;
+    text-transform: uppercase;
     display: inline-block;
     letter-spacing: 0;
     &:not(:last-child):after {
