@@ -112,7 +112,7 @@ gulp.task('build:inject', () => {
 
 let imageSrc = 'src/img/**/*.{jpg,jpeg,png,gif}';
 gulp.task('optimize:image', () => { doImageMin(imageSrc, 'assets/img'); });
-gulp.task('watch:image', () => { gulp.watch([imageSrc], (e) => { watcher(e, 'src/', 'assets/', doImageMin); }); });
+gulp.task('watch:image', () => { gulp.watch([imageSrc], (e) => { watcher(e, 'src/img', 'assets/img', doImageMin); }); });
 
 let ampCssSource = cssDest + '/main.final.css',
     ampCss = cssDest + '/amp.css',
@@ -168,10 +168,22 @@ function requireUncached( $module ) {
 
 function doNunjucks(data, src, dest) {
   data.year = new Date().getFullYear();
-  let iCount = hCount = pCount = 0;
-  data.getICount = () => { return (iCount > 377) ? 0 : iCount += 1; };
-  data.getHCount = () => { return (hCount > 390) ? 0 : hCount += 1; };
-  data.getPCount = () => { return (pCount > 230) ? 0 : pCount += 1; };
+  let iCount = 0,
+      hCount = 0,
+      pCount = 0;
+  data.getICount = () => {
+    if (iCount > 46) { iCount = 0; }
+    return iCount += 1;
+  };
+  data.getHCount = () => {
+    if (hCount > 46) { hCount = 0; }
+    return hCount += 1;
+  };
+  data.getPCount = () => {
+    if (pCount > 46) { pCount = 0; }
+    return pCount += 1;
+  };
+
   data.is = function (type, obj) {
     var clas = Object.prototype.toString.call(obj).slice(8, -1);
     return obj !== undefined && obj !== null && clas === type;
