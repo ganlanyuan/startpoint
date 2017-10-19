@@ -145,7 +145,7 @@ gulp.task('server', () => { browserSync.init({
 
 
 
-function watcher(e, srcFolder, destFolder, callback) {
+function watcher (e, srcFolder, destFolder, callback) {
   let destFile = e.path.replace(srcFolder, destFolder),
       destPath = path.dirname(destFile);
 
@@ -156,17 +156,17 @@ function watcher(e, srcFolder, destFolder, callback) {
   }
 }
 
-function errorlog(error) {  
+function errorlog (error) {  
   console.error.bind(error);  
   this.emit('end');  
 }  
 
-function requireUncached( $module ) {
+function requireUncached ( $module ) {
   delete require.cache[require.resolve( $module )];
   return require( $module );
 }
 
-function doNunjucks(data, src, dest) {
+function doNunjucks (data, src, dest) {
   data.year = new Date().getFullYear();
   let iCount = 0,
       hCount = 0,
@@ -184,12 +184,12 @@ function doNunjucks(data, src, dest) {
     return pCount += 1;
   };
 
-  data.is = function (type, obj) {
+  data.is = function(type, obj) {
     var clas = Object.prototype.toString.call(obj).slice(8, -1);
     return obj !== undefined && obj !== null && clas === type;
   };
-  data.keys = function (obj) { return Object.keys(obj); };
-  data.belongTo = function (str, arr) { return arr.indexOf(str) !== -1; };
+  data.keys = function(obj) { return Object.keys(obj); };
+  data.belongTo = function(str, arr) { return arr.indexOf(str) !== -1; };
 
   return gulp.src(src)
     .pipe($.plumber())
@@ -199,7 +199,7 @@ function doNunjucks(data, src, dest) {
       noCache: true,
     })
     // change extension from ".njk" to ".html"
-    .pipe($.rename(function (path) { path.extname = ".html"; }))
+    .pipe($.rename(function(path) { path.extname = ".html"; }))
     // prettify | minify
     .pipe($.if(dev, $.htmltidy({
       doctype: 'html5',
@@ -221,7 +221,7 @@ function doNunjucks(data, src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doSass(src, dest) {
+function doSass (src, dest) {
   return gulp.src(src)  
     .pipe($.plumber())
     // .pipe($.if(dev, $.sourcemaps.init()))
@@ -233,7 +233,7 @@ function doSass(src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doPostCss(src, dest) {
+function doPostCss (src, dest) {
   return gulp.src(src)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
@@ -242,7 +242,7 @@ function doPostCss(src, dest) {
     // add normalize
     .pipe($.postcss([require('postcss-normalize')({ /* options */ }) ]))
     // rename
-    .pipe($.rename(function (path) { path.basename += '.final'; }))
+    .pipe($.rename(function(path) { path.basename += '.final'; }))
     // minify
     .pipe($.csso())
     .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
@@ -250,7 +250,7 @@ function doPostCss(src, dest) {
     .pipe(browserSync.stream());
 }
 
-function doJsBundle(src, dest) {
+function doJsBundle (src, dest) {
   return rollup({
     entry: src,
     context: 'window',
@@ -262,7 +262,7 @@ function doJsBundle(src, dest) {
         browser: true,
       }),
     ],
-  }).then(function (bundle) {
+  }).then(function(bundle) {
     return bundle.write({
       dest: dest,
       format: 'iife',
@@ -271,7 +271,7 @@ function doJsBundle(src, dest) {
   });
 }
 
-function doJsConcat(name, src, dest) {
+function doJsConcat (name, src, dest) {
   return gulp.src(src)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
@@ -291,7 +291,7 @@ function doJsConcat(name, src, dest) {
     .pipe(browserSync.stream());
 }
 
-function doJsUglify(src, dest) {
+function doJsUglify (src, dest) {
   return gulp.src(src)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
@@ -310,27 +310,27 @@ function doJsUglify(src, dest) {
     .pipe(browserSync.stream());
 }
 
-function doYamlToJson(src, dest) {
+function doYamlToJson (src, dest) {
   return gulp.src(src)
     .pipe($.plumber())
     .pipe($.yaml({space: 2}))
     .pipe(gulp.dest(dest));
 }
 
-function doMove(src, dest) {
+function doMove (src, dest) {
   return gulp.src(src)
     .pipe(gulp.dest(dest));
 }
 
-function doSvgMin(src, dest) {
+function doSvgMin (src, dest) {
   return gulp.src(src)
       .pipe($.svgmin())
       .pipe(gulp.dest(dest));
 }
 
-function doSvgSprites(src, dest) {
+function doSvgSprites (src, dest) {
   return gulp.src(src)
-    .pipe($.svgmin(function (file) {
+    .pipe($.svgmin(function(file) {
       let prefix = path.basename(file.relative, path.extname(file.relative));
       return {
         plugins: [{
@@ -347,45 +347,45 @@ function doSvgSprites(src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doInject(src, dest) {
+function doInject (src, dest) {
   return gulp.src(src)
     .pipe($.if(svg4everybody, $.inject(svg4everybody, {
       starttag: '/* svg4everybody:js */',
       endtag: '/* endinject */',
-      transform: function (filePath, file) {
+      transform: function(filePath, file) {
         return file.contents.toString().replace('height:100%;width:100%', '');
       }
     })))
     .pipe($.if(modernizrJs, $.inject(modernizrJs, {
       starttag: '/* modernizr:js */',
       endtag: '/* endinject */',
-      transform: function (filePath, file) {
+      transform: function(filePath, file) {
         return file.contents.toString();
       }
     })))
     .pipe(gulp.dest(dest));
 }
 
-function doImageMin(src, dest) {
+function doImageMin (src, dest) {
   return gulp.src(src)
     .pipe($.imagemin())
     .pipe(gulp.dest(dest));
 }
 
-function doAmpUncss(src, dest, options) {
+function doAmpUncss (src, dest, options) {
   return gulp.src(src)
     .pipe($.uncss(options))
     .pipe($.rename('amp.css'))
     .pipe(gulp.dest(dest));
 }
 
-function doAmpInject(target, src, dest) {
+function doAmpInject (target, src, dest) {
   return gulp.src(target)
     .pipe($.inject(gulp.src('assets/svg/sprites.svg'), {
-      transform: function (filePath, file) { return file.contents.toString(); }
+      transform: function(filePath, file) { return file.contents.toString(); }
     }))
     .pipe($.inject(gulp.src(src), {
-      transform: function (filePath, file) {
+      transform: function(filePath, file) {
         return '<style amp-custom>' + file.contents.toString().replace(/fonts\/mnr/g, 'assets/css/fonts/mnr').replace(/!important/g, '').replace('@page{margin:0.5cm}', '').replace(/"..\/img/g, '"assets/img') + '</style>';
       }
     }))
