@@ -10,6 +10,9 @@ const browserSync = require('browser-sync').create();
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const del = require('del');
+const fs = require("fs");
+const rimraf = require('rimraf');
+
 let dev = true;
 let sourcemapDest = '../sourcemaps';
 
@@ -27,10 +30,14 @@ gulp.task('build', [
   // 'build:inject',
   // 'build:ampUncss',
   // 'build:ampInject',
+  // 'build:pages',
+  // 'check:w3cHTML'
+  // 'check:w3cCSS'
 ]);
 
 gulp.task('watch', [
     'watch:markup',
+    'watch:pages',
     'watch:yaml',
     'watch:sass',
     'watch:postcss',
@@ -41,6 +48,8 @@ gulp.task('watch', [
     'watch:svgMin',
     'watch:svgSprites',
     'watch:image',
+    'watch:w3cHTML',
+    'watch:w3cCSS',
   ], () => { gulp.watch(['**/*.html', 'assets/js/*.js']).on('change', browserSync.reload); });
 
 // Default Task
@@ -50,12 +59,14 @@ gulp.task('default', [
   'watch',
 ]);  
 
-let markupSrc = 'templates';
+let templateDir = 'templates';
+let markupSrc = [templateDir + '/*.njk', '!' + templateDir + '/pages.njk'];
+let pagesSrc = templateDir + '/pages.njk';
 gulp.task('compile:markup', () => {
-  let data = requireUncached('./' + markupSrc + '/data.json');
-  let src = markupSrc + '/*.njk';
-  doNunjucks(data, src, '.');
+  let data = requireUncached('./' + templateDir + '/data.json');
+  doNunjucks(data, markupSrc, '.');
 });
+gulp.task('build:pages', () => { doBuildPages(); });
 gulp.task('compile:yaml', () => { doYamlToJson(markupSrc + '/*.yml', markupSrc); });
 gulp.task('watch:markup', () => { gulp.watch([markupSrc + '/**/*.njk', markupSrc + '/data.json'], (e) => {
   if (e.type === 'deleted') {
@@ -64,6 +75,11 @@ gulp.task('watch:markup', () => { gulp.watch([markupSrc + '/**/*.njk', markupSrc
     let data = requireUncached('./' + markupSrc + '/data.json');
     let src = (e.path.indexOf('parts/') !== -1 || path.extname(e.path) === '.json') ? markupSrc + '/*.njk' : e.path;
     doNunjucks(data, src, '.');
+  }
+}); });
+gulp.task('watch:pages', () => { gulp.watch(['*.html', '!pages.html', 'w3cErrors/W3C_Errors/*.html', templateDir + '/pages.njk'], (e) => {
+  if (e.type === 'deleted' || e.type === 'added' || e.type === 'renamed' || path.extname(e.path) === '.njk' && e.type === 'changed') {
+    doBuildPages();
   }
 }); });
 gulp.task('watch:yaml', () => { gulp.watch(markupSrc + '/*.yml', ['compile:yaml']); })
@@ -137,6 +153,13 @@ gulp.task('server', () => { browserSync.init({
   notify: false
 }); });
 
+let htmlSrc = ['*.html', '!pages.html'];
+gulp.task('check:w3cHTML', () => { doW3cHTML(htmlSrc); });
+gulp.task('watch:w3cHTML', () => { gulp.watch(htmlSrc, ['check:w3cHTML']); });
+
+let cssSrc = cssDest + '/*.css';
+gulp.task('check:w3cCSS', () => { doW3cCSS(cssSrc); });
+gulp.task('watch:w3cCSS', () => { gulp.watch(cssSrc, ['check:w3cCSS'])});
 
 
 
@@ -164,6 +187,30 @@ function errorlog (error) {
 function requireUncached ( $module ) {
   delete require.cache[require.resolve( $module )];
   return require( $module );
+}
+
+function getAllFilesFromFolder (dir, fileExt) {
+  if (fs.existsSync(dir)) {
+    var results = [], files = fs.readdirSync(dir);
+
+    if (files.length > 0) {
+      files.forEach(function(file) {
+
+          file = dir+'/'+file;
+
+          var stat = fs.statSync(file);
+          if (stat && stat.isDirectory()) {
+            // results = results.concat(getAllFilesFromFolder(file))
+          } else if (path.extname(file) === fileExt) {
+            file = file.replace(__dirname + '/', '').replace(fileExt, '');
+
+            if (file !== 'pages') { results.push(file); }
+          }
+      });
+    }
+
+    return results;
+  }
 }
 
 function doNunjucks (data, src, dest) {
@@ -219,6 +266,23 @@ function doNunjucks (data, src, dest) {
       removeComments: false,
     })))
     .pipe(gulp.dest(dest));
+}
+
+function doBuildPages () {
+  let pages = getAllFilesFromFolder(__dirname, '.html'),
+      errorPages = getAllFilesFromFolder(__dirname + '/w3cErrors/W3C_Errors', '.html'),
+      errorPages2,
+      pageData;
+
+  if (errorPages && errorPages.length > 0) {
+    errorPages2 = errorPages.map(function(item) {
+      return item.replace('w3cErrors/W3C_Errors/', '').replace('html_validation-report', '');
+    });
+  }
+  pageData = {"pages": pages, "errorPages": errorPages2};
+  pageData.belongTo = function (str, arr) { return arr.indexOf(str) !== -1; };
+  
+  doNunjucks(pageData, pagesSrc, '.');
 }
 
 function doSass (src, dest) {
@@ -390,4 +454,37 @@ function doAmpInject (target, src, dest) {
       }
     }))
     .pipe(gulp.dest(dest));
+}
+
+function doW3cHTML (src) {
+  // clear cache
+  rimraf('w3cErrors/W3C_Errors', function () { console.log('"w3cErrors/W3C_Errors" was removed'); });
+
+  return gulp.src(src)
+    .pipe($.w3cHtmlValidation({
+      generateCheckstyleReport: 'w3cErrors/validation.xml',
+      errorTemplate: 'w3cErrors/w3c_validation_error_template.html',
+      useTimeStamp: false,
+      // remotePath: "http://decodize.com/", // use regex validation for domain check
+      // remoteFiles: ["blog/2013/03/03/getting-started-with-yeoman-1-dot-0-beta-on-windows/",
+      //   "blog/2015/01/09/front-end-d-workflow-redefined-jade/",
+      //   "blog/2013/08/07/front-end-viewpoints-architecture-building-large-websites/",
+      //   "blog/2013/03/10/linktomob-share-your-links-quickly-and-easily-on-mobile-devices/",
+      //   "blog/2013/02/09/slidemote-universal-remote-control-for-html5-presentations/"],
+      relaxerror: [
+        // 'The "banner" role is unnecessary for element "header".'
+        'The “banner” role is unnecessary for element “header”.',
+        'The “navigation” role is unnecessary for element “nav”.',
+        'The “main” role is unnecessary for element “main”.',
+        'The “contentinfo” role is unnecessary for element “footer”.',
+        // 'The “(\w+)” role is unnecessary for element “([A-Z])\w+”.'
+                   ]
+    }));
+}
+
+function doW3cCSS (src) {
+  return gulp.src(src)
+    .pipe($.w3cCss())
+    .pipe($.rename({extname: '.json'}))
+    .pipe(gulp.dest('w3cErrors/css'));
 }
