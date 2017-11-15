@@ -30,6 +30,7 @@ textarea {
   box-sizing: border-box;
 }
 
+img { border: 0; }
 // make images & videos flexible
 img, video { max-width: 100%; height: auto; }
 iframe { max-width: 100%; }
@@ -48,6 +49,9 @@ select { -webkit-appearance: none; }
 a {
   text-decoration: none;
   color: inherit;
-  &:focus { outline: 1px dotted $color-brand; }
+  &:focus {
+    outline: 1px solid;
+    outline-offset: .15em;
+  }
 }
-main:focus { outline: 1px dotted $color-brand; }
+main:focus { outline: none; }
