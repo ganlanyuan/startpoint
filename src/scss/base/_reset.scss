@@ -5,26 +5,13 @@
 html, body { min-width: 320px; }
 
 // remove margin and padding
-body,
-figure,
-dl,
-dt,
-dd,
-ul,
-ol,
-li { margin: 0; }
+body, figure, dl, dt, dd, ul, ol, li { margin: 0; }
+dl, ul, ol {
+  padding: 0;
+  list-style: none;
+}
 
-dl,
-ul,
-ol { padding: 0; }
-
-// reset list styles
-li { list-style: none; }
-
-button,
-input,
-select,
-textarea {
+button, input, select, textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
