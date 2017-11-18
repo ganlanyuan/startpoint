@@ -48,8 +48,8 @@ gulp.task('watch', [
     'watch:svgMin',
     'watch:svgSprites',
     'watch:image',
-    // 'watch:w3cHTML',
-    // 'watch:w3cCSS',
+    'watch:w3cHTML',
+    'watch:w3cCSS',
   ], () => { gulp.watch(['**/*.html', 'assets/js/*.js']).on('change', browserSync.reload); });
 
 // Default Task
@@ -68,12 +68,25 @@ gulp.task('compile:markup', () => {
 });
 gulp.task('build:pages', () => { doBuildPages(); });
 gulp.task('compile:yaml', () => { doYamlToJson(templateDir + '/*.yml', templateDir); });
-gulp.task('watch:markup', () => { gulp.watch([templateDir + '/**/*.njk', templateDir + '/data.json'], (e) => {
+gulp.task('watch:markup', () => { gulp.watch([templateDir + '/**/*.njk', '!' + templateDir + 'pages.njk', templateDir + '/data.json'], (e) => {
   if (e.type === 'deleted') {
     return del(path.parse(e.path).name + '.html');
   } else {
-    let data = requireUncached('./' + templateDir + '/data.json');
-    let src = (e.path.indexOf('parts/') !== -1 || path.extname(e.path) === '.json') ? templateDir + '/*.njk' : e.path;
+    let data = requireUncached('./' + templateDir + '/data.json'), src;
+
+    if (e.path.indexOf('parts/') >= 0 ) {
+      if (e.path.indexOf('layout-') !== -1) {
+        let fullname = path.parse(e.path).name.replace('layout-', '') + '.njk';
+        src = [templateDir + '/' + fullname, templateDir + '/mb-' + fullname];
+      } else if (e.path.indexOf('/layout.njk') !== -1 || path.extname(e.path) === '.json') {
+        src = [templateDir + '/*.njk', '!' + templateDir + '/pages.njk'];
+      } else {
+        return;
+      }
+    } else {
+      src = e.path;
+    }
+
     doNunjucks(data, src, '.');
   }
 }); });
@@ -155,7 +168,17 @@ gulp.task('server', () => { browserSync.init({
 
 let htmlSrc = ['*.html', '!pages.html'];
 gulp.task('check:w3cHTML', () => { doW3cHTML(htmlSrc); });
-gulp.task('watch:w3cHTML', () => { gulp.watch(htmlSrc, ['check:w3cHTML']); });
+gulp.task('watch:w3cHTML', () => { gulp.watch(htmlSrc, (e) => {
+  let name = path.basename(e.path, '.html');
+
+  if (['deleted', 'changed'].indexOf(e.type) >= 0 ) {
+    del('w3cErrors/W3C_Errors/' + name + 'html_validation-report.html');
+  }
+
+  if (['added', 'changed', 'renamed'].indexOf(e.type) >= 0 ) {
+    doW3cHTML(e.path);
+  }
+}); });
 
 let cssSrc = cssDest + '/*.css';
 gulp.task('check:w3cCSS', () => { doW3cCSS(cssSrc); });
@@ -465,7 +488,7 @@ function doAmpInject (target, src, dest) {
 
 function doW3cHTML (src) {
   // clear cache
-  rimraf('w3cErrors/W3C_Errors', function () { console.log('"w3cErrors/W3C_Errors" was removed'); });
+  // rmAllFiles('w3cErrors/W3C_Errors', function () { console.log('"w3cErrors/W3C_Errors" was removed'); });
 
   return gulp.src(src)
     .pipe($.w3cHtmlValidation({
@@ -495,3 +518,21 @@ function doW3cCSS (src) {
     .pipe($.rename({extname: '.json'}))
     .pipe(gulp.dest('w3cErrors/css'));
 }
+
+function rmAllFiles (dirPath, callback) {
+  try { var files = fs.readdirSync(dirPath); }
+  catch(e) { return; }
+  if (files.length > 0) {
+    for (var i = 0; i < files.length; i++) {
+      var filePath = dirPath + '/' + files[i];
+      if (fs.statSync(filePath).isFile()) {
+        fs.unlinkSync(filePath);
+      } else {
+        rmAllFiles(filePath);
+      }
+    }
+  } else {
+    callback();
+  }
+  fs.rmdirSync(dirPath);
+};
