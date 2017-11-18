@@ -1,3 +1,29 @@
+{# get image height #}
+{% macro imgHeight(width, ratio = [2, 3]) %}
+  {{- (width * ratio[0] / ratio[1]) | round -}}
+{% endmacro %}
+
+{# get image src #}
+{% macro imgSrc(id, size, hasGutter = true, ratio = [2, 3]) %}
+  {% set width = size - globalGutter if hasGutter else size %}
+
+  {{ images[id] }}?w={{ width }}&h={{ (width * ratio[0] / ratio[1]) | round }}
+{% endmacro %}
+
+{# get image srcset #}
+{% macro imgSrcset(id, sizes, hasGutter = true, ratio = [2, 3]) %}
+  {% for size in sizes %}
+    {% set width = size - globalGutter if hasGutter and not loop.last else size %}
+
+    {{ images[id] }}?w={{ width }}&h={{ (width * ratio[0] / ratio[1]) | round }} {{ width }}w{{', ' if not loop.last}}
+  {% endfor %}"
+{% endmacro %}
+
+
+
+
+
+
 {# news list #}
 {% macro news(num) %}
   {% for i in range(0, num) %}
@@ -76,4 +102,52 @@
       </article>
     </li>
   {% endfor %}
+{% endmacro %}
+
+
+
+{# article image #}
+{% macro imgArticle(class, id = getICount(), fullWidth = false) %}
+  {% set dfWidth = 760 %}
+  {% set breakpoints = [320, 640, 850, 1019] %}
+  {% set ratio = [2, 3] if not fullWidth else [8, 16] %}
+
+  {% if fullWidth %}
+    {% set breakpoints = push(breakpoints, 1430) %}
+    {% set bpSize = container + globalGutter %}
+    {% set extraSize = ', (min-width: ' + bpSize + 'px 100vw' %}
+  {% endif %}
+
+  {% set breakpoints = push(breakpoints, dfWidth) %}
+
+  <figure class="{{ class }}" 
+    itemprop="image" 
+    itemscope itemtype="http://schema.org/ImageObject" 
+    itemid="{{ imgSrc(id, dfWidth, false, ratio) }}">
+
+    {% if belongTo(class, ['left', 'right']) %}
+    <div class="img-wrapper">
+    {% endif %}
+      <img 
+        src="{{ imgSrc(id, dfWidth, false, ratio) }}"
+        srcset="{{ imgSrcset(id, breakpoints, true, ratio) }}"
+        sizes="
+          calc(100vw - {{ globalGutter }}px),
+          (min-width: {{ layoutHome }}px) {{ dfWidth }}px{{ extraSize }}
+          "
+        alt="{{ headings[id - 1] }}" 
+        itemprop="url">
+        <meta itemprop="width" content="{{ dfWidth }}">
+        <meta itemprop="height" content="{{ imgHeight(dfWidth, ratio) }}">
+
+      {% if belongTo(class, ['left', 'right']) %}
+        <span class="expand-control js-expand-control">Expand | Collapse</span>
+      </div>
+      {% endif %}
+    <figcaption class="caption" itemprop="caption description">{{ headings[id] }}</figcaption>
+
+    {% if fullWidth %}
+    <div class="ad"><a href=""><img src="https://s1.2mdn.net/5142550/UEI170041_FEHB_300x250__0_CoPay.jpg" alt="ad300" width="300" height="250"></a></div>
+    {% endif %}
+  </figure>
 {% endmacro %}

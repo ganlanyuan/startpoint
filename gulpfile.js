@@ -37,19 +37,19 @@ gulp.task('build', [
 
 gulp.task('watch', [
     'watch:markup',
-    'watch:pages',
+    // 'watch:pages',
     'watch:yaml',
     'watch:sass',
     'watch:postcss',
-    'watch:scriptBundle',
+    // 'watch:scriptBundle',
     'watch:scriptUglify',
     'watch:ampUncss',
     'watch:ampInject',
     'watch:svgMin',
     'watch:svgSprites',
     'watch:image',
-    'watch:w3cHTML',
-    'watch:w3cCSS',
+    // 'watch:w3cHTML',
+    // 'watch:w3cCSS',
   ], () => { gulp.watch(['**/*.html', 'assets/js/*.js']).on('change', browserSync.reload); });
 
 // Default Task
@@ -67,13 +67,13 @@ gulp.task('compile:markup', () => {
   doNunjucks(data, markupSrc, '.');
 });
 gulp.task('build:pages', () => { doBuildPages(); });
-gulp.task('compile:yaml', () => { doYamlToJson(markupSrc + '/*.yml', markupSrc); });
-gulp.task('watch:markup', () => { gulp.watch([markupSrc + '/**/*.njk', markupSrc + '/data.json'], (e) => {
+gulp.task('compile:yaml', () => { doYamlToJson(templateDir + '/*.yml', templateDir); });
+gulp.task('watch:markup', () => { gulp.watch([templateDir + '/**/*.njk', templateDir + '/data.json'], (e) => {
   if (e.type === 'deleted') {
     return del(path.parse(e.path).name + '.html');
   } else {
-    let data = requireUncached('./' + markupSrc + '/data.json');
-    let src = (e.path.indexOf('parts/') !== -1 || path.extname(e.path) === '.json') ? markupSrc + '/*.njk' : e.path;
+    let data = requireUncached('./' + templateDir + '/data.json');
+    let src = (e.path.indexOf('parts/') !== -1 || path.extname(e.path) === '.json') ? templateDir + '/*.njk' : e.path;
     doNunjucks(data, src, '.');
   }
 }); });
@@ -82,7 +82,7 @@ gulp.task('watch:pages', () => { gulp.watch(['*.html', '!pages.html', 'w3cErrors
     doBuildPages();
   }
 }); });
-gulp.task('watch:yaml', () => { gulp.watch(markupSrc + '/*.yml', ['compile:yaml']); })
+gulp.task('watch:yaml', () => { gulp.watch(templateDir + '/*.yml', ['compile:yaml']); })
 
 let scssSrc = 'src/scss';
 let cssDest = 'assets/css';
@@ -219,15 +219,15 @@ function doNunjucks (data, src, dest) {
       hCount = 0,
       pCount = 0;
   data.getICount = () => {
-    if (iCount > 46) { iCount = 0; }
+    if (iCount > 370) { iCount = 0; }
     return iCount += 1;
   };
   data.getHCount = () => {
-    if (hCount > 46) { hCount = 0; }
+    if (hCount > 370) { hCount = 0; }
     return hCount += 1;
   };
   data.getPCount = () => {
-    if (pCount > 46) { pCount = 0; }
+    if (pCount > 220) { pCount = 0; }
     return pCount += 1;
   };
 
@@ -237,6 +237,7 @@ function doNunjucks (data, src, dest) {
   };
   data.keys = function(obj) { return Object.keys(obj); };
   data.belongTo = function(str, arr) { return arr.indexOf(str) !== -1; };
+  data.push = function(arr, str) { arr.push(str); return arr; };
 
   return gulp.src(src)
     .pipe($.plumber())
@@ -449,8 +450,14 @@ function doAmpInject (target, src, dest) {
       transform: function(filePath, file) { return file.contents.toString(); }
     }))
     .pipe($.inject(gulp.src(src), {
-      transform: function(filePath, file) {
-        return '<style amp-custom>' + file.contents.toString().replace(/fonts\/mnr/g, 'assets/css/fonts/mnr').replace(/!important/g, '').replace('@page{margin:0.5cm}', '').replace(/"..\/img/g, '"assets/img') + '</style>';
+      starttag: '/* inject:css */',
+      endtag: '/* endinject */',
+      transform: function (filePath, file) {
+        return file.contents.toString()
+          .replace(/fonts\/mnr/g, 'assets/css/fonts/mnr')
+          .replace(/!important/g, '')
+          .replace('@page{margin:0.5cm}', '')
+          .replace(/"..\/img/g, '"assets/img');
       }
     }))
     .pipe(gulp.dest(dest));
