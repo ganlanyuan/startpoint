@@ -2,6 +2,7 @@
 *.map
 *.scssc
 *.swp
+.env
 
 *.DS_Store
 *.codekit
@@ -11,8 +12,18 @@
 /.codekit-cache/
 /bower_components/
 /node_modules/
-/tests/
 **/sourcemaps/
+
+# W3C Errors
+/w3cErrors/screenshot/
+/w3cErrors/*.json
+
+# gemini
+/gemini/report/
+/gemini/screenshot/
+
+#backstop
+/backstop_data/
 
 package.json
 README.html

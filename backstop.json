@@ -1,0 +1,138 @@
+{
+  "id": "backstop_default",
+  "viewports": [
+    {
+      "label": "tablet-portrait",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "tablet-Landscape",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "label": "desktop",
+      "width": 1200,
+      "height": 900
+    },
+    {
+      "label": "desktop-hd",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "onBeforeScript": "chromy/onBefore.js",
+  "onReadyScript": "chromy/onReady.js",
+  "scenarios": [
+    {
+      "label": "index",
+      "url": "index.html",
+      "selectors": [
+        ".page-header--home",
+        "#main",
+        ".newsletter--normal",
+        ".page-footer",
+        "html"
+      ]
+    },
+    {
+      "label": "about",
+      "url": "about.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "article",
+      "url": "article.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "contact-info",
+      "url": "contact-info.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "contact",
+      "url": "contact.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "executives",
+      "url": "executives.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "mission",
+      "url": "mission.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "search",
+      "url": "search.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "section",
+      "url": "section.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "statement",
+      "url": "statement.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "terms",
+      "url": "terms.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "video-play",
+      "url": "video-play.html",
+      "selectors": [
+        "html"
+      ]
+    },
+    {
+      "label": "video",
+      "url": "video.html",
+      "selectors": [
+        "html"
+      ]
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "chrome",
+  "engineFlags": [],
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

@@ -37,7 +37,7 @@ gulp.task('build', [
 
 gulp.task('watch', [
     'watch:markup',
-    // 'watch:pages',
+    'watch:pages',
     'watch:yaml',
     'watch:sass',
     'watch:postcss',
@@ -90,11 +90,7 @@ gulp.task('watch:markup', () => { gulp.watch([templateDir + '/**/*.njk', '!' + t
     doNunjucks(data, src, '.');
   }
 }); });
-gulp.task('watch:pages', () => { gulp.watch(['*.html', '!pages.html', 'w3cErrors/W3C_Errors/*.html', templateDir + '/pages.njk'], (e) => {
-  if (e.type === 'deleted' || e.type === 'added' || e.type === 'renamed' || path.extname(e.path) === '.njk' && e.type === 'changed') {
-    doBuildPages();
-  }
-}); });
+gulp.task('watch:pages', () => { gulp.watch(templateDir + '/pages.njk', ['build:pages']); });
 gulp.task('watch:yaml', () => { gulp.watch(templateDir + '/*.yml', ['compile:yaml']); })
 
 let scssSrc = 'src/scss';
