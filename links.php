@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Christian News on Christian Today</title>
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="HandheldFriendly" content="True">
