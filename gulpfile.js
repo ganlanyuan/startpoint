@@ -171,9 +171,7 @@ gulp.task('watch:w3cHTML', () => { gulp.watch(htmlSrc, (e) => {
     del('w3cErrors/W3C_Errors/' + name + 'html_validation-report.html');
   }
 
-  if (['added', 'changed', 'renamed'].indexOf(e.type) >= 0 ) {
-    doW3cHTML(e.path);
-  }
+  if (e.type === 'changed') { doW3cHTML(e.path); }
 }); });
 
 let cssSrc = cssDest + '/*.css';
@@ -488,7 +486,7 @@ function doW3cHTML (src) {
 
   return gulp.src(src)
     .pipe($.w3cHtmlValidation({
-      generateCheckstyleReport: 'w3cErrors/validation.xml',
+      // generateCheckstyleReport: 'w3cErrors/validation.xml',
       errorTemplate: 'w3cErrors/w3c_validation_error_template.html',
       useTimeStamp: false,
       // remotePath: "http://decodize.com/", // use regex validation for domain check
