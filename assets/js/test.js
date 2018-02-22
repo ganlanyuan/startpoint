@@ -5,9 +5,10 @@ function add (a, b) {
   return a + b;
 }
 
-let year = 2018;
+// import { year } from './files/b';
+
 
 console.log(add(1, 2));
-console.log(year);
+// console.log(year);
 
 }());

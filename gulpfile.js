@@ -4,6 +4,7 @@ const $ = require('gulp-load-plugins')({
   config: packages
 });
 
+const globby = require('globby');
 const rollup = require('rollup').rollup;
 const resolve = require('rollup-plugin-node-resolve');
 const browserSync = require('browser-sync').create();
@@ -15,13 +16,17 @@ const rimraf = require('rimraf');
 
 let dev = true;
 let sourcemapDest = '../sourcemaps';
+let pages = getAllFilesFromFolder(__dirname, '.html');
+let src = 'src',
+    assets = 'assets',
+    template = 'templates';
 
 gulp.task('build', [
-  // 'compile:markup',
+  // 'markup',
   // 'compile:yaml',
-  // 'compile:sass',
-  // 'compile:postcss',
-  // 'compile:scriptBundle',
+  // 'sass',
+  // 'postcss',
+  // 'scriptBundle',
   // 'optimize:scriptUglify',
   // 'optimize:svgMin',
   // 'optimize:svgSprites',
@@ -30,27 +35,9 @@ gulp.task('build', [
   // 'build:inject',
   // 'build:ampUncss',
   // 'build:ampInject',
-  // 'build:pages',
   // 'check:w3cHTML'
   // 'check:w3cCSS'
 ]);
-
-gulp.task('watch', [
-    'watch:markup',
-    'watch:pages',
-    'watch:yaml',
-    'watch:sass',
-    'watch:postcss',
-    // 'watch:scriptBundle',
-    'watch:scriptUglify',
-    'watch:ampUncss',
-    'watch:ampInject',
-    'watch:svgMin',
-    'watch:svgSprites',
-    'watch:image',
-    'watch:w3cHTML',
-    'watch:w3cCSS',
-  ], () => { gulp.watch(['**/*.html', 'assets/js/*.js']).on('change', browserSync.reload); });
 
 // Default Task
 gulp.task('default', [
@@ -60,54 +47,20 @@ gulp.task('default', [
 ]);  
 
 let templateDir = 'templates';
-let markupSrc = [templateDir + '/*.njk', '!' + templateDir + '/pages.njk'];
-let pagesSrc = templateDir + '/pages.njk';
-gulp.task('compile:markup', () => {
+gulp.task('markup', () => {
   let data = requireUncached('./' + templateDir + '/data.json');
-  doNunjucks(data, markupSrc, '.');
+  doNunjucks(data, [templateDir + '/*.njk'], '.');
 });
-gulp.task('build:pages', () => { doBuildPages(); });
-gulp.task('compile:yaml', () => { doYamlToJson(templateDir + '/*.yml', templateDir); });
-gulp.task('watch:markup', () => { gulp.watch([templateDir + '/**/*.njk', '!' + templateDir + 'pages.njk', templateDir + '/data.json'], (e) => {
-  if (e.type === 'deleted') {
-    return del(path.parse(e.path).name + '.html');
-  } else {
-    let data = requireUncached('./' + templateDir + '/data.json'), src;
-
-    if (e.path.indexOf('parts/') >= 0 ) {
-      if (e.path.indexOf('layout-') !== -1) {
-        let fullname = path.parse(e.path).name.replace('layout-', '') + '.njk';
-        src = [templateDir + '/' + fullname, templateDir + '/mb-' + fullname];
-      } else if (e.path.indexOf('/layout.njk') !== -1 || path.extname(e.path) === '.json') {
-        src = [templateDir + '/*.njk', '!' + templateDir + '/pages.njk'];
-      } else {
-        return;
-      }
-    } else {
-      src = e.path;
-    }
-
-    doNunjucks(data, src, '.');
-  }
-}); });
-gulp.task('watch:pages', () => { gulp.watch(templateDir + '/pages.njk', ['build:pages']); });
-gulp.task('watch:yaml', () => { gulp.watch(templateDir + '/*.yml', ['compile:yaml']); })
 
 let scssSrc = 'src/scss';
 let cssDest = 'assets/css';
-gulp.task('compile:sass', () => { doSass(scssSrc + '/main.scss', cssDest); });
-gulp.task('compile:postcss', () => { doPostCss(cssDest + '/main.css', cssDest); });
-gulp.task('watch:sass', () => { gulp.watch(scssSrc + '/**/*.scss', ['compile:sass']); })
-gulp.task('watch:postcss', () => { gulp.watch(cssDest + '/main.css', ['compile:postcss']); })
+gulp.task('sass', () => { doSass(scssSrc + '/main.scss', cssDest); });
+gulp.task('postcss', () => { doPostCss(cssDest + '/main.css', cssDest); });
 
-let scriptBundleSrc = 'src/js/slider.js',
-    scriptBundleDest = 'assets/js/source/slider.js',
-    scriptUglifySrc = 'assets/js/source/*.js',
+let scriptUglifySrc = 'assets/js/source/*.js',
     scriptUglifyDest = 'assets/js';
-gulp.task('compile:scriptBundle', () => { doJsBundle(scriptBundleSrc, scriptBundleDest); });
-gulp.task('optimize:scriptUglify', () => { doJsUglify(scriptUglifySrc, scriptUglifyDest); })
-gulp.task('watch:scriptBundle', () => { gulp.watch(scriptBundleSrc, ['compile:scriptBundle']); });
-gulp.task('watch:scriptUglify', () => { gulp.watch(scriptUglifySrc, (e) => { watcher(e, 'source/', '', doJsUglify); }); });
+gulp.task('scriptBundle', () => { doJsBundle(); });
+gulp.task('optimize:scriptUglify', () => { doJsUglify(); })
 
 let svgMinSrc = 'src/svg/*.svg',
     svgSpritesSrc = 'src/svg/sprites/*.svg',
@@ -178,6 +131,61 @@ let cssSrc = cssDest + '/*.css';
 gulp.task('check:w3cCSS', () => { doW3cCSS(cssSrc); });
 gulp.task('watch:w3cCSS', () => { gulp.watch(cssSrc, ['check:w3cCSS'])});
 
+gulp.task('watch', [
+    'watch:ampUncss',
+    'watch:ampInject',
+    'watch:svgMin',
+    'watch:svgSprites',
+    'watch:image',
+    // 'watch:w3cHTML',
+    // 'watch:w3cCSS',
+  ], () => {
+  // markup
+  gulp.watch([templateDir + '/**/*.njk', templateDir + '/data.json'], (e) => {
+    if (e.type === 'deleted') {
+      return del(path.parse(e.path).name + '.html');
+    } else {
+      let data = requireUncached('./' + templateDir + '/data.json'), src;
+
+      if (e.path.indexOf('parts/') >= 0 ) {
+        if (e.path.indexOf('layout-') !== -1) {
+          let fullname = path.parse(e.path).name.replace('layout-', '') + '.njk';
+          src = [templateDir + '/' + fullname, templateDir + '/mb-' + fullname];
+        } else if (e.path.indexOf('/layout.njk') !== -1 || path.extname(e.path) === '.json') {
+          src = [templateDir + '/*.njk', '!' + templateDir + '/pages.njk'];
+        } else {
+          return;
+        }
+      } else {
+        src = e.path;
+      }
+
+      doNunjucks(data, src, '.');
+    }
+  });
+  // styles
+  gulp.watch(scssSrc + '/**/*.scss', ['sass']);
+  gulp.watch(cssDest + '/main.css', ['postcss']);
+  // scripts
+  gulp.watch(src + '/js/**/*.js', (e) => {
+    if (e.type === 'deleted') {} else {
+      doJsBundle(e.path);
+    }
+  });
+  gulp.watch(assets + '/js/*.js', (e) => {
+    if (e.type === 'deleted') {} else {
+      doJsUglify(e.path);
+    }
+  });
+  // update page list
+  gulp.watch(['**/*.html'], (e) => {
+    if (['deleted', 'added'].indexOf(e.type) >= 0) {
+      pages = getAllFilesFromFolder(__dirname, '.html');
+    }
+  });
+  gulp.watch(['**/*.html', 'assets/js/*.js']).on('change', browserSync.reload);
+});
+
 
 
 
@@ -232,20 +240,25 @@ function getAllFilesFromFolder (dir, fileExt) {
 
 function doNunjucks (data, src, dest) {
   data.year = new Date().getFullYear();
-  let iCount = 0,
-      hCount = 0,
-      pCount = 0;
-  data.getICount = () => {
-    if (iCount > 370) { iCount = 0; }
-    return iCount += 1;
+  data.pages = pages;
+  let base = -1,
+      imageCount = base,
+      headingCount = base,
+      paragraphCount = base,
+      imageCountMax = data.images.length - 1,
+      headingCountMax = data.headings.length - 1,
+      paragraphCountMax = data.paragraphs.length - 1;
+  data.getIC = () => {
+    imageCount = imageCount >= imageCountMax ? 0 : imageCount + 1;
+    return imageCount;
   };
-  data.getHCount = () => {
-    if (hCount > 370) { hCount = 0; }
-    return hCount += 1;
+  data.getHC = () => {
+    headingCount = headingCount >= headingCountMax ? 0 : headingCount + 1;
+    return headingCount;
   };
-  data.getPCount = () => {
-    if (pCount > 220) { pCount = 0; }
-    return pCount += 1;
+  data.getPC = () => {
+    paragraphCount = paragraphCount >= paragraphCountMax ? 0 : paragraphCount + 1;
+    return paragraphCount;
   };
 
   data.is = function(type, obj) {
@@ -286,23 +299,6 @@ function doNunjucks (data, src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doBuildPages () {
-  let pages = getAllFilesFromFolder(__dirname, '.html'),
-      errorPages = getAllFilesFromFolder(__dirname + '/w3cErrors/W3C_Errors', '.html'),
-      errorPages2,
-      pageData;
-
-  if (errorPages && errorPages.length > 0) {
-    errorPages2 = errorPages.map(function(item) {
-      return item.replace('w3cErrors/W3C_Errors/', '').replace('html_validation-report', '');
-    });
-  }
-  pageData = {"pages": pages, "errorPages": errorPages2};
-  pageData.belongTo = function (str, arr) { return arr.indexOf(str) !== -1; };
-  
-  doNunjucks(pageData, pagesSrc, '.');
-}
-
 function doSass (src, dest) {
   return gulp.src(src)  
     .pipe($.plumber())
@@ -332,9 +328,11 @@ function doPostCss (src, dest) {
     .pipe(browserSync.stream());
 }
 
-function doJsBundle (src, dest) {
-  return rollup({
-    entry: src,
+function doJsBundle (files) {
+  if (!files) { files = src + '/js/*.js'; }
+
+  return globby.sync(files).map(inputFile => (rollup({
+    input: inputFile,
     context: 'window',
     treeshake: true,
     plugins: [
@@ -346,11 +344,11 @@ function doJsBundle (src, dest) {
     ],
   }).then(function(bundle) {
     return bundle.write({
-      dest: dest,
+      file: inputFile.replace(src, assets),
       format: 'iife',
       // moduleName: 'tns',
     });
-  });
+  })));
 }
 
 function doJsConcat (name, src, dest) {
@@ -373,8 +371,10 @@ function doJsConcat (name, src, dest) {
     .pipe(browserSync.stream());
 }
 
-function doJsUglify (src, dest) {
-  return gulp.src(src)
+function doJsUglify (d) {
+  let s = d ? d : assets + '/js/*.js';
+
+  return gulp.src(s)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.uglify({
@@ -388,15 +388,7 @@ function doJsUglify (src, dest) {
     }))
     .on('error', errorlog)  
     .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
-    .pipe(gulp.dest(dest))
-    .pipe(browserSync.stream());
-}
-
-function doYamlToJson (src, dest) {
-  return gulp.src(src)
-    .pipe($.plumber())
-    .pipe($.yaml({space: 2}))
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(assets + '/js/min'));
 }
 
 function doMove (src, dest) {
