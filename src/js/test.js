@@ -1,7 +1,10 @@
 import { add } from './files/a';
-// import default from './files/c';
+import './files/c';
 // import { year } from './files/b';
 
+[1, 2, 3].forEach((i) => { console.log(i); })
 
-console.log(add(1, 2));
+let result = reduce(100, 40);
+
+
 // console.log(year);

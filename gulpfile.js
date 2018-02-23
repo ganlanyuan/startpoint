@@ -7,6 +7,7 @@ const $ = require('gulp-load-plugins')({
 const globby = require('globby');
 const rollup = require('rollup').rollup;
 const resolve = require('rollup-plugin-node-resolve');
+const buble = require('rollup-plugin-buble');
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('autoprefixer');
 const path = require('path');
@@ -337,6 +338,7 @@ function doJsBundle (files) {
         main: true,
         browser: true,
       }),
+      buble(),
     ],
   }).then(function(bundle) {
     return bundle.write({
@@ -373,15 +375,15 @@ function doJsUglify (d) {
   return gulp.src(s)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
-    .pipe($.uglify({
-      // mangle: false,
-      output: {
-        quote_keys: true,
-      },
-      compress: {
-        properties: false,
-      }
-    }))
+    // .pipe($.uglify({
+    //   // mangle: false,
+    //   output: {
+    //     quote_keys: true,
+    //   },
+    //   compress: {
+    //     properties: false,
+    //   }
+    // }))
     .on('error', errorlog)  
     .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
     .pipe(gulp.dest(assets + '/js/min'));

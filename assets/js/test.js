@@ -1,15 +1,13 @@
 (function () {
 'use strict';
 
-function add (a, b) {
-  return a + b;
-}
-
-// import default from './files/c';
 // import { year } from './files/b';
 
+[1, 2, 3].forEach(function (i) { console.log(i); });
 
-console.log(add(1, 2));
+var result = reduce(100, 40);
+
+
 // console.log(year);
 
 }());
