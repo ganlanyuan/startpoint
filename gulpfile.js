@@ -19,22 +19,22 @@ let sourcemapDest = '../sourcemaps';
 let pages = getAllFilesFromFolder(__dirname, '.html');
 let src = 'src',
     assets = 'assets',
-    template = 'templates';
+    templates = 'templates',
+    ampUncssIgnore = [];
 
 gulp.task('build', [
   // 'markup',
   // 'compile:yaml',
-  // 'sass',
-  // 'postcss',
-  // 'scriptBundle',
-  // 'optimize:scriptUglify',
+  // 'styles',
+  // 'jsBundle',
+  // 'jsUglify',
   // 'optimize:svgMin',
   // 'optimize:svgSprites',
   // 'optimize:image',
   // 'build:move',
   // 'build:inject',
-  // 'build:ampUncss',
-  // 'build:ampInject',
+  // 'ampUncss',
+  // 'ampInject',
   // 'check:w3cHTML'
   // 'check:w3cCSS'
 ]);
@@ -46,21 +46,17 @@ gulp.task('default', [
   'watch',
 ]);  
 
-let templateDir = 'templates';
 gulp.task('markup', () => {
-  let data = requireUncached('./' + templateDir + '/data.json');
-  doNunjucks(data, [templateDir + '/*.njk'], '.');
+  let data = requireUncached('./' + templates + '/data.json');
+  doNunjucks(data, [templates + '/*.njk'], '.');
 });
 
-let scssSrc = 'src/scss';
-let cssDest = 'assets/css';
-gulp.task('sass', () => { doSass(scssSrc + '/main.scss', cssDest); });
-gulp.task('postcss', () => { doPostCss(cssDest + '/main.css', cssDest); });
+// styles
+gulp.task('styles', () => { doSassPostcss(); });
 
-let scriptUglifySrc = 'assets/js/source/*.js',
-    scriptUglifyDest = 'assets/js';
-gulp.task('scriptBundle', () => { doJsBundle(); });
-gulp.task('optimize:scriptUglify', () => { doJsUglify(); })
+// scripts
+gulp.task('jsBundle', () => { doJsBundle(); });
+gulp.task('jsUglify', () => { doJsUglify(); })
 
 let svgMinSrc = 'src/svg/*.svg',
     svgSpritesSrc = 'src/svg/sprites/*.svg',
@@ -92,25 +88,15 @@ let imageSrc = 'src/img/**/*.{jpg,jpeg,png,gif}';
 gulp.task('optimize:image', () => { doImageMin(imageSrc, 'assets/img'); });
 gulp.task('watch:image', () => { gulp.watch([imageSrc], (e) => { watcher(e, 'src/img', 'assets/img', doImageMin); }); });
 
-let ampCssSource = cssDest + '/main.final.css',
-    ampCss = cssDest + '/amp.css',
-    ampTarget = 'amp-article.html',
-    ampUncssOptions = {
-      html: ['amp-article.html'],
-      // ignore: ['#sidebar', '#sidebar>ul>li>a', '.hasImgs li amp-img', '.hidden-svg'],
-    };
-gulp.task('build:ampUncss', () => { doAmpUncss(ampCssSource, cssDest, ampUncssOptions); });
-gulp.task('build:ampInject', () => { doAmpInject(ampTarget, ampCss, '.'); });
-gulp.task('watch:ampUncss', () => { gulp.watch(ampCssSource, () => { doAmpUncss(ampCssSource, cssDest, ampUncssOptions); })})
-gulp.task('watch:ampInject', () => { gulp.watch(ampCss, () => { doAmpInject(ampTarget, ampCss, '.'); } ) });
+// amp
+gulp.task('amp', () => {
+  doAmpUncss();
+  doAmpInject();
+});
 
 gulp.task('server', () => { browserSync.init({
   server: { baseDir: './'},
-  ghostMode: {
-    clicks: false,
-    forms: false,
-    scroll: false
-  },
+  ghostMode: false,
   open: false,
   notify: false
 }); });
@@ -127,13 +113,11 @@ gulp.task('watch:w3cHTML', () => { gulp.watch(htmlSrc, (e) => {
   if (e.type === 'changed') { doW3cHTML(e.path); }
 }); });
 
-let cssSrc = cssDest + '/*.css';
+let cssSrc = assets + '/css' + '/*.css';
 gulp.task('check:w3cCSS', () => { doW3cCSS(cssSrc); });
 gulp.task('watch:w3cCSS', () => { gulp.watch(cssSrc, ['check:w3cCSS'])});
 
 gulp.task('watch', [
-    'watch:ampUncss',
-    'watch:ampInject',
     'watch:svgMin',
     'watch:svgSprites',
     'watch:image',
@@ -141,18 +125,18 @@ gulp.task('watch', [
     // 'watch:w3cCSS',
   ], () => {
   // markup
-  gulp.watch([templateDir + '/**/*.njk', templateDir + '/data.json'], (e) => {
+  gulp.watch([templates + '/**/*.njk', templates + '/data.json'], (e) => {
     if (e.type === 'deleted') {
       return del(path.parse(e.path).name + '.html');
     } else {
-      let data = requireUncached('./' + templateDir + '/data.json'), src;
+      let data = requireUncached('./' + templates + '/data.json'), src;
 
       if (e.path.indexOf('parts/') >= 0 ) {
         if (e.path.indexOf('layout-') !== -1) {
           let fullname = path.parse(e.path).name.replace('layout-', '') + '.njk';
-          src = [templateDir + '/' + fullname, templateDir + '/mb-' + fullname];
+          src = [templates + '/' + fullname, templates + '/mb-' + fullname];
         } else if (e.path.indexOf('/layout.njk') !== -1 || path.extname(e.path) === '.json') {
-          src = [templateDir + '/*.njk', '!' + templateDir + '/pages.njk'];
+          src = [templates + '/*.njk', '!' + templates + '/pages.njk'];
         } else {
           return;
         }
@@ -164,24 +148,46 @@ gulp.task('watch', [
     }
   });
   // styles
-  gulp.watch(scssSrc + '/**/*.scss', ['sass']);
-  gulp.watch(cssDest + '/main.css', ['postcss']);
+  gulp.watch(src + '/scss/**/*.scss', (e) => {
+    if (path.dirname(e.path) === __dirname + '/' + src + '/scss') {
+      if (e.type === 'deleted') {
+        return del(assets + '/css/' + path.parse(e.path).name + '.css');
+      } else {
+        doSassPostcss(e.path);
+      }
+    } else {
+      doSassPostcss();
+    }
+  });
   // scripts
   gulp.watch(src + '/js/**/*.js', (e) => {
-    if (e.type === 'deleted') {} else {
-      doJsBundle(e.path);
+    if (path.dirname(e.path) === __dirname + '/' + src + '/js') {
+      if (e.type === 'deleted') {
+        return del(e.path.replace(src, assets));
+      } else {
+        doJsBundle(e.path);
+      }
+    } else {
+      doJsBundle();
     }
   });
   gulp.watch(assets + '/js/*.js', (e) => {
-    if (e.type === 'deleted') {} else {
-      doJsUglify(e.path);
+    if (e.path.indexOf('.min.') < 0) {
+      if (e.type === 'deleted') {
+        return del(path.dirname(e.path) + '/min/' + path.basename(e.path));
+      } else {
+        doJsUglify(e.path);
+      }
     }
+  });
+  // amp
+  gulp.watch(assets + '/css/main.css', () => {
+    doAmpUncss();
+    doAmpInject();
   });
   // update page list
   gulp.watch(['**/*.html'], (e) => {
-    if (['deleted', 'added'].indexOf(e.type) >= 0) {
-      pages = getAllFilesFromFolder(__dirname, '.html');
-    }
+    if (['deleted', 'added'].indexOf(e.type) >= 0) { pages = getAllFilesFromFolder(__dirname, '.html'); }
   });
   gulp.watch(['**/*.html', 'assets/js/*.js']).on('change', browserSync.reload);
 });
@@ -299,33 +305,23 @@ function doNunjucks (data, src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doSass (src, dest) {
-  return gulp.src(src)  
+function doSassPostcss (file) {
+  if (!file) { file = src + '/scss/*.scss'; }
+  return gulp.src(file)  
     .pipe($.plumber())
-    // .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.sass({
       outputStyle: 'compressed', 
       precision: 7
     }).on('error', $.sass.logError))  
-    // .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
-    .pipe(gulp.dest(dest));
-}
-
-function doPostCss (src, dest) {
-  return gulp.src(src)
-    .pipe($.plumber())
-    .pipe($.if(dev, $.sourcemaps.init()))
     // add prefixes
     .pipe($.postcss([ autoprefixer() ]))
     // add normalize
     .pipe($.postcss([require('postcss-normalize')({ /* options */ }) ]))
-    // rename
-    .pipe($.rename(function(path) { path.basename += '.final'; }))
     // minify
     .pipe($.csso())
     .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
-    .pipe(gulp.dest(dest))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(assets + '/css'));
 }
 
 function doJsBundle (files) {
@@ -446,19 +442,22 @@ function doImageMin (src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doAmpUncss (src, dest, options) {
-  return gulp.src(src)
-    .pipe($.uncss(options))
+function doAmpUncss () {
+  return gulp.src(assets + '/css/main.css')
+    .pipe($.uncss({
+      html: ['amp.html'],
+      ignore: ampUncssIgnore,
+    }))
     .pipe($.rename('amp.css'))
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(assets + '/css'));
 }
 
-function doAmpInject (target, src, dest) {
-  return gulp.src(target)
+function doAmpInject () {
+  return gulp.src('amp.html')
     .pipe($.inject(gulp.src('assets/svg/sprites.svg'), {
       transform: function(filePath, file) { return file.contents.toString(); }
     }))
-    .pipe($.inject(gulp.src(src), {
+    .pipe($.inject(gulp.src(assets + '/css/amp.css'), {
       starttag: '/* inject:css */',
       endtag: '/* endinject */',
       transform: function (filePath, file) {
@@ -469,7 +468,7 @@ function doAmpInject (target, src, dest) {
           .replace(/"..\/img/g, '"assets/img');
       }
     }))
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest('.'));
 }
 
 function doW3cHTML (src) {
