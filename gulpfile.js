@@ -21,7 +21,11 @@ let pages = getAllFilesFromFolder(__dirname, '.html');
 let src = 'src',
     assets = 'assets',
     templates = 'templates',
-    ampUncssIgnore = [];
+    ampUncssIgnore = [],
+    moveFiles = {
+      'assets/js': [],
+      'src/js': []
+    };
 
 gulp.task('build', [
   // 'markup',
@@ -30,9 +34,9 @@ gulp.task('build', [
   // 'jsBundle',
   // 'jsUglify',
   // 'optimize:svgMin',
-  // 'optimize:svgSprites',
-  // 'optimize:image',
-  // 'build:move',
+  // 'svgSprites',
+  // 'images',
+  // 'move',
   // 'build:inject',
   // 'ampUncss',
   // 'ampInject',
@@ -59,18 +63,15 @@ gulp.task('styles', () => { doSassPostcss(); });
 gulp.task('jsBundle', () => { doJsBundle(); });
 gulp.task('jsUglify', () => { doJsUglify(); })
 
-let svgMinSrc = 'src/svg/*.svg',
-    svgSpritesSrc = 'src/svg/sprites/*.svg',
-    svgDest = 'assets/svg';
-gulp.task('optimize:svgMin', () => { doSvgMin(svgMinSrc, svgDest); });
-gulp.task('optimize:svgSprites', () => { doSvgSprites(svgSpritesSrc, svgDest); });
-gulp.task('watch:svgMin', () => { gulp.watch(svgMinSrc, (e) => { watcher(e, 'src/', 'assets/', doSvgMin); }); });
-gulp.task('watch:svgSprites', () => { gulp.watch(svgSpritesSrc, ['optimize:svgSprites']); });
+// images
+gulp.task('images', () => { doImageMin(); });
 
-gulp.task('build:move', () => {
-  doMove([
-    'bower_components/html5shiv/dist/html5shiv.js' 
-  ], 'assets/js');
+// svg sprites
+gulp.task('svgSprites', () => { doSvgSprites(); });
+
+// move
+gulp.task('move', () => {
+  for (var dest in moveFiles) { doMove(moveFiles[dest], dest); }
 });
 
 gulp.task('build:inject', () => {
@@ -84,10 +85,6 @@ gulp.task('build:inject', () => {
   //   .pipe($.uglify());
   doInject('templates/partials/layout.njk', 'templates/partials');
 });
-
-let imageSrc = 'src/img/**/*.{jpg,jpeg,png,gif}';
-gulp.task('optimize:image', () => { doImageMin(imageSrc, 'assets/img'); });
-gulp.task('watch:image', () => { gulp.watch([imageSrc], (e) => { watcher(e, 'src/img', 'assets/img', doImageMin); }); });
 
 // amp
 gulp.task('amp', () => {
@@ -119,9 +116,6 @@ gulp.task('check:w3cCSS', () => { doW3cCSS(cssSrc); });
 gulp.task('watch:w3cCSS', () => { gulp.watch(cssSrc, ['check:w3cCSS'])});
 
 gulp.task('watch', [
-    'watch:svgMin',
-    'watch:svgSprites',
-    'watch:image',
     // 'watch:w3cHTML',
     // 'watch:w3cCSS',
   ], () => {
@@ -181,6 +175,16 @@ gulp.task('watch', [
       }
     }
   });
+  // images
+  gulp.watch([src + '/img/**/*'], (e) => { 
+    if (e.type === 'deleted') {
+      return del(e.path.replace(src, assets));
+    } else {
+      doImageMin(e.path);
+    }
+  });
+  // svg sprites
+  gulp.watch(assets + '/svg-sprites/*.svg', ['svgSprites']);
   // amp
   gulp.watch(assets + '/css/main.css', () => {
     doAmpUncss();
@@ -190,6 +194,7 @@ gulp.task('watch', [
   gulp.watch(['**/*.html'], (e) => {
     if (['deleted', 'added'].indexOf(e.type) >= 0) { pages = getAllFilesFromFolder(__dirname, '.html'); }
   });
+  // reload browser
   gulp.watch(['**/*.html', 'assets/js/*.js']).on('change', browserSync.reload);
 });
 
@@ -394,14 +399,8 @@ function doMove (src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doSvgMin (src, dest) {
-  return gulp.src(src)
-      .pipe($.svgmin())
-      .pipe(gulp.dest(dest));
-}
-
-function doSvgSprites (src, dest) {
-  return gulp.src(src)
+function doSvgSprites () {
+  return gulp.src(src + '/svg-sprites/*.svg')
     .pipe($.svgmin(function(file) {
       let prefix = path.basename(file.relative, path.extname(file.relative));
       return {
@@ -416,7 +415,7 @@ function doSvgSprites (src, dest) {
     }))
     .pipe($.svgstore({ inlineSvg: true }))
     .pipe($.rename('sprites.svg'))
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(assets + '/svg-sprites'));
 }
 
 function doInject (src, dest) {
@@ -438,9 +437,15 @@ function doInject (src, dest) {
     .pipe(gulp.dest(dest));
 }
 
-function doImageMin (src, dest) {
-  return gulp.src(src)
-    .pipe($.imagemin())
+function doImageMin (img) {
+  var dest = assets + '/img';
+  if (img) {
+    dest = path.dirname(img).replace(src, assets);
+  } else {
+    img = src + '/img/**/*.{jpg,jpeg,png,gif}';
+  }
+  return gulp.src(img)
+    .pipe($.image())
     .pipe(gulp.dest(dest));
 }
 
