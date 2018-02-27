@@ -2,21 +2,11 @@
 *.map
 *.scssc
 *.swp
+*.DS_Store
 .env
 
-*.DS_Store
-*.codekit
-*.sublime-project
-*.sublime-workspace
-
-/.codekit-cache/
 /bower_components/
 /node_modules/
-**/sourcemaps/
-
-# W3C Errors
-/w3cErrors/screenshot/
-/w3cErrors/*.json
 
 # gemini
 /gemini/report/
@@ -25,7 +15,4 @@
 #backstop
 /backstop_data/
 
-package.json
-README.html
-changelog.html
 LICENSE
