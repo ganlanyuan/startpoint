@@ -11,7 +11,7 @@ services:
       - .:/www/web/
     working_dir: /www/web
     container_name: startpoint
-    entrypoint: sh /www/start.sh
+    entrypoint: nodemon --watch gulpfile.js --exec gulp & yarn
     stdin_open: true
     tty: true
 
