@@ -20,13 +20,6 @@ const del = require('del');
 const fs = require("fs");
 const rimraf = require('rimraf');
 
-const filters = [
-    'The “banner” role is unnecessary for element “header”.', 
-    'The “navigation” role is unnecessary for element “nav”.',
-    'The “main” role is unnecessary for element “main”.',
-    'The “contentinfo” role is unnecessary for element “footer”.'
-  ];
-
 let dev = true;
 let sourcemapDest = '../sourcemaps';
 let pages = getAllFilesFromFolder(__dirname, '.html');
@@ -177,7 +170,7 @@ gulp.task('watch', () => {
     }
   });
   // svg sprites
-  gulp.watch(assets + '/svg-sprites/*.svg', ['svgSprites']);
+  gulp.watch(src + '/svg-sprites/*.svg', ['svgSprites']);
   // amp
   gulp.watch(assets + '/css/main.css', () => {
     doAmpUncss();
@@ -518,6 +511,12 @@ function rmAllFiles (dirPath, callback) {
   fs.rmdirSync(dirPath);
 };
 
+let htmlValidatorFilters = [
+    'The “banner” role is unnecessary for element “header”.', 
+    'The “navigation” role is unnecessary for element “nav”.',
+    'The “main” role is unnecessary for element “main”.',
+    'The “contentinfo” role is unnecessary for element “footer”.'
+  ];
 function htmlValidator (arr) {
   if (!arr) { arr = pages; }
   arr.forEach(function(file, index) {
@@ -532,7 +531,7 @@ function htmlValidator (arr) {
         if (res.messages.length > 0) {
           res.messages.forEach(function(m) {
             // check if messages match filters
-            if (filters.indexOf(m.message) < 0) {
+            if (htmlValidatorFilters.indexOf(m.message) < 0) {
               str += m.type + ', line ' + m.lastLine + ', col ' + m.firstColumn + '-' + m.lastColumn + ', ' + m.message;
             }
           });
