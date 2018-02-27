@@ -14,3 +14,17 @@ services:
     entrypoint: sh /www/start.sh
     stdin_open: true
     tty: true
+
+  lighthouse:
+    image: cmcdev/lighthouse:1.0.1
+    ports:
+      - 4000:4000
+    cap_add: 
+      - SYS_ADMIN
+    volumes:
+      - .:/home/chrome/reports
+    working_dir: /home/chrome/reports
+    container_name: lighthouse
+    # entrypoint: browser-sync start --port 4000 --server --no-open
+    stdin_open: true
+    tty: true   

@@ -1,19 +1,31 @@
 const gulp = require('gulp');
 const packages = require('/www/package.json');
-const $ = require('gulp-load-plugins')({
-  config: packages
-});
+const $ = require('gulp-load-plugins')({ config: packages });
 
-const globby = require('globby');
+const browserSync = require('browser-sync').create();
+const autoprefixer = require('autoprefixer');
+const w3cHtml = require('@ganlanyuan/w3cjs');
+const w3cCss = require('w3c-css');
+const amphtmlValidator = require('amphtml-validator');
+const request = require('request'); // for w3cCSS
+const ngrok = require('ngrok');
+
 const rollup = require('rollup').rollup;
 const resolve = require('rollup-plugin-node-resolve');
 const buble = require('rollup-plugin-buble');
-const browserSync = require('browser-sync').create();
-const autoprefixer = require('autoprefixer');
+const globby = require('globby'); // for rollup
+
 const path = require('path');
 const del = require('del');
 const fs = require("fs");
 const rimraf = require('rimraf');
+
+const filters = [
+    'The “banner” role is unnecessary for element “header”.', 
+    'The “navigation” role is unnecessary for element “nav”.',
+    'The “main” role is unnecessary for element “main”.',
+    'The “contentinfo” role is unnecessary for element “footer”.'
+  ];
 
 let dev = true;
 let sourcemapDest = '../sourcemaps';
@@ -25,55 +37,44 @@ let src = 'src',
     moveFiles = {
       'assets/js': [],
       'src/js': []
-    };
+    },
+    cssSrc = ['assets/css/main.css'],
+    publicUrl = '',
+    cssValidateLevel = 'css3';
 
 gulp.task('build', [
   // 'markup',
-  // 'compile:yaml',
   // 'styles',
   // 'jsBundle',
   // 'jsUglify',
-  // 'optimize:svgMin',
-  // 'svgSprites',
   // 'images',
+  // 'svgSprites',
   // 'move',
   // 'build:inject',
-  // 'ampUncss',
-  // 'ampInject',
-  // 'check:w3cHTML'
-  // 'check:w3cCSS'
+  // 'amp',
+  // 'htmlValidate',
+  // 'cssValidate',
 ]);
 
-// Default Task
-gulp.task('default', [
-  'build',
-  'server', 
-  'watch',
-]);  
 
+// markup
 gulp.task('markup', () => {
   let data = requireUncached('./' + templates + '/data.json');
   doNunjucks(data, [templates + '/*.njk'], '.');
 });
-
 // styles
 gulp.task('styles', () => { doSassPostcss(); });
-
 // scripts
 gulp.task('jsBundle', () => { doJsBundle(); });
 gulp.task('jsUglify', () => { doJsUglify(); })
-
 // images
 gulp.task('images', () => { doImageMin(); });
-
 // svg sprites
 gulp.task('svgSprites', () => { doSvgSprites(); });
-
 // move
 gulp.task('move', () => {
   for (var dest in moveFiles) { doMove(moveFiles[dest], dest); }
 });
-
 gulp.task('build:inject', () => {
   let svg4everybody = gulp.src('bower_components/svg4everybody/dist/svg4everybody.legacy.min.js');
   // let modernizrJs = gulp.src('src/js/*.js')
@@ -85,13 +86,18 @@ gulp.task('build:inject', () => {
   //   .pipe($.uglify());
   doInject('templates/partials/layout.njk', 'templates/partials');
 });
-
 // amp
 gulp.task('amp', () => {
   doAmpUncss();
   doAmpInject();
 });
-
+// html validate
+gulp.task('htmlValidate', () => { htmlValidator(); });
+// css validate
+gulp.task('cssValidate', () => { checkCss(cssSrc); });
+// amp validate
+gulp.task('ampValidate', () => { ampValidator(); });
+// server
 gulp.task('server', () => { browserSync.init({
   server: { baseDir: './'},
   ghostMode: false,
@@ -99,26 +105,13 @@ gulp.task('server', () => { browserSync.init({
   notify: false
 }); });
 
-let htmlSrc = ['*.html', '!pages.html'];
-gulp.task('check:w3cHTML', () => { doW3cHTML(htmlSrc); });
-gulp.task('watch:w3cHTML', () => { gulp.watch(htmlSrc, (e) => {
-  let name = path.basename(e.path, '.html');
-
-  if (['deleted', 'changed'].indexOf(e.type) >= 0 ) {
-    del('w3cErrors/W3C_Errors/' + name + 'html_validation-report.html');
-  }
-
-  if (e.type === 'changed') { doW3cHTML(e.path); }
-}); });
-
-let cssSrc = assets + '/css' + '/*.css';
-gulp.task('check:w3cCSS', () => { doW3cCSS(cssSrc); });
-gulp.task('watch:w3cCSS', () => { gulp.watch(cssSrc, ['check:w3cCSS'])});
-
-gulp.task('watch', [
-    // 'watch:w3cHTML',
-    // 'watch:w3cCSS',
-  ], () => {
+// Default Task
+gulp.task('default', [
+  'server', 
+  'build',
+  'watch',
+]);  
+gulp.task('watch', () => {
   // markup
   gulp.watch([templates + '/**/*.njk', templates + '/data.json'], (e) => {
     if (e.type === 'deleted') {
@@ -190,6 +183,12 @@ gulp.task('watch', [
     doAmpUncss();
     doAmpInject();
   });
+  // html validate
+  gulp.watch(['*.html', '!amp.html'], (e) => { htmlValidator([e.path]); });
+  // css validate
+  gulp.watch(cssSrc, (e) => { checkCss([e.path]); });
+  // amp validate
+  gulp.watch('amp.html', (e) => { ampValidator(e.path); });
   // update page list
   gulp.watch(['**/*.html'], (e) => {
     if (['deleted', 'added'].indexOf(e.type) >= 0) { pages = getAllFilesFromFolder(__dirname, '.html'); }
@@ -205,6 +204,29 @@ gulp.task('watch', [
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #########
 function watcher (e, srcFolder, destFolder, callback) {
   let destFile = e.path.replace(srcFolder, destFolder),
       destPath = path.dirname(destFile);
@@ -471,44 +493,11 @@ function doAmpInject () {
         return file.contents.toString()
           .replace(/fonts\/mnr/g, 'assets/css/fonts/mnr')
           .replace(/!important/g, '')
-          .replace('@page{margin:0.5cm}', '')
+          .replace('@page{margin:.5cm}', '')
           .replace(/"..\/img/g, '"assets/img');
       }
     }))
     .pipe(gulp.dest('.'));
-}
-
-function doW3cHTML (src) {
-  // clear cache
-  // rmAllFiles('w3cErrors/W3C_Errors', function () { console.log('"w3cErrors/W3C_Errors" was removed'); });
-
-  return gulp.src(src)
-    .pipe($.w3cHtmlValidation({
-      // generateCheckstyleReport: 'w3cErrors/validation.xml',
-      errorTemplate: 'w3cErrors/w3c_validation_error_template.html',
-      useTimeStamp: false,
-      // remotePath: "http://decodize.com/", // use regex validation for domain check
-      // remoteFiles: ["blog/2013/03/03/getting-started-with-yeoman-1-dot-0-beta-on-windows/",
-      //   "blog/2015/01/09/front-end-d-workflow-redefined-jade/",
-      //   "blog/2013/08/07/front-end-viewpoints-architecture-building-large-websites/",
-      //   "blog/2013/03/10/linktomob-share-your-links-quickly-and-easily-on-mobile-devices/",
-      //   "blog/2013/02/09/slidemote-universal-remote-control-for-html5-presentations/"],
-      relaxerror: [
-        // 'The "banner" role is unnecessary for element "header".'
-        'The “banner” role is unnecessary for element “header”.',
-        'The “navigation” role is unnecessary for element “nav”.',
-        'The “main” role is unnecessary for element “main”.',
-        'The “contentinfo” role is unnecessary for element “footer”.',
-        // 'The “(\w+)” role is unnecessary for element “([A-Z])\w+”.'
-                   ]
-    }));
-}
-
-function doW3cCSS (src) {
-  return gulp.src(src)
-    .pipe($.w3cCss())
-    .pipe($.rename({extname: '.json'}))
-    .pipe(gulp.dest('w3cErrors/css'));
 }
 
 function rmAllFiles (dirPath, callback) {
@@ -528,3 +517,93 @@ function rmAllFiles (dirPath, callback) {
   }
   fs.rmdirSync(dirPath);
 };
+
+function htmlValidator (arr) {
+  if (!arr) { arr = pages; }
+  arr.forEach(function(file, index) {
+    if (file.indexOf('.html') < 0) { file += '.html'; }
+
+    // output: json => Terminal
+    w3cHtml.validate({
+      file: file, // file can either be a local file or a remote file
+      output: 'json',
+      callback: function (err, res) {
+        var str = '';
+        if (res.messages.length > 0) {
+          res.messages.forEach(function(m) {
+            // check if messages match filters
+            if (filters.indexOf(m.message) < 0) {
+              str += m.type + ', line ' + m.lastLine + ', col ' + m.firstColumn + '-' + m.lastColumn + ', ' + m.message;
+            }
+          });
+
+          // if there are some messages after filter
+          // display them
+          var num = Math.round(Math.random() * 100);
+          if (str.length > 0) { console.log(res.context.replace('/www/web/', '') + '_' + num + ': \n' + str); }
+        }
+      }
+    });
+
+    // output: html => file
+    w3cHtml.validate({
+      file: file, // file can either be a local file or a remote file
+      output: 'html',
+      callback: function (err, res) {
+        res = res.slice(0, 38) + '<meta charset="utf-8">' + res.slice(38); // add charset
+        fs.writeFile('/www/web/test/w3c/html/' + path.parse(file).name + '.html', res, function(err) {
+          if(err) { return console.log(err); }
+        }); 
+      }
+    });
+  });
+}
+
+function checkCss (files) {
+  if (publicUrl) {
+    cssValidator(files);
+  } else {
+    ngrok.connect(3000, function (err, url) {
+        if (err) {
+          console.log('ngrok:', err);
+          checkCss(files);
+        } else {
+          console.log(url);
+          publicUrl = url;
+          cssValidator(files);
+        }
+    });
+  }
+}
+
+function cssValidator (arr) {
+  arr.forEach(function(file) {
+    request('https://jigsaw.w3.org/css-validator/validator?uri=' + publicUrl.replace('://', '%3A%2F%2F') + '%2F' + file.replace('/www/web/', '') + '&profile=' + cssValidateLevel + '&usermedium=all&warning=1&vextwarning=&lang=en', function(error, response, body) {
+      if (error) {
+        console.log('CSS Validate Errors:', error); // Print the error if one occurred
+      } else {
+        console.log('checking: ' + file.replace('/www/web/', '') + ',', response && response.statusCode);
+        // console.log('body:', body); // Print the HTML
+      }
+    })
+    .pipe(fs.createWriteStream('test/w3c/css/' + path.parse(file).name + '.html'));
+  });
+}
+
+function ampValidator () {
+  fs.readFile('amp.html', 'utf8', function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      amphtmlValidator.getInstance().then(function (validator) {
+        var result = validator.validateString(data);
+        ((result.status === 'PASS') ? console.log : console.error)('AMP ' + result.status.toLowerCase());
+        result.errors.forEach(function(error) {
+          var msg = 'line ' + error.line + ', col ' + error.col + ': ' + error.message;
+          if (error.specUrl) { msg += ' (see ' + error.specUrl + ')'; }
+          ((error.severity === 'ERROR') ? console.error : console.warn)(msg);
+        });
+      });
+    }
+  })
+}
