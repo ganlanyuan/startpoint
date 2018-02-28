@@ -12,6 +12,10 @@ const opts = {
   chromeFlags: ['--show-paint-rects', '--headless']
 };
 
+let files = [
+      'index.html',
+    ];
+
 browserSync.init({
   server: "./",
   port: 4000,
@@ -26,9 +30,11 @@ ngrok.connect(4000, function (err, url) {
   } else {
     console.log(url);
 
-    launchChromeAndRunLighthouse(url, opts).then(results => {
-      fs.writeFile('test/lighthouse/index.html', results, function(err) {
-        if (err) { console.log(err); }
+    files.forEach(function(file) {
+      launchChromeAndRunLighthouse(url + '/' + file, opts).then(results => {
+        fs.writeFile('test/lighthouse/' + file, results, function(err) {
+          if (err) { console.log(err); }
+        });
       });
     });
   }

@@ -5,7 +5,6 @@ const $ = require('gulp-load-plugins')({ config: packages });
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('autoprefixer');
 const w3cHtml = require('@ganlanyuan/w3cjs');
-const w3cCss = require('w3c-css');
 const amphtmlValidator = require('amphtml-validator');
 const request = require('request'); // for w3cCSS
 const ngrok = require('ngrok');
@@ -43,7 +42,7 @@ gulp.task('build', [
   // 'images',
   // 'svgSprites',
   // 'move',
-  // 'build:inject',
+  // 'criticalCss',
   // 'amp',
   // 'htmlValidate',
   // 'cssValidate',
@@ -57,6 +56,16 @@ gulp.task('markup', () => {
 });
 // styles
 gulp.task('styles', () => { doSassPostcss(); });
+gulp.task('criticalCss', () => {
+  let critical = gulp.src(assets + '/css/critical.css');
+  return gulp.src(templates + '/parts/layout.njk')
+    .pipe($.inject(critical, {
+      starttag: '/* critical:css */',
+      endtag: '/* endinject */',
+      transform: function(filePath, file) { return file.contents.toString(); }
+    }))
+    .pipe(gulp.dest(templates + '/parts'))
+});
 // scripts
 gulp.task('jsBundle', () => { doJsBundle(); });
 gulp.task('jsUglify', () => { doJsUglify(); })
@@ -65,20 +74,7 @@ gulp.task('images', () => { doImageMin(); });
 // svg sprites
 gulp.task('svgSprites', () => { doSvgSprites(); });
 // move
-gulp.task('move', () => {
-  for (var dest in moveFiles) { doMove(moveFiles[dest], dest); }
-});
-gulp.task('build:inject', () => {
-  let svg4everybody = gulp.src('bower_components/svg4everybody/dist/svg4everybody.legacy.min.js');
-  // let modernizrJs = gulp.src('src/js/*.js')
-  //   .pipe($.modernizr({
-  //         'minify': true,
-  //         'options': ['setClasses'],
-  //         'tests': ['touchevents'],
-  //       }))
-  //   .pipe($.uglify());
-  doInject('templates/partials/layout.njk', 'templates/partials');
-});
+gulp.task('move', () => { for (var dest in moveFiles) { doMove(moveFiles[dest], dest); } });
 // amp
 gulp.task('amp', () => {
   doAmpUncss();
@@ -118,12 +114,8 @@ gulp.task('watch', () => {
           src = [templates + '/' + fullname, templates + '/mb-' + fullname];
         } else if (e.path.indexOf('/layout.njk') !== -1 || path.extname(e.path) === '.json') {
           src = [templates + '/*.njk', '!' + templates + '/pages.njk'];
-        } else {
-          return;
-        }
-      } else {
-        src = e.path;
-      }
+        } else { return; }
+      } else { src = e.path; }
 
       doNunjucks(data, src, '.');
     }
@@ -133,41 +125,30 @@ gulp.task('watch', () => {
     if (path.dirname(e.path) === __dirname + '/' + src + '/scss') {
       if (e.type === 'deleted') {
         return del(assets + '/css/' + path.parse(e.path).name + '.css');
-      } else {
-        doSassPostcss(e.path);
-      }
-    } else {
-      doSassPostcss();
-    }
+      } else { doSassPostcss(e.path); }
+    } else { doSassPostcss(); }
   });
+  gulp.watch(assets + '/css/critical.css', ['criticalCss']);
   // scripts
   gulp.watch(src + '/js/**/*.js', (e) => {
     if (path.dirname(e.path) === __dirname + '/' + src + '/js') {
       if (e.type === 'deleted') {
         return del(e.path.replace(src, assets));
-      } else {
-        doJsBundle(e.path);
-      }
-    } else {
-      doJsBundle();
-    }
+      } else { doJsBundle(e.path); }
+    } else { doJsBundle(); }
   });
   gulp.watch(assets + '/js/*.js', (e) => {
     if (e.path.indexOf('.min.') < 0) {
       if (e.type === 'deleted') {
         return del(path.dirname(e.path) + '/min/' + path.basename(e.path));
-      } else {
-        doJsUglify(e.path);
-      }
+      } else { doJsUglify(e.path); }
     }
   });
   // images
   gulp.watch([src + '/img/**/*'], (e) => { 
     if (e.type === 'deleted') {
       return del(e.path.replace(src, assets));
-    } else {
-      doImageMin(e.path);
-    }
+    } else { doImageMin(e.path); }
   });
   // svg sprites
   gulp.watch(src + '/svg-sprites/*.svg', ['svgSprites']);
@@ -435,6 +416,10 @@ function doSvgSprites () {
 
 function doInject (src, dest) {
   return gulp.src(src)
+    .pipe($.if(critical, $.inject(critical, {
+      starttag: '/* critical:css */',
+      endtag: '/* endinject */',
+    })))
     .pipe($.if(svg4everybody, $.inject(svg4everybody, {
       starttag: '/* svg4everybody:js */',
       endtag: '/* endinject */',

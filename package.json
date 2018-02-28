@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lighthouse": "docker exec lighthouse node lighthouse.js"
+    "critical": "docker exec critical node test/critical/critical.js",
+    "pagespeed": "docker exec startpoint node test/pagespeed/pagespeed.js",
+    "lighthouse": "docker exec lighthouse node test/lighthouse/lighthouse.js"
   },
   "repository": {
     "type": "git",

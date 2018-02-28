@@ -25,6 +25,16 @@ services:
       - .:/home/chrome/reports
     working_dir: /home/chrome/reports
     container_name: lighthouse
-    # entrypoint: browser-sync start --port 4000 --server --no-open
+    stdin_open: true
+    tty: true   
+
+  critical:
+    image: critical
+    cap_add: 
+      - SYS_ADMIN
+    volumes:
+      - .:/home/chrome
+    working_dir: /home/chrome
+    container_name: critical
     stdin_open: true
     tty: true   
