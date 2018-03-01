@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/ganlanyuan/startpoint/issues"
   },
-  "homepage": "https://github.com/ganlanyuan/startpoint#readme"
+  "homepage": "https://github.com/ganlanyuan/startpoint#readme",
+  "dependencies": {
+    "rocket-sass": "^4.0.1"
+  }
 }

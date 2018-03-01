@@ -16,7 +16,7 @@ services:
     tty: true
 
   lighthouse:
-    image: cmcdev/lighthouse:1.0.1
+    image: cmcdev/lighthouse:1.0.2
     ports:
       - 4000:4000
     cap_add: 

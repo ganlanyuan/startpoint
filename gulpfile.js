@@ -566,7 +566,7 @@ function cssValidator (arr) {
       if (error) {
         console.log('CSS Validate Errors:', error); // Print the error if one occurred
       } else {
-        console.log('checking: ' + file.replace('/www/web/', '') + ',', response && response.statusCode);
+        console.log('CSS validating: ' + file.replace('/www/web/', '') + ',', response && response.statusCode);
         // console.log('body:', body); // Print the HTML
       }
     })
