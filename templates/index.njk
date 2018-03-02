@@ -2,8 +2,8 @@
 {% extends "parts/layout.njk" %}
 
 {% block main %}
-{% for item in ['facebook', 'twitter', 'google+', 'pinterest', 'linkedIn', 'bufferApp', 'digg', 'tumblr', 'reddit', 'stumbleUpon', 'xing', 'whatsapp', 'delicious', 'evernote', 'email', 'hackernews', 'vk', 'telegram', 'wordPress', 'pocket'] %}
-  {% set link = mc.shareOn(item, url = 'http://sharingbuttons.io', title = 'Super fast and easy Social Media Sharing Buttons. No JavaScript. No tracking.') %}
+{% for item in ['facebook', 'twitter', 'google+', 'pinterest', 'linkedin', 'buffer', 'digg', 'tumblr', 'reddit', 'stumbleupon', 'xing', 'whatsapp', 'delicious', 'blogger', 'livejournal', 'myspace', 'yahoo', 'friendfeed', 'newsvine', 'evernote', 'flipboard', 'instapaper', 'lineme', 'skype', 'viber', 'email', 'hackernews', 'vk', 'okru', 'telegram', 'douban', 'baidu', 'qzone', 'renren', 'weibo', 'wordpress', 'pocket'] %}
+  {% set link = share.on(item, url = 'http://sharingbuttons.io', title = 'Super fast and easy Social Media Sharing Buttons. No JavaScript. No tracking.') %}
   <a href="{{link}}" target="_blank" style="color: blue;">{{ item }}</a> <br>
 {% endfor %}
 {% endblock %}

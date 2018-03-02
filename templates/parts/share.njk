@@ -1,0 +1,101 @@
+{# share on social media #}
+{% macro on(
+    name, 
+    url = '', 
+    title = '', 
+    img = '', 
+    desc = '', 
+    hashtags = '', 
+    isVideo = '', 
+    appid = '',
+    redirectUrl = '',
+    provider = 'Company Name', 
+    via = 'twitter username of author'
+  ) %}
+
+  {% if name === 'facebook' %}
+    http://www.facebook.com/sharer.php?u={{ crunchify(url) }}
+    {# https://www.facebook.com/dialog/share?app_id={{ appid }}&amp;display=page&amp;href={{ url }}&amp;redirect_uri={{ redirectUrl }} #}
+  {% elif name === 'twitter' %}
+    https://twitter.com/intent/tweet/?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }}
+    {# https://twitter.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }} #}
+  {% elif name === 'google+' %}
+    https://plus.google.com/share?url={{ crunchify(url) }}
+  {% elif name === 'pinterest' %}
+    https://pinterest.com/pin/create/button/?url={{ crunchify(url) }}&amp;media={{ crunchify(img) }}&amp;description={{ crunchify(title) }}&amp;is_video={{ crunchify(isVideo) }}
+    {# https://pinterest.com/pin/create/bookmarklet/?media={{ crunchify(img) }}&amp;url={{ crunchify(url) }}&amp;is_video={{ crunchify(isVideo) }}&amp;description={{ crunchify(title) }} #}
+  {% elif name === 'linkedin' %}
+    https://www.linkedin.com/shareArticle?mini=true&amp;url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}&amp;summary={{ crunchify(title) }}&amp;source={{ crunchify(url) }}
+  {% elif name === 'buffer' %}
+    http://buffer.com/add?text={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
+  {% elif name === 'digg' %}
+    http://digg.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'tumblr' %}
+    https://www.tumblr.com/widgets/share/tool?canonicalUrl={{ crunchify(url) }}&amp;title={{ crunchify(title) }}&amp;caption={{ crunchify(desc) }}
+    {# https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title={{ crunchify(title) }}&amp;caption={{ crunchify(desc) }}&amp;content={{ crunchify(url) }}&amp;canonicalUrl={{ crunchify(url) }}&amp;shareSource=tumblr_share_button #}
+    {# http://www.tumblr.com/share/link?url={{ crunchify(url) }}&amp;name={{ crunchify(title) }}&amp;description={{ crunchify(desc) }} #}
+  {% elif name === 'reddit' %}
+    http://reddit.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'stumbleupon' %}
+    http://www.stumbleupon.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'delicious' %}
+    https://delicious.com/save?v=5&amp;provider={{ crunchify(provider) }}&amp;noui&amp;jump=close&amp;url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'blogger' %}
+    https://www.blogger.com/blog-this.g?u={{ crunchify(url) }}&amp;n={{ crunchify(title) }}&amp;t={{ crunchify(desc) }}
+  {% elif name === 'livejournal' %}
+    http://www.livejournal.com/update.bml?subject={{ crunchify(title) }}&amp;event={{ crunchify(url) }}
+  {% elif name === 'myspace' %}
+    https://myspace.com/post?u={{ crunchify(url) }}&amp;t={{ crunchify(title) }}&amp;c={{ crunchify(desc) }}
+  {% elif name === 'yahoo' %}
+    http://compose.mail.yahoo.com/?body={{ crunchify(url) }}
+  {% elif name === 'friendfeed' %}
+    http://friendfeed.com/?url={{ crunchify(url) }}
+  {% elif name === 'newsvine' %}
+    http://www.newsvine.com/_tools/seed&amp;save?u={{ crunchify(url) }}
+  {% elif name === 'evernote' %}
+    http://www.evernote.com/clip.action?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'pocket' %}
+    https://getpocket.com/save?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'flipboard' %}
+    https://share.flipboard.com/bookmarklet/popout?v=2&amp;title={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
+  {% elif name === 'instapaper' %}
+    http://www.instapaper.com/edit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}&amp;description={{ crunchify(desc) }}
+  {% elif name === 'lineme' %}
+    https://lineit.line.me/share/ui?url={{ crunchify(url) }}
+  {% elif name === 'skype' %}
+    https://web.skype.com/share?url={{ crunchify(url) }}
+  {% elif name === 'viber' %}
+    viber://forward?text={{ crunchify(url) }}
+  {% elif name === 'email' %}
+    mailto:?subject={{ crunchify(title) }}&amp;body=Check%20out%20this%20site:%20{{ crunchify(url) }}
+  {% elif name === 'wordpress' %}
+    http://wordpress.com/press-this.php?u={{ crunchify(url) }}&amp;t={{ crunchify(title) }}&amp;s={{ crunchify(desc) }}&amp;i={{ crunchify(img) }}
+  {% elif name === 'xing' %}
+    https://www.xing.com/app/user?op=share;url={{ crunchify(url) }};title={{ crunchify(title) }}
+  {% elif name === 'whatsapp' %}
+    whatsapp://send?text={{ crunchify(title) }}%20{{ crunchify(url) }}
+  {% elif name === 'hackernews' %}
+    https://news.ycombinator.com/submitlink?u={{ crunchify(url) }}&amp;t={{ crunchify(title) }}
+  {% elif name === 'okru' %}
+    https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&amp;st.shareUrl={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'vk' %}
+    http://vk.com/share.php?title={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
+  {% elif name === 'telegram' %}
+    https://telegram.me/share/url?text={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
+  {% elif name === 'douban' %}
+    http://www.douban.com/recommend/?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'baidu' %}
+    http://cang.baidu.com/do/add?it={{ crunchify(title) }}&amp;iu={{ crunchify(url) }}
+  {% elif name === 'qzone' %}
+    http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{ crunchify(url) }}
+  {% elif name === 'renren' %}
+    http://widget.renren.com/dialog/share?resourceUrl={{ crunchify(url) }}&amp;srcUrl={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'weibo' %}
+    http://service.weibo.com/share/share.php?url={{ crunchify(url) }}&amp;appkey=&amp;title={{ crunchify(text) }}&amp;pic=&amp;ralateUid=
+  {% endif %}
+{% endmacro %}
+
+{# crunchify string #}
+{% macro crunchify(str) %}
+  {{- str | replace(' ', '%20') | replace('/', '%2F') | replace(':', '%3A') -}}
+{% endmacro %}
