@@ -2,4 +2,8 @@
 {% extends "parts/layout.njk" %}
 
 {% block main %}
+{% for item in ['facebook', 'twitter', 'google+', 'pinterest', 'linkedIn', 'bufferApp', 'digg', 'tumblr', 'reddit', 'stumbleUpon', 'delicious', 'evernote', 'email', 'wordPress', 'pocket'] %}
+  {% set link = mc.shareOn(item) %}
+  <a href="{{link}}" style="color: blue;">{{ item }}</a> <br>
+{% endfor %}
 {% endblock %}

@@ -7,7 +7,7 @@
 {% macro imgSrc(id, size, hasGutter = true, ratio = [2, 3]) %}
   {% set width = size - globalGutter if hasGutter else size %}
 
-  {{ images[id] }}?w={{ width }}&h={{ (width * ratio[0] / ratio[1]) | round }}
+  {{ images[id] }}?w={{ width }}&amp;h={{ (width * ratio[0] / ratio[1]) | round }}
 {% endmacro %}
 
 {# get image srcset #}
@@ -15,7 +15,7 @@
   {% for size in sizes %}
     {% set width = size - globalGutter if hasGutter and not loop.last else size %}
 
-    {{ images[id] }}?w={{ width }}&h={{ (width * ratio[0] / ratio[1]) | round }} {{ width }}w{{', ' if not loop.last}}
+    {{ images[id] }}?w={{ width }}&amp;h={{ (width * ratio[0] / ratio[1]) | round }} {{ width }}w{{', ' if not loop.last}}
   {% endfor %}"
 {% endmacro %}
 
@@ -150,4 +150,56 @@
     <div class="ad"><a href=""><img src="https://s1.2mdn.net/5142550/UEI170041_FEHB_300x250__0_CoPay.jpg" alt="ad300" width="300" height="250"></a></div>
     {% endif %}
   </figure>
+{% endmacro %}
+
+
+{# share on social media #}
+{% macro shareOn(
+    name, 
+    url = '', 
+    title = '', 
+    img = '', 
+    desc = '', 
+    hashtags = '', 
+    isVideo = '', 
+    provider = 'Company Name', 
+    via = 'twitter username of author'
+  ) %}
+
+  {% if name === 'facebook' %}
+    http://www.facebook.com/sharer.php?u={{ crunchify(url) }}
+  {% elif name === 'twitter' %}
+    https://twitter.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }}
+  {% elif name === 'google+' %}
+    https://plus.google.com/share?url={{ crunchify(url) }}
+  {% elif name === 'pinterest' %}
+    https://pinterest.com/pin/create/bookmarklet/?media={{ crunchify(img) }}&amp;url={{ crunchify(url) }}&amp;is_video={{ crunchify(isVideo) }}&amp;description={{ crunchify(title) }}
+  {% elif name === 'linkedIn' %}
+    http://www.linkedin.com/shareArticle?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'bufferApp' %}
+    http://bufferapp.com/add?text={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
+  {% elif name === 'digg' %}
+    http://digg.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'tumblr' %}
+    http://www.tumblr.com/share/link?url={{ crunchify(url) }}&amp;name={{ crunchify(title) }}&amp;description={{ crunchify(desc) }}
+  {% elif name === 'reddit' %}
+    http://reddit.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'stumbleUpon' %}
+    http://www.stumbleupon.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'delicious' %}
+    https://delicious.com/save?v=5&amp;provider={{ crunchify(provider) }}&amp;noui&amp;jump=close&amp;url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'evernote' %}
+    http://www.evernote.com/clip.action?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% elif name === 'email' %}
+    $email = 'mailto:?subject=' . ${{ crunchify(title) }} . '&amp;body=Check out this site: '. ${{ crunchify(url) }} .'" title="Share by Email';
+  {% elif name === 'wordPress' %}
+    http://wordpress.com/press-this.php?u={{ crunchify(url) }}&amp;t={{ crunchify(title) }}&amp;s={{ crunchify(desc) }}&amp;i={{ crunchify(img) }}
+  {% elif name === 'pocket' %}
+    https://getpocket.com/save?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
+  {% endif %}
+{% endmacro %}
+
+{# crunchify string #}
+{% macro crunchify(str) %}
+  {{- str | replace(' ', '%20') | replace('/', '%2F') | replace(':', '%3A') -}}
 {% endmacro %}
