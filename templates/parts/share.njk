@@ -1,4 +1,5 @@
 {# share on social media #}
+{# https://github.com/bradvin/social-share-urls#url-arguments #}
 {% macro on(
     name, 
     url = '', 
@@ -20,12 +21,12 @@
     https://twitter.com/intent/tweet/?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }}
     {# https://twitter.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }} #}
   {% elif name === 'google+' %}
-    https://plus.google.com/share?url={{ crunchify(url) }}
+    https://plus.google.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(desc) }}
   {% elif name === 'pinterest' %}
     https://pinterest.com/pin/create/button/?url={{ crunchify(url) }}&amp;media={{ crunchify(img) }}&amp;description={{ crunchify(title) }}&amp;is_video={{ crunchify(isVideo) }}
     {# https://pinterest.com/pin/create/bookmarklet/?media={{ crunchify(img) }}&amp;url={{ crunchify(url) }}&amp;is_video={{ crunchify(isVideo) }}&amp;description={{ crunchify(title) }} #}
   {% elif name === 'linkedin' %}
-    https://www.linkedin.com/shareArticle?mini=true&amp;url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}&amp;summary={{ crunchify(title) }}&amp;source={{ crunchify(url) }}
+    https://www.linkedin.com/shareArticle?mini=true&amp;url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}&amp;summary={{ crunchify(desc) }}&amp;source={{ crunchify(provider) }}
   {% elif name === 'buffer' %}
     http://buffer.com/add?text={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
   {% elif name === 'digg' %}
@@ -81,7 +82,8 @@
   {% elif name === 'vk' %}
     http://vk.com/share.php?title={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
   {% elif name === 'telegram' %}
-    https://telegram.me/share/url?text={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
+    https://t.me/share/url?text={{ crunchify(title) }}&amp;url={{ crunchify(url) }}
+    {# or https://telegram.me/… #}
   {% elif name === 'douban' %}
     http://www.douban.com/recommend/?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
   {% elif name === 'baidu' %}
