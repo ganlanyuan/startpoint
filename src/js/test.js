@@ -1,5 +1,5 @@
 import { add } from './files/a';
-import './files/c';
+import { reduce } from './files/c';
 // import { year } from './files/b';
 
 [1, 2, 3].forEach((i) => { console.log(i); })

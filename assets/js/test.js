@@ -5,8 +5,6 @@
 
 [1, 2, 3].forEach(function (i) { console.log(i); });
 
-var result = reduce(100, 40);
-
 
 // console.log(year);
 

@@ -9,6 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "critical": "docker exec critical node test/critical/critical.js",
+    "puppeteer-save": "docker exec puppeteer gulp save --gulpfile puppeteer.js",
+    "puppeteer-compare": "docker exec puppeteer gulp compare --gulpfile puppeteer.js",
     "pagespeed": "docker exec startpoint node test/pagespeed/pagespeed.js",
     "lighthouse": "docker exec lighthouse node test/lighthouse/lighthouse.js"
   },
