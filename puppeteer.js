@@ -52,10 +52,11 @@ gulp.task('compare', function () {
     checkDirectoryExists('diff');
 
     getScreenshots('new');
-    compareScreenshots('index', 'sm');
+    compareScreenshots();
+    // compareScreenshot('index', 'lg');
 
     // exit
-    browserSync.exit();
+    // browserSync.exit();
   });
 });
 
@@ -66,7 +67,7 @@ gulp.task('save', function () {
     getScreenshots('reference');
 
     // exit
-    browserSync.exit();
+    // browserSync.exit();
   });
 });
 
@@ -76,7 +77,16 @@ gulp.task('save', function () {
 
 
 // FUNCTIONS
-function compareScreenshots(file, size) {
+function compareScreenshots () {
+  for (size in viewports) {
+    for (let i = 0, l = files.length; i < l; i++) {
+      let file = files[i];
+      compareScreenshot(file, size);
+    }
+  }
+}
+
+function compareScreenshot(file, size) {
   return new Promise((resolve, reject) => {
     const img1 = fs.createReadStream(__dirname + '/' + dirShort + 'new/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
     const img2 = fs.createReadStream(__dirname + '/' + dirShort + 'reference/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
@@ -101,7 +111,8 @@ function compareScreenshots(file, size) {
 
       // The files should look the same.
       let symbol = numDiffPixels ? '✗' : '✓';
-      console.log(symbol, '/'+size+'/'+file+'.html');
+      // if (file === files[0]) { symbol = size + '\n' + symbol; }
+      console.log(symbol, size + '/' + file + '.html');
       // expect(numDiffPixels, 'number of different pixels').equal(0);
       resolve();
     }
