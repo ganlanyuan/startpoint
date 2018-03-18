@@ -43,8 +43,10 @@ let port = 2000,
 
 
 
+// console.log(process.env.var);
 
-gulp.task('compare', function () {
+// gulp.task('compare', function () {
+if (process.env.var === 'compare') {
   browserSync.init(serverOptions, function () {
     // compare
     checkReferenceExists();
@@ -58,9 +60,11 @@ gulp.task('compare', function () {
     // exit
     // browserSync.exit();
   });
-});
+}
+// });
 
-gulp.task('save', function () {
+// gulp.task('save', function () {
+// if (process.env.var === 'save') {
   browserSync.init(serverOptions, function () {
     // get reference
     checkDirectoryExists('reference');
@@ -69,7 +73,8 @@ gulp.task('save', function () {
     // exit
     // browserSync.exit();
   });
-});
+// }
+// });
 
 
 
@@ -88,8 +93,8 @@ function compareScreenshots () {
 
 function compareScreenshot(file, size) {
   return new Promise((resolve, reject) => {
-    const img1 = fs.createReadStream(__dirname + '/' + dirShort + 'new/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
-    const img2 = fs.createReadStream(__dirname + '/' + dirShort + 'reference/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
+    const img1 = fs.createReadStream(__dirname + '/new/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
+    const img2 = fs.createReadStream(__dirname + '/reference/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
 
     let filesRead = 0;
     function doneReading() {
@@ -107,7 +112,7 @@ function compareScreenshot(file, size) {
       const numDiffPixels = pixelmatch(
           img1.data, img2.data, diff.data, img1.width, img1.height,
           {threshold: 0.1});
-      diff.pack().pipe(fs.createWriteStream(dirShort + 'diff/' + size + '/' + file + '.png'));
+      diff.pack().pipe(fs.createWriteStream('diff/' + size + '/' + file + '.png'));
 
       // The files should look the same.
       let symbol = numDiffPixels ? '✗' : '✓';
@@ -120,16 +125,16 @@ function compareScreenshot(file, size) {
 }
 
 function checkReferenceExists () {
-  if (!fs.existsSync(__dirname + '/' + dirShort + 'reference/sm/' + files[0] + '.png')) {
+  if (!fs.existsSync(__dirname + '/reference/sm/' + files[0] + '.png')) {
     for (let size in viewports) {
-      mkDirByPathSync(dirShort + 'reference/' + size, {isRelativeToScript: true});
+      mkDirByPathSync('reference/' + size, {isRelativeToScript: true});
     }
     getScreenshots('reference');
   }
 }
 
 function checkDirectoryExists (dir) {
-  if (!fs.existsSync(__dirname + '/' + dirShort + dir + '/sm')) {
+  if (!fs.existsSync(__dirname + '/' + dir + '/sm')) {
     for (let size in viewports) {
       mkDirByPathSync(dir + '/' + size, {isRelativeToScript: true});
     }
@@ -145,7 +150,7 @@ async function getScreenshots (dir) {
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       await page.goto('http://localhost:' + port + '/' + file + '.html');
-      await page.screenshot({path: dirShort + dir + '/' + size + '/' + file + '.png', fullPage: true});
+      await page.screenshot({path: __dirname + '/' + dir + '/' + size + '/' + file + '.png', fullPage: true});
     }
   }
 

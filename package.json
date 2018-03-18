@@ -9,8 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "critical": "docker exec critical node test/critical/critical.js",
-    "puppeteer-save": "docker exec puppeteer gulp save --gulpfile puppeteer.js",
-    "puppeteer-compare": "docker exec puppeteer gulp compare --gulpfile puppeteer.js",
+    "puppeteer-save": "docker run --rm -it --env var=save -p 2000:2000 --cap-add SYS_ADMIN --mount type=bind,source=\"$(pwd)\",target=/home -w /home puppeteer node test/puppeteer/puppeteer.js",
+    "save": "docker exec puppeteer node test/puppeteer/puppeteer.js",
+    "puppeteer-compare": "docker run --rm -it --env var=compare -p 2000:2000 --cap-add SYS_ADMIN --mount type=bind,source=\"$(pwd)\",target=/home -w /home puppeteer node test/puppeteer/puppeteer.js",
     "pagespeed": "docker exec startpoint node test/pagespeed/pagespeed.js",
     "lighthouse": "docker exec lighthouse node test/lighthouse/lighthouse.js"
   },
