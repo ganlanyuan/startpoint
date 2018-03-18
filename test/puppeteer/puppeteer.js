@@ -37,13 +37,11 @@ let port = 2000,
       ghostMode: false,
       open: false,
       notify: false,
-      logLevel: "silent",
+      // logLevel: "silent",
     };
 
 
 
-
-// console.log(process.env.var);
 
 // gulp.task('compare', function () {
 if (process.env.var === 'compare') {
@@ -55,25 +53,22 @@ if (process.env.var === 'compare') {
 
     getScreenshots('new');
     compareScreenshots();
-    // compareScreenshot('index', 'lg');
 
-    // exit
     // browserSync.exit();
   });
 }
 // });
 
 // gulp.task('save', function () {
-// if (process.env.var === 'save') {
+if (process.env.var === 'save') {
   browserSync.init(serverOptions, function () {
     // get reference
     checkDirectoryExists('reference');
     getScreenshots('reference');
 
-    // exit
     // browserSync.exit();
   });
-// }
+}
 // });
 
 
@@ -112,7 +107,7 @@ function compareScreenshot(file, size) {
       const numDiffPixels = pixelmatch(
           img1.data, img2.data, diff.data, img1.width, img1.height,
           {threshold: 0.1});
-      diff.pack().pipe(fs.createWriteStream('diff/' + size + '/' + file + '.png'));
+      diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '/' + file + '.png'));
 
       // The files should look the same.
       let symbol = numDiffPixels ? '✗' : '✓';

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visual regresive testing</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    img { max-width: 100%; height: auto; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul class="view">
+      <li v-for="page in pages">
+        <h2>{{ page }}</h2>
+        <div class="grid">
+          <div><a :href="'reference/' + page + '.png'" target="_blank"><img :src="'reference/' + page + '.png'" alt="diff"></a></div>
+          <div><a :href="'new/' + page + '.png'" target="_blank"><img :src="'new/' + page + '.png'" alt="diff"></a></div>
+          <div><a :href="'diff/' + page + '.png'" target="_blank"><img :src="'diff/' + page + '.png'" alt="diff"></a></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        pages: [
+          'sm/index',
+          'md/index'
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

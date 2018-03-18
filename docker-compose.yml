@@ -46,8 +46,8 @@ services:
     cap_add: 
       - SYS_ADMIN
     volumes:
-      - .:/home
-    working_dir: /home
+      - .:/home/chrome
+    # working_dir: /home/chrome
     container_name: puppeteer
-    stdin_open: true
+    # stdin_open: true
     tty: true   
