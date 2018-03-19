@@ -52,8 +52,9 @@ if (process.env.var === 'compare') {
     checkDirectoryExists('new');
     checkDirectoryExists('diff');
 
-    getScreenshots('new');
-    compareScreenshots();
+    getScreenshots('new').then(function() {
+      compareScreenshots();
+    });
 
     // browserSync.exit();
   });
@@ -80,6 +81,7 @@ if (process.env.var === 'save') {
 // FUNCTIONS
 function compareScreenshots () {
   let promises = [];
+  console.log('Compare Screenshots:')
   for (size in viewports) {
     for (let i = 0, l = files.length; i < l; i++) {
       let file = files[i];
@@ -88,25 +90,22 @@ function compareScreenshots () {
   }
 
   Promise.all(promises).then(function(values) {
-    console.log(arr);
     fs.writeFile(__dirname + '/data.js', 'let files = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
       if(err) { return console.log(err); }
-      console.log('data.js saved!');
+      console.log('  data.js saved!');
     }); 
   });
 }
 
 function compareScreenshot(file, size) {
   return new Promise((resolve, reject) => {
-    const img1 = fs.createReadStream(__dirname + '/new/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
-    const img2 = fs.createReadStream(__dirname + '/reference/' + size + '/' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
+    const img1 = fs.createReadStream(__dirname + '/new/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
+    const img2 = fs.createReadStream(__dirname + '/reference/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
 
     let filesRead = 0;
     function doneReading() {
       // Wait until both files are read.
       if (++filesRead < 2) return;
-
-      // console.log(img1.width, img2.width, img1.height, img2.height);
 
       // The files should be the same size.
       // expect(img1.width, 'image widths are the same').equal(img2.width);
@@ -120,29 +119,25 @@ function compareScreenshot(file, size) {
 
       let symbol = numDiffPixels ? '✗' : '✓';
       if (numDiffPixels) {
-        arr.push(size + '/' + file);
-        diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '/' + file + '.png'));
+        arr.push(size + '_' + file);
+        diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '_' + file + '.png'));
       }
-      console.log(symbol, size + '/' + file + '.html');
+      console.log(' ', symbol, size + '_' + file + '.html');
       resolve();
     }
   });
 }
 
 function checkReferenceExists () {
-  if (!fs.existsSync(__dirname + '/reference/sm/' + files[0] + '.png')) {
-    for (let size in viewports) {
-      mkDirByPathSync('reference/' + size, {isRelativeToScript: true});
-    }
+  if (!fs.existsSync(__dirname + '/reference/sm_' + files[0] + '.png')) {
+    mkDirByPathSync('reference', {isRelativeToScript: true});
     getScreenshots('reference');
   }
 }
 
 function checkDirectoryExists (dir) {
-  if (!fs.existsSync(__dirname + '/' + dir + '/sm')) {
-    for (let size in viewports) {
-      mkDirByPathSync(dir + '/' + size, {isRelativeToScript: true});
-    }
+  if (!fs.existsSync(__dirname + '/' + dir)) {
+    mkDirByPathSync(dir, {isRelativeToScript: true});
   }
 }
 
@@ -150,16 +145,19 @@ async function getScreenshots (dir) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
+  console.log('/' + dir);
   for (let size in viewports) {
     await page.setViewport(viewports[size]);
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       await page.goto('http://localhost:' + port + '/' + file + '.html');
-      await page.screenshot({path: __dirname + '/' + dir + '/' + size + '/' + file + '.png', fullPage: true});
+      await console.log(' ', size + '_' + file + '.png');
+      await page.screenshot({path: __dirname + '/' + dir + '/' + size + '_' + file + '.png', fullPage: true});
     }
   }
 
   await browser.close();
+  await console.log('  Screenshots saved!');
 }
 
 // https://stackoverflow.com/questions/31645738/how-to-create-full-path-with-nodes-fs-mkdirsync#40686853

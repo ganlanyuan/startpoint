@@ -1,3 +1,3 @@
 let files = [
-  "sm/article"
-]
+  "md_article"
+];

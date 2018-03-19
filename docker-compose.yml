@@ -1,19 +1,19 @@
 version: '2'
 
 services:
-  # web:
-  #   image: test
-  #   # image: cmcdev/web:2.7.2
-  #   ports:
-  #     - 3000:3000
-  #     - 3001:3001
-  #   volumes:
-  #     - .:/www/web/
-  #   working_dir: /www/web
-  #   container_name: startpoint
-  #   entrypoint: sh /www/start.sh
-  #   stdin_open: true
-  #   tty: true
+  web:
+    image: test
+    # image: cmcdev/web:2.7.2
+    ports:
+      - 3000:3000
+      - 3001:3001
+    volumes:
+      - .:/www/web/
+    working_dir: /www/web
+    container_name: startpoint
+    entrypoint: sh /www/start.sh
+    stdin_open: true
+    tty: true
 
   # lighthouse:
   #   image: cmcdev/lighthouse:1.0.2
@@ -39,15 +39,15 @@ services:
   #   stdin_open: true
   #   tty: true   
 
-  puppeteer:
-    image: puppeteer
-    ports:
-      - 2000:2000
-    cap_add: 
-      - SYS_ADMIN
-    volumes:
-      - .:/home/chrome
-    # working_dir: /home/chrome
-    container_name: puppeteer
-    # stdin_open: true
-    tty: true   
+  # puppeteer:
+  #   image: puppeteer
+  #   ports:
+  #     - 2000:2000
+  #   cap_add: 
+  #     - SYS_ADMIN
+  #   volumes:
+  #     - .:/home/chrome
+  #   # working_dir: /home/chrome
+  #   container_name: puppeteer
+  #   # stdin_open: true
+  #   tty: true   

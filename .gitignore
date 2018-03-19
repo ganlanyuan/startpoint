@@ -7,13 +7,14 @@
 
 /bower_components/
 /node_modules/
+
+# puppeteer
 /pptruser/
+/test/puppeteer/new/*.png
+/test/puppeteer/diff/*.png
 
 # gemini
 /gemini/report/
 /gemini/screenshot/
-
-#backstop
-/backstop_data/
 
 LICENSE
