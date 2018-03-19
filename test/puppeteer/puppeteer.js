@@ -3,8 +3,9 @@ const fs = require("fs"),
       PNG = require('pngjs').PNG,
       pixelmatch = require('pixelmatch'),
       browserSync = require("browser-sync").create(),
-      puppeteer = require('puppeteer'),
-      gulp = require('gulp');
+      puppeteer = require('puppeteer');
+      // execFile = require('child_process').execFile,
+      // pngquant = require('pngquant-bin');
 
 let port = 2000,
     // dirShort = '',
