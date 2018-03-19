@@ -5,7 +5,7 @@
   <title>Visual regresive testing</title>
   <style>
     body {
-      margin: 0;
+      margin: 0 20px;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     ul {
@@ -33,15 +33,13 @@
       </li>
     </ul>
   </div>
+  <script src="data.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     let app = new Vue({
       el: '#app',
       data: {
-        pages: [
-          'sm/index',
-          'md/index'
-        ]
+        pages: files
       }
     });
   </script>

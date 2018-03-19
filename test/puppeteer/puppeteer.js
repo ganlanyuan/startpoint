@@ -38,7 +38,8 @@ let port = 2000,
       open: false,
       notify: false,
       // logLevel: "silent",
-    };
+    },
+    arr = [];
 
 
 
@@ -78,12 +79,21 @@ if (process.env.var === 'save') {
 
 // FUNCTIONS
 function compareScreenshots () {
+  let promises = [];
   for (size in viewports) {
     for (let i = 0, l = files.length; i < l; i++) {
       let file = files[i];
-      compareScreenshot(file, size);
+      promises.push(compareScreenshot(file, size));
     }
   }
+
+  Promise.all(promises).then(function(values) {
+    console.log(arr);
+    fs.writeFile(__dirname + '/data.js', 'let files = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
+      if(err) { return console.log(err); }
+      console.log('data.js saved!');
+    }); 
+  });
 }
 
 function compareScreenshot(file, size) {
@@ -107,13 +117,13 @@ function compareScreenshot(file, size) {
       const numDiffPixels = pixelmatch(
           img1.data, img2.data, diff.data, img1.width, img1.height,
           {threshold: 0.1});
-      diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '/' + file + '.png'));
 
-      // The files should look the same.
       let symbol = numDiffPixels ? '✗' : '✓';
-      // if (file === files[0]) { symbol = size + '\n' + symbol; }
+      if (numDiffPixels) {
+        arr.push(size + '/' + file);
+        diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '/' + file + '.png'));
+      }
       console.log(symbol, size + '/' + file + '.html');
-      // expect(numDiffPixels, 'number of different pixels').equal(0);
       resolve();
     }
   });

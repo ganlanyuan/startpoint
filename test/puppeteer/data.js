@@ -1,0 +1,3 @@
+let files = [
+  "sm/article"
+]
