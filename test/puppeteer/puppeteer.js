@@ -3,7 +3,9 @@ const fs = require("fs"),
       PNG = require('pngjs').PNG,
       pixelmatch = require('pixelmatch'),
       browserSync = require("browser-sync").create(),
-      puppeteer = require('puppeteer');
+      puppeteer = require('puppeteer'),
+      imagemin = require('imagemin'),
+      imageminPngquant = require('imagemin-pngquant');
       // execFile = require('child_process').execFile,
       // pngquant = require('pngquant-bin');
 
@@ -45,34 +47,23 @@ let port = 2000,
 
 
 
-// gulp.task('compare', function () {
-if (process.env.var === 'compare') {
-  browserSync.init(serverOptions, function () {
-    // compare
+browserSync.init(serverOptions, function () {
+  if (process.env.var === 'compare') {
     checkReferenceExists();
-    checkDirectoryExists('new');
-    checkDirectoryExists('diff');
+    // checkDirectoryExists('new');
+    // checkDirectoryExists('diff');
 
     getScreenshots('new').then(function() {
       compareScreenshots();
     });
 
-    // browserSync.exit();
-  });
-}
-// });
-
-// gulp.task('save', function () {
-if (process.env.var === 'save') {
-  browserSync.init(serverOptions, function () {
-    // get reference
-    checkDirectoryExists('reference');
+  } else if (process.env.var === 'save') {
+    // checkDirectoryExists('reference');
     getScreenshots('reference');
 
-    // browserSync.exit();
-  });
-}
-// });
+  }
+  // browserSync.exit();
+});
 
 
 
@@ -151,15 +142,20 @@ async function getScreenshots (dir) {
     await page.setViewport(viewports[size]);
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      await page.goto('http://localhost:' + port + '/' + file + '.html');
+      await page.goto('http://localhost:' + port + '/' + file + '.html', {waitUntil: 'domcontentloaded'});
+      await page.screenshot({path: __dirname + '/temp/' + dir + '/' + size + '_' + file + '.png', fullPage: true});
       await console.log(' ', size + '_' + file + '.png');
-      await page.screenshot({path: __dirname + '/' + dir + '/' + size + '_' + file + '.png', fullPage: true});
     }
   }
 
   await browser.close();
   await console.log('  Screenshots saved!');
+  await imagemin([__dirname + '/temp/' + dir + '/*.png'], __dirname + '/' + dir, {use: [imageminPngquant()]}).then(() => {
+    console.log('Images optimized');
+  });
 }
+
+
 
 // https://stackoverflow.com/questions/31645738/how-to-create-full-path-with-nodes-fs-mkdirsync#40686853
 function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {}) {

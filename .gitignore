@@ -12,6 +12,8 @@
 /pptruser/
 /test/puppeteer/new/*.png
 /test/puppeteer/diff/*.png
+/test/puppeteer/temp/reference/*.png
+/test/puppeteer/temp/new/*.png
 
 # gemini
 /gemini/report/

@@ -1,3 +1,3 @@
 let files = [
-  "md_article"
+  "xlg_article"
 ];
