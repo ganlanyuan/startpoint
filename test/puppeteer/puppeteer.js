@@ -16,20 +16,25 @@ let port = 2000,
       'index',
       'article'
     ],
+    parts = [
+      '.page-header',
+      '.page-footer',
+      '.sec'
+    ],
     viewports = {
-      sm: {
+      A: {
         width: 320,
         height: 640
       },
-      md: {
+      B: {
         width: 768,
         height: 1024
       },
-      lg: {
+      C: {
         width: 1024,
         height: 768
       },
-      xlg: {
+      D: {
         width: 1400,
         height: 900
       }
@@ -40,7 +45,7 @@ let port = 2000,
       ghostMode: false,
       open: false,
       notify: false,
-      // logLevel: "silent",
+      logLevel: "silent",
     },
     arr = [];
 
@@ -82,14 +87,19 @@ function compareScreenshots () {
   }
 
   Promise.all(promises).then(function(values) {
+    arr.sort();
     fs.writeFile(__dirname + '/data.js', 'let files = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
       if(err) { return console.log(err); }
-      console.log('  data.js saved!');
+      if (arr.length) {
+        console.log('Some pages changed from last time\nhttp://localhost:2000/test/puppeteer');
+      } else {
+        console.log('No changes found!')
+      }
     }); 
   });
 }
 
-function compareScreenshot(file, size) {
+function compareScreenshot (file, size, isPart) {
   return new Promise((resolve, reject) => {
     const img1 = fs.createReadStream(__dirname + '/new/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
     const img2 = fs.createReadStream(__dirname + '/reference/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
@@ -104,16 +114,30 @@ function compareScreenshot(file, size) {
       // expect(img1.height, 'image heights are the same').equal(img2.height);
 
       // Do the visual diff.
-      const diff = new PNG({width: img1.width, height: img1.height});
-      const numDiffPixels = pixelmatch(
+      let diff = new PNG({width: img1.width, height: img1.height});
+      let numDiffPixels = pixelmatch(
           img1.data, img2.data, diff.data, img1.width, img1.height,
-          {threshold: 0.1});
+          {threshold: 0.1}),
+          symbol;
 
-      let symbol = numDiffPixels ? '✗' : '✓';
-      if (numDiffPixels) {
+      if (numDiffPixels > 1) {
+        symbol = '✗';
+
         arr.push(size + '_' + file);
         diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '_' + file + '.png'));
+
+        // compare elements
+        if (!isPart && parts && parts.length) {
+          for (let a = parts.length; a--;) {
+            try {
+              compareScreenshot(file + '_' + parts[a], size, true);
+            } catch (e) {}
+          }
+        }
+      } else {
+        symbol = '✓';
       }
+
       console.log(' ', symbol, size + '_' + file + '.html');
       resolve();
     }
@@ -140,19 +164,49 @@ async function getScreenshots (dir) {
   console.log('/' + dir);
   for (let size in viewports) {
     await page.setViewport(viewports[size]);
+
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      await page.goto('http://localhost:' + port + '/' + file + '.html', {waitUntil: 'domcontentloaded'});
-      await page.screenshot({path: __dirname + '/temp/' + dir + '/' + size + '_' + file + '.png', fullPage: true});
+      await page.goto('http://localhost:' + port + '/' + file + '.html', {waitUntil: 'load'});
+
+      // ignore elements
+      if (file === 'article') {
+        await page.$eval('iframe', iframe => {iframe.style.opacity = 0;});
+      }
+
+      // full page screenshot
+      await page.screenshot({path: __dirname + '/' + dir + '/' + size + '_' + file + '.png', fullPage: true});
       await console.log(' ', size + '_' + file + '.png');
+
+      // elements screenshots
+      if (parts && parts.length) {
+        for (let a = parts.length; a--;) {
+          let part = parts[a];
+          try {
+            let rect = await page.$eval(part, e => [e.offsetLeft, e.offsetTop, e.offsetWidth, e.offsetHeight] );
+            await page.screenshot({
+              path: __dirname + '/' + dir + '/' + size + '_' + file + '_' + part + '.png', 
+              clip: {
+                x : rect[0],
+                y : rect[1], 
+                width : rect[2], 
+                height : rect[3]
+              }
+            });
+            await console.log(' ', size + '_' + file + '_' + part + '.png');
+          } catch (e) {}
+        }
+      }
     }
   }
 
   await browser.close();
   await console.log('  Screenshots saved!');
-  await imagemin([__dirname + '/temp/' + dir + '/*.png'], __dirname + '/' + dir, {use: [imageminPngquant()]}).then(() => {
-    console.log('Images optimized');
-  });
+
+  // // minify screenshots
+  // await imagemin([__dirname + '/temp/' + dir + '/*.png'], __dirname + '/' + dir, {use: [imageminPngquant()]}).then(() => {
+  //   console.log('/' + dir + '\n', ' ', 'Images optimized');
+  // });
 }
 
 

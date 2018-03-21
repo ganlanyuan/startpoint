@@ -87,6 +87,7 @@
 
   {% include './header.njk' %}
 
+  <div class="sec">
   {# main #}
   {% block main %}
     {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
@@ -96,6 +97,7 @@
     <aside role="complementary">
     </aside>
   {% endblock %}
+  </div>
 
   {# page footer #}
   {% include "./footer.njk" %}

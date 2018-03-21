@@ -5,7 +5,7 @@
   <title>Visual regresive testing</title>
   <style>
     body {
-      margin: 0 20px;
+      margin: 0;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     ul {
@@ -14,6 +14,22 @@
       list-style: none;
     }
     img { max-width: 100%; height: auto; }
+    nav { position: sticky; top: 0; background: #fff; text-align: center; }
+    nav li { display: inline-block; margin: 6px 3px; }
+    nav a {
+      display: block;
+      padding: 5px 8px;
+      color: #000;
+      background: #eee;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background: pink;
+    }
+    .view li {
+      padding: 20px;
+      border-bottom: 50px solid #000;
+    }
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -22,8 +38,13 @@
 </head>
 <body>
   <div id="app">
+    <nav>
+      <ul>
+        <li v-for="page in pages"><a :href="'#' + page">{{ page }}</a></li>
+      </ul>
+    </nav>
     <ul class="view">
-      <li v-for="page in pages">
+      <li v-for="page in pages" :id="page">
         <h2>{{ page }}</h2>
         <div class="grid">
           <div><a :href="'reference/' + page + '.png'" target="_blank"><img :src="'reference/' + page + '.png'" alt="diff"></a></div>
