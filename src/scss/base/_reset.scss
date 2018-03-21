@@ -25,9 +25,6 @@ iframe { max-width: 100%; }
 // remove the white space under images
 figure img, a > img { vertical-align: bottom; }
 
-// prevent an image issue on IE 8
-@media \0screen { img { width: auto; } }
-
 // reset form styles
 label { cursor: pointer; }
 select { -webkit-appearance: none; }

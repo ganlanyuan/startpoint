@@ -1,0 +1,24 @@
+pages:
+- 'index'
+- 'article'
+
+parts:
+- '.page-header'
+- '.page-footer'
+- '.sec'
+
+viewports:
+  A:
+    width: 1400
+    height: 900
+  B:
+    width: 1024
+    height: 768
+  C:
+    width: 768
+    height: 1024
+  D:
+    width: 320
+    height: 640
+
+port: 2000

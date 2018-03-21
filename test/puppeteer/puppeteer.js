@@ -1,5 +1,6 @@
 const fs = require("fs"),
       path = require('path'),
+      yaml = require('js-yaml'),
       PNG = require('pngjs').PNG,
       pixelmatch = require('pixelmatch'),
       browserSync = require("browser-sync").create(),
@@ -9,37 +10,16 @@ const fs = require("fs"),
       // execFile = require('child_process').execFile,
       // pngquant = require('pngquant-bin');
 
-let port = 2000,
-    // dirShort = '',
-    dirShort = 'test/puppeteer/',
-    files = [
-      'index',
-      'article'
-    ],
-    parts = [
-      '.page-header',
-      '.page-footer',
-      '.sec'
-    ],
-    viewports = {
-      A: {
-        width: 320,
-        height: 640
-      },
-      B: {
-        width: 768,
-        height: 1024
-      },
-      C: {
-        width: 1024,
-        height: 768
-      },
-      D: {
-        width: 1400,
-        height: 900
-      }
-    },
-    serverOptions = {
+let config = {};
+try {
+  config = yaml.safeLoad(fs.readFileSync(__dirname + '/config.yml', 'utf8'));
+} catch (e) { console.log(e); }
+let pages = config.pages,
+    parts = config.parts,
+    viewports = config.viewports,
+    port = config.port;
+
+let serverOptions = {
       server: { baseDir: './'},
       port: port,
       ghostMode: false,
@@ -47,23 +27,20 @@ let port = 2000,
       notify: false,
       logLevel: "silent",
     },
-    arr = [];
+    arr = [],
+    promises = [];
 
 
 
 
 browserSync.init(serverOptions, function () {
   if (process.env.var === 'compare') {
-    checkReferenceExists();
-    // checkDirectoryExists('new');
-    // checkDirectoryExists('diff');
-
+    // checkReferenceExists();
     getScreenshots('new').then(function() {
       compareScreenshots();
     });
 
   } else if (process.env.var === 'save') {
-    // checkDirectoryExists('reference');
     getScreenshots('reference');
 
   }
@@ -77,7 +54,6 @@ browserSync.init(serverOptions, function () {
 
 // FUNCTIONS
 function compareScreenshots () {
-  let promises = [];
   console.log('Compare Screenshots:')
   for (size in viewports) {
     for (let i = 0, l = files.length; i < l; i++) {
@@ -101,8 +77,8 @@ function compareScreenshots () {
 
 function compareScreenshot (file, size, isPart) {
   return new Promise((resolve, reject) => {
-    const img1 = fs.createReadStream(__dirname + '/new/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
-    const img2 = fs.createReadStream(__dirname + '/reference/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
+    let img1 = fs.createReadStream(__dirname + '/new/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
+    let img2 = fs.createReadStream(__dirname + '/reference/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
 
     let filesRead = 0;
     function doneReading() {
@@ -130,8 +106,8 @@ function compareScreenshot (file, size, isPart) {
         if (!isPart && parts && parts.length) {
           for (let a = parts.length; a--;) {
             try {
-              compareScreenshot(file + '_' + parts[a], size, true);
-            } catch (e) {}
+              promises.push(compareScreenshot(file + '_' + parts[a], size, true));
+            } catch (e) { console.log(e); }
           }
         }
       } else {
@@ -142,19 +118,6 @@ function compareScreenshot (file, size, isPart) {
       resolve();
     }
   });
-}
-
-function checkReferenceExists () {
-  if (!fs.existsSync(__dirname + '/reference/sm_' + files[0] + '.png')) {
-    mkDirByPathSync('reference', {isRelativeToScript: true});
-    getScreenshots('reference');
-  }
-}
-
-function checkDirectoryExists (dir) {
-  if (!fs.existsSync(__dirname + '/' + dir)) {
-    mkDirByPathSync(dir, {isRelativeToScript: true});
-  }
 }
 
 async function getScreenshots (dir) {
@@ -210,24 +173,35 @@ async function getScreenshots (dir) {
 }
 
 
+// function checkReferenceExists () {
+//   if (!fs.existsSync(__dirname + '/reference/' + Object.keys(viewports)[0] + '_' + files[0] + '.png')) {
+//     mkDirByPathSync('reference', {isRelativeToScript: true});
+//     getScreenshots('reference');
+//   }
+// }
 
-// https://stackoverflow.com/questions/31645738/how-to-create-full-path-with-nodes-fs-mkdirsync#40686853
-function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {}) {
-  const sep = path.sep;
-  const initDir = path.isAbsolute(targetDir) ? sep : '';
-  const baseDir = isRelativeToScript ? __dirname : '.';
-
-  targetDir.split(sep).reduce((parentDir, childDir) => {
-    const curDir = path.resolve(baseDir, parentDir, childDir);
-    try {
-      fs.mkdirSync(curDir);
-      console.log(`Directory ${curDir} created!`);
-    } catch (err) {
-      if (err.code !== 'EEXIST') { throw err; }
-      // console.log(`Directory ${curDir} already exists!`);
-    }
-    return curDir;
-  }, initDir);
-}
+// function checkDirectoryExists (dir) {
+//   if (!fs.existsSync(__dirname + '/' + dir)) {
+//     mkDirByPathSync(dir, {isRelativeToScript: true});
+//   }
+// }
 
 
+// // https://stackoverflow.com/questions/31645738/how-to-create-full-path-with-nodes-fs-mkdirsync#40686853
+// function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {}) {
+//   const sep = path.sep;
+//   const initDir = path.isAbsolute(targetDir) ? sep : '';
+//   const baseDir = isRelativeToScript ? __dirname : '.';
+
+//   targetDir.split(sep).reduce((parentDir, childDir) => {
+//     const curDir = path.resolve(baseDir, parentDir, childDir);
+//     try {
+//       fs.mkdirSync(curDir);
+//       console.log(`Directory ${curDir} created!`);
+//     } catch (err) {
+//       if (err.code !== 'EEXIST') { throw err; }
+//       // console.log(`Directory ${curDir} already exists!`);
+//     }
+//     return curDir;
+//   }, initDir);
+// }
