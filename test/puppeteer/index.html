@@ -26,13 +26,23 @@
     nav a:hover {
       background: pink;
     }
-    .view li {
+    h2 { margin: 0; }
+    h2 a {
+      display: block;
       padding: 20px;
+      color: #000;
+      text-decoration: none;
+    }
+    h2 a:hover {
+      background: #f2f2f2;
+    }
+    .view li {
       border-bottom: 50px solid #000;
     }
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+      padding: 20px;
     }
   </style>
 </head>
@@ -45,7 +55,7 @@
     </nav>
     <ul class="view">
       <li v-for="page in pages" :id="page">
-        <h2>{{ page }}</h2>
+        <h2><a :href="page | url">{{ page }}</a></h2>
         <div class="grid">
           <div><a :href="'reference/' + page + '.png'" target="_blank"><img :src="'reference/' + page + '.png'" alt="diff"></a></div>
           <div><a :href="'new/' + page + '.png'" target="_blank"><img :src="'new/' + page + '.png'" alt="diff"></a></div>
@@ -61,6 +71,20 @@
       el: '#app',
       data: {
         pages: pages
+      },
+      filters: {
+        url: function (val) {
+          if (!val) { return ''; }
+          var re1 = /_\w+_/,
+              re2 = /_\w+/,
+              result;
+          if (re1.exec(val)) {
+            result = re1.exec(val);
+          } else {
+            result = re2.exec(val);
+          }
+          return '/' + result[0].replace(/_/g, '') + '.html';
+        }
       }
     });
   </script>

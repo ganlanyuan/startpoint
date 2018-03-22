@@ -1,10 +1,10 @@
 let pages = [
-  "A_index",
-  "A_index_.sec",
-  "B_index",
-  "B_index_.sec",
-  "C_index",
-  "C_index_.sec",
-  "D_index",
-  "D_index_.sec"
+  "lg_index",
+  "lg_index_.sec",
+  "md_index",
+  "md_index_.sec",
+  "sm_index",
+  "sm_index_.sec",
+  "xlg_index",
+  "xlg_index_.sec"
 ];

@@ -3,12 +3,11 @@ const fs = require("fs"),
       yaml = require('js-yaml'),
       PNG = require('pngjs').PNG,
       pixelmatch = require('pixelmatch'),
+      { imgDiff } = require('img-diff-js'),
       browserSync = require("browser-sync").create(),
-      puppeteer = require('puppeteer'),
-      imagemin = require('imagemin'),
-      imageminPngquant = require('imagemin-pngquant');
-      // execFile = require('child_process').execFile,
-      // pngquant = require('pngquant-bin');
+      puppeteer = require('puppeteer');
+      // imagemin = require('imagemin'),
+      // imageminPngquant = require('imagemin-pngquant');
 
 let config = {};
 try {
@@ -66,7 +65,7 @@ function compareScreenshots () {
     fs.writeFile(__dirname + '/data.js', 'let pages = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
       if(err) { return console.log(err); }
       if (arr.length) {
-        console.log('Some pages changed from last time\nhttp://localhost:2000/test/puppeteer');
+        console.log('Some pages changed from last time\nhttp://localhost:' + port + '/test/puppeteer');
       } else {
         console.log('No changes found!')
       }
@@ -75,39 +74,17 @@ function compareScreenshots () {
 }
 
 function compareScreenshot (file, size, isPart) {
-  return new Promise((resolve, reject) => {
-    let img1 = fs.createReadStream(__dirname + '/new/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
-    let img2 = fs.createReadStream(__dirname + '/reference/' + size + '_' + file + '.png').pipe(new PNG()).on('parsed', doneReading);
-
-    let filesRead = 0;
-    function doneReading() {
-      // Wait until both files are read.
-      if (++filesRead < 2) return;
-
-      let equal, symbol;
-      if (img1.width === img2.width && img1.height === img2.height) {
-        // Do the visual diff.
-        let diff = new PNG({width: img1.width, height: img1.height});
-        let numDiffPixels = pixelmatch(
-            img1.data, img2.data, diff.data, img1.width, img1.height,
-            {threshold: 0.1});
-
-        if (numDiffPixels > 1) {
-          equal = false;
-
-          diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '_' + file + '.png'));
-
-        } else {
-          equal = true;
-        }
-
-      } else {
-        equal = false;
+    return imgDiff({
+      actualFilename: __dirname + '/reference/' + size + '_' + file + '.png',
+      expectedFilename: __dirname + '/new/' + size + '_' + file + '.png',
+      diffFilename: __dirname + '/diff/' + size + '_' + file + '.png',
+      generateOnlyDiffFile: true,
+      options: {
+        threshold: 0.1
       }
-
-      if (equal) {
-        symbol = '✓';
-      } else {
+    }).then(result => {
+      let symbol;
+      if (result.diffCount > 1) {
         symbol = '✗';
         arr.push(size + '_' + file);
 
@@ -119,12 +96,12 @@ function compareScreenshot (file, size, isPart) {
             } catch (e) { console.log(e); }
           }
         }
+      } else {
+        symbol = '✓';
       }
 
       console.log(' ', symbol, size + '_' + file + '.html');
-      resolve();
-    }
-  });
+    });
 }
 
 async function getScreenshots (dir) {

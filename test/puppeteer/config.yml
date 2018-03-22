@@ -8,16 +8,16 @@ parts:
 - '.sec'
 
 viewports:
-  A:
+  xlg:
     width: 1400
     height: 900
-  B:
+  lg:
     width: 1024
     height: 768
-  C:
+  md:
     width: 768
     height: 1024
-  D:
+  sm:
     width: 320
     height: 640
 
