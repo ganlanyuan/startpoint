@@ -42,7 +42,6 @@ browserSync.init(serverOptions, function () {
 
   } else if (process.env.var === 'save') {
     getScreenshots('reference');
-
   }
   // browserSync.exit();
 });
@@ -56,15 +55,15 @@ browserSync.init(serverOptions, function () {
 function compareScreenshots () {
   console.log('Compare Screenshots:')
   for (size in viewports) {
-    for (let i = 0, l = files.length; i < l; i++) {
-      let file = files[i];
+    for (let i = 0, l = pages.length; i < l; i++) {
+      let file = pages[i];
       promises.push(compareScreenshot(file, size));
     }
   }
 
   Promise.all(promises).then(function(values) {
     arr.sort();
-    fs.writeFile(__dirname + '/data.js', 'let files = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
+    fs.writeFile(__dirname + '/data.js', 'let pages = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
       if(err) { return console.log(err); }
       if (arr.length) {
         console.log('Some pages changed from last time\nhttp://localhost:2000/test/puppeteer');
@@ -85,24 +84,34 @@ function compareScreenshot (file, size, isPart) {
       // Wait until both files are read.
       if (++filesRead < 2) return;
 
-      // The files should be the same size.
-      // expect(img1.width, 'image widths are the same').equal(img2.width);
-      // expect(img1.height, 'image heights are the same').equal(img2.height);
+      let equal, symbol;
+      if (img1.width === img2.width && img1.height === img2.height) {
+        // Do the visual diff.
+        let diff = new PNG({width: img1.width, height: img1.height});
+        let numDiffPixels = pixelmatch(
+            img1.data, img2.data, diff.data, img1.width, img1.height,
+            {threshold: 0.1});
 
-      // Do the visual diff.
-      let diff = new PNG({width: img1.width, height: img1.height});
-      let numDiffPixels = pixelmatch(
-          img1.data, img2.data, diff.data, img1.width, img1.height,
-          {threshold: 0.1}),
-          symbol;
+        if (numDiffPixels > 1) {
+          equal = false;
 
-      if (numDiffPixels > 1) {
+          diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '_' + file + '.png'));
+
+        } else {
+          equal = true;
+        }
+
+      } else {
+        equal = false;
+      }
+
+      if (equal) {
+        symbol = '✓';
+      } else {
         symbol = '✗';
-
         arr.push(size + '_' + file);
-        diff.pack().pipe(fs.createWriteStream(__dirname + '/diff/' + size + '_' + file + '.png'));
 
-        // compare elements
+        // compare parts
         if (!isPart && parts && parts.length) {
           for (let a = parts.length; a--;) {
             try {
@@ -110,8 +119,6 @@ function compareScreenshot (file, size, isPart) {
             } catch (e) { console.log(e); }
           }
         }
-      } else {
-        symbol = '✓';
       }
 
       console.log(' ', symbol, size + '_' + file + '.html');
@@ -123,13 +130,14 @@ function compareScreenshot (file, size, isPart) {
 async function getScreenshots (dir) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+  let silent = dir === 'reference';
 
-  console.log('/' + dir);
+  if (!silent) { console.log('/' + dir); }
   for (let size in viewports) {
     await page.setViewport(viewports[size]);
 
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
+    for (let i = 0; i < pages.length; i++) {
+      let file = pages[i];
       await page.goto('http://localhost:' + port + '/' + file + '.html', {waitUntil: 'load'});
 
       // ignore elements
@@ -139,12 +147,13 @@ async function getScreenshots (dir) {
 
       // full page screenshot
       await page.screenshot({path: __dirname + '/' + dir + '/' + size + '_' + file + '.png', fullPage: true});
-      await console.log(' ', size + '_' + file + '.png');
+      if (!silent) { await console.log(' ', size + '_' + file + '.png'); }
 
       // elements screenshots
       if (parts && parts.length) {
         for (let a = parts.length; a--;) {
           let part = parts[a];
+
           try {
             let rect = await page.$eval(part, e => [e.offsetLeft, e.offsetTop, e.offsetWidth, e.offsetHeight] );
             await page.screenshot({
@@ -156,8 +165,8 @@ async function getScreenshots (dir) {
                 height : rect[3]
               }
             });
-            await console.log(' ', size + '_' + file + '_' + part + '.png');
-          } catch (e) {}
+            if (!silent) { await console.log(' ', size + '_' + file + '_' + part + '.png'); }
+          } catch (e) { console.log(e); }
         }
       }
     }
@@ -174,7 +183,7 @@ async function getScreenshots (dir) {
 
 
 // function checkReferenceExists () {
-//   if (!fs.existsSync(__dirname + '/reference/' + Object.keys(viewports)[0] + '_' + files[0] + '.png')) {
+//   if (!fs.existsSync(__dirname + '/reference/' + Object.keys(viewports)[0] + '_' + pages[0] + '.png')) {
 //     mkDirByPathSync('reference', {isRelativeToScript: true});
 //     getScreenshots('reference');
 //   }
