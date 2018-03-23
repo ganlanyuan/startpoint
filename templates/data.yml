@@ -1,0 +1,281 @@
+# http://nodeca.github.io/js-yaml/
+# https://yaml-online-parser.appspot.com/
+
+# images
+I:
+- http://images.christianpost.com/full/89538/south-sudan.jpg
+- http://images.christianpost.com/blog/full/32053/clinton-5.jpg
+- http://images.christianpost.com/full/97345/hillary-clinton.jpg
+- http://images.christianpost.com/full/98398/pokemon-go-pokemon.jpg
+- http://images.christianpost.com/full/52516/student-classroom.jpg
+- http://images.christianpost.com/blog/full/32023/hoye-walter.jpg
+- http://images.christianpost.com/full/96571/bathroom.jpg
+- http://images.christianpost.com/full/98415/vanished-leftbehind-next-generation.jpg
+- http://images.christianpost.com/full/98390/alton-sterling-protest.jpg
+- http://images.christianpost.com/full/97777/benham-brothers.jpg
+- http://images.christianpost.com/full/89113/bikers-with-boxes.png
+- http://images.christianpost.com/full/98273/ark-encounter.jpg
+- http://images.christianpost.com/full/93002/perry-noble.png
+- http://images.christianpost.com/blog/full/30222/road-470798-640.jpg
+- http://images.christianpost.com/blog/full/29884/number-437925-640.jpg
+- http://images.christianpost.com/blog/full/29504/god-world-in-his-hands2.jpg
+- http://images.christianpost.com/full/52297/rick-warren.jpg
+- http://images.christianpost.com/full/73134/clayton-king.jpg
+- http://images.christianpost.com/full/82125/brighton-presbyterian-church.jpg
+- http://images.christianpost.com/full/98334/newspring-church-perry-noble.jpg
+- http://images.christianpost.com/full/85573/first-presbyterian-church.jpg
+- http://images.christianpost.com/full/79745/louie-giglio.jpg
+- http://images.christianpost.com/full/98317/hillsong-united.jpg
+- http://images.christianpost.com/blog/full/32068/angelina-jolie.jpg
+- http://images.christianpost.com/full/98372/lisa-arnold.jpg
+- http://images.christianpost.com/full/82726/lecrae-anomaly-2-0-tour.jpg
+- http://images.christianpost.com/full/80757/lecrae.jpg
+- http://images.christianpost.com/full/86034/benjamin-watsons-book-under-our-skin.jpg
+- http://images.christianpost.com/full/98354/the-fight-within.jpg
+- http://images.christianpost.com/full/98385/theresa-may.jpg
+- http://images.christianpost.com/full/91036/iraqi-christians.jpg
+- http://images.christianpost.com/full/52665/global-warming-climate-change.jpg
+- http://images.christianpost.com/full/95523/iranian-migrants.jpg
+- http://images.christianpost.com/full/90608/isis.jpg
+- http://images.christianpost.com/full/98366/saeed-abedini.jpg
+- http://images.christianpost.com/full/76603/u-s-president-barack-obama-and-u-s-secretary-of-state-john-kerry.jpg
+- http://images.christianpost.com/full/98215/bangladesh-terror.jpg
+- http://images.christianpost.com/full/97389/egyptair.jpg
+- http://images.christianpost.com/full/97773/big-daddy-weave.jpg
+- http://images.christianpost.com/blog/full/32059/poly-family.jpg
+- http://images.christianpost.com/blog/full/32062/trish-donohue-pk.jpg
+- http://images.christianpost.com/blog/full/32057/food-yum.jpg
+- http://images.christianpost.com/full/84445/southern-baptist-convention.jpg
+- http://images.christianpost.com/full/97943/vatican.jpg
+- http://images.christianpost.com/full/76466/eric-metaxas.jpg
+- http://images.christianpost.com/full/98217/baghdad-iraq-terror.jpg
+- http://images.christianpost.com/blog/full/32003/maryam.jpg
+- http://images.christianpost.com/blog/full/31986/tad-wallpaper.jpg
+- http://images.christianpost.com/blog/full/32001/romance-novels-are-dangerous.jpg
+- http://images.christianpost.com/full/98188/jason-sheats-madison-taylor.jpg
+- http://images.christianpost.com/full/52516/student-classroom.jpg
+- http://images.christianpost.com/full/97326/barack-obama.jpg
+- http://images.christianpost.com/full/96571/bathroom.jpg
+- http://images.christianpost.com/full/97895/franklin-graham.jpg
+- http://images.christianpost.com/full/92266/kevin-sorbo.jpg
+- http://images.christianpost.com/full/84788/fourth-of-july.jpg
+- http://images.christianpost.com/full/97868/ronnie-floyd-j-d-greear-steve-gaines.jpg
+- http://images.christianpost.com/blog/full/31228/fotolia-99007211-s.jpg
+- http://images.christianpost.com/blog/full/32006/pakistan-boy-stacking-bricks.jpg
+- http://images.christianpost.com/blog/full/32002/couple-168191-960-720.jpg
+- http://images.christianpost.com/full/98184/muslims-prayer.jpg
+- http://images.christianpost.com/full/95327/rick-warren.jpg
+- http://images.christianpost.com/full/88585/the-rev-billy-graham.jpg
+- http://images.christianpost.com/full/98111/purpose-driven-conference.png
+- http://images.christianpost.com/full/92264/john-piper.jpg
+- http://images.christianpost.com/full/52434/tom-meyer.jpg
+- http://images.christianpost.com/full/97773/big-daddy-weave.jpg
+- http://images.christianpost.com/blog/full/31092/lebron-james-smiling.jpg
+- http://images.christianpost.com/full/51400/casino.jpg
+- http://images.christianpost.com/full/98092/jewelry.jpg
+- http://images.christianpost.com/full/97449/charlotte-hornets-guard-jeremy-lin.jpg
+- http://images.christianpost.com/full/98150/patterns-of-evidence.jpg
+- http://images.christianpost.com/full/98142/pat-summitt.jpg
+- http://images.christianpost.com/full/98166/sadie-robertson.jpg
+- http://images.christianpost.com/full/80067/david-and-tamela-mann.png
+- http://images.christianpost.com/full/98215/bangladesh-terror.jpg
+- http://images.christianpost.com/full/74974/iraq.jpg
+- http://images.christianpost.com/full/97000/tornado.jpg
+- http://images.christianpost.com/blog/full/31937/refugees.jpg
+- http://images.christianpost.com/full/98180/christian-women-in-qaa.jpg
+- http://images.christianpost.com/full/82720/india.jpg
+- http://images.christianpost.com/full/90971/canon-andrew-white.jpg
+- http://images.christianpost.com/full/80500/canada.jpg
+- http://images.christianpost.com/full/98085/uganda-christian.jpg
+- http://images.christianpost.com/full/98198/star-swain.png
+- http://images.christianpost.com/blog/full/31955/kids.jpg
+- http://images.christianpost.com/blog/full/31957/yes.jpg
+- http://images.christianpost.com/full/96333/teenage-girls.jpg
+- http://images.christianpost.com/full/97943/vatican.jpg
+- http://images.christianpost.com/full/76466/eric-metaxas.jpg
+- http://images.christianpost.com/full/95471/answering-jihad-nabeel-qureshi.jpg
+- http://images.christianpost.com/full/98206/candace-cameron-bure.jpg
+- http://images.christianpost.com/full/92457/in-god-we-trust.jpg
+- http://images.christianpost.com/full/70040/map-of-church-attendance.png
+- http://images.christianpost.com/full/98218/russia-church-vladimir-putin.jpg
+- http://images.christianpost.com/full/96457/pakistani-christians.jpg
+- http://images.christianpost.com/full/94125/kanye-west.jpg
+- http://images.christianpost.com/full/96221/target.jpg
+- http://images.christianpost.com/full/98172/palestinian-stabbing-attack.jpg
+- http://images.christianpost.com/full/98197/isis-beheading-video.jpg
+- http://images.christianpost.com/full/80968/egyptian-coptic-christians.jpg
+- http://images.christianpost.com/full/98185/taylor-sheats-juan-sebastian-lugo-christy-sheats-madison-sheats.jpg
+- http://images.christianpost.com/full/98165/ash-carter.jpg
+- http://images.christianpost.com/full/62227/billy-graham.jpg
+- http://images.christianpost.com/full/86419/egyptian-coptic-christian.jpg
+- http://images.christianpost.com/full/98162/oak-ce-primary-school.jpg
+- http://images.christianpost.com/full/41118/paula.jpg
+- http://images.christianpost.com/full/98157/jason-taylor-madison-christy-sheats.jpg
+- http://images.christianpost.com/full/80309/gay-pride-parade.jpg
+- http://images.christianpost.com/full/84958/u-s-secretary-of-state-john-kerry.jpg
+- http://images.christianpost.com/full/68764/on-receiving-gods-love.jpg
+- http://images.christianpost.com/full/98140/istanbul-ataturk-airport.jpg
+- http://images.christianpost.com/full/98097/brexit.jpg
+- http://images.christianpost.com/full/98072/lebanon.jpg
+- http://images.christianpost.com/full/98041/boris-johnson.jpg
+- http://images.christianpost.com/full/98046/brexit.jpg
+- http://images.christianpost.com/full/97663/maryam-nasim-naghash-zargaran.jpg
+- http://images.christianpost.com/full/97985/nigel-farage.jpg
+- http://images.christianpost.com/full/45091/egypt-church-fire.jpg
+- http://images.christianpost.com/full/97879/marguerite-barankitse.jpg
+- http://images.christianpost.com/full/69444/kenneth-bae.jpg
+- http://images.christianpost.com/full/82969/isis.jpg
+- http://images.christianpost.com/full/81633/assyrian-christians.jpg
+- http://images.christianpost.com/full/97906/world-refugee-day.jpg
+- http://images.christianpost.com/full/97898/fallujah-iraq.jpg
+- http://images.christianpost.com/full/90438/syrian-refugees.jpg
+- http://images.christianpost.com/full/95366/pakistan.jpg
+- http://images.christianpost.com/full/88250/nepalese-christians.jpg
+- http://images.christianpost.com/full/86420/egyptian-coptic-christian.jpg
+- http://images.christianpost.com/full/56153/12-week-old-embryo-model.jpg
+- http://images.christianpost.com/full/97896/surgery.jpg
+- http://images.christianpost.com/full/76549/chinese-church.jpg
+- http://images.christianpost.com/full/86118/greek-orthodox.jpg
+- http://images.christianpost.com/full/98085/uganda-christian.jpg
+- http://images.christianpost.com/full/73594/isis.jpg
+- http://images.christianpost.com/full/98100/pakistan-transgender.jpg
+- http://images.christianpost.com/full/91825/christian-syrian-refugeess.jpg
+- http://images.christianpost.com/full/98048/falluja.jpg
+- http://images.christianpost.com/full/98007/brexit.jpg
+- http://images.christianpost.com/full/97957/nadia-murad-basee.jpg
+- http://images.christianpost.com/full/95164/turkey-archaeology.jpg
+- http://images.christianpost.com/full/70070/orthodox-jewish-man.jpg
+- http://images.christianpost.com/full/96935/mark-zuckerberg.jpg
+- http://images.christianpost.com/full/64073/sun-ho-and-kong-hee.jpg
+- http://images.christianpost.com/full/97879/marguerite-barankitse.jpg
+- http://images.christianpost.com/full/73912/muslims-indians-indian-muslims-ramadan.jpg
+- http://images.christianpost.com/full/92266/kevin-sorbo.jpg
+- http://images.christianpost.com/full/98163/united-nations.jpg
+- http://images.christianpost.com/full/80500/canada.jpg
+- http://images.christianpost.com/full/80874/mississippi-state-capitol-in-jackson.jpg
+- http://images.christianpost.com/full/84958/u-s-secretary-of-state-john-kerry.jpg
+- http://images.christianpost.com/full/70003/patricia-heaton.jpg
+- http://images.christianpost.com/full/59596/pharmacy.jp
+
+
+
+
+# headings
+H:
+- What Are Atheists So Afraid Of?
+- 5 Church Types That Must Change or Die
+- Orlando Shooting Reminds Christians to Embody the Love of Christ
+- To LGBT Americans Who Blame Christians for the Orlando Massacre
+- Don't Blame United Methodists for the Terror in Orlando
+- Censorship Is More Dangerous Than Hate Speech
+- Christians':' Don't Say the Gays in Orlando 'Got What They Deserved'
+- Right and Wrong Reactions to the Tragic Massacre in Orlando
+- People With Disabilities Aren't Better Off Dead
+- Halfway Christians':' The World Needs More From You
+- What Made the 2016 Southern Baptist Meeting Historic
+- Ronnie Floyd's 2016 Presidential Address to the SBC':' The Stakes Are High
+- NeverTrump NeverHillary':' Why I'm Content to Vote for Neither
+- Muhammed Ali and Jesus':' How to Be the Greatest of All Time
+- Evangelism That Drives People Away':' Are You a 'Beast Mode' Christian?
+- Profane Clinton vs. Racist Trump':' What's an African-American Evangelical to Do?
+- 12 Important Things to Know About Angels
+- What If Everything We Call 'Natural' Is Actually 'Technological'?
+- Dear Worship Leaders':' Please Forgive Me!
+- SBC Votes Today on Whether Millennial Reformed Theology Represents the Future
+- The Benefits of Being Right With God
+- Is Religion Going Extinct?
+- Is Your Gospel Presentation CLEAR? Take This Test to Find Out
+- Can the Pope Bring Revival?
+- 9 Distractions That Shouldn't Happen Right Before a Sermon
+- The Faith of Christopher Hitchens
+- Gary Chapman's Faith-Based '5 Love Languages' Praised by Time Magazine
+- How to Stump a Liberal':' Are Sex Chromosomes Real?
+- Playing God With Human-Animal Hybrids
+- If Shaq Were Transgender, Could He Play in the WNBA?
+- Ask Chuck':' 5 Bible Tips for Writing Your Resume
+- Practicing Narrow-Minded, Open-Hearted, Love-Drenched Intolerance
+- Is Syria's Current Unraveling Tied to Biblical Prophecy?
+- Two Christians Who Changed the World You've Probably Never Heard Of
+- Innocent Christians, Muslims and Yazidis Trapped in Fallujah Need Our Help
+- Green Bible':' Is Climate Change Worse Than Hell?
+- White House Appointment Has Links to Muslim Brotherhood
+- Video Gives Advice to Christian Parents of Gay Children
+- As Muslims Pray and Fast During Ramadan, ‘Man in White’ Appears in Dreams
+- Southern Baptists Vote to Support Refugee Resettlement After Trump Says to Ban All Muslim Immigration
+- Mandatory Gender Education
+- Election Dysfunction
+- Noted Physicist Says String Theory Suggests We’re All Living in God’s Matrix
+- Matt and Melissa Graves, Parents of 2-Y-O Boy Killed by Alligator at Disney Resort to Hold Special Service
+- Robert Jeffress':' Obama Would Be Criticizing Christians If a Conservative Carried Out Orlando Massacre
+- Big Daddy Weave Bassist Jason Weaver Able to Get Out of Bed After Feet Amputation
+- Orlando Megachurch Pastor Joel Hunter Says He Will 'Examine His Heart' After Gay Club Shooting
+- Murdered Christian Voice Contestant Christina Grimmie's Funeral Set for Friday
+- The Most Surprising Thing About Apostle Paul's Ministry
+- 10 Things You Will Never Regret as a Christian
+- Nepal':' Hindu Priest Doubted Jesus, Until He Showed Up in a Powerful Way
+- Pastor Resigns From Evangelical Church Over Biblical Position on Homosexuality
+- Black Pastor at So. Baptist Convention':' Racism Is a Sin Problem and American Churches Are Guilty
+- Pope Francis Meets With Evangelical, Pentecostal Leaders in John 17 Spirit (Interview)
+- Jefferson Bethke':' 4 Tips for Being the Best Dad You Can Be
+- Billy Graham':' Debt Can Be a Sign of Deeper Spiritual Problem
+- Are Parents Effective at Addressing Media Habits
+- Jewelry Trends Throughout History
+- Does US Consider Sports Betting and Gambling Legitimate?
+- Golden State Warriors, Cleveland Cavaliers Pray Together at NBA Final
+
+
+
+
+# paragraphs
+P:
+- "They're not friendly enough. There have been far too many times I've walked through the foyer of a church and NOT been greeted or said hello to or helped. First impressions matter."
+- "Christianity could well use a revival in these days of worldwide apostasy and no one would discourage the move of God's Spirit, but it is far more likely that the church may be concentrated rather than expanded in the next few years."
+- "I'll be honest with you: I can be quick to say, \"That person needs Jesus.\" Truthfully, I need Jesus just as much (if not more sometimes) than when I make unhealthy comments like that. Recently, I've come to realize that instead of constantly praying for revival \"in other people\" I need to first be praying for revival within myself."
+- "What explains Billy Graham's humility and integrity? Here was his greatest fear ..."
+- "I firmly believe there is a trend being established in the Western world. It's subtle in nature but if you are carefully watching what is going on, you will discern that the tide of public opinion is rapidly turning against true Bible-believing Christians. It is time for followers of Jesus to get ready for persecution in the West."
+- "We all know Abraham—an imperfect man, but one of unfathomable faith as he obediently put his son Isaac on the altar in Genesis 22."
+- "As children, we are \"members of the household of God\" who \"ought to behave in the household of God\" as He prescribes."
+- "We all inherently feel our work should have meaning beyond earning a living — be about something bigger than ourselves. We want a sense that even the tedium in our jobs serves a purpose."
+- "\"It would seem that Our Lord finds our desires not too strong, but too weak.\""
+- "Many pastors make praying for the lost a priority, of course."
+- "Everyone who has been through elementary school has been asked the basic question, \"What do you want to be when you grow up?\" When we ask that question, we are teaching children that your job is an important part of your identity. But how much help do we really give kids in figuring out why vocation is important?"
+- "Washington State has legalized the commercial trade in babies. Think I'm kidding?"
+- "The missionary [is] often caricatured as standing under a palm tree, wearing a pith helmet and declaiming the gospel to a group of ill-clad \"natives\" sitting respectfully around him on the ground."
+- "Tucked away within the former abbey of Saint-Germain-des-Prés in the upscale Parisian neighborhood of the same name is an elaborate monument that is obviously regal in nature."
+- "For the past two years, I have been monitoring the comments and challenges mentioned by church leaders. I am attempting to answer the question: What is hindering many of our churches from achieving health and vitality?"
+- "The famed astrophysicist, who struggled for most of his life with ALS, left the shackles of his withered body on March 14th, his soul launched into a Christ-less eternity. He had a huge impact as a theoretical physicist, cosmologist, and author. While he made references to God, he remained a staunch atheist to the end."
+- "It is right and good for children to grow up, individuate, and live independently, semi-autonomous from their parents. But when taken to post-modern extremes, autonomy produces individuals who have come to believe that the world literally revolves around them."
+- "Stephen Hawking didn't stay in his lane. He was a scientist, but in each of his books and nearly all of his media appearances, he ventured into philosophy, masking metaphysical observations and proclamations in language of scientific certainty."
+- "Like most leaders, Senator Roger Wicker is astounded that the Navy is even considering letting someone who doesn't believe in God join the chaplaincy. Three years ago, the idea was so absurd that even Obama's military attorneys went to court to stop it."
+- "Freedom is a very spiritual thing. It's a part of our being made in the glorious image of our Maker. Nevertheless, with the gift of liberty there also comes danger."
+- "This issue is personal to both of us. We write, respectively, as the president of The Christian and Missionary Alliance, an evangelical denomination headquartered in Colorado Springs, Colorado, and a Dreamer whose church, The Crossing Church, is part of the denomination."
+- "Should pregnancy care centers be forced to advertise abortions? A California law was squarely aimed at only one kind of facility: pro-life pregnancy centers. California's attempt to muzzle a message it disagrees with couldn't be plainer."
+- "People are fleeing the institutional church and there should be no question as to why this exodus is happening."
+- "Today, March 21, 2018, is \"World Down Syndrome Day\" where the international community recognizes and expresses appreciation for the millions of our fellow human beings who have Down syndrome."
+- "I will never get tired of telling you about the latest archaeological find that unearths living proof of the Bible's history."
+- "Castigating the kids of Parkland, including the hundreds and thousands of others who identify closely with them and are as vulnerable to gun violence as they are—and in many cases even more so—is to do the diametric opposite of what Jesus did on the day he called the children to himself."
+- "Jim Carrey's now viral caricatures of the White House Press Secretary and then the President are seen by some as political satire and by others as sacrilege."
+- "The young man felt conflicted. Filling in as the leader of a monthly prayer session, he wondered how bold to be when asking God specifically for healing."
+- "Immigration and asylum are tough issues, and there is a lot of disagreement. But there are some things that all Christians should agree on."
+- "Christian blasphemy victim Asia Bibi, who sits on Pakistan's death row, is rejoicing because authorities have allowed her to keep a rosary given to her from Pope Francis."
+- "Stephen Hawking, one of the world's most renowned physicists who died at 76 last week, will be interred in one of the holiest sites of the Church of England later this year."
+- "Pope Francis has implored Catholics to not treat a crucifix necklace as merely a fashion accessory, but rather embrace its spiritual significance."
+- "A controversial Malawian self-professed prophet, who is followed by millions and claims to be able to walk on air and raise the dead, is scheduled to lead a major prophetic event in California next month that promises to deliver \"miracles.\""
+- "Seven Christians were injured this Sunday in the Punjab province of Pakistan after a group of enraged Muslim men attacked and beat worshipers with bricks and even \"opened fire\" on them as they were leaving their worship service."
+- "The Turkish government has officially set a date for the trial of American Pastor Andrew Brunson, who may face up to 35 years in prison on charges of espionage and terrorism."
+- "The movie \"I Can Only Imagine\" hit theaters last weekend and became the top selling independent film at the boxoffice, now for a second week in a row the faith-based film also snags the No. 1 spot on digital ticketing sites."
+- "Comedian John Crist is one of the leading millennials bringing humor to the Christian community with countless viral videos. He recently opened up about why he often pokes fun at the church culture in his routines."
+- "Football, America's national pastime and most-lucrative professional sport, is \"in conflict with God's law and character\" because of the damage it inflicts on those who play the game, says theologian Dan Doriani who thinks the game should be retired."
+- "\"Mary Magdalene,\" a new film based on the biblical figure of the same name, was released in the U.K. Friday and reviewers describe it as a \"stretched,\" \"feminist revision\" of the biblical account."
+- "\"This Is Us\" actress Chrissy Metz says she's honored to be a part of the upcoming movie adaptation of Joyce Smith's best-selling book, \"The Impossible: The Miraculous Story of a Mother's Faith and Her Child's Resurrection.\""
+- "Hollywood actor Jim Caviezel is gearing up for the release of his new film, \"Paul, Apostle of Christ,\" and shared that before filming the Bible epic he prayed over his co-star James Faulkner."
+- "Of all the theological squabbles that have plagued evangelical Christianity over the years, especially in the West, a particularly profound division centers on the power of the Holy Spirit and the manner in which He is at work today."
+- "An Amillennial, Calvinistic pastor of a church in Oklahoma believes affirming the inerrancy of the Bible is as critical today as it has ever been, and has addressed 10 common objections."
+- "A Baptist missionary couple from Missouri, who gave their lives to plant churches and spread the Gospel across Africa, died last week in a car accident in the Democratic Republic of Congo, the Southern Baptist Convention's International Mission Board announced."
+- "Notable apologist and author Alex McFarland's latest Truth for a New Generation conference will have a focus on saving the United States and its constitutional rights."
+- "A new children's book created by second lady Karen Pence and her daughter, Charlotte, details a day in the life of the vice president told from the perspective of their pet rabbit, Marlon Bundo."
+- "Bill Voge, the prominent Christian chair of Latham & Watkins, one of the world's largest law firms by revenue, resigned from his post this week after admitting to exchanging \"sinful\" messages with a married woman he never physically met."
+- "Although Austin bombing suspect Mark Anthony Conditt left a 25-minute confession on a cellphone, authorities say his motive for the bombings remains unknown."
+- "A university instructor, who has been conducting research on church attendance in America, has found that people who become born-again Christians do not start going to services significantly more often than before."
+- "Latinos in America continue rising as a share of the overall population in the United States, but some Christian ministries are warning that only around 10 percent are born-again believers as a majority is becoming more secular."
+- "The U.S. Navy turned down the application of an atheist chaplain to serve in the Navy Chaplain Corps. The move comes after 43 members of Congress signed a letter warning that the very definition of what it means to be a chaplain is at stake."

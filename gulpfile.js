@@ -3,6 +3,7 @@ const packages = require('/www/package.json');
 const $ = require('gulp-load-plugins')({ config: packages });
 
 const browserSync = require('browser-sync').create();
+const yaml = require('js-yaml');
 const autoprefixer = require('autoprefixer');
 const w3cHtml = require('@ganlanyuan/w3cjs');
 const amphtmlValidator = require('amphtml-validator');
@@ -48,11 +49,10 @@ gulp.task('build', [
   // 'cssValidate',
 ]);
 
-
 // markup
 gulp.task('markup', () => {
-  let data = requireUncached('./' + templates + '/data.json');
-  doNunjucks(data, [templates + '/*.njk'], '.');
+  // let data = requireUncached('./' + templates + '/data.json');
+  doNunjucks(loadData(), [templates + '/*.njk'], '.');
 });
 // styles
 gulp.task('styles', () => { doSassPostcss(); });
@@ -106,7 +106,7 @@ gulp.task('watch', () => {
     if (e.type === 'deleted') {
       return del(path.parse(e.path).name + '.html');
     } else {
-      let data = requireUncached('./' + templates + '/data.json'), src;
+      // let data = requireUncached('./' + templates + '/data.json'), src;
 
       if (e.path.indexOf('parts/') >= 0 ) {
         if (e.path.indexOf('layout-') !== -1) {
@@ -117,7 +117,7 @@ gulp.task('watch', () => {
         } else { return; }
       } else { src = e.path; }
 
-      doNunjucks(data, src, '.');
+      doNunjucks(loadData(), src, '.');
     }
   });
   // styles
@@ -201,6 +201,14 @@ gulp.task('watch', () => {
 
 
 // #########
+function loadData () {
+  let data = {};
+  try {
+    data = yaml.safeLoad(fs.readFileSync('./' + templates + '/data.yml', 'utf8'));
+  } catch (e) { console.log(e); }
+  return data;
+}
+
 function watcher (e, srcFolder, destFolder, callback) {
   let destFile = e.path.replace(srcFolder, destFolder),
       destPath = path.dirname(destFile);
@@ -253,9 +261,9 @@ function doNunjucks (data, src, dest) {
       imageCount = base,
       headingCount = base,
       paragraphCount = base,
-      imageCountMax = data.images.length - 1,
-      headingCountMax = data.headings.length - 1,
-      paragraphCountMax = data.paragraphs.length - 1;
+      imageCountMax = data.I.length - 1,
+      headingCountMax = data.H.length - 1,
+      paragraphCountMax = data.P.length - 1;
   data.getIC = () => {
     imageCount = imageCount >= imageCountMax ? 0 : imageCount + 1;
     return imageCount;
