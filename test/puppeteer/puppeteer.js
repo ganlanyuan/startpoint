@@ -36,7 +36,7 @@ let serverOptions = {
 browserSync.init(serverOptions, function () {
   if (process.env.var === 'compare') {
     // checkReferenceExists();
-    getScreenshots('new').then(function() {
+    getScreenshots('current').then(function() {
       compareScreenshots();
     });
 
@@ -77,7 +77,7 @@ function compareScreenshots () {
 function compareScreenshot (file, size, isPart) {
     return imgDiff({
       actualFilename: __dirname + '/reference/' + size + '_' + file + '.png',
-      expectedFilename: __dirname + '/new/' + size + '_' + file + '.png',
+      expectedFilename: __dirname + '/current/' + size + '_' + file + '.png',
       diffFilename: __dirname + '/diff/' + size + '_' + file + '.png',
       generateOnlyDiffFile: true,
       options: {

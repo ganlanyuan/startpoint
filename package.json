@@ -10,6 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "critical": "docker exec critical node test/critical/critical.js",
     "compare": "docker exec -e var=compare puppeteer node test/puppeteer/puppeteer.js",
+    "clear": "node test/puppeteer/clear.js",
     "pagespeed": "docker exec startpoint node test/pagespeed/pagespeed.js",
     "lighthouse": "docker exec lighthouse node test/lighthouse/lighthouse.js"
   },
