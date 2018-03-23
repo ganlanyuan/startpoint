@@ -7,6 +7,9 @@ parts:
 - '.page-footer'
 - '.sec'
 
+ignore:
+- 'iframe'
+
 viewports:
   xlg:
     width: 1400

@@ -15,6 +15,7 @@ try {
 } catch (e) { console.log(e); }
 let pages = config.pages,
     parts = config.parts,
+    ignore = config.ignore,
     viewports = config.viewports,
     port = config.port;
 
@@ -62,7 +63,7 @@ function compareScreenshots () {
 
   Promise.all(promises).then(function(values) {
     arr.sort();
-    fs.writeFile(__dirname + '/data.js', 'let pages = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
+    fs.writeFile(__dirname + '/errorPages.js', 'let pages = ' + JSON.stringify(arr, null, 2) + ';', function(err) {
       if(err) { return console.log(err); }
       if (arr.length) {
         console.log('Some pages changed from last time\nhttp://localhost:' + port + '/test/puppeteer');
@@ -118,8 +119,8 @@ async function getScreenshots (dir) {
       await page.goto('http://localhost:' + port + '/' + file + '.html', {waitUntil: 'load'});
 
       // ignore elements
-      if (file === 'article') {
-        await page.$eval('iframe', iframe => {iframe.style.opacity = 0;});
+      if (ignore && ignore.length) {
+        await page.addStyleTag({content: ignore.toString() + '{opacity:0 !important}'});
       }
 
       // full page screenshot
