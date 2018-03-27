@@ -111,13 +111,13 @@ gulp.task('watch', () => {
       if (e.path.indexOf('parts/') >= 0 ) {
         if (e.path.indexOf('layout-') !== -1) {
           let fullname = path.parse(e.path).name.replace('layout-', '') + '.njk';
-          src = [templates + '/' + fullname, templates + '/mb-' + fullname];
+          srcTemp = [templates + '/' + fullname, templates + '/mb-' + fullname];
         } else if (e.path.indexOf('/layout.njk') !== -1 || path.extname(e.path) === '.json') {
-          src = [templates + '/*.njk', '!' + templates + '/pages.njk'];
+          srcTemp = [templates + '/*.njk', '!' + templates + '/pages.njk'];
         } else { return; }
-      } else { src = e.path; }
+      } else { srcTemp = e.path; }
 
-      doNunjucks(loadData(), src, '.');
+      doNunjucks(loadData(), srcTemp, '.');
     }
   });
   // styles
@@ -254,7 +254,7 @@ function getAllFilesFromFolder (dir, fileExt) {
   }
 }
 
-function doNunjucks (data, src, dest) {
+function doNunjucks (data, srcTemp, dest) {
   data.year = new Date().getFullYear();
   data.pages = pages;
   let base = -1,
@@ -285,7 +285,7 @@ function doNunjucks (data, src, dest) {
   data.belongTo = function(str, arr) { return arr.indexOf(str) !== -1; };
   data.push = function(arr, str) { arr.push(str); return arr; };
 
-  return gulp.src(src)
+  return gulp.src(srcTemp)
     .pipe($.plumber())
     // compile njk to html
     .pipe($.nunjucks.compile(data), {
