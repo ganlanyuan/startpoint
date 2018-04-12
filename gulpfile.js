@@ -384,15 +384,15 @@ function doJsUglify (d) {
   return gulp.src(s)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
-    // .pipe($.uglify({
-    //   // mangle: false,
-    //   output: {
-    //     quote_keys: true,
-    //   },
-    //   compress: {
-    //     properties: false,
-    //   }
-    // }))
+    .pipe($.uglify({
+      // mangle: false,
+      output: {
+        quote_keys: true,
+      },
+      compress: {
+        properties: false,
+      }
+    }))
     .on('error', errorlog)  
     .pipe($.if(dev, $.sourcemaps.write(sourcemapDest)))
     .pipe(gulp.dest(assets + '/js/min'));
