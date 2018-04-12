@@ -1,5 +1,4 @@
-// reset
-// ========
+@import-normalize;
 
 // set min-width to 320
 html, body { min-width: 320px; }
@@ -33,9 +32,9 @@ select { -webkit-appearance: none; }
 a {
   text-decoration: none;
   color: inherit;
-  &:focus {
-    outline: 1px solid;
-    outline-offset: .15em;
-  }
+  // &:focus {
+  //   outline: 1px solid;
+  //   outline-offset: .15em;
+  // }
 }
 main:focus { outline: none; }
