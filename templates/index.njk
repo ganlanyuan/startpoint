@@ -1,9 +1,0 @@
-{% set page = 'home' %}
-{% extends "parts/layout.njk" %}
-
-{% block main %}
-{% for item in ['facebook', 'twitter', 'google+', 'pinterest', 'linkedin', 'buffer', 'digg', 'tumblr', 'reddit', 'stumbleupon', 'xing', 'whatsapp', 'delicious', 'blogger', 'livejournal', 'myspace', 'yahoo', 'friendfeed', 'newsvine', 'evernote', 'flipboard', 'instapaper', 'lineme', 'skype', 'viber', 'email', 'hackernews', 'vk', 'okru', 'telegram', 'douban', 'baidu', 'qzone', 'renren', 'weibo', 'pocket'] %}
-  {% set link = share.on(item, url = 'http://sharingbuttons.io', title = 'Super fast and easy Social Media Sharing Buttons. No JavaScript. No tracking.') %}
-  <a href="{{link}}" target="_blank" style="color: blue;">{{ item }}</a> <br>
-{% endfor %}
-{% endblock %}

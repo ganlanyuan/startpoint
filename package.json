@@ -2,18 +2,32 @@
   "name": "startpoint",
   "version": "1.0.0",
   "description": "A simple boilerplate for websites.",
-  "main": "gulpfile.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node . & chokidar 'index.js' -c 'node .'",
+    "watch": "node .",
+    "njk": "task=njk node .",
+    "htmlValidate": "task=htmlValidate node .",
+    "sass": "task=sass node .",
+    "cssValidate": "task=cssValidate node .",
+    "js": "task=js node .",
+    "image": "task=image node .",
+    "amp": "task=amp node .",
+    "ampValidate": "task=ampValidate node .",
     "critical": "docker exec critical node test/critical/critical.js",
     "compare": "docker exec -e var=compare puppeteer node test/puppeteer/puppeteer.js",
     "clear": "node test/puppeteer/clear.js",
     "pagespeed": "docker exec startpoint node test/pagespeed/pagespeed.js",
     "lighthouse": "docker exec lighthouse node test/lighthouse/lighthouse.js"
   },
+  "browserslist": [
+    "> 0.01%",
+    "Last 5 versions",
+    "not ie <= 8"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ganlanyuan/startpoint.git"
@@ -26,9 +40,6 @@
   },
   "homepage": "https://github.com/ganlanyuan/startpoint#readme",
   "dependencies": {
-    "optipng-bin": "^4.0.0",
-    "pngquant": "^1.3.0",
-    "pngquant-bin": "^4.0.0",
     "rocket-sass": "^4.0.1"
   }
 }
