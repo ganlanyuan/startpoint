@@ -7,7 +7,6 @@
     "test": "test"
   },
   "scripts": {
-    "start": "node . & chokidar 'index.js' -c 'node .'",
     "watch": "node .",
     "njk": "task=njk node .",
     "htmlValidate": "task=htmlValidate node .",

@@ -1,4 +1,3 @@
-// const sass = require('sass'),
       // HTML
 const nunjucks = require('nunjucks'),
       w3cHtml = require('@ganlanyuan/w3cjs'),
