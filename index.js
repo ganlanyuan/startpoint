@@ -112,7 +112,7 @@ switch (process.env.task) {
 
     chokidar
       .watch('**/*.html', {
-        ignored: ['amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
+        ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', file => { htmlValidator([file]); });
       
@@ -213,7 +213,12 @@ function doNunjucks (input) {
 }
 
 function htmlValidator (arr) {
-  if (!arr) { arr = _getAllFilesFromFolder('.', '.html', null, ['assets', 'src', 'test', 'node_modules']); }
+  if (!arr) {
+    arr = _getAllFilesFromFolder('.', '.html', (file) => {
+            return ['amp', 'pages'].indexOf(path.basename(file, '.html')) < 0;
+          }, ['assets', 'src', 'test', 'node_modules']);
+  }
+
   arr.forEach(function(file, index) {
 
     // output: json => Terminal
@@ -307,7 +312,7 @@ function doSass (input) {
       result.warnings().forEach((warn) => { console.warn(warn.toString()); });
 
       _checkDir(path.dirname(output), () => {
-        fs.writeFile(output, result.css, (er) => {
+        fs.writeFile(output, result.css.replace('@charset "UTF-8";', ''), (er) => {
           if (er) { return void console.log(er); }
           _colorConsole(consoleCSS, path.basename(output));
         });
