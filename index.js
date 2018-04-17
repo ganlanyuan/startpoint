@@ -40,6 +40,8 @@ const nunjucks = require('nunjucks'),
 let source = 'src',
     assets = 'assets',
     njkDir = source + '/html',
+    htmlDir = 'public',
+    ampfile = htmlDir + '/amp.html',
     sassDir = source + '/scss',
     cssDir = assets + '/css',
     jsDir = source + '/js',
@@ -111,8 +113,9 @@ switch (process.env.task) {
       });
 
     chokidar
-      .watch('**/*.html', {
-        ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
+      .watch(htmlDir + '/**/*.html', {
+        ignored: [htmlDir + '/amp.html', htmlDir + '/pages.html']
+        // ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', file => { htmlValidator([file]); });
       
@@ -156,8 +159,9 @@ switch (process.env.task) {
 
     // watch server
     chokidar
-      .watch(['**/*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
-        ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
+      .watch([htmlDir + '/**/*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
+        ignored: [htmlDir + '/amp.html']
+        // ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', browserSync.reload);
 }
@@ -170,7 +174,7 @@ function doNunjucksAll () {
 }
 
 function doNunjucks (input) {
-  let output = input.replace(njkDir + '/', '').replace('.njk', '.html'),
+  let output = input.replace(njkDir, htmlDir).replace('.njk', '.html'),
       data = _loadData();
 
   let base = -1,
@@ -263,7 +267,7 @@ function htmlValidator (arr) {
 }
 
 function ampValidator () {
-  fs.readFile('amp.html', 'utf8', function(err, data) {
+  fs.readFile(ampfile, 'utf8', function(err, data) {
     if (err) {
       console.log(chalk.red(err));
     } else {
@@ -300,7 +304,7 @@ function doSass (input) {
     // SASS sourcemap
     fs.writeFile(output + '.map', result.map, (err) => {
       if (err) { return void console.log(err); }
-      _colorConsole(consoleCSS, path.basename(output) + '.map');
+      _colorConsole(consoleCSS, output + '.map');
     });
 
     // postCSS
@@ -314,7 +318,7 @@ function doSass (input) {
       _checkDir(path.dirname(output), () => {
         fs.writeFile(output, result.css.replace('@charset "UTF-8";', ''), (er) => {
           if (er) { return void console.log(er); }
-          _colorConsole(consoleCSS, path.basename(output));
+          _colorConsole(consoleCSS, output);
         });
       });
     });
@@ -346,7 +350,7 @@ function cssValidator (arr) {
 
         if (error) { return console.log(chalk.red('CSS Validate Errors:', error)); }
 
-        console.log(chalk.gray('CSS validating: ' + file.replace('/www/web/', ''), response && response.statusCode));
+        _colorConsole(consoleCSS, 'validating: ' + file.replace('/www/web/', '') +  response.statusCode);
         // console.log('body:', body); // Print the HTML
       })
       .pipe(fs.createWriteStream('test/w3c/css/' + path.parse(file).name + '.html'));
@@ -434,13 +438,13 @@ function minifyImage (files) {
 }
 
 function doAmp () {
-  uncss(['amp.html'], {
+  uncss([ampfile], {
     ignore: ampUncssIgnore,
-    stylesheets: [cssDir + '/main.css']
+    stylesheets: ['../' + cssDir + '/main.css']
   }, (err, res) => {
     if (err) { return console.log('doAmp', err); }
 
-    fs.readFile('amp.html', {encoding: 'utf-8'}, (err, data) => {
+    fs.readFile(ampfile, {encoding: 'utf-8'}, (err, data) => {
       if (err) { return console.log(err); }
 
       let css = res.replace(/\s*\/\*.*\*\/\s*/g, '')
@@ -448,7 +452,7 @@ function doAmp () {
                    .replace(/!important/g, '')
                    .replace('@page{margin:.5cm}', '')
                    .replace(/"..\/img/g, '"assets/img');
-      fs.writeFile('amp.html', data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
+      fs.writeFile(ampfile, data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
         if (err) { return console.log(err); }
         _colorConsole(consoleHTML, 'amp.html');
       });

@@ -41,7 +41,7 @@
       <article>
         <figure class="{{ 'has-icon is-video icon-center' if video }} {{ 'media-bg' if width >= 180 }}"><a href="" aria-label="{{ 'Play Video' if video}}"><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}">
         {% if video %}
-          <span class="icon-wrapper"><svg role="img" width="26" height="26"><use xlink:href="assets/svg/sprites.svg#playarrow-fill" /></svg></span>
+          <span class="icon-wrapper"><svg role="img" width="26" height="26"><use xlink:href="../assets/svg/sprites.svg#playarrow-fill" /></svg></span>
         {% endif %}
         </a></figure>
         <h3 class="heading"><a href="">{{ headings[hCount] | truncate(55, false, "") }}</a></h3>
