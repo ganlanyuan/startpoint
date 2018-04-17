@@ -200,11 +200,11 @@ function doNunjucks (input) {
   data = Object.assign(data, dataInit);
 
   let env = new nunjucks.Environment(new nunjucks.FileSystemLoader());
-  env.addFilter('shorten', function(str, count) {
+  env.addFilter('shorten', (str, count) => {
     return str.slice(0, count || 5);
   });
 
-  env.render(input, data, function(err, res) {
+  env.render(input, data, (err, res) => {
     if (err) { return console.log(err); }
 
     _checkDir(path.dirname(output), () => {
@@ -218,23 +218,23 @@ function doNunjucks (input) {
 
 function htmlValidator (arr) {
   if (!arr) {
-    arr = _getAllFilesFromFolder('.', '.html', (file) => {
+    arr = _getAllFilesFromFolder(htmlDir, '.html', (file) => {
             return ['amp', 'pages'].indexOf(path.basename(file, '.html')) < 0;
           }, ['assets', 'src', 'test', 'node_modules']);
   }
 
-  arr.forEach(function(file, index) {
+  arr.forEach((file, index) => {
 
     // output: json => Terminal
     w3cHtml.validate({
       file: file, // file can either be a local file or a remote file
       output: 'json',
-      callback: function (err, res) {
+      callback: (err, res) => {
         if (err) { return console.log(chalk.red(err)); }
 
         var str = '';
         if (res.messages.length > 0) {
-          res.messages.forEach(function(m) {
+          res.messages.forEach(m => {
             // check if messages match filters
             if (htmlValidatorFilters.indexOf(m.message) < 0) {
               str += m.type + ', line ' + m.lastLine + ', col ' + m.firstColumn + '-' + m.lastColumn + ', ' + m.message;
@@ -253,13 +253,16 @@ function htmlValidator (arr) {
     w3cHtml.validate({
       file: file, // file can either be a local file or a remote file
       output: 'html',
-      callback: function (err, res) {
+      callback: (err, res) => {
         if (err) { return console.log(chalk.red(err)); }
 
         res = res.slice(0, 38) + '<meta charset="utf-8">' + res.slice(38); // add charset
 
-        fs.writeFile('test/w3c/html/' + path.parse(file).name + '.html', res, function(err) {
-          if(err) { return console.log(chalk.gray(err)); }
+        let newDir = 'test/w3c/html/' + file.replace(htmlDir + '/', '');
+        _checkDir(path.dirname(newDir), () => {
+          fs.writeFile(newDir, res, err => {
+            if(err) { return console.log(chalk.gray(err)); }
+          });
         });
       }
     });
@@ -267,14 +270,14 @@ function htmlValidator (arr) {
 }
 
 function ampValidator () {
-  fs.readFile(ampfile, 'utf8', function(err, data) {
+  fs.readFile(ampfile, 'utf8', (err, data) => {
     if (err) {
       console.log(chalk.red(err));
     } else {
-      amphtmlValidator.getInstance().then(function (validator) {
+      amphtmlValidator.getInstance().then(validator => {
         var result = validator.validateString(data);
         console.log(((result.status === 'PASS') ? chalk.green : chalk.red)('AMP ' + result.status));
-        result.errors.forEach(function(error) {
+        result.errors.forEach(error => {
           var msg = 'line ' + error.line + ', col ' + error.col + ': ' + error.message;
           if (error.specUrl) { msg += ' (see ' + error.specUrl + ')'; }
           console.log(((error.severity === 'ERROR') ? chalk.red : chalk.yellow)(msg));
@@ -298,7 +301,7 @@ function doSass (input) {
     outFile: output,
     sourceMap: true,
     precision: 7,
-  }, function(err, result) {
+  }, (err, result) => {
     if (err) { return void console.log(err); }
 
     // SASS sourcemap
@@ -331,10 +334,10 @@ function doSass (input) {
   //   //   console.log(url);
   //   // },
   //   fiber: Fiber
-  // }, function(err, result) {
+  // }, (err, result) => {
   //   if (err) { return void console.log(err); }
 
-  //   fs.writeFile(output, result.css, function(er) {
+  //   fs.writeFile(output, result.css, (er) => {
   //     if (er) { return void console.log(er); }
 
   //     console.log(output, 'saved!');
@@ -343,10 +346,10 @@ function doSass (input) {
 }
 
 function cssValidator (arr) {
-  arr.forEach(function(file) {
+  arr.forEach(file => {
     fs.readFile(file, {encoding: 'utf-8'}, (err, data) => {
       let css = data.replace(/\n\/\*.*\*\//g, '');
-      request('https://jigsaw.w3.org/css-validator/validator?text=' + css + '&profile=' + cssValidateLevel + '&usermedium=all&warning=1&vextwarning=&lang=en', function(error, response, body) {
+      request('https://jigsaw.w3.org/css-validator/validator?text=' + css + '&profile=' + cssValidateLevel + '&usermedium=all&warning=1&vextwarning=&lang=en', (error, response, body) => {
 
         if (error) { return console.log(chalk.red('CSS Validate Errors:', error)); }
 
@@ -530,13 +533,13 @@ function _mkDirByPathSync (targetDir, {isRelativeToScript = true} = {}) {
 function _getAllFilesFromFolder (dir, ext, filter, excludeDir) {
   let results = [];
 
-  fs.readdirSync(dir).forEach(function(file) {
+  fs.readdirSync(dir).forEach(file => {
     file = dir + '/' + file;
     let stat = fs.statSync(file);
 
     if (stat && stat.isDirectory()) {
       results = 
-        excludeDir && excludeDir.indexOf(file.replace(dir + '/', '')) >= 0 ? 
+        excludeDir && excludeDir.indexOf(file.replace(dir + '/', '')) < 0 ? 
         results.concat(_getAllFilesFromFolder(file, ext, filter, excludeDir)) :
         results;
     } else {
