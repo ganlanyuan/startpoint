@@ -84,9 +84,9 @@ switch (process.env.task) {
   case 'htmlValidate':
     htmlValidator();
     break;
-  case 'ampValidate':
-    ampValidator();
-    break;
+  // case 'ampValidate':
+  //   ampValidator();
+  //   break;
   case 'sass':
     doSassAll();
     break;
@@ -99,9 +99,9 @@ switch (process.env.task) {
   case 'image':
     minifyImage();
     break;
-  case 'amp':
-    doAmp();
-    break;
+  // case 'amp':
+  //   doAmp();
+  //   break;
 
   default:
     serverUp();
@@ -132,13 +132,13 @@ switch (process.env.task) {
       .on('change', file => { cssValidator([file]); });
 
     // watch amp
-    chokidar
-      .watch(cssDir + '/main.css')
-      .on('change', () => doAmp());
+    // chokidar
+    //   .watch(cssDir + '/main.css')
+    //   .on('change', () => doAmp());
 
-    chokidar
-      .watch('amp.html')
-      .on('change', ampValidator);
+    // chokidar
+    //   .watch('amp.html')
+    //   .on('change', ampValidator);
       
     // watch JS
     chokidar
@@ -539,7 +539,7 @@ function _getAllFilesFromFolder (dir, ext, filter, excludeDir) {
 
     if (stat && stat.isDirectory()) {
       results = 
-        excludeDir && excludeDir.indexOf(file.replace(dir + '/', '')) < 0 ? 
+        !excludeDir || excludeDir.indexOf(file.replace(dir + '/', '')) < 0 ? 
         results.concat(_getAllFilesFromFolder(file, ext, filter, excludeDir)) :
         results;
     } else {
