@@ -2,12 +2,4 @@
 // ============
 
 .pagination {
-  margin: 20px 0;
-  > a { @include button(3px '0.3em 0.7em' highlight); 
-    &.current,
-    &:hover {
-      color: #fff;
-      background-color: $color-brand;
-    }
-  }
 }

@@ -2,23 +2,4 @@
 // ============
 
 .breadcrumb {
-  letter-spacing: -0.34em;
-  > a,
-  > span {
-    font-size: 14px;
-    font-size: rem(14px);
-    font-weight: bold;
-    text-transform: uppercase;
-    display: inline-block;
-    letter-spacing: 0;
-    &:not(:last-child):after {
-      content: '/';
-      display: inline-block;
-      padding: 0 0.4em 0 0.5em;
-      color: #888;
-      font-weight: normal;
-    }
-  }
-  .current,
-  > span { color: #888; }
 }

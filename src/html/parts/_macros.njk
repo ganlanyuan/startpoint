@@ -19,7 +19,20 @@
   {% endfor %}"
 {% endmacro %}
 
+{% macro breadcrumb(obj) %}
+  <nav class="breadcrumb has-links" role="navigation" aria-label="You are here:" 
+    itemscope itemtype="http://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/public/" itemprop="url"><span itemprop="name">首页</span></a></span>
 
+    {% for en, cn in obj %}
+      {% if loop.last %}
+      <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="is-active" itemprop="url"><span class="visually-hidden">Current: </span><span itemprop="name">{{ cn }}</span></span></span>
+      {% else %}
+      <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ en }}.html" itemprop="url"><span itemprop="name">{{ cn }}</span></a></span>
+      {% endif %}
+    {% endfor %}
+  </nav>
+{% endmacro %}
 
 
 
