@@ -14,9 +14,12 @@
   a:visited {
     text-decoration: underline;
   }
-  a[href]:after {
+  a[href^="http"]:after {
     content: " (" attr(href) ")";
   }
+  // a[href^="/"]:after {
+  //   content: " (https://www.bibleportal.com" attr(href) ")";
+  // }
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
@@ -35,6 +38,7 @@
     display: table-header-group; // h5bp.com/t //
   }
   tr,
+  figure,
   img {
     page-break-inside: avoid;
   }
@@ -42,7 +46,7 @@
     max-width: 100% !important;
   }
   @page {
-    margin: 0.5cm;
+    margin: 1.5cm 0.5cm;
   }
   p,
   h2,
@@ -53,5 +57,20 @@
   h2,
   h3 {
     page-break-after: avoid;
+  }
+
+  .site-header,
+  .site-footer,
+  .flex-video, // videos
+  iframe,
+  embed,
+  .test { display: none;}
+  // floated images
+  [class*="align-"] {
+    float: none !important;
+    width: auto !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
