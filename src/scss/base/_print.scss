@@ -64,6 +64,9 @@
   .flex-video, // videos
   iframe,
   embed,
+  .ad,
+  #video_floating_placeholder,
+  .pagination,
   .test { display: none;}
   // floated images
   [class*="align-"] {
