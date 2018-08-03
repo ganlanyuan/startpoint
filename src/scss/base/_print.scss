@@ -3,6 +3,7 @@
 //   Inlined to avoid required HTTP connection: h5bp.com/r
 // ======================================================================== 
 
+// @media all {
 @media print {
   * {
     background: transparent !important;
@@ -43,10 +44,11 @@
     page-break-inside: avoid;
   }
   img {
+    width: auto !important;
     max-width: 100% !important;
   }
   @page {
-    margin: 1.5cm 0.5cm;
+    margin: 2cm 1cm;
   }
   p,
   h2,
@@ -61,13 +63,40 @@
 
   .site-header,
   .site-footer,
-  .flex-video, // videos
+  // videos
+  .flex-video,
   iframe,
   embed,
+  // ads
   .ad,
+  #publication_content,
   #video_floating_placeholder,
+  // slider
+  .tns-nav,
+  .tns-controls,
   .pagination,
-  .test { display: none;}
+  .test { display: none !important; }
+
+  // reset slider
+  .tns-ovh { overflow: auto; }
+  .tns-inner {
+    height: auto !important;
+    margin: 0 !important;
+  }
+  .tns-slider {
+    transform: none !important;
+    left: none !important;
+    width: auto !important;
+    white-space: normal !important;
+    > .tns-item {
+      display: block !important;
+      float: none !important;
+      width: auto !important;
+      padding: 0 !important;
+      &:not([id]) { display: none; }
+    }
+  }
+
   // floated images
   [class*="align-"] {
     float: none !important;
