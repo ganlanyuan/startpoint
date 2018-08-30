@@ -10,21 +10,32 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
+  <button aria-expanded="true" aria-controls="main-nav"><span class="visually-hidden">Menu</span></button>
   {% include './_logo.njk' %}
+  {% if page === 'home' %}
+    <h1 class="visually-hidden">{{ brand }}</h1>
+  {% endif %}
 
   {# nav #}
-  <nav role="navigation" aria-label="Main Navigation">
+  <nav role="navigation" aria-label="Main Navigation" id="main-nav">
     <ul>
       {% for section, subSection in navMain %}
-        <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ section | capitalize }}</a></li>
+        <li class="has-submenu">
+          <a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}" aria-haspopup="true" aria-expanded="true">{{ section | capitalize }}</a>
+          <ul>
+            {% for item in subSection %}
+              <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}/{{ item | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ item }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
       {% endfor %}
     </ul>
   </nav>
 
   <nav role="navigation" aria-labelledby="navheading">
-    <h3 id="navheading">On this page</h3>
+    <h3 id="navheading">About Us</h3>
     <ul>
-      {% for section, subSection in navMain %}
+      {% for section in navSub %}
         <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ section | capitalize }}</a></li>
       {% endfor %}
     </ul>
