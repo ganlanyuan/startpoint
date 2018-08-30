@@ -1,5 +1,79 @@
 # http://nodeca.github.io/js-yaml/
 # https://yaml-online-parser.appspot.com/
+brand: "Brand Name"
+
+baseurl: https://www.crossmap.com
+
+nav:
+  News:
+  - Church & Ministries
+  - U.S.
+  - World
+  - Politics
+  - Entertainment
+  - Tech & Biz
+  - Living
+  Devotionals:
+  - Harvest Devotionals
+  - Through the Bible
+  - Words of Hope
+  - Daily Encounter
+  - CBH Ministries
+  Blogs:
+  - Living
+  - Marriage
+  - Parenting
+  - Evangelism
+  - Encouragement
+  - Relationship
+  - Seasonal
+  - Spiritual Growth
+  - Book Reviews
+  - Bible Studies
+  - Other
+  Backgrounds:
+  - Photographs
+  - Illustrations
+  - Rendering
+  - Sketch
+  - Painting
+  Images:
+  - Featured
+  - Clip Arts
+  - Photographs
+  - Illustrations
+  Videos:
+  - Living
+  - Sermon
+  - News
+  - Ministry
+  - Movies
+  - Music
+  - Cute
+  - Inspirational
+  - For kids
+  - Parents
+  - People
+  - Sports
+  Kids:
+  - News
+  - Parenting
+  - Education
+  - Bible Lessons
+  - Bible Activities
+  Games:
+  - Sports
+  - Action
+  - Arcade
+  - Educational
+  - Puzzle
+
+Social:
+  facebook: http://www.facebook.com/CrossmapWorld
+  twitter: https://twitter.com/Crossmap
+  pinterest: http://pinterest.com/crossmap/
+  instagram: https://www.instagram.com/crossmapworld/
+  youtube: https://www.youtube.com/crossmap
 
 # images
 I:

@@ -14,10 +14,10 @@
   <meta name="title" content="Site Title">
   <meta name="description" content="">
   <meta name="news_keywords" content="">
-  <title>Website</title>
+  <title>{{ brand }}</title>
   <link rel="canonical" href="http://www.site.com/url/to/full/document.html">
   <link itemprop="url" href="http://www.site.com/url/to/full/document.html">
-  <meta itemprop="name alternateName" content="Site Name">
+  <meta itemprop="name alternateName" content="{{ brand }}">
   <meta name="author" content="">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
@@ -53,9 +53,9 @@
     <script src="../assets/js/html5shiv.js"></script>
   <![endif]-->
 </head>
-<body class="{{ page + '-page' if page == 'home' or page == 'article' else 'section-page' }}">
+<body class="{{ page + '-page'}}">
   {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
-  <a href="#main" class="visually-hidden">Skip to main content</a>
+  <a href="#main" class="skip-link visually-hidden">Skip to main content</a>
   <noscript>
     <p class="enable-js">
       To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
