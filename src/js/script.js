@@ -1,6 +1,12 @@
-import { add } from './files/a';
-import { year } from './files/b';
+let doc = document,
+    html = doc.documentElement,
+    body = doc.body;
 
+// remove "no-script" class
+html.className = html.className.replace('no-script', '');
 
-console.log(add(1, 2));
-console.log(year);
+// skip link
+doc.querySelector('.skip-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  doc.querySelector(e.target.getAttribute('href')).focus();
+});

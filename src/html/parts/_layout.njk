@@ -54,17 +54,6 @@
   <![endif]-->
 </head>
 <body class="{{ page + '-page'}}">
-  {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
-  <a href="#main" class="skip-link visually-hidden">Skip to main content</a>
-  <noscript>
-    <p class="enable-js">
-      To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
-    </p>
-  </noscript>
-  <!--[if lt IE 9]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
   {% include './_header.njk' %}
 
   {# main #}
@@ -73,7 +62,7 @@
     {# tabindex for Webkit based browsers: https://bugs.chromium.org/p/chromium/issues/detail?id=37721 #}
     <main id="main" role="main" tabindex="-1">
     </main>
-    <aside role="complementary">
+    <aside role="complementary" aria-label="advertisement">
     </aside>
   {% endblock %}
 

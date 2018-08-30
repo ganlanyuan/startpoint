@@ -4,7 +4,7 @@ brand: "Brand Name"
 
 baseurl: https://www.crossmap.com
 
-nav:
+navMain:
   News:
   - Church & Ministries
   - U.S.
@@ -67,6 +67,13 @@ nav:
   - Arcade
   - Educational
   - Puzzle
+
+navSub:
+- About Us
+- Statement of Faith
+- Privacy Policy
+- Terms and Conditions
+- Contact Us
 
 Social:
   facebook: http://www.facebook.com/CrossmapWorld

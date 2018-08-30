@@ -1,1 +1,0 @@
-export let year = 2018;

@@ -1,16 +1,32 @@
 <header class="site-header" role="banner">
+  {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
+  <a href="#main" class="skip-link visually-hidden">Skip to main content</a>
+  <noscript>
+    <p class="enable-js">
+      To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
+    </p>
+  </noscript>
+  <!--[if lt IE 9]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
   {% include './_logo.njk' %}
 
   {# nav #}
-  <nav role="navigation">
+  <nav role="navigation" aria-label="Main Navigation">
     <ul>
-      <li><a href="">Lorem.</a></li>
-      <li><a href="">Odit.</a></li>
-      <li><a href="">Veniam.</a></li>
-      <li><a href="">Iure.</a></li>
-      <li><a href="">Id!</a></li>
-      <li><a href="">Quia.</a></li>
-      <li><a href="">A?</a></li>
+      {% for section, subSection in navMain %}
+        <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ section | capitalize }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <nav role="navigation" aria-labelledby="navheading">
+    <h3 id="navheading">On this page</h3>
+    <ul>
+      {% for section, subSection in navMain %}
+        <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ section | capitalize }}</a></li>
+      {% endfor %}
     </ul>
   </nav>
 
