@@ -47,7 +47,7 @@ svg {
   margin: 0 auto em(20);
   > div, > iframe, > a, > img { margin: auto; }
 }
-// .container { @include container(1200px); }
+.container { @include container(1200px); }
 // .clearfix { @extend %clearfix; }
 
 // == media ==
