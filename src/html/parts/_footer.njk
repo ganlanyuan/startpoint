@@ -4,12 +4,10 @@
   <div class="copyright">
     <div class="container">
       Copyright &copy; 
-      <span itemprop="copyrightYear">{{ year }}</span> 
+      <span itemprop="copyrightYear">{{ getYear() }}</span> 
       <span itemprop="copyrightHolder provider sourceOrganization" 
             itemscope itemtype="http://schema.org/Organization" 
-            itemid="http://www.site.com">
-        <span itemprop="name">Company Name</span>
-      </span>. All Rights Reserved.
+            itemid="http://www.site.com"><span itemprop="name">{{ brand }}</span></span>. All Rights Reserved.
     </div>
   </div>
 </footer>
