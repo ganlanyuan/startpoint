@@ -66,7 +66,10 @@
     </nav>
 
     {# primary search #}
-    <form action="post" role="search">
+    <form class="main-search" id="main-search" action="post" role="search">
+      <label class="visually-hidden" for="main-search-input">Search:</label>
+      <input id="main-search-input" type="search" placeholder="Search">
+      <button><span class="visually-hidden">Go</span></button>
     </form>
   </div>
 </header>
