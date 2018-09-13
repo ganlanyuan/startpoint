@@ -4,16 +4,16 @@
 {% block main %}
   <article class="full-article"
            itemscope itemtype="http://schema.org/NewsArticle" 
-           itemid="http://www.site.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/"
+           itemid="{{ baseurl }}/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/"
            itemref="branding">
-    <link itemprop="mainEntityOfPage" href="http://www.site.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/">
+    <link itemprop="mainEntityOfPage" href="{{ baseurl }}/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/">
     <header>
       <h1 class="heading" itemprop="headline">{{ headings[23] }}</h1>
       <div class="byline">
         <span itemprop="author creator" 
               itemscope itemtype="http://schema.org/Person" 
-              itemid="http://www.site.com/author/Ben-Chapman/">
-          <a class="reporter" href="http://www.site.com/author/Ben-Chapman/">
+              itemid="{{ baseurl }}/author/Ben-Chapman/">
+          <a class="reporter" href="{{ baseurl }}/author/Ben-Chapman/">
             <meta itemprop="jobTitle" content="Company Name Contributor">
             <span itemprop="name">Ben Chapman</span>
           </a> 
