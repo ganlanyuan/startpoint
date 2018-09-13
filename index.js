@@ -207,6 +207,9 @@ function doNunjucks (input) {
   env.addFilter('shorten', (str, count) => {
     return str.slice(0, count || 5);
   });
+  env.addFilter('nameToUrl', (str) => {
+    return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '');
+  });
 
   env.render(input, data, (err, res) => {
     if (err) { return console.log(err); }
