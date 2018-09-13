@@ -1,242 +1,192 @@
 # http://nodeca.github.io/js-yaml/
 # https://yaml-online-parser.appspot.com/
-brand: "Brand Name"
+brand: ""
 
-baseurl: https://www.crossmap.com
+baseurl: https://
 
-navMain:
-  News:
-  - Church & Ministries
-  - U.S.
-  - World
-  - Politics
-  - Entertainment
-  - Tech & Biz
-  - Living
-  Devotionals:
-  - Harvest Devotionals
-  - Through the Bible
-  - Words of Hope
-  - Daily Encounter
-  - CBH Ministries
-  Blogs:
-  - Living
-  - Marriage
-  - Parenting
-  - Evangelism
-  - Encouragement
-  - Relationship
-  - Seasonal
-  - Spiritual Growth
-  - Book Reviews
-  - Bible Studies
-  - Other
-  Backgrounds:
-  - Photographs
-  - Illustrations
-  - Rendering
-  - Sketch
-  - Painting
-  Images:
-  - Featured
-  - Clip Arts
-  - Photographs
-  - Illustrations
-  Videos:
-  - Living
-  - Sermon
-  - News
-  - Ministry
-  - Movies
-  - Music
-  - Cute
-  - Inspirational
-  - For kids
-  - Parents
-  - People
-  - Sports
-  Kids:
-  - News
-  - Parenting
-  - Education
-  - Bible Lessons
-  - Bible Activities
-  Games:
-  - Sports
-  - Action
-  - Arcade
-  - Educational
-  - Puzzle
+nav:
+  main:
+  - home
+  - church & ministry
+  - u.s.
+  - world
+  - politics
+  - entertainment
+  - living
+  - opinion
+  - voices
+  about:
+  - about us
+  - contact us
+  - careers
+  - terms of service
+  - privacy policy
+  connect:
+  - contact us
+  - advertise with us
+  - media kit
+  - archives
+  - corrections
+  - disclaimer
+  - careers
+  topics:
+  - velit quam
+  - tempore iusto
+  - haruma
+  - laudant magnam
+  social:
+  - facebook: https://www.facebook.com
+  - twitter: https://twitter.com
 
-navSub:
-- About Us
-- Statement of Faith
-- Privacy Policy
-- Terms and Conditions
-- Contact Us
-
-Social:
-  facebook: http://www.facebook.com/CrossmapWorld
-  twitter: https://twitter.com/Crossmap
-  pinterest: http://pinterest.com/crossmap/
-  instagram: https://www.instagram.com/crossmapworld/
-  youtube: https://www.youtube.com/crossmap
 
 # images
 I:
-- http://images.christianpost.com/full/89538/south-sudan.jpg
-- http://images.christianpost.com/blog/full/32053/clinton-5.jpg
-- http://images.christianpost.com/full/97345/hillary-clinton.jpg
-- http://images.christianpost.com/full/98398/pokemon-go-pokemon.jpg
-- http://images.christianpost.com/full/52516/student-classroom.jpg
-- http://images.christianpost.com/blog/full/32023/hoye-walter.jpg
-- http://images.christianpost.com/full/96571/bathroom.jpg
-- http://images.christianpost.com/full/98415/vanished-leftbehind-next-generation.jpg
-- http://images.christianpost.com/full/98390/alton-sterling-protest.jpg
-- http://images.christianpost.com/full/97777/benham-brothers.jpg
-- http://images.christianpost.com/full/89113/bikers-with-boxes.png
-- http://images.christianpost.com/full/98273/ark-encounter.jpg
-- http://images.christianpost.com/full/93002/perry-noble.png
-- http://images.christianpost.com/blog/full/30222/road-470798-640.jpg
-- http://images.christianpost.com/blog/full/29884/number-437925-640.jpg
-- http://images.christianpost.com/blog/full/29504/god-world-in-his-hands2.jpg
-- http://images.christianpost.com/full/52297/rick-warren.jpg
-- http://images.christianpost.com/full/73134/clayton-king.jpg
-- http://images.christianpost.com/full/82125/brighton-presbyterian-church.jpg
-- http://images.christianpost.com/full/98334/newspring-church-perry-noble.jpg
-- http://images.christianpost.com/full/85573/first-presbyterian-church.jpg
-- http://images.christianpost.com/full/79745/louie-giglio.jpg
-- http://images.christianpost.com/full/98317/hillsong-united.jpg
-- http://images.christianpost.com/blog/full/32068/angelina-jolie.jpg
-- http://images.christianpost.com/full/98372/lisa-arnold.jpg
-- http://images.christianpost.com/full/82726/lecrae-anomaly-2-0-tour.jpg
-- http://images.christianpost.com/full/80757/lecrae.jpg
-- http://images.christianpost.com/full/86034/benjamin-watsons-book-under-our-skin.jpg
-- http://images.christianpost.com/full/98354/the-fight-within.jpg
-- http://images.christianpost.com/full/98385/theresa-may.jpg
-- http://images.christianpost.com/full/91036/iraqi-christians.jpg
-- http://images.christianpost.com/full/52665/global-warming-climate-change.jpg
-- http://images.christianpost.com/full/95523/iranian-migrants.jpg
-- http://images.christianpost.com/full/90608/isis.jpg
-- http://images.christianpost.com/full/98366/saeed-abedini.jpg
-- http://images.christianpost.com/full/76603/u-s-president-barack-obama-and-u-s-secretary-of-state-john-kerry.jpg
-- http://images.christianpost.com/full/98215/bangladesh-terror.jpg
-- http://images.christianpost.com/full/97389/egyptair.jpg
-- http://images.christianpost.com/full/97773/big-daddy-weave.jpg
-- http://images.christianpost.com/blog/full/32059/poly-family.jpg
-- http://images.christianpost.com/blog/full/32062/trish-donohue-pk.jpg
-- http://images.christianpost.com/blog/full/32057/food-yum.jpg
-- http://images.christianpost.com/full/84445/southern-baptist-convention.jpg
-- http://images.christianpost.com/full/97943/vatican.jpg
-- http://images.christianpost.com/full/76466/eric-metaxas.jpg
-- http://images.christianpost.com/full/98217/baghdad-iraq-terror.jpg
-- http://images.christianpost.com/blog/full/32003/maryam.jpg
-- http://images.christianpost.com/blog/full/31986/tad-wallpaper.jpg
-- http://images.christianpost.com/blog/full/32001/romance-novels-are-dangerous.jpg
-- http://images.christianpost.com/full/98188/jason-sheats-madison-taylor.jpg
-- http://images.christianpost.com/full/52516/student-classroom.jpg
-- http://images.christianpost.com/full/97326/barack-obama.jpg
-- http://images.christianpost.com/full/96571/bathroom.jpg
-- http://images.christianpost.com/full/97895/franklin-graham.jpg
-- http://images.christianpost.com/full/92266/kevin-sorbo.jpg
-- http://images.christianpost.com/full/84788/fourth-of-july.jpg
-- http://images.christianpost.com/full/97868/ronnie-floyd-j-d-greear-steve-gaines.jpg
-- http://images.christianpost.com/blog/full/31228/fotolia-99007211-s.jpg
-- http://images.christianpost.com/blog/full/32006/pakistan-boy-stacking-bricks.jpg
-- http://images.christianpost.com/blog/full/32002/couple-168191-960-720.jpg
-- http://images.christianpost.com/full/98184/muslims-prayer.jpg
-- http://images.christianpost.com/full/95327/rick-warren.jpg
-- http://images.christianpost.com/full/88585/the-rev-billy-graham.jpg
-- http://images.christianpost.com/full/98111/purpose-driven-conference.png
-- http://images.christianpost.com/full/92264/john-piper.jpg
-- http://images.christianpost.com/full/52434/tom-meyer.jpg
-- http://images.christianpost.com/full/97773/big-daddy-weave.jpg
-- http://images.christianpost.com/blog/full/31092/lebron-james-smiling.jpg
-- http://images.christianpost.com/full/51400/casino.jpg
-- http://images.christianpost.com/full/98092/jewelry.jpg
-- http://images.christianpost.com/full/97449/charlotte-hornets-guard-jeremy-lin.jpg
-- http://images.christianpost.com/full/98150/patterns-of-evidence.jpg
-- http://images.christianpost.com/full/98142/pat-summitt.jpg
-- http://images.christianpost.com/full/98166/sadie-robertson.jpg
-- http://images.christianpost.com/full/80067/david-and-tamela-mann.png
-- http://images.christianpost.com/full/98215/bangladesh-terror.jpg
-- http://images.christianpost.com/full/74974/iraq.jpg
-- http://images.christianpost.com/full/97000/tornado.jpg
-- http://images.christianpost.com/blog/full/31937/refugees.jpg
-- http://images.christianpost.com/full/98180/christian-women-in-qaa.jpg
-- http://images.christianpost.com/full/82720/india.jpg
-- http://images.christianpost.com/full/90971/canon-andrew-white.jpg
-- http://images.christianpost.com/full/80500/canada.jpg
-- http://images.christianpost.com/full/98085/uganda-christian.jpg
-- http://images.christianpost.com/full/98198/star-swain.png
-- http://images.christianpost.com/blog/full/31955/kids.jpg
-- http://images.christianpost.com/blog/full/31957/yes.jpg
-- http://images.christianpost.com/full/96333/teenage-girls.jpg
-- http://images.christianpost.com/full/97943/vatican.jpg
-- http://images.christianpost.com/full/76466/eric-metaxas.jpg
-- http://images.christianpost.com/full/95471/answering-jihad-nabeel-qureshi.jpg
-- http://images.christianpost.com/full/98206/candace-cameron-bure.jpg
-- http://images.christianpost.com/full/92457/in-god-we-trust.jpg
-- http://images.christianpost.com/full/70040/map-of-church-attendance.png
-- http://images.christianpost.com/full/98218/russia-church-vladimir-putin.jpg
-- http://images.christianpost.com/full/96457/pakistani-christians.jpg
-- http://images.christianpost.com/full/94125/kanye-west.jpg
-- http://images.christianpost.com/full/96221/target.jpg
-- http://images.christianpost.com/full/98172/palestinian-stabbing-attack.jpg
-- http://images.christianpost.com/full/98197/isis-beheading-video.jpg
-- http://images.christianpost.com/full/80968/egyptian-coptic-christians.jpg
-- http://images.christianpost.com/full/98185/taylor-sheats-juan-sebastian-lugo-christy-sheats-madison-sheats.jpg
-- http://images.christianpost.com/full/98165/ash-carter.jpg
-- http://images.christianpost.com/full/62227/billy-graham.jpg
-- http://images.christianpost.com/full/86419/egyptian-coptic-christian.jpg
-- http://images.christianpost.com/full/98162/oak-ce-primary-school.jpg
-- http://images.christianpost.com/full/41118/paula.jpg
-- http://images.christianpost.com/full/98157/jason-taylor-madison-christy-sheats.jpg
-- http://images.christianpost.com/full/80309/gay-pride-parade.jpg
-- http://images.christianpost.com/full/84958/u-s-secretary-of-state-john-kerry.jpg
-- http://images.christianpost.com/full/68764/on-receiving-gods-love.jpg
-- http://images.christianpost.com/full/98140/istanbul-ataturk-airport.jpg
-- http://images.christianpost.com/full/98097/brexit.jpg
-- http://images.christianpost.com/full/98072/lebanon.jpg
-- http://images.christianpost.com/full/98041/boris-johnson.jpg
-- http://images.christianpost.com/full/98046/brexit.jpg
-- http://images.christianpost.com/full/97663/maryam-nasim-naghash-zargaran.jpg
-- http://images.christianpost.com/full/97985/nigel-farage.jpg
-- http://images.christianpost.com/full/45091/egypt-church-fire.jpg
-- http://images.christianpost.com/full/97879/marguerite-barankitse.jpg
-- http://images.christianpost.com/full/69444/kenneth-bae.jpg
-- http://images.christianpost.com/full/82969/isis.jpg
-- http://images.christianpost.com/full/81633/assyrian-christians.jpg
-- http://images.christianpost.com/full/97906/world-refugee-day.jpg
-- http://images.christianpost.com/full/97898/fallujah-iraq.jpg
-- http://images.christianpost.com/full/90438/syrian-refugees.jpg
-- http://images.christianpost.com/full/95366/pakistan.jpg
-- http://images.christianpost.com/full/88250/nepalese-christians.jpg
-- http://images.christianpost.com/full/86420/egyptian-coptic-christian.jpg
-- http://images.christianpost.com/full/56153/12-week-old-embryo-model.jpg
-- http://images.christianpost.com/full/97896/surgery.jpg
-- http://images.christianpost.com/full/76549/chinese-church.jpg
-- http://images.christianpost.com/full/86118/greek-orthodox.jpg
-- http://images.christianpost.com/full/98085/uganda-christian.jpg
-- http://images.christianpost.com/full/73594/isis.jpg
-- http://images.christianpost.com/full/98100/pakistan-transgender.jpg
-- http://images.christianpost.com/full/91825/christian-syrian-refugeess.jpg
-- http://images.christianpost.com/full/98048/falluja.jpg
-- http://images.christianpost.com/full/98007/brexit.jpg
-- http://images.christianpost.com/full/97957/nadia-murad-basee.jpg
-- http://images.christianpost.com/full/95164/turkey-archaeology.jpg
-- http://images.christianpost.com/full/70070/orthodox-jewish-man.jpg
-- http://images.christianpost.com/full/96935/mark-zuckerberg.jpg
-- http://images.christianpost.com/full/64073/sun-ho-and-kong-hee.jpg
-- http://images.christianpost.com/full/97879/marguerite-barankitse.jpg
-- http://images.christianpost.com/full/73912/muslims-indians-indian-muslims-ramadan.jpg
-- http://images.christianpost.com/full/92266/kevin-sorbo.jpg
-- http://images.christianpost.com/full/98163/united-nations.jpg
-- http://images.christianpost.com/full/80500/canada.jpg
-- http://images.christianpost.com/full/80874/mississippi-state-capitol-in-jackson.jpg
-- http://images.christianpost.com/full/84958/u-s-secretary-of-state-john-kerry.jpg
-- http://images.christianpost.com/full/70003/patricia-heaton.jpg
-- http://images.christianpost.com/full/59596/pharmacy.jp
+- https://img.huffingtonpost.com/asset/5b8f3679200000430034bf29.jpeg?cache=yqsvkqhq5c&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8fbde91900003e0b5036cc.png?cache=hyihq5qgpj&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8f850c2000007e0937b4e0.png?cache=oxdk7euf5p&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8fcc4e200000390937b55c.jpeg?cache=kcffsn9u5a&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7d4207200000430034aebd.jpeg?cache=ppg0xbfaib&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8fafa6200000430034bf9b.png?cache=pwji94kinn&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8fa552200000360837b517.png?ops=
+- https://img.huffingtonpost.com/asset/5b8f6d6e1900003e0b503654.jpeg?cache=alvhkhjtw9&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8f7f09200000300837b4d8.png?ops=
+- https://img.huffingtonpost.com/asset/5b8f9b092000002d0034bf68.jpeg?cache=ltyjqcjekp&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8fb8c32000002c0034bfb1.jpeg?cache=yxccubf3cs&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8eaa1f2000002d0034be9c.jpeg?cache=hnnuix5udd&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8ed9842000002d0034bedc.jpeg?cache=tn9z9dj6td&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8f4826200000300837b4b1.png?cache=7na1foxc3t&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8e9bb92000002d0034be87.jpeg?cache=mkvxofbl2v&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8ed3e62000007e0937b45e.jpeg?cache=1rlv6sbbbm&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8ed27d190000b6065035f0.jpeg?cache=ozijazs3te&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8e9fa2200000390937b422.jpeg?cache=qhsndxxdcu&amp;ops=
+- https://img.huffingtonpost.com/asset/5b89ab9b190000b606503264.jpeg?cache=an7srgtexi&amp;ops=
+- https://img.huffingtonpost.com/asset/5b899b87200000420034bb57.jpeg?cache=lz6iollqa2&amp;ops=
+- https://img.huffingtonpost.com/asset/5b894a9519000014035031c0.jpeg?cache=w7jfmndc1l&amp;ops=
+- https://img.huffingtonpost.com/asset/5b894f6d200000360837b02f.jpeg?cache=px5egg10sb&amp;ops=
+- https://img.huffingtonpost.com/asset/5b897b9c1900003e0b50322c.jpeg?cache=hb2v2ruc7u&amp;ops=
+- https://img.huffingtonpost.com/asset/5b89ae49200000430034bb6e.jpeg?cache=se7w4kqeof&amp;ops=
+- https://img.huffingtonpost.com/asset/5b89771b200000390937b08b.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b898dbe200000300837b0c8.jpeg?cache=awgadmdqye&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8951fc2000007e0937b030.jpeg?cache=xsc7z1ngue&amp;ops=
+- https://img.huffingtonpost.com/asset/5b89628e200000300837b052.jpeg?cache=3hjpyxwbfg&amp;ops=
+- https://img.huffingtonpost.com/asset/5b89a2db2000002c0034bb5d.jpeg?cache=1nltdyuypm&amp;ops=
+- https://img.huffingtonpost.com/asset/5b893c04200000360837b017.jpeg?cache=0ehxllle3r&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8e8cd6200000300837b3ec.jpeg?cache=wco8zusd4j&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8e8feb200000390937b3f7.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b8e8d21190000930a50356e.jpeg?cache=o3abvsqegc&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8e344f190000930a5034ec.jpeg?cache=qiyd2n3op2&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8e1b3419000014035034dd.jpeg?cache=p2rdd7ggdn&amp;ops=
+- https://img.huffingtonpost.com/asset/5b64851619000016035010f6.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b8d9d31200000300837b31c.jpeg?cache=ic7aukye8l&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8d77e7190000930a5034b0.jpeg?cache=4f7hwliz19&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8d52b72000007e0937b2e6.jpeg?cache=gukwjf8qvg&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8d2e87200000420034bd3d.jpeg?cache=zbw61tte4y&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8c3a3a200000430034bc78.jpeg?cache=cvulsep90r&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8bd45e200000300837b1da.png?cache=htwuvneibj&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8b10bd200000420034bc16.jpeg?cache=agsrqmx0nj&amp;ops=
+- https://img.huffingtonpost.com/asset/5b881ce01900003e0b50308e.jpeg?cache=pgypgddkr5&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8819961900001403503088.png?cache=0piul9dgld&amp;ops=
+- https://img.huffingtonpost.com/asset/5b881659190000930a50307b.jpeg?cache=kuw7x0skf7&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8a89e5200000420034bbe2.jpeg?cache=qyxspvovcp&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8817172000002c0034b95c.jpeg?cache=ygzvbxsbe1&amp;ops=
+- https://img.huffingtonpost.com/asset/5b89c902190000930a503284.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b8a4b752000002c0034bbb0.jpeg?cache=hndiywmiqs&amp;ops=
+- https://img.huffingtonpost.com/asset/5b87e92d200000380837ae7b.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b87f613200000420034b909.jpeg?cache=b64zi7aopt&amp;ops=
+- https://img.huffingtonpost.com/asset/5b88081a190000930a503054.png?cache=nsms9t9bvw&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8829be200000430034b982.jpeg?cache=nsann6oven&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8812a4190000930a503071.png?cache=lkgmz3y7jv&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86df5a200000390937ad7f.jpeg?cache=aqi5zybqlc&amp;ops=
+- https://img.huffingtonpost.com/asset/5b87bcd92000002c0034b8be.jpeg?cache=lzfh5o1jli&amp;ops=
+- https://img.huffingtonpost.com/asset/5b87ea5e1900001403503018.jpeg?cache=yvcz1sahyz&amp;ops=
+- https://img.huffingtonpost.com/asset/5b76d81d2000002d0034a98d.jpeg?cache=el8csunjjt&amp;ops=
+- https://img.huffingtonpost.com/asset/5b879dd5200000420034b88a.jpeg?cache=b25dymnd7c&amp;ops=
+- https://img.huffingtonpost.com/asset/5b879cae2000002d0034b885.jpeg?cache=rri31ywsfy&amp;ops=
+- https://img.huffingtonpost.com/asset/5b879544200000420034b87b.png?cache=wnxhxfa9is&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8973ac200000420034bb15.png?cache=3rlnhw7gpl&amp;ops=
+- https://img.huffingtonpost.com/asset/5b896a0e200000430034baff.png?cache=93tiptwfug&amp;ops=
+- https://img.huffingtonpost.com/asset/5b89767e190000930a503229.png?ops=
+- https://img.huffingtonpost.com/asset/5b895733200000430034bad6.jpeg?cache=hw1tn51t5w&amp;ops=
+- https://img.huffingtonpost.com/asset/5b899d27200000300837b0d7.jpeg?cache=usmfkjt6w9&amp;ops=
+- https://img.huffingtonpost.com/asset/5b891541190000930a503170.jpeg?cache=57nr0oqs9k&amp;ops=
+- https://img.huffingtonpost.com/asset/5b895762200000360837b03b.jpeg?cache=dglet0ysrm&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8437842000002d0034b468.jpeg?cache=eninkvmcmc&amp;ops=
+- https://img.huffingtonpost.com/asset/5b88fbfe2000007e0937afa7.jpeg?cache=9mqo88qih7&amp;ops=
+- https://img.huffingtonpost.com/asset/5b891c27190000b606503180.jpeg?cache=sjadghq29m&amp;ops=
+- https://img.huffingtonpost.com/asset/5b88f1ae2000002c0034ba10.jpeg?cache=b8zgctubfk&amp;ops=
+- https://img.huffingtonpost.com/asset/5b87e2d52000002d0034b8e4.jpeg?cache=cqhzscgzuf&amp;ops=
+- https://img.huffingtonpost.com/asset/5b88ded5200000390937af8a.jpeg?cache=vcmnrqwykz&amp;ops=
+- https://img.huffingtonpost.com/asset/5b884ef1200000420034b9b0.jpeg?cache=lw6vqtu3hu&amp;ops=
+- https://img.huffingtonpost.com/asset/5b883d6a200000360837af24.jpeg?cache=dx29y20sqo&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8824c2200000420034b977.jpeg?cache=txfmhz17oz&amp;ops=
+- https://img.huffingtonpost.com/asset/5b883d1c200000430034b9a1.png?ops=
+- https://img.huffingtonpost.com/asset/5b8818b5200000420034b961.png?cache=zsgskirqgc&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86f6e52000002d0034b811.jpeg?cache=xaikydxdda&amp;ops=
+- https://img.huffingtonpost.com/asset/5b882e1a2000002d0034b987.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b7ef4c0190000b6065027f6.jpeg?cache=hawdbpadlh&amp;ops=
+- https://img.huffingtonpost.com/asset/5b87c1f9200000430034b8c0.png?cache=pyekuztxp0&amp;ops=
+- https://img.huffingtonpost.com/asset/5b87929a190000930a502f7c.jpeg?cache=7qzqtqksmi&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8706e1200000420034b820.jpeg?cache=2je4l20t7z&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86b337200000430034b779.jpeg?cache=dbmtl0fiil&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86d910200000380837ad6c.jpeg?cache=kx6rtqrjtp&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86a4df190000930a502e7a.jpeg?cache=aqrpwxunzh&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86a38b1900001403502e77.png?cache=g0i3ljjqmj&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86b6f62000002d0034b786.jpeg?cache=h8k3exa46r&amp;ops=
+- https://img.huffingtonpost.com/asset/5b867742200000380837acab.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b866d66200000300837ac9a.png?ops=
+- https://img.huffingtonpost.com/asset/5b8568e1190000b606502cf6.jpeg?cache=znlxpi5dbi&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8672812000002d0034b710.png?cache=mrjjzk3xwa&amp;ops=
+- https://img.huffingtonpost.com/asset/5b86527a2000002c0034b6d1.png?cache=4avfjekxrb&amp;ops=
+- https://img.huffingtonpost.com/asset/5b864cd52000002d0034b6ca.jpeg?cache=r74c9fobuw&amp;ops=
+- https://img.huffingtonpost.com/asset/5b864302190000930a502ddf.jpeg?cache=eoxovq4gvv&amp;ops=
+- https://img.huffingtonpost.com/asset/5b85dbb6190000930a502d9a.jpeg?cache=ye0yxub0sy&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8595cc190000b606502d56.png?cache=pyaz5mzcrh&amp;ops=
+- https://img.huffingtonpost.com/asset/5b858f8a200000380837abe4.png?cache=ghpq04qwak&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8571dc2000002c0034b5f9.jpeg?cache=4xbwje19zu&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7ebcc5190000140350279a.jpeg?cache=yyxvfuu0hy&amp;ops=
+- https://img.huffingtonpost.com/asset/5b85883b200000360837abd5.jpeg?cache=axxtokkyym&amp;ops=
+- https://img.huffingtonpost.com/asset/5b855561200000300837ab58.jpeg?cache=yacavlbwbi&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8583c41900003e0b502d43.jpeg?cache=szd4qlmnez&amp;ops=
+- https://img.huffingtonpost.com/asset/5b855698200000360837ab5f.jpeg?cache=biluhndvrd&amp;ops=
+- https://img.huffingtonpost.com/asset/5b85037d200000430034b537.jpeg?cache=qgeypcpoux&amp;ops=
+- https://img.huffingtonpost.com/asset/5b84d6fa1900001403502bfd.jpeg?cache=3hikfanyzk&amp;ops=
+- https://img.huffingtonpost.com/asset/5b84eb4b1900001d03502c0e.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b84cacd2000002c0034b4e2.jpeg?cache=hr6qklw6es&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8447be2000007a0337aa39.jpeg?cache=sbrj7oezy5&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8441e6200000360837aa2d.png?cache=wa2irbchow&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8411dc1900001d03502b5a.jpeg?cache=tadqdbp3ag&amp;ops=
+- https://img.huffingtonpost.com/asset/5b8428c4200000430034b451.png?cache=jdrq0cx3u2&amp;ops=
+- https://img.huffingtonpost.com/asset/5b83fbce190000930a502b31.png?ops=
+- https://img.huffingtonpost.com/asset/5b840f93200000300837a9e2.jpeg?cache=ohxpxwgr2k&amp;ops=
+- https://img.huffingtonpost.com/asset/5b83ee69200000380837a999.jpeg?cache=uclb45rjze&amp;ops=
+- https://img.huffingtonpost.com/asset/5b83f93f190000b606502b2d.png?cache=rid0bwgco5&amp;ops=
+- https://img.huffingtonpost.com/asset/5b83dd9e2000002d0034b3cc.png?ops=
+- https://img.huffingtonpost.com/asset/5b83fb78190000930a502b2f.png?cache=zivl4wlzzh&amp;ops=
+- https://img.huffingtonpost.com/asset/5b84008b200000300837a9b1.jpeg?cache=glno5lm22v&amp;ops=
+- https://img.huffingtonpost.com/asset/5b83fef7190000930a502b32.jpeg?cache=mse6xy66su&amp;ops=
+- https://img.huffingtonpost.com/asset/5b840f77200000300837a9e1.jpeg?cache=5jd1lvnwut&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7521e5200000dd02379cf7.jpeg?cache=70nwdtgevh&amp;ops=
+- https://img.huffingtonpost.com/asset/5b75a52c2000002d0034a835.jpeg?cache=jxrlfudvzd&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7bd875200000420034ad29.png?ops=
+- https://img.huffingtonpost.com/asset/5b7446432000002c0034a6a7.jpeg?cache=2mksg5zrvz&amp;ops=
+- https://img.huffingtonpost.com/asset/5b75c03d2000002c0034a85f.jpeg?cache=ri1kgqysjv&amp;ops=
+- https://img.huffingtonpost.com/asset/5b75ddce2000002d0034a885.jpeg?cache=9gsyrdh3nb&amp;ops=
+- https://img.huffingtonpost.com/asset/5b75da77200000420034a87d.jpeg?cache=9v9jnn7u2n&amp;ops=
+- https://img.huffingtonpost.com/asset/5b74b1ac190000b606501eb2.png?cache=8vkyfx3wyv&amp;ops=
+- https://img.huffingtonpost.com/asset/5b75dcd0200000dd02379e21.jpeg?cache=aijvejoqdu&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7697601900002b01502088.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5af1d1192000004200b90d6b.jpeg?cache=eg36jfe8fc&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7598ed200000420034a819.jpeg?cache=fqlhx0kdwo&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7b0cea200000de0237a1da.jpeg?cache=fhxmvs55if&amp;ops=
+- https://img.huffingtonpost.com/asset/5b76cab4200000de02379f14.jpeg?cache=rm6qijjdks&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7e41dc200000380837a56f.jpeg?cache=p2fipup2ob&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7563172000007a03379d53.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b7ea833200000380837a60e.jpeg?ops=
+- https://img.huffingtonpost.com/asset/5b7b7c15190000b6065023e8.jpeg?cache=txgtqcrfj2&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7f00a7200000430034b0d4.jpeg?cache=xbmzvf5iop&amp;ops=
+- https://img.huffingtonpost.com/asset/5b771863200000dd02379f96.jpeg?cache=0svqfscbsv&amp;ops=
+- https://img.huffingtonpost.com/asset/5b796905200000420034aafa.jpeg?cache=hxzg2i3j3a&amp;ops=
+- https://img.huffingtonpost.com/asset/5b7b7f9a200000430034acc8.jpeg?cache=dycgxqha5g&amp;ops=
 
 
 
@@ -244,61 +194,57 @@ I:
 # headings
 H:
 - What Are Atheists So Afraid Of?
-- 5 Church Types That Must Change or Die
 - Orlando Shooting Reminds Christians to Embody the Love of Christ
 - To LGBT Americans Who Blame Christians for the Orlando Massacre
 - Don't Blame United Methodists for the Terror in Orlando
+- 5 Church Types That Must Change or Die
 - Censorship Is More Dangerous Than Hate Speech
-- Christians':' Don't Say the Gays in Orlando 'Got What They Deserved'
+- Christians Don't Say the Gays in Orlando 'Got What They Deserved'
 - Right and Wrong Reactions to the Tragic Massacre in Orlando
 - People With Disabilities Aren't Better Off Dead
-- Halfway Christians':' The World Needs More From You
+- Halfway Christians The World Needs More From You
 - What Made the 2016 Southern Baptist Meeting Historic
-- Ronnie Floyd's 2016 Presidential Address to the SBC':' The Stakes Are High
-- NeverTrump NeverHillary':' Why I'm Content to Vote for Neither
-- Muhammed Ali and Jesus':' How to Be the Greatest of All Time
-- Evangelism That Drives People Away':' Are You a 'Beast Mode' Christian?
-- Profane Clinton vs. Racist Trump':' What's an African-American Evangelical to Do?
+- Ronnie Floyd's 2016 Presidential Address to the SBC The Stakes Are High
+- NeverTrump NeverHillary Why I'm Content to Vote for Neither
+- Muhammed Ali and Jesus How to Be the Greatest of All Time
+- Evangelism That Drives People Away Are You a 'Beast Mode' Christian?
+- Profane Clinton vs. Racist Trump What's an African-American Evangelical to Do?
 - 12 Important Things to Know About Angels
 - What If Everything We Call 'Natural' Is Actually 'Technological'?
-- Dear Worship Leaders':' Please Forgive Me!
+- Dear Worship Leaders Please Forgive Me!
 - SBC Votes Today on Whether Millennial Reformed Theology Represents the Future
 - The Benefits of Being Right With God
-- Is Religion Going Extinct?
 - Is Your Gospel Presentation CLEAR? Take This Test to Find Out
-- Can the Pope Bring Revival?
 - 9 Distractions That Shouldn't Happen Right Before a Sermon
 - The Faith of Christopher Hitchens
 - Gary Chapman's Faith-Based '5 Love Languages' Praised by Time Magazine
-- How to Stump a Liberal':' Are Sex Chromosomes Real?
+- How to Stump a Liberal Are Sex Chromosomes Real?
 - Playing God With Human-Animal Hybrids
 - If Shaq Were Transgender, Could He Play in the WNBA?
-- Ask Chuck':' 5 Bible Tips for Writing Your Resume
+- Ask Chuck 5 Bible Tips for Writing Your Resume
 - Practicing Narrow-Minded, Open-Hearted, Love-Drenched Intolerance
 - Is Syria's Current Unraveling Tied to Biblical Prophecy?
 - Two Christians Who Changed the World You've Probably Never Heard Of
 - Innocent Christians, Muslims and Yazidis Trapped in Fallujah Need Our Help
-- Green Bible':' Is Climate Change Worse Than Hell?
+- Green Bible Is Climate Change Worse Than Hell?
 - White House Appointment Has Links to Muslim Brotherhood
 - Video Gives Advice to Christian Parents of Gay Children
 - As Muslims Pray and Fast During Ramadan, ‘Man in White’ Appears in Dreams
-- Southern Baptists Vote to Support Refugee Resettlement After Trump Says to Ban All Muslim Immigration
-- Mandatory Gender Education
-- Election Dysfunction
+- Southern Baptists Vote to Support Refugee Resettlement After Trump Says 
 - Noted Physicist Says String Theory Suggests We’re All Living in God’s Matrix
-- Matt and Melissa Graves, Parents of 2-Y-O Boy Killed by Alligator at Disney Resort to Hold Special Service
-- Robert Jeffress':' Obama Would Be Criticizing Christians If a Conservative Carried Out Orlando Massacre
+- Matt and Melissa Graves, Parents of 2-Y-O Boy Killed by Alligator at Disney
+- Robert Jeffress Obama Would Be Criticizing Christians If a Conservative
 - Big Daddy Weave Bassist Jason Weaver Able to Get Out of Bed After Feet Amputation
-- Orlando Megachurch Pastor Joel Hunter Says He Will 'Examine His Heart' After Gay Club Shooting
+- Orlando Megachurch Pastor Joel Hunter Says He Will 'Examine His Heart'
 - Murdered Christian Voice Contestant Christina Grimmie's Funeral Set for Friday
 - The Most Surprising Thing About Apostle Paul's Ministry
 - 10 Things You Will Never Regret as a Christian
-- Nepal':' Hindu Priest Doubted Jesus, Until He Showed Up in a Powerful Way
+- Nepal Hindu Priest Doubted Jesus, Until He Showed Up in a Powerful Way
 - Pastor Resigns From Evangelical Church Over Biblical Position on Homosexuality
-- Black Pastor at So. Baptist Convention':' Racism Is a Sin Problem and American Churches Are Guilty
-- Pope Francis Meets With Evangelical, Pentecostal Leaders in John 17 Spirit (Interview)
-- Jefferson Bethke':' 4 Tips for Being the Best Dad You Can Be
-- Billy Graham':' Debt Can Be a Sign of Deeper Spiritual Problem
+- Black Pastor at So. Baptist Convention Racism Is a Sin Problem 
+- Pope Francis Meets With Evangelical, Pentecostal Leaders in John 17 Spirit
+- Jefferson Bethke 4 Tips for Being the Best Dad You Can Be
+- Billy Graham Debt Can Be a Sign of Deeper Spiritual Problem
 - Are Parents Effective at Addressing Media Habits
 - Jewelry Trends Throughout History
 - Does US Consider Sports Betting and Gambling Legitimate?
@@ -317,10 +263,7 @@ P:
 - "We all know Abraham—an imperfect man, but one of unfathomable faith as he obediently put his son Isaac on the altar in Genesis 22."
 - "As children, we are \"members of the household of God\" who \"ought to behave in the household of God\" as He prescribes."
 - "We all inherently feel our work should have meaning beyond earning a living — be about something bigger than ourselves. We want a sense that even the tedium in our jobs serves a purpose."
-- "\"It would seem that Our Lord finds our desires not too strong, but too weak.\""
-- "Many pastors make praying for the lost a priority, of course."
 - "Everyone who has been through elementary school has been asked the basic question, \"What do you want to be when you grow up?\" When we ask that question, we are teaching children that your job is an important part of your identity. But how much help do we really give kids in figuring out why vocation is important?"
-- "Washington State has legalized the commercial trade in babies. Think I'm kidding?"
 - "The missionary [is] often caricatured as standing under a palm tree, wearing a pith helmet and declaiming the gospel to a group of ill-clad \"natives\" sitting respectfully around him on the ground."
 - "Tucked away within the former abbey of Saint-Germain-des-Prés in the upscale Parisian neighborhood of the same name is an elaborate monument that is obviously regal in nature."
 - "For the past two years, I have been monitoring the comments and challenges mentioned by church leaders. I am attempting to answer the question: What is hindering many of our churches from achieving health and vitality?"
@@ -360,3 +303,36 @@ P:
 - "A university instructor, who has been conducting research on church attendance in America, has found that people who become born-again Christians do not start going to services significantly more often than before."
 - "Latinos in America continue rising as a share of the overall population in the United States, but some Christian ministries are warning that only around 10 percent are born-again believers as a majority is becoming more secular."
 - "The U.S. Navy turned down the application of an atheist chaplain to serve in the Navy Chaplain Corps. The move comes after 43 members of Congress signed a letter warning that the very definition of what it means to be a chaplain is at stake."
+
+reporter:
+- Ariel Kahana
+- Sheryl Lynn
+- Michael Gryboski
+- Jeannie Law
+- Leonardo Blair
+- Stoyan Zaimov
+- Samuel Smith
+- Greg Laurie
+- Nolan Harkness
+- Craig Parshall
+- Dan Delzell
+- Napp Nazworth
+- Jim Denison
+- Randal Rauser
+- Wissam al-Saliby
+- Laura Hughes
+- Brigitte Gabriel
+- Ryan Bomberger
+- Michael Brown
+- Ronnie Floyd
+- Karen Swallow Prior
+- Eric Metaxas
+- Anne Morse
+- Rachel Godwin
+- Jerry Newcombe
+- Bruce Ashford
+- Thom S. Rainer
+- Stan Guthrie
+- Greg Stier
+- John Stonestreet
+- G. Shane Morris

@@ -66,7 +66,7 @@ let dataInit = {
   keys: (obj) => { return Object.keys(obj); },
   belongTo: (str, arr) => { return arr.indexOf(str) !== -1; },
   push: (arr, str) => { arr.push(str); return arr; },
-  getYear: () => { return new Date().getFullYear(); }
+  year: () => { return new Date().getFullYear(); }
 };
 
 let htmlValidatorFilters = [
@@ -188,15 +188,15 @@ function doNunjucks (input) {
       ICMax = data.I.length - 1,
       HCMax = data.H.length - 1,
       PCMax = data.P.length - 1;
-  data.getIC = () => {
+  data.ic = () => {
     IC = IC >= ICMax ? 0 : IC + 1;
     return IC;
   };
-  data.getHC = () => {
+  data.hc = () => {
     HC = HC >= HCMax ? 0 : HC + 1;
     return HC;
   };
-  data.getPC = () => {
+  data.pc = () => {
     PC = PC >= PCMax ? 0 : PC + 1;
     return PC;
   };
