@@ -107,12 +107,12 @@ switch (process.env.task) {
     serverUp();
     // watch njk files
     chokidar
-      .watch(njkDir + '/**/*.njk')
+      .watch([njkDir + '/**/*.njk', '*.njk'])
       .on('change', file => {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
         } else {
-          return doNunjucks(njkDir + '/index.njk');
+          return doNunjucks(njkDir + '/video.njk');
         }
       });
 
@@ -163,7 +163,7 @@ switch (process.env.task) {
 
     // watch server
     chokidar
-      .watch([htmlDir + '/**/*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
+      .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
         ignored: [htmlDir + '/amp.html']
         // ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
@@ -183,14 +183,20 @@ function doNunjucks (input) {
 
   let base = -1,
       IC = base,
+      BC = base,
       HC = base,
       PC = base,
       ICMax = data.I.length - 1,
+      BCMax = data.B.length - 1,
       HCMax = data.H.length - 1,
       PCMax = data.P.length - 1;
   data.ic = () => {
     IC = IC >= ICMax ? 0 : IC + 1;
     return IC;
+  };
+  data.bc = () => {
+    BC = BC >= BCMax ? 0 : BC + 1;
+    return BC;
   };
   data.hc = () => {
     HC = HC >= HCMax ? 0 : HC + 1;
@@ -209,6 +215,9 @@ function doNunjucks (input) {
   });
   env.addFilter('nameToUrl', (str) => {
     return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '');
+  });
+  env.addFilter('splitToArray', (str, separator) => {
+    return str.split(separator);
   });
 
   env.render(input, data, (err, res) => {

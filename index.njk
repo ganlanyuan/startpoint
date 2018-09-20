@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>Pages</title>
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,900" rel="stylesheet">
+  <style>
+    body {
+      --bg: hsla(0, 0%, 0%, 0.03);
+
+      margin: 0;
+      font-family: Montserrat, sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+    }
+    ul { 
+      margin: 0 0 20px 0;
+      padding: 0;
+      background: #fff;
+    }
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-transform: capitalize;
+      border-bottom: 1px solid var(--bg);
+    }
+    h2 {
+      font-weight: 700;
+      text-transform: capitalize;
+      font-size: 36px;
+      margin-bottom: 1em !important;
+    }
+    a {
+      color: inherit;
+    }
+    .container {
+      margin: 30px 0;
+    }
+    .container span, .container h2 {
+      display: block;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    .container a {
+      display: block;
+      font-size: 28px;
+      line-height: 3;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-transform: capitalize;
+      font-weight: 300;
+      letter-spacing: 0.005em;
+      text-decoration: none;
+      transition: all 0.25s;
+      color: hsla(0, 0%, 0%, 0.45);
+    }
+    .container span {
+      position: relative;
+    }
+    .container span:before,
+    .container span:after {
+      content: '';
+      width: 0;
+      height: 0;
+      display: block;
+      border: 10px solid transparent;
+      border-left: 20px solid currentColor;
+      border-right: 0;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate3d(-30px, -50%, 0);
+      transition: all 0.25s;
+    }
+    .container span:before {
+      opacity: 0;
+    }
+    .container span:after {
+      border-left: 7px solid #fff;
+    }
+    .container a:hover { color: #000; }
+    .container a:hover span:before,
+    .container a:hover span:after {
+      margin-left: 6px;
+    }
+    .container a:hover span:before {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pages</h2>
+  {% for group in pages %}
+  <ul>
+    {% for url, name in group %}
+    <li><a href="{{ url }}.html"><span>{{ name | title }}</span></a></li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+  {# <ul>
+    <li><a href="public/index.html" target="_blank"><span>homepage</span></a></li>
+    <li><a href="public/section.html" target="_blank"><span>section</span></a></li>
+    <li><a href="public/section-weekly-briefing.html" target="_blank"><span>section weekly briefing</span></a></li>
+    <li><a href="public/article.html" target="_blank"><span>article</span></a></li>
+  </ul>
+  <ul>
+    <li><a href="public/video.html" target="_blank"><span>video</span></a></li>
+    <li><a href="public/books.html" target="_blank"><span>books</span></a></li>
+    <li><a href="public/education.html" target="_blank"><span>education</span></a></li>
+    <li><a href="public/education-colleges.html" target="_blank"><span>education-colleges</span></a></li>
+    <li><a href="public/education-rankings.html" target="_blank"><span>education-rankings</span></a></li>
+  </ul>
+  <ul>
+    <li><a href="newsletter/weekly-briefing/index.html" target="_blank"><span>newsletter: weekly-briefing</span></a></li>
+  </ul> #}
+</div>  
+
+</body>
+</html>
