@@ -8,11 +8,11 @@
     desc = '', 
     hashtags = '', 
     isVideo = '', 
-    appid = '',
     redirectUrl = '',
     provider = 'Company Name', 
     via = 'twitter username of author'
   ) %}
+    {# appid = '', #}
 
   {%- if name === 'facebook' -%}
     http://www.facebook.com/sharer.php?u={{ crunchify(url) }}
@@ -68,7 +68,7 @@
   {%- elif name === 'viber' -%}
     viber://forward?text={{ crunchify(url) }}
   {%- elif name === 'email' -%}
-    mailto:?subject={{ crunchify(title) }}&amp;body=Check%20out%20this%20site:%20{{ crunchify(url) }}
+    mailto:?subject={{ crunchify(title) }}&amp;body=Check%20out%20this%20page:%20{{ crunchify(url) }}
   {%- elif name === 'wordpress' -%}
     http://wordpress.com/press-this.php?u={{ crunchify(url) }}&amp;t={{ crunchify(title) }}&amp;s={{ crunchify(desc) }}&amp;i={{ crunchify(img) }}
   {%- elif name === 'xing' -%}
