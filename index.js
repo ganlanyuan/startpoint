@@ -112,7 +112,7 @@ switch (process.env.task) {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
         } else {
-          return doNunjucks(njkDir + '/video.njk');
+          return doNunjucks(njkDir + '/index.njk');
         }
       });
 
@@ -183,20 +183,14 @@ function doNunjucks (input) {
 
   let base = -1,
       IC = base,
-      BC = base,
       HC = base,
       PC = base,
       ICMax = data.I.length - 1,
-      BCMax = data.B.length - 1,
       HCMax = data.H.length - 1,
       PCMax = data.P.length - 1;
   data.ic = () => {
     IC = IC >= ICMax ? 0 : IC + 1;
     return IC;
-  };
-  data.bc = () => {
-    BC = BC >= BCMax ? 0 : BC + 1;
-    return BC;
   };
   data.hc = () => {
     HC = HC >= HCMax ? 0 : HC + 1;

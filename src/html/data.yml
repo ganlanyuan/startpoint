@@ -1,8 +1,8 @@
 # http://nodeca.github.io/js-yaml/
 # https://yaml-online-parser.appspot.com/
-brand: ""
+brand: "Brand Name"
 
-baseurl: https://
+baseurl: https://website.com
 
 nav:
   main:

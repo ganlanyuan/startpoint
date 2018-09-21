@@ -1,0 +1,33 @@
+{# pagination #}
+<nav role="navigation" aria-label="Pagination Navigation">
+  <ul>
+    {% set currentPage = 3 %}
+    {% set start = 0 %}
+    {% set length = 5 %}
+
+    <li><a href="/page-{{ currentPage - 1 }}" aria-label="Go to Previous Page">Prev</a>
+    </li>
+
+    {% for i in range(start, start + length) %}
+    <li>
+      <a href="/page-{{ loop.index }}" aria-label="{{ 'Current Page, Page ' + loop.index if loop.index === currentPage else 'Go to Page ' + loop.index }}" {{ 'aria-current=true' if loop.index === currentPage }}>
+        {{ loop.index }}
+      </a>
+    </li>
+    {% endfor %}
+
+    <li><a href="/page-{{ currentPage + 1 }}" aria-label="Go to Next Page">Next</a>
+  </ul>
+</nav>
+
+
+{# primary search #}
+<form class="main-search" id="main-search" action="post">
+  <div role="search">
+    <label class="visually-hidden" for="main-search-input">Search:
+      <p id="main-search-error" role="alert"></p>
+    </label>
+    <input id="main-search-input" type="search" placeholder="Search" required="">
+    <button><span class="visually-hidden">Go</span></button>
+  </div>
+</form>
