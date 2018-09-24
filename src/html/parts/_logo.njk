@@ -4,9 +4,9 @@
   itemid="{{ brand | replace(r/\s+/g, '') }}">
   <a href="/" itemprop="url">
     <meta itemprop="legalName name" content="{{ brand }}">
-    <link itemprop="image" href="../assets/img/logo.png">
+    <link itemprop="image" href="{{ imgpath }}/logo.png">
     <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img src="../assets/img/logo.svg" alt="Go to Homepage" width="320" height="60">
+      <img src="{{ imgpath }}/logo.svg" alt="Go to Homepage" width="320" height="60">
     </span>
   </a>
 </div>

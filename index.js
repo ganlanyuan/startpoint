@@ -388,7 +388,11 @@ function doJsBundle (files) {
                 browser: true,
               }),
               buble(),
-              uglify(),
+              uglify({
+                mangle: {
+                  keep_fnames: true, // keep function name
+                }
+              }),
             ],
           },
           outputOptions = {

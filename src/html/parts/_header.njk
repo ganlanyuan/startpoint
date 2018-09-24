@@ -20,7 +20,7 @@
     {# nav #}
     <nav role="navigation" aria-label="Main Navigation" id="main-nav"> {# aria-hidden="false" #}
       <ul>
-        {% for section, subSection in navMain %}
+        {% for section, subSection in nav.main %}
           <li class="has-submenu">
             <a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}" aria-haspopup="true">{{ section | capitalize }}</a> {# aria-expanded="true" #}
             {# <button><span class="visually-hidden">show submenu for "{{ section | capitalize }}"</span></button> #}

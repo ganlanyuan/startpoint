@@ -1,6 +1,8 @@
 {%- set layoutHome = 1020 -%}
 {%- set container = 1200 -%}
 {%- set globalGutter = 30 -%}
+{% set root = '../' %}
+{% set imgpath = root + 'assets/img' %}
 
 {%- import './_macros.njk' as mc with context -%}
 {%- import './_share.njk' as share with context -%}
@@ -30,16 +32,16 @@
 
   <!-- Subresources:  -->
   <!-- Identify the resources that are the highest priority and should be requested before prefetched items -->
-  <link rel="subresource" href="../assets/css/main.css">
+  <link rel="subresource" href="{{ root }}assets/css/main.css">
   
-  <!-- Prefetch DNS for external ../assets -->
+  <!-- Prefetch DNS for external assets -->
   <!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
 
   <!-- Preconnect for dynamic request URLs -->
   <!-- <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin> -->
   
   <!-- Prefetch Resourses -->
-  {# <link rel="prefetch" href="../assets/svg/sprites.svg"> #}
+  {# <link rel="prefetch" href="{{ root }}assets/svg/sprites.svg"> #}
 
   <style>
     /* critical:css */
@@ -47,10 +49,10 @@
     /* endinject */
   </style>
   
-  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="{{ root }}assets/css/main.css">
   <!--[if (lt IE 9)]>
     <style>@media \0screen { img { width: auto; } }</style>
-    <script src="../assets/js/html5shiv.js"></script>
+    <script src="{{ root }}assets/js/html5shiv.js"></script>
   <![endif]-->
 </head>
 <body class="{{ page + '-page'}}">
@@ -72,6 +74,6 @@
   <!-- Placeholder polyfill for IE9- -->
   <!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
 
-  <script src="../assets/js/script.js"></script>
+  <script src="{{ root }}assets/js/script.js"></script>
 </body>
 </html>
