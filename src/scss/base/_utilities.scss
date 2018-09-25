@@ -65,7 +65,25 @@ img[src*=".png"] {
 // .clearfix { @extend %clearfix; }
 
 // == media ==
-// .flex-video { @include flex-media(); }
+.embedded-content {
+  margin-bottom: $global-gutter;
+  overflow: auto;
+  iframe { border: 0; }
+  .fluid {
+    &-wrapper {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+    }
+    &-item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+  }
+}
 
 // .media-left { @include media-list('media' 15px); }
 // .media-right { @include media-list('media' right 15px); }

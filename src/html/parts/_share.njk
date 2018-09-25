@@ -1,6 +1,6 @@
 {# share on social media #}
 {# https://github.com/bradvin/social-share-urls#url-arguments #}
-{% macro on(
+{%- macro on(
     name, 
     url = '', 
     title = '', 
@@ -11,7 +11,7 @@
     redirectUrl = '',
     provider = 'Company Name', 
     via = 'twitter username of author'
-  ) %}
+  ) -%}
     {# appid = '', #}
 
   {%- if name === 'facebook' -%}
@@ -95,7 +95,7 @@
   {%- elif name === 'weibo' -%}
     http://service.weibo.com/share/share.php?url={{ crunchify(url) }}&amp;appkey=&amp;title={{ crunchify(text) }}&amp;pic=&amp;ralateUid=
   {%- endif -%}
-{% endmacro %}
+{%- endmacro -%}
 
 {# crunchify string #}
 {% macro crunchify(str) %}
