@@ -1,14 +1,233 @@
+{% macro img_slider(str = '800_600', is='video') %}
+  <div class="img-slider">
+    {% for i in range(0, 3) %}
+    <div {{ 'class=is-video' if loop.index === 1 }}>
+      {% if is === 'image' %}
+      <figure>
+      {% endif %}
+        
+        {% set arr = str | splitToArray('_') %}
+        {% set src = I[ic()] %}
+        {% set ratio = [3, 2] %}
+
+        {% if belongTo(page, ['home', 'church & ministries']) %}
+        <img 
+          src="{{ src }}547_{{ imgHeight(547, ratio) }}" 
+          srcset="{{ srcset(src, [547, 707], ratio) }}" 
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 66vw, (max-width: 1200px) 45.6vw, 547px" 
+          alt="{{ H | random }} alt" width="707" height="{{ imgHeight(707, ratio) }}">
+        {% else %}
+        <img 
+          src="{{ src }}600_{{ imgHeight(600, ratio) }}" 
+          srcset="{{ srcset(src, [400, 600, 800, 963], ratio) }}" 
+          sizes="(max-width: 1023px) 100vw, (max-width: 1200px) calc(100%-400px), 800px" 
+          alt="{{ H | random }} alt" width="963" height="{{ imgHeight(963, ratio) }}">
+        {% endif %}
+
+        {% if is === 'video' and loop.index === 1 %}
+        <button class="btn btn-md btn-secondary btn-play"><span class="i-play"></span>Play</button>
+        {% endif %}
+
+      {% if is === 'image' %}
+        <figcaption class="visually-hidden" itemprop="caption description"><span class="photo-des">{{ H[hc()] | capitalize }}</span> | <span class="credit">Image by Explore Oceans</span></figcaption>
+      </figure>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% if is === 'image' %}
+    <button class="btn btn-md btn-secondary btn-photo"><span class="i-photo"><span></span></span>View Photos</button>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro headlines() %}
+  <div class="home-layout-1 headline-layout">
+    <div>
+      <article>
+        <div class="img-slider-wrapper">
+          {{ img_slider() }}
+        </div>
+        <h3 class="h1"><a class="link" href="">{{ H[hc()] | capitalize }}</a></h3>
+        {{ byline() }}
+        <p>{{ P[pc()] }}</p>
+        <p>{{ P[pc()] }}</p>
+        <aside>
+          <ul class="ul">
+            {% for i in range(0,2) %}
+              <li><h3><a class="link" href="">{{ H[hc()] | capitalize }}</a></h3></li>
+            {% endfor %}
+          </ul>
+        </aside>
+      </article>
+    </div>
+    <div>
+      <ul class="has-divider at-top">
+        {% for i in range(0, 2) %}
+          <li>
+            <article>
+              {% if loop.index === 1 %}
+                {% set src = I[ic()] %}
+                {% set ratio = [3, 2] %}
+                <a href=""><img
+                  src="{{ src }}547_{{ imgHeight(547, ratio) }}" 
+                  srcset="{{ srcset(src, [281, 547, 707], ratio) }}" 
+                  sizes="(max-width: 767px) 100vw, 281px" 
+                  alt="{{ H | random }} alt" width="707" height="{{ imgHeight(707, ratio) }}"></a>
+              {% endif %}
+              <h3 class="h2"><a class="link" href="">{{ H[hc()] | capitalize }}</a></h3>
+              {{ byline() }}
+              <p>{{ P[pc()] }}</p>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro leading_news(section, primary = 'h', list = 4, size="md", areBooks = false) %}
+  {% if size === 'sm' %}
+    {% set sizes = [62, 62] %}
+  {% elif size === 'md' %}
+    {% set sizes = [130, 72] %}
+  {% elif size === 'lg' %}
+    {% set sizes = [210, 120] %}
+  {% endif %}
+
+  <h2 class="col-header">{{ section }}</h2>
+  {# article #}
+  {% if primary %}
+  <article>
+    <a href="">
+      {% set src = I[ic()] %}
+      {% set ratio = [3, 2] %}
+      {% if size === 'lg' %}
+        <img 
+          src="{{ src }}547_{{ imgHeight(547, ratio) }}" 
+          srcset="{{ srcset(src, [547, 707], ratio) }}" 
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 66vw, (max-width: 1200px) 45.6vw, 547px" 
+          alt="{{ H | random }} alt" width="707" height="{{ imgHeight(707, ratio) }}">
+      {% elif size === 'md' %}
+        {% if areBooks %}
+          {% set src = B[bc()] %}
+        {% endif %}
+        <img 
+          src="{{ src }}600_{{ imgHeight(600, ratio) }}" 
+          srcset="{{ srcset(src, [300, 600, 963], ratio) }}" 
+          sizes="(max-width: 1023px) 100vw, 300px" 
+          alt="{{ H | random }} alt" width="963" height="{{ imgHeight(963, ratio) }}">
+      {% else %}
+        {% set w = 539 %}
+        {% set h = imgHeight(w, ratio) %}
+        <img src="{{ src }}539_{{ h }}" width="539" height="{{ h }}" alt="{{ H | random }} alt">
+      {% endif %}
+    </a>
+    <h3 class="h2"><a class="link" href="">{{ H[hc()] | capitalize }}</a></h3>
+    {% if size === 'lg' %}{{ byline() }}{% endif %}
+    {% if primary === 'p' %}<p>{{ P[pc()] }}</p>{% endif %}
+  </article>
+  {% endif %}
+  {# list #}
+  {% if list %}
+  <ul class="has-divider img-on-left {{ 'at-top' if primary else 'in-middle'}}">
+    {% for i in range(0,list) %}
+      <li>
+        <a href=""><img src="{{ B[bc()] if areBooks else I[ic()] }}{{ sizes[0] }}_{{ sizes[1] }}" width="{{ sizes[0] }}" height="{{ sizes[1] }}" alt="{{ H | random }} alt"></a>
+        <div>
+          <h3 class="h4"><a class="link" href="">{{ H[hc()] | capitalize }}</a></h3>
+          {% if size === 'lg' %}{{ byline() }}{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro news_gallery(n = 4) %}
+  <ul class="gallery-4">
+    {% set w = 469 %}
+    {% set h = imgHeight(w, [3, 2]) %}
+    {% for i in range(0,n) %}
+      <li>
+        <article>
+          <a href=""><img src="{{ I[ic()] }}{{ w }}_{{ h }}" width="{{ w }}" height="{{ h }}" alt="{{ H | random }} alt"></a>
+          <h3 class="col-tag loud"><a href="{{ baseurl }}/{{ nav.main[loop.index] | nameToUrl }}">{{ nav.main[loop.index] | capitalize }}</a></h3>
+          <h4 class="h2"><a class="link" href="">{{ H[hc()] | capitalize }}</a></h4>
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+
+
+{% macro col_in_gallery(str, count = 4, col_border = true) %}
+  <section class="{{ 'col bold' if col_border }} col-in-gallery">
+    <h2 class="col-header"><a class="link" href="{{ baseurl }}/{{ str | nameToUrl }}">{{ str }}</a></h2>
+    <article>
+      {% set w = 469 %}
+      {% set h = imgHeight(w, [3, 2]) %}
+      <a href=""><img src="{{ I[ic()] }}{{ w }}_{{ h }}" width="{{ w }}" height="{{ h }}" alt="{{ H | random }} alt"></a>
+      <h3 class="h2"><a class="link" href="">{{ H[hc()] | capitalize }}</a></h3>
+    </article>
+    <ul class="has-divider at-top">
+      {% for i in range(0,count) %}
+        <li><h3 class="h4"><a class="link" href="">{{ H[hc()] | capitalize }}</a></h3></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endmacro %}
+
+
+
+
+{% macro byline(hasDate = false) %}
+<div class="byline">By <a class="link reporter" href="">{{ reporter | random }}</a>
+  {% if hasDate %}
+    | <time datetime="2018-08-31">Aug. 31, 2018</time>
+  {% endif %}
+</div>
+{% endmacro %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {# get image height #}
-{% macro imgHeight(width, ratio = [2, 3]) %}
-  {{- (width * ratio[0] / ratio[1]) | round -}}
+{% macro imgHeight(width, ratio = [3, 2]) %}
+  {{- (width * ratio[1] / ratio[0]) | round -}}
 {% endmacro %}
 
-{# get image src #}
-{% macro imgSrc(id, size, hasGutter = true, ratio = [2, 3]) %}
-  {% set width = size - globalGutter if hasGutter else size %}
 
-  {{ images[id] }}?w={{ width }}&amp;h={{ (width * ratio[0] / ratio[1]) | round }}
-{% endmacro %}
+{%- macro srcset(src, ws, ratio) -%}
+  {% set str = '' %}
+  {%- for w in ws -%}
+    {% set str = str + src + w + '_' + imgHeight(w, ratio) + ' ' + w + 'w' %}
+
+    {%- if not loop.last -%}
+    {% set str = str + ', ' %}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {{- str -}}
+{%- endmacro -%}
+
 
 {# get image srcset #}
 {% macro imgSrcset(id, sizes, hasGutter = true, ratio = [2, 3]) %}
@@ -40,7 +259,7 @@
 {# news list #}
 {% macro news(num) %}
   {% for i in range(0, num) %}
-    {% set hCount = getHC() %}
+    {% set hCount = hc() %}
     <li><h3 class="heading"><a href="">{{ headings[hCount] }}</a></h3></li>
   {% endfor %}
 {% endmacro %}
@@ -48,8 +267,8 @@
 {# news list with images #}
 {% macro newsImg(num, width='70', height='70', video = false) %}
   {% for i in range(0, num) %}
-    {% set iCount = getIC() %}
-    {% set hCount = getHC() %}
+    {% set iCount = ic() %}
+    {% set hCount = hc() %}
     <li>
       <article>
         <figure class="{{ 'has-icon is-video icon-center' if video }} {{ 'media-bg' if width >= 180 }}"><a href="" aria-label="{{ 'Play Video' if video}}"><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}">
@@ -66,9 +285,9 @@
 {# news lsit with images, summaries #}
 {% macro newsImgSum(num, width='70', height='70') %}
   {% for i in range(0, num) %}
-    {% set iCount = getIC() %}
-    {% set hCount = getHC() %}
-    {% set gCount = getPC() %}
+    {% set iCount = ic() %}
+    {% set hCount = hc() %}
+    {% set gCount = pc() %}
     <li>
       <article>
         <figure class="{{ 'media-bg' if width >= 100 }}"><a href=""><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}"></a></figure>
@@ -84,8 +303,8 @@
 {# news list with images, bylines #}
 {% macro newsByline(num, width='70', height='70') %}
   {% for i in range(0, num) %}
-    {% set iCount = getIC() %}
-    {% set hCount = getHC() %}
+    {% set iCount = ic() %}
+    {% set hCount = hc() %}
     <li>
       <article>
         <figure><a href=""><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}"></a></figure>
@@ -101,9 +320,9 @@
 {# news list with images, bylines, summaries #}
 {% macro newsBylineSum(num, width='70', height='70') %}
   {% for i in range(0, num) %}
-    {% set iCount = getIC() %}
-    {% set hCount = getHC() %}
-    {% set gCount = getPC() %}
+    {% set iCount = ic() %}
+    {% set hCount = hc() %}
+    {% set gCount = pc() %}
     <li>
       <article>
         <figure class="{{ 'media-bg' if width >= 180 }}"><a href=""><img src="{{ images[iCount]}}?w={{ width }}&h={{ height }}" alt="{{ headings[iCount] }}"></a></figure>
@@ -115,52 +334,4 @@
       </article>
     </li>
   {% endfor %}
-{% endmacro %}
-
-
-
-{# article image #}
-{% macro imgArticle(class, id = getIC(), fullWidth = false) %}
-  {% set dfWidth = 760 %}
-  {% set breakpoints = [320, 640, 850, 1019] %}
-  {% set ratio = [2, 3] if not fullWidth else [8, 16] %}
-
-  {% if fullWidth %}
-    {% set breakpoints = push(breakpoints, 1430) %}
-    {% set bpSize = container + globalGutter %}
-    {% set extraSize = ', (min-width: ' + bpSize + 'px 100vw' %}
-  {% endif %}
-
-  {% set breakpoints = push(breakpoints, dfWidth) %}
-
-  <figure class="{{ class }}" 
-    itemprop="image" 
-    itemscope itemtype="http://schema.org/ImageObject" 
-    itemid="{{ imgSrc(id, dfWidth, false, ratio) }}">
-
-    {% if belongTo(class, ['left', 'right']) %}
-    <div class="img-wrapper">
-    {% endif %}
-      <img 
-        src="{{ imgSrc(id, dfWidth, false, ratio) }}"
-        srcset="{{ imgSrcset(id, breakpoints, true, ratio) }}"
-        sizes="
-          calc(100vw - {{ globalGutter }}px),
-          (min-width: {{ layoutHome }}px) {{ dfWidth }}px{{ extraSize }}
-          "
-        alt="{{ headings[id - 1] }}" 
-        itemprop="url">
-        <meta itemprop="width" content="{{ dfWidth }}">
-        <meta itemprop="height" content="{{ imgHeight(dfWidth, ratio) }}">
-
-      {% if belongTo(class, ['left', 'right']) %}
-        <span class="expand-control js-expand-control">Expand | Collapse</span>
-      </div>
-      {% endif %}
-    <figcaption class="caption" itemprop="caption description">{{ headings[id] }}</figcaption>
-
-    {% if fullWidth %}
-    <div class="ad"><a href=""><img src="https://s1.2mdn.net/5142550/UEI170041_FEHB_300x250__0_CoPay.jpg" alt="ad300" width="300" height="250"></a></div>
-    {% endif %}
-  </figure>
 {% endmacro %}
