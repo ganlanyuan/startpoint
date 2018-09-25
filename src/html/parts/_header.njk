@@ -1,4 +1,6 @@
 <header class="site-header" role="banner">
+  {% if page === 'home' %}<h1 class="visually-hidden">{{ brand }}</h1>{% endif %}
+
   {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
   <a href="#main" class="skip-link visually-hidden">Skip to main content</a>
   <noscript>
@@ -13,9 +15,6 @@
   <div class="container">
     <button aria-controls="main-nav"><span class="visually-hidden">Menu</span></button> {# aria-expanded="true" #}
     {% include './_logo.njk' %}
-    {% if page === 'home' %}
-      <h1 class="visually-hidden">{{ brand }}</h1>
-    {% endif %}
 
     {# nav #}
     <nav role="navigation" aria-label="Main Navigation" id="main-nav"> {# aria-hidden="false" #}
