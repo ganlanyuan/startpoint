@@ -467,7 +467,8 @@ function doAmp () {
       let css = res.replace(/\s*\/\*.*\*\/\s*/g, '')
                    .replace(/fonts\/mnr/g, 'assets/css/fonts/mnr')
                    .replace(/!important/g, '')
-                   .replace('@page{margin:.5cm}', '')
+                   .replace(/\@page\{.+/, '')
+                   .replace(/\@media\sprint\{.+/, '')
                    .replace(/"..\/img/g, '"assets/img');
       fs.writeFile(ampfile, data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
         if (err) { return console.log(err); }
