@@ -17,7 +17,7 @@ const nunjucks = require('nunjucks'),
       rollup = require('rollup').rollup,
       resolve = require('rollup-plugin-node-resolve'),
       buble = require('rollup-plugin-buble'),
-      uglify = require('rollup-plugin-uglify'),
+      uglify = require('rollup-plugin-uglify').uglify,
       globby = require('globby'), // for rollup
       // image
       imagemin = require('imagemin'),
