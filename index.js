@@ -434,7 +434,8 @@ function minifyImage (files) {
         imageminJpegRecompress(),
         imageminSvgo({
           plugins: [
-            {removeViewBox: false}
+            {removeViewBox: false},
+            {removeDimensions: false},
           ]
         }),
         imageminGifsicle(),
