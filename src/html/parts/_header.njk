@@ -15,53 +15,5 @@
   <div class="container">
     <button aria-controls="main-nav"><span class="visually-hidden">Menu</span></button> {# aria-expanded="true" #}
     {% include './_logo.njk' %}
-
-    {# nav #}
-    <nav role="navigation" aria-label="Main Navigation" id="main-nav"> {# aria-hidden="false" #}
-      <ul>
-        {% for section, subSection in nav.main %}
-          <li class="has-submenu">
-            <a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}" aria-haspopup="true">{{ section | capitalize }}</a> {# aria-expanded="true" #}
-            {# <button><span class="visually-hidden">show submenu for "{{ section | capitalize }}"</span></button> #}
-            <ul> {# aria-hidden="false" #}
-              {% for item in subSection %}
-                <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}/{{ item | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ item }}</a></li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-    <script>
-      var menuItems = document.querySelectorAll('#main-nav .has-submenu');
-      [].forEach.call(menuItems, function(el, i){
-        var activatingA = el.querySelector('a');
-        var btn = '<button><span class="aria-hidden">▾</span><span class="visually-hidden">show submenu for “' + activatingA.text + '”</span></button>';
-        activatingA.insertAdjacentHTML('afterend', btn);
-
-        el.querySelector('button').addEventListener("click",  function(e){
-          var parent = this.parentNode;
-          if (parent.className == "has-submenu") {
-            parent.className = "has-submenu open";
-            parent.querySelector('a').setAttribute('aria-expanded', "true");
-            parent.querySelector('button').setAttribute('aria-expanded', "true");
-          } else {
-            parent.className = "has-submenu";
-            parent.querySelector('a').setAttribute('aria-expanded', "false");
-            parent.querySelector('button').setAttribute('aria-expanded', "false");
-          }
-          e.preventDefault();
-        });
-      });
-    </script>
-
-    <nav role="navigation" aria-labelledby="navheading">
-      <h3 id="navheading">About Us</h3>
-      <ul>
-        {% for section in navSub %}
-          <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ section | capitalize }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
   </div>
 </header>

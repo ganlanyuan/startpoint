@@ -3,7 +3,7 @@ version: '2'
 services:
   web:
     # image: test
-    image: cmcdev/web:3.0.0
+    image: cmcdev/web:3.0.1
     ports:
       - 3000:3000
       - 3001:3001

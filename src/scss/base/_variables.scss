@@ -30,7 +30,6 @@ $color-brand: #2694E4;
 $color-link: #238ADC;
 $color-border: #E8E8E8;
 $gray: #767676;
-$gray: #AAA8A9;
 
 $gun: #383940;
 $darken: 10%;
@@ -38,7 +37,7 @@ $flickr-pink: #FE0084;
 $flickr-blue: #256DD9;
 $amazon-yellow: #fd9a00;
 $amazon-black: #231f20;
-$socials: (
+$social: (
   'amazon':      $gun,
   'app-store':   $gun,
   'behance':     #1769ff,
@@ -72,7 +71,7 @@ $socials: (
   'primary': #0078E7,
 );
 
-$alerts:(
+$alert:(
   'success': #3A945B,
   'info': #2270C1,
   'warning': #DE770F,
