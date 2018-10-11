@@ -7,7 +7,11 @@ textarea {
   box-sizing: border-box; // Core: use border-box to reduce the difference between browsers.
   font-family: $helvetica;
 }
-input,
+[type="text"],
+[type="email"],
+[type="tel"],
+[type="url"],
+[type="search"],
 button,
 select {
   height: $input-line-height * 1em; // use em unit to make it responsive when font-size changes.
@@ -16,7 +20,11 @@ select {
   .lt-ie9 & { line-height: $input-line-height * 1em; } // fix IE8 input text alignment issue.
 }
 
-input,
+[type="text"],
+[type="email"],
+[type="tel"],
+[type="url"],
+[type="search"],
 textarea,
 select {
   background: #fff;
