@@ -213,6 +213,13 @@ function doNunjucks (input) {
   env.addFilter('splitToArray', (str, separator) => {
     return str.split(separator);
   });
+  env.addFilter('pushToArray', (arr, item) => {
+    return arr.push(item);
+  });
+  env.addFilter('removeFromArray', (arr, item) => {
+    arr.splice(arr.indexOf(item), 1);
+    return arr;
+  });
 
   env.render(input, data, (err, res) => {
     if (err) { return console.log(err); }
