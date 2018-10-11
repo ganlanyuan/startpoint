@@ -39,6 +39,8 @@
   },
   "homepage": "https://github.com/ganlanyuan/startpoint#readme",
   "dependencies": {
+    "icons": "https://github.com/ganlanyuan/icons.git",
+    "normalize.css": "^8.0.0",
     "rocket-sass": "^4.0.1"
   }
 }

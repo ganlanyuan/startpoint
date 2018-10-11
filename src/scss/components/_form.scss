@@ -1,20 +1,101 @@
-// form
-// ============
-
-//*** control input height 
+input,
+button,
+select,
+textarea {
+  font-size: 16px;
+  font-size: rem(16px);
+  box-sizing: border-box; // Core: use border-box to reduce the difference between browsers.
+  font-family: $helvetica;
+}
 input,
 button,
 select {
-  box-sizing: border-box; // Core: use border-box to reduce the difference between browsers.
-  height: 1.8em; // use em unit to make it responsive when font-size changes.
-  padding: 0 0.6em; // remove top & bottom padding.
+  height: $input-line-height * 1em; // use em unit to make it responsive when font-size changes.
+  padding: 0 1em; // remove top & bottom padding.
   vertical-align: middle; // fix IE8, Safari input and button alignment issue. 
-  .lt-ie9 & { line-height: 1.8em; } // fix IE8 input text alignment issue.
+  .lt-ie9 & { line-height: $input-line-height * 1em; } // fix IE8 input text alignment issue.
 }
 
 input,
 textarea,
 select {
   background: #fff;
-  border: 1px solid $color-border;
+  border: 1px solid #bbb;
+  &.error {
+    border-color: map-get($alerts, danger);
+  }
+}
+
+select {
+  background: #fff url('../img/down-angle1.svg') 100% 50% no-repeat;
+  background-position: calc(100% - 1.2em) 50%;
+  background-size: 20px;
+}
+
+textarea {
+  padding: 1em;
+}
+
+.anti-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  // overlap "X" icon in webkit browsers
+  [type="search"] + & {
+    &:after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      top: 2px;
+      bottom: 2px;
+      background: #fff;
+    }
+    > span { z-index: 1; }
+    > :not(.visually-hidden) { position: relative; }
+  }
+}
+
+.form-one-row {
+  position: relative;
+  input {
+    display: block;
+    width: 100%;
+  }
+  button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.message-error,
+.message-success {
+  display: block;
+  font-family: $helvetica;
+  font-weight: normal;
+  margin: 10px 0;
+  padding: 10px 16px;
+  a {
+    color: $color-brand;
+    text-decoration: underline;
+  }
+  .full-article & li {
+    margin: 0;
+    color: map-get($alerts, danger);
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
+.message-error {
+  color: map-get($alerts, danger);
+  background: rgba(map-get($alerts, danger), 0.07);
+  li:not(:last-child) { margin-bottom: 0.5em; }
+  a { text-decoration: underline; }
+}
+.message-success {
+  color: map-get($alerts, success);
+  background: rgba(map-get($alerts, success), 0.07);
 }

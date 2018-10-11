@@ -3,6 +3,7 @@
 @import "vendors/ellipsis";
 @import "vendors/hide-text";
 @import "vendors/browsehappy";
+@import "vendors/normalize";
 
 // base
 @import "base/variables";
@@ -11,7 +12,7 @@
 @import "base/utilities";
 
 // components
-// @import "components/site/styles";
+@import "components/fonts";
 @import "components/icon";
 @import "components/panel";
 @import "components/alert";

@@ -1,5 +1,4 @@
 // == utilities == //
-.hidden-checkbox { position: fixed; left: -10000px; }
 .visually-hidden {
   /* Remove the item from normal flow */
   position: absolute;
@@ -86,9 +85,5 @@ svg {
     }
   }
 }
-
-// .media-left { @include media-list('media' 15px); }
-// .media-right { @include media-list('media' right 15px); }
-// .media-body { @include media-list('media-body'); }
 
 // == layout ==
