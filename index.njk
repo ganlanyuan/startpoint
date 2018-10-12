@@ -14,11 +14,12 @@
    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
   <style>
     body {
-      --bg: hsla(0, 0%, 0%, 0.03);
+      --bg: hsla(0, 0%, 0%, 0.04);
 
       margin: 0;
       font-family: Montserrat, sans-serif;
       font-weight: 300;
+      background: #eee;
       background: var(--bg);
     }
     ul { 
@@ -31,7 +32,8 @@
       margin: 0;
       padding: 0;
       text-transform: capitalize;
-      border-bottom: 1px solid var(--bg);
+      border-bottom: 1px solid #eee;
+      border-bottom-color: var(--bg);
     }
     h2 {
       font-weight: 700;
@@ -106,7 +108,7 @@
   {% for group in pages %}
   <ul>
     {% for url, name in group %}
-    <li><a href="{{ url }}.html"><span>{{ name | title }}</span></a></li>
+    <li><a href="{{ url }}.html"><span>{{ name | capitalize }}</span></a></li>
     {% endfor %}
   </ul>
   {% endfor %}
