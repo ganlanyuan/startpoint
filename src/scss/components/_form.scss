@@ -1,11 +1,12 @@
-input,
 button,
+input,
 select,
 textarea {
   font-size: 16px;
   font-size: rem(16px);
   box-sizing: border-box; // Core: use border-box to reduce the difference between browsers.
   font-family: $helvetica;
+  box-sizing: border-box;
 }
 [type="text"],
 [type="email"],

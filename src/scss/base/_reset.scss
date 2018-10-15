@@ -1,25 +1,24 @@
-@import-normalize;
-
 // set min-width to 320
 html, body { min-width: 320px; }
+body { margin: 0; }
 
-// remove margin and padding
-body, figure, dl, dt, dd, ul, ol, li { margin: 0; }
-dl, ul, ol {
-  padding: 0;
-  list-style: none;
+:not(.full-article) {
+  li, dt, dd { margin: 0; }
+  > {
+    ul, ol, dl {
+      margin: 0;
+      padding: 0;
+    }
+    ul, ol { list-style: none; }
+    figure { margin: 0; }
+  }
 }
 
-button, input, select, textarea {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
 }
-
-img { border: 0; }
-// make images & videos flexible
-img, video { max-width: 100%; height: auto; }
-iframe { max-width: 100%; }
 
 // remove the white space under images
 figure img, a > img { vertical-align: bottom; }
