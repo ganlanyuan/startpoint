@@ -47,19 +47,25 @@ function makeEmbedFluid() {
 }
 
 
+
+function lookupByClass (el, cla) {
+  if (el === body) { return null; }
+  return typeof el.className !== 'string' || el.className.indexOf(cla) < 0 ? lookupByClass(el.parentNode, cla) : el;
+}
+
 // print
 function beforeprint () {
-  let mainStr = 'main',
+  let mainClass = doc.querySelector('.full-article') ? '.full-article' : 'main',
       printStr = 'printlinks',
-      printlinks = doc.querySelector(mainStr+' .'+printStr),
-      baseurl = 'https://www.site.com';
+      printlinks = doc.querySelector(mainClass+' .'+printStr),
+      baseurl = 'https://www.christianpost.com';
   if (!printlinks) {
     let printlinks = doc.createElement('ul'),
         printlinksStr = '',
-        article = doc.querySelector(mainStr);
+        article = doc.querySelector(mainClass);
     if (article) {
       printlinks.className = printStr;
-      let links = doc.querySelectorAll(mainStr+' a:not([href^="mailto:"])'),
+      let links = doc.querySelectorAll(mainClass+' a:not([href^="mailto:"])'),
           linkorder = 1;
 
       for (var i = 0; i < links.length; i++) {
@@ -67,7 +73,7 @@ function beforeprint () {
             href = link.getAttribute('href');
 
         // if (href !== link.textContent && href !== baseurl && href !== baseurl+'/') {
-        if (href !== link.textContent) {
+        if (href !== link.textContent && !lookupByClass(link, 'pagination')) {
           if (href.indexOf('http') < 0) {
             let connectStr = href.charAt(0) === '/' ? '':'/';
             href = baseurl + connectStr + href;
