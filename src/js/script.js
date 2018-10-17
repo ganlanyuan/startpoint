@@ -45,3 +45,45 @@ function makeEmbedFluid() {
     }
   }
 }
+
+
+// print
+function beforeprint () {
+  let mainStr = 'main',
+      printStr = 'printlinks',
+      printlinks = doc.querySelector(mainStr+' .'+printStr),
+      baseurl = 'https://www.site.com';
+  if (!printlinks) {
+    let printlinks = doc.createElement('ul'),
+        printlinksStr = '',
+        article = doc.querySelector(mainStr);
+    if (article) {
+      printlinks.className = printStr;
+      let links = doc.querySelectorAll(mainStr+' a:not([href^="mailto:"])'),
+          linkorder = 1;
+
+      for (var i = 0; i < links.length; i++) {
+        let link = links[i],
+            href = link.getAttribute('href');
+
+        // if (href !== link.textContent && href !== baseurl && href !== baseurl+'/') {
+        if (href !== link.textContent) {
+          if (href.indexOf('http') < 0) {
+            let connectStr = href.charAt(0) === '/' ? '':'/';
+            href = baseurl + connectStr + href;
+          }
+
+          printlinksStr += '<li>'+linkorder+'. '+href+'</li>';
+          link.insertAdjacentHTML('afterend', '<sup class="link-order"> ('+linkorder+')</sup>');
+
+          linkorder++;
+        }
+      }
+
+      printlinks.innerHTML = printlinksStr;
+      article.appendChild(printlinks);
+    }
+  }
+}
+
+window.onbeforeprint = beforeprint;
