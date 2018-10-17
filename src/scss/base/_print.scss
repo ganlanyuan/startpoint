@@ -12,37 +12,12 @@
     text-shadow: none !important;
     font-size: 12pt;
   }
-  a, a:visited {
-    text-decoration: underline;
-  }
-  .no-script a[href^="http"]:after {
-    content: " (" attr(href) ")";
-  }
-  // a[href^="/"]:after {
-  //   content: " (https://www.bibleportal.com" attr(href) ")";
-  // }
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-  // Don't show links for images, or javascript/internal links
-  .ir a:after,
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
-  }
-  pre,
-  blockquote {
+  pre, blockquote {
     // border: 1px solid #999;
     page-break-inside: avoid;
   }
-  thead {
-    display: table-header-group; // h5bp.com/t //
-  }
-  tr,
-  figure,
-  img {
-    page-break-inside: avoid;
-  }
+  thead { display: table-header-group; } // h5bp.com/t //
+  tr, figure, img { page-break-inside: avoid; }
   img {
     width: auto !important;
     max-width: 100% !important;
@@ -69,6 +44,17 @@
   .article-page,
   .static-page,
   .search-results-page {
+    a, a:visited { text-decoration: underline; }
+    .no-script {
+      a[href^="http"]:after { content: " (" attr(href) ")"; }
+      a[href^="/"]:after { content: " (https://www.site.com" attr(href) ")"; }
+    }
+    abbr[title]:after {
+      content: " (" attr(title) ")";
+    }
+    // Don't show links for images, or javascript/internal links
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+
     // logo
     &:before {
       content: url('../img/logo.svg');

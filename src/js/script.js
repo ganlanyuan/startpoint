@@ -55,39 +55,44 @@ function lookupByClass (el, cla) {
 
 // print
 function beforeprint () {
-  let mainClass = doc.querySelector('.full-article') ? '.full-article' : 'main',
-      printStr = 'printlinks',
-      printlinks = doc.querySelector(mainClass+' .'+printStr),
-      baseurl = 'https://www.christianpost.com';
-  if (!printlinks) {
-    let printlinks = doc.createElement('ul'),
-        printlinksStr = '',
-        article = doc.querySelector(mainClass);
-    if (article) {
-      printlinks.className = printStr;
-      let links = doc.querySelectorAll(mainClass+' a:not([href^="mailto:"])'),
-          linkorder = 1;
+  if (body.classList.contains('article-page') ||
+      body.classList.contains('static-page') ||
+      body.classList.contains('search-results-page')) {
+    
+    let mainClass = doc.querySelector('.full-article') ? '.full-article' : 'main',
+        printStr = 'printlinks',
+        printlinks = doc.querySelector(mainClass+' .'+printStr),
+        baseurl = 'https://www.christianpost.com';
+    if (!printlinks) {
+      let printlinks = doc.createElement('ul'),
+          printlinksStr = '',
+          article = doc.querySelector(mainClass);
+      if (article) {
+        printlinks.className = printStr;
+        let links = doc.querySelectorAll(mainClass+' a:not([href^="mailto:"])'),
+            linkorder = 1;
 
-      for (var i = 0; i < links.length; i++) {
-        let link = links[i],
-            href = link.getAttribute('href');
+        for (var i = 0; i < links.length; i++) {
+          let link = links[i],
+              href = link.getAttribute('href');
 
-        // if (href !== link.textContent && href !== baseurl && href !== baseurl+'/') {
-        if (href !== link.textContent && !lookupByClass(link, 'pagination')) {
-          if (href.indexOf('http') < 0) {
-            let connectStr = href.charAt(0) === '/' ? '':'/';
-            href = baseurl + connectStr + href;
+          // if (href !== link.textContent && href !== baseurl && href !== baseurl+'/') {
+          if (href !== link.textContent && !lookupByClass(link, 'pagination')) {
+            if (href.indexOf('http') < 0) {
+              let connectStr = href.charAt(0) === '/' ? '':'/';
+              href = baseurl + connectStr + href;
+            }
+
+            printlinksStr += '<li>'+linkorder+'. '+href+'</li>';
+            link.insertAdjacentHTML('afterend', '<sup class="link-order"> ('+linkorder+')</sup>');
+
+            linkorder++;
           }
-
-          printlinksStr += '<li>'+linkorder+'. '+href+'</li>';
-          link.insertAdjacentHTML('afterend', '<sup class="link-order"> ('+linkorder+')</sup>');
-
-          linkorder++;
         }
-      }
 
-      printlinks.innerHTML = printlinksStr;
-      article.appendChild(printlinks);
+        printlinks.innerHTML = printlinksStr;
+        article.appendChild(printlinks);
+      }
     }
   }
 }
