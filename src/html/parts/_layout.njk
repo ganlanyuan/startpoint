@@ -75,5 +75,28 @@
   <!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
 
   <script src="{{ root }}assets/js/script.js"></script>
+  
+  {# accessibility test #}
+  {# <script src="/node_modules/axe-core/axe.min.js" ></script>
+  <script>
+    var doc = document;
+
+    axe.run(function (err, results) {
+      if (err) { throw err; }
+      // console.table(results.violations);
+      var data = results.violations;
+      data.forEach(function(obj) {
+        delete obj.tags;
+        var arr = obj.nodes,
+            arrNew = [];
+        arr.forEach(function(item) {
+          arrNew.push(doc.querySelector(item.target[0]));
+        });
+        obj.nodes = arrNew;
+      });
+      console.table(results.violations);
+    });
+  </script> #}
+
 </body>
 </html>
