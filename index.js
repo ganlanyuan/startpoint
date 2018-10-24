@@ -179,27 +179,41 @@ function doNunjucksAll () {
 
 function doNunjucks (input) {
   let output = input.replace(njkDir, htmlDir).replace('.njk', '.html'),
-      data = _loadData();
+      data = _loadData(),
+      count = {};
 
-  let base = -1,
-      IC = base,
-      HC = base,
-      PC = base,
-      ICMax = data.I.length - 1,
-      HCMax = data.H.length - 1,
-      PCMax = data.P.length - 1;
-  data.ic = () => {
-    IC = IC >= ICMax ? 0 : IC + 1;
-    return IC;
-  };
-  data.hc = () => {
-    HC = HC >= HCMax ? 0 : HC + 1;
-    return HC;
-  };
-  data.pc = () => {
-    PC = PC >= PCMax ? 0 : PC + 1;
-    return PC;
-  };
+  initCount('I');
+  initCount('B');
+  initCount('H');
+  initCount('P');
+  initCount('300x250', 1 , 17);
+  initCount('160x600', 1 , 1);
+  initCount('300x600', 1 , 8);
+  initCount('728x90', 1 , 7);
+  initCount('970x250', 1 , 3);
+
+  function initCount (str, min, max) {
+    if (min === undefined) { min = 0; }
+    if (max === undefined) { max = data[str].length - 1; }
+
+    count[str] = {
+      current: min,
+      min: min,
+      max: max
+    };
+  }
+
+  data.c = (str) => {
+    let n = count[str].current;
+
+    if (count[str].current >= count[str].max) {
+      count[str].current = count[str].min;
+    } else {
+      count[str].current++;
+    }
+
+    return data[str] ? data[str][n] : 'http://designdev.christianpost.com/banner/' + str + '/' + n + '.png';
+  }
 
   data = Object.assign(data, dataInit);
 
