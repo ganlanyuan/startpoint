@@ -255,6 +255,7 @@ function htmlValidator (arr) {
   }
 
   arr.forEach((file, index) => {
+    console.log(file);
 
     // output: json => Terminal
     w3cHtml.validate({
