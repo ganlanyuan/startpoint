@@ -47,6 +47,10 @@ svg {
       box-sizing: border-box;
     }
   }
+  .ad img {
+    font-size: 1em;
+    &:after { display: none; }
+  }
 }
 
 
