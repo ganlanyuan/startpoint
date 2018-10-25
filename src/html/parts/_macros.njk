@@ -335,3 +335,7 @@
     </li>
   {% endfor %}
 {% endmacro %}
+
+{%- macro ad(size) -%}
+  {{- 'http://url.com/banner/' + size + '/' + c(size) + '.png' -}} 
+{%- endmacro -%}

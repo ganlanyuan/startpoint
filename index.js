@@ -182,10 +182,12 @@ function doNunjucks (input) {
       data = _loadData(),
       count = {};
 
-  initCount('I');
-  initCount('B');
-  initCount('H');
-  initCount('P');
+  for(var item in data) {
+    if (Array.isArray(data[item])) {
+      initCount(item);
+    }
+  }
+
   initCount('300x250', 1 , 17);
   initCount('160x600', 1 , 1);
   initCount('300x600', 1 , 8);
@@ -212,7 +214,7 @@ function doNunjucks (input) {
       count[str].current++;
     }
 
-    return data[str] ? data[str][n] : 'http://designdev.christianpost.com/banner/' + str + '/' + n + '.png';
+    return data[str] ? data[str][n] : n;
   }
 
   data = Object.assign(data, dataInit);
