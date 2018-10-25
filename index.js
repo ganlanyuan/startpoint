@@ -205,7 +205,7 @@ function doNunjucks (input) {
     };
   }
 
-  data.c = (str) => {
+  data.get = (str) => {
     let n = count[str].current;
 
     if (count[str].current >= count[str].max) {
