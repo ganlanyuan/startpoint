@@ -37,11 +37,11 @@
   <ul>
     {% for section, subSection in nav %}
       <li class="has-submenu">
-        <a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}" aria-haspopup="true">{{ section | capitalize }}</a> {# aria-expanded="true" #}
+        <a href="{{ baseurl }}/{{ section | nameToUrl }}" aria-haspopup="true">{{ section | capitalize }}</a> {# aria-expanded="true" #}
         {# <button><span class="visually-hidden">show submenu for "{{ section | capitalize }}"</span></button> #}
         <ul> {# aria-hidden="false" #}
           {% for item in subSection %}
-            <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}/{{ item | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ item }}</a></li>
+            <li><a href="{{ baseurl }}/{{ section | nameToUrl }}/{{ item | nameToUrl }}">{{ item }}</a></li>
           {% endfor %}
         </ul>
       </li>
@@ -75,7 +75,7 @@
   <h3 id="navheading">About Us</h3>
   <ul>
     {% for section in navSub %}
-      <li><a href="{{ baseurl }}/{{ section | lower | replace(r/\s+/g, '-') | replace(r/\./g, '') }}">{{ section | capitalize }}</a></li>
+      <li><a href="{{ baseurl }}/{{ section | nameToUrl }}">{{ section | capitalize }}</a></li>
     {% endfor %}
   </ul>
 </nav>
