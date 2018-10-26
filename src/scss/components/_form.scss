@@ -31,7 +31,7 @@ select {
   background: #fff;
   border: 1px solid #bbb;
   &.error {
-    border-color: map-get($alerts, danger);
+    border-color: map-get($alert, danger);
   }
 }
 
@@ -92,19 +92,19 @@ textarea {
   }
   .full-article & li {
     margin: 0;
-    color: map-get($alerts, danger);
+    color: map-get($alert, danger);
     &:not(:last-child) {
       margin-bottom: 10px;
     }
   }
 }
 .message-error {
-  color: map-get($alerts, danger);
-  background: rgba(map-get($alerts, danger), 0.07);
+  color: map-get($alert, danger);
+  background: rgba(map-get($alert, danger), 0.07);
   li:not(:last-child) { margin-bottom: 0.5em; }
   a { text-decoration: underline; }
 }
 .message-success {
-  color: map-get($alerts, success);
-  background: rgba(map-get($alerts, success), 0.07);
+  color: map-get($alert, success);
+  background: rgba(map-get($alert, success), 0.07);
 }
