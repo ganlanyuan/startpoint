@@ -125,7 +125,7 @@
     var target = lookupByTag(e.target, 'a');
     if (target && e.altKey) {
       e.preventDefault();
-      var url = location.origin + '/' + target.getAttribute('href').replace('public', 'test/w3c/html'),
+      var url = location.href + target.getAttribute('href').replace('public', 'test/w3c/html'),
           w = win.open(url, '_blank');
       w.focus();
     }
