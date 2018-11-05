@@ -133,7 +133,7 @@
 
   function lookupByTag (el, t) {
     if (el === body) { return null; }
-    return el.nodeName.toLowerCase() !== t ? lookupByClass(el.parentNode, t) : el;
+    return el.nodeName.toLowerCase() !== t ? lookupByTag(el.parentNode, t) : el;
   }
 </script>
 </body>
