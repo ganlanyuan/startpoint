@@ -15,10 +15,8 @@ textarea {
 [type="search"],
 button,
 select {
-  height: $input-line-height * 1em; // use em unit to make it responsive when font-size changes.
-  padding: 0 1em; // remove top & bottom padding.
-  vertical-align: middle; // fix IE8, Safari input and button alignment issue. 
-  .lt-ie9 & { line-height: $input-line-height * 1em; } // fix IE8 input text alignment issue.
+  padding: 0.5em 1em;
+  vertical-align: middle; 
 }
 
 [type="text"],
