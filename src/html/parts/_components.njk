@@ -22,7 +22,7 @@
 
 
 {# primary search #}
-<form class="main-search" id="main-search" action="post">
+<form class="main-search" id="main-search" action="a.php" method="post" aria-label="Main Search">
   <div role="search">
     <label class="visually-hidden" for="main-search-input">Search:
       <p id="main-search-error" role="alert"></p>
@@ -31,6 +31,49 @@
     <button><span class="visually-hidden">Go</span></button>
   </div>
 </form>
+
+
+{# form #}
+<p>Fields marked with an asterisk (*) are required.</p>
+<div class="errors" role="alert" aria-relevant="all">
+  <ul>
+  </ul>
+</div>
+<form action="a.php" method="post" aria-label="">
+  <div>
+    <label for="name">Enter your name: </label>
+    <input type="text" id="name" required="" aria-required="true">
+  </div>
+  <div>
+    <label for="musician">Musician:</label>
+    <input type="checkbox" name="musician" id="musician">
+    <p class="hidden-alert" aria-live="assertive"></p>
+  </div>
+  <div>
+    <label for="instruments" style="color: rgb(153, 153, 153);">Instruments played*:</label>
+    <input type="text" name="instruments" id="instruments" aria-required="true" aria-disabled="true" disabled="">
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+<script>
+  function toggleMusician(bool) {
+    var instruItem = formItems[formItems.length-1];
+    if(bool) {
+      instruItem.input.disabled = false;
+      instruItem.label.style.color = '#000';
+      instruItem.input.setAttribute('aria-disabled', 'false');
+      hiddenAlert.textContent = 'Instruments played field now enabled; use it to tell us what you play.';
+    } else {
+      instruItem.input.disabled = true;
+      instruItem.label.style.color = '#999';
+      instruItem.input.setAttribute('aria-disabled', 'true');
+      instruItem.input.removeAttribute('aria-label');
+      hiddenAlert.textContent = 'Instruments played field now disabled.';
+    }
+  }
+</script>
 
 {# nav #}
 <nav role="navigation" aria-label="Main Navigation" id="main-nav"> {# aria-hidden="false" #}
