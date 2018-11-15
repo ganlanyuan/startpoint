@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+axe-core@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.1.2.tgz#ca0aff897ebefca7552f97859dc1217c06c4f9e6"
+  integrity sha512-e1WVs0SQu3tM29J9a/mISGvlo2kdCStE+yffIAJF6eb42FS+eUFEVz9j4rgDeV2TAfPJmuOZdRetWYycIbK7Vg==
+
+"icons@https://github.com/ganlanyuan/icons.git":
+  version "0.0.0"
+  resolved "https://github.com/ganlanyuan/icons.git#3c54e92f137d2bc7c65a6b979f302ef62edca18e"
+
+normalize.css@^8.0.0:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
+  integrity sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==
+
 rocket-sass@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/rocket-sass/-/rocket-sass-4.0.1.tgz#0778c65193189a89bc92783b374856ccc0b05b27"
+  integrity sha512-ZS/jsXWnek9nAKqNBysv18yfhpac4DPhnHfChDrlVB5OoU55f/e2UlzvZwBn570CBIHOs8W/PnhbK9LS0YZqpw==

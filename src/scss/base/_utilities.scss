@@ -31,6 +31,7 @@ svg {
   img[src*=".jpg"] {
     display: inline-block;
     font-size: 0;
+    overflow: hidden;
     &:after {
       content: 'Broken image of ' attr(alt);
       // content: url('../img/broken-chain.png') ' Broken image of ' attr(alt);

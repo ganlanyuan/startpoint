@@ -4,10 +4,8 @@
     {% set currentPage = 3 %}
     {% set start = 0 %}
     {% set length = 5 %}
-
     <li><a href="/page-{{ currentPage - 1 }}" aria-label="Go to Previous Page">Prev</a>
     </li>
-
     {% for i in range(start, start + length) %}
     <li>
       <a href="/page-{{ loop.index }}" aria-label="{{ 'Current Page, Page ' + loop.index if loop.index === currentPage else 'Go to Page ' + loop.index }}" {{ 'aria-current=true' if loop.index === currentPage }}>
@@ -15,11 +13,9 @@
       </a>
     </li>
     {% endfor %}
-
     <li><a href="/page-{{ currentPage + 1 }}" aria-label="Go to Next Page">Next</a>
   </ul>
 </nav>
-
 
 {# primary search #}
 <form class="main-search" id="main-search" action="a.php" method="post" aria-label="Main Search">
@@ -31,7 +27,6 @@
     <button><span class="visually-hidden">Go</span></button>
   </div>
 </form>
-
 
 {# form #}
 <p>Fields marked with an asterisk (*) are required.</p>
@@ -79,15 +74,15 @@
 <nav role="navigation" aria-label="Main Navigation" id="main-nav"> {# aria-hidden="false" #}
   <ul>
     {% for section, subSection in nav %}
-      <li class="has-submenu">
-        <a href="{{ baseurl }}/{{ section | nameToUrl }}" aria-haspopup="true">{{ section | capitalize }}</a> {# aria-expanded="true" #}
-        {# <button><span class="visually-hidden">show submenu for "{{ section | capitalize }}"</span></button> #}
-        <ul> {# aria-hidden="false" #}
-          {% for item in subSection %}
-            <li><a href="{{ baseurl }}/{{ section | nameToUrl }}/{{ item | nameToUrl }}">{{ item }}</a></li>
-          {% endfor %}
-        </ul>
-      </li>
+    <li class="has-submenu">
+      <a href="{{ baseurl }}/{{ section | nameToUrl }}" aria-haspopup="true">{{ section | capitalize }}</a> {# aria-expanded="true" #}
+      {# <button><span class="visually-hidden">show submenu for "{{ section | capitalize }}"</span></button> #}
+      <ul> {# aria-hidden="false" #}
+        {% for item in subSection %}
+        <li><a href="{{ baseurl }}/{{ section | nameToUrl }}/{{ item | nameToUrl }}">{{ item }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
     {% endfor %}
   </ul>
 </nav>
@@ -114,11 +109,12 @@
   });
 </script>
 
+
 <nav role="navigation" aria-labelledby="navheading">
   <h3 id="navheading">About Us</h3>
   <ul>
     {% for section in navSub %}
-      <li><a href="{{ baseurl }}/{{ section | nameToUrl }}">{{ section | capitalize }}</a></li>
+    <li><a href="{{ baseurl }}/{{ section | nameToUrl }}">{{ section | capitalize }}</a></li>
     {% endfor %}
   </ul>
 </nav>
