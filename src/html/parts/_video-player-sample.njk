@@ -1,7 +1,34 @@
+<style>
+  .video-controls progress {
+    display: block;
+  }
+  .video-controls .progress-bar {
+    display: inline-block;
+    background: #000;
+    height: 0.8em;
+  }
+  ::cue {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.4em 0.6em;
+  }
+  ::cue(v[voice='Test']) {
+    color:#fff;
+    background:#0095dd;
+  }
+  .controls button:hover,
+  .controls button:focus,
+  .subtitles-menu li button:hover,
+  .subtitles-menu li button:focus,
+  .subtitles-menu li button[data-state="active"] {
+    opacity: 0.5;
+  }
+</style>
+
 {# cross browser video player #}
-{% set mp4_file = 'https://mdn.github.io/learning-area/accessibility/multimedia/rabbit320.mp4' %}
-{% set webm_file = 'https://mdn.github.io/learning-area/accessibility/multimedia/rabbit320.webm' %}
-{% set ogg_file = 'https://mdn.github.io/learning-area/accessibility/multimedia/rabbit320.ogg' %}
+{% set mp4_file = 'http://iandevlin.github.io/mdn/video-player-with-captions/video/sintel-short.mp4' %}
+{% set webm_file = 'http://iandevlin.github.io/mdn/video-player-with-captions/video/sintel-short.webm' %}
+{% set ogg_file = 'http://iandevlin.github.io/mdn/video-player-with-captions/video/sintel-short.ogg' %}
+{% set subtitiles_path = 'http://iandevlin.github.io/mdn/video-player-with-captions/subtitles/vtt' %}
 
 <div class="video-container">
   {# <figure> #}
@@ -9,6 +36,9 @@
       <source src="{{ mp4_file }}" type="video/mp4">
       <source src="{{ webm_file }}" type="video/webm">
       <source src="{{ ogg_file }}" type="video/ogg">
+      <track label="English" kind="subtitles" srclang="en" src="sintel-en.vtt" default="">
+      <track label="Deutsch" kind="subtitles" srclang="de" src="{{ subtitiles_path }}/sintel-de.vtt">
+      <track label="Español" kind="subtitles" srclang="es" src="{{ subtitiles_path }}/sintel-es.vtt">
   
       <!-- Flash fallback -->
       <object type="application/x-shockwave-flash" data="flash-player.swf?videoUrl={{ mp4_file }}" width="1024" height="576">
@@ -38,6 +68,7 @@
     <li><button class="volinc" type="button">Vol+</button></li>
     <li><button class="voldec" type="button">Vol-</button></li>
     <li><button class="fs" type="button">Fullscreen</button></li>
+    <li><button class="subtitles" type="button" data-state="subtitles">CC</button></li>
   </ul>
 </div>
 
@@ -75,7 +106,8 @@
             voldec = videoControls.querySelector('.voldec'),
             progress = videoControls.querySelector('.progress'),
             progressBar = videoControls.querySelector('.progress-bar'),
-            fs = videoControls.querySelector('.fs');
+            fs = videoControls.querySelector('.fs'),
+            subtitles = videoControls.querySelector('.subtitles');
 
         playpause.addEventListener('click', function(e) {
           if (video.paused || video.ended) {
@@ -91,6 +123,9 @@
           progress.value = 0;
         });
 
+
+
+        // volume
         mute.addEventListener('click', function(e) {
           video.muted = !video.muted;
         });
@@ -103,14 +138,83 @@
         });
 
         var alterVolume = function(dir) {
-          var currentVolume = Math.floor(video.volume * 10) / 10;
+          var currentVolume = video.volume;
           if (dir === '+') {
-            if (currentVolume < 1) video.volume += 0.1;
+            if (currentVolume < 1) { video.volume += 0.1; }
           } else if (dir === '-') {
-            if (currentVolume > 0) video.volume -= 0.1;
+            if (currentVolume > 0) { video.volume -= 0.1; }
           }
         }
 
+
+
+        // subtitles
+        if (video.textTracks && video.textTracks.length) {
+          // Turn off all subtitles
+          forEach(video.textTracks, function (track) {
+            track.mode = 'hidden';
+          });
+
+          // Creates and returns a menu item for the subtitles language menu
+          var subtitleMenuButtons = [];
+          var createMenuItem = function(id, lang, label) {
+            var listItem = doc.createElement('li');
+            var button = listItem.appendChild(doc.createElement('button'));
+            button.setAttribute('id', id);
+            button.className = 'subtitles-button';
+            if (lang.length > 0) button.setAttribute('lang', lang);
+            button.value = label;
+            button.setAttribute('data-state', 'inactive');
+            button.appendChild(doc.createTextNode(label));
+
+            button.addEventListener('click', function(e) {
+              var target = e.target;
+              // Set all buttons to inactive
+              subtitleMenuButtons.map(function(v, i, a) {
+                subtitleMenuButtons[i].setAttribute('data-state', 'inactive');
+              });
+              // Find the language to activate
+              var lang = target.getAttribute('lang');
+              forEach(video.textTracks, function (track) {
+                // For the 'subtitles-off' button, the first condition will never match so all will subtitles be turned off
+                if (track.language == lang) {
+                  track.mode = 'showing';
+                  target.setAttribute('data-state', 'active');
+                } else {
+                  track.mode = 'hidden';
+                }
+              });
+              subtitlesMenu.style.display = 'none';
+            });
+
+            subtitleMenuButtons.push(button);
+            return listItem;
+          }
+          // Go through each one and build a small clickable list, and when each item is clicked on, set its mode to be "showing" and the others to be "hidden"
+          var subtitlesMenu;
+          if (video.textTracks) {
+            var df = doc.createDocumentFragment();
+            var subtitlesMenu = df.appendChild(doc.createElement('ul'));
+            subtitlesMenu.className = 'subtitles-menu';
+            subtitlesMenu.appendChild(createMenuItem('subtitles-off', '', 'Off'));
+            forEach(video.textTracks, function (track) {
+              subtitlesMenu.appendChild(createMenuItem('subtitles-' + track.language, track.language, track.label));
+            });
+            video_container.appendChild(subtitlesMenu);
+            subtitlesMenu.style.display = 'none';
+          }
+          subtitles.addEventListener('click', function(e) {
+            if (subtitlesMenu) {
+              subtitlesMenu.style.display = (subtitlesMenu.style.display == 'block' ? 'none' : 'block');
+            }
+          });
+        } else {
+          subtitles.style.display = 'none';
+        }
+
+
+
+        // progress bar
         video.addEventListener('loadedmetadata', function() {
           progress.setAttribute('max', video.duration);
         });
@@ -131,16 +235,17 @@
           video.currentTime = pos * video.duration;
         });
 
+
+
+        // full screen
         var fullScreenEnabled = !!(doc.fullscreenEnabled || doc.mozFullScreenEnabled || doc.msFullscreenEnabled || doc.webkitSupportsFullscreen || doc.webkitFullscreenEnabled || doc.createElement('video').webkitRequestFullScreen);
         if (!fullScreenEnabled) {
           fs.style.display = 'none';
         }
 
-        fs.addEventListener('click', function(e) {
-          handleFullscreen();
-        });
+        fs.addEventListener('click', function(e) { handleFullscreen(); });
 
-        var handleFullscreen = function() {
+        function handleFullscreen () {
           if (isFullScreen()) {
             if (doc.exitFullscreen) doc.exitFullscreen();
             else if (doc.mozCancelFullScreen) doc.mozCancelFullScreen();
@@ -156,11 +261,11 @@
           }
         }
 
-        var isFullScreen = function() {
+        function isFullScreen () {
           return !!(doc.fullScreen || doc.webkitIsFullScreen || doc.mozFullScreen || doc.msFullscreenElement || doc.fullscreenElement);
         }
 
-        var setFullscreenData = function(state) {
+        function setFullscreenData (state) {
           video_container.setAttribute('data-fullscreen', !!state);
         }
 
