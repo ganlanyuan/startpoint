@@ -57,18 +57,20 @@
   
   {# controls #}
   <ul class="video-controls">
-    <li><button class="playpause" type="button">Play/Pause</button></li>
-    <li><button class="stop" type="button">Stop</button></li>
+    <li><button class="playpause">Play/Pause</button></li>
+    <li><button class="stop">Stop</button></li>
     <li class="progress-line">
       <progress class="progress" value="0" min="0">
         <span class="progress-bar"></span>
       </progress>
     </li>
-    <li><button class="mute" type="button">Mute/Unmute</button></li>
-    <li><button class="volinc" type="button">Vol+</button></li>
-    <li><button class="voldec" type="button">Vol-</button></li>
-    <li><button class="fs" type="button">Fullscreen</button></li>
-    <li><button class="subtitles" type="button" data-state="subtitles">CC</button></li>
+    <li><button class="rwd">Rewind</button></li>
+    <li><button class="fwd">Forward</button></li>
+    <li><button class="mute">Mute/Unmute</button></li>
+    <li><button class="volinc">Vol+</button></li>
+    <li><button class="voldec">Vol-</button></li>
+    <li><button class="fs">Fullscreen</button></li>
+    <li><button class="subtitles" data-state="subtitles">CC</button></li>
   </ul>
 </div>
 
@@ -101,6 +103,8 @@
 
         var playpause = videoControls.querySelector('.playpause'),
             stop = videoControls.querySelector('.stop'),
+            rwd = videoControls.querySelector('.rwd'),
+            fwd = videoControls.querySelector('.fwd'),
             mute = videoControls.querySelector('.mute'),
             volinc = videoControls.querySelector('.volinc'),
             voldec = videoControls.querySelector('.voldec'),
@@ -122,6 +126,12 @@
           video.currentTime = 0;
           progress.value = 0;
         });
+
+
+
+        // rewind and forward
+        rwd.addEventListener('click', function() { video.currentTime -= 3; });
+        fwd.addEventListener('click', function() { video.currentTime += 3; });
 
 
 
