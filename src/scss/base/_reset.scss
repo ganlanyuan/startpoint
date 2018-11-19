@@ -25,15 +25,29 @@ figure img, a > img { vertical-align: bottom; }
 
 // reset form styles
 label { cursor: pointer; }
-select { -webkit-appearance: none; }
+[type="search"], select { -webkit-appearance: none; }
 
 // reset link style
 a {
   text-decoration: none;
   color: inherit;
-  // &:focus {
-  //   outline: 1px solid;
-  //   outline-offset: .15em;
-  // }
 }
-main:focus { outline: none; }
+
+// area[href],
+// [contentEditable],
+// details,
+// a[href],
+// input:not([disabled]),
+// button:not([disabled]),
+// select:not([disabled]),
+// textarea:not([disabled]),
+// iframe,
+// [tabindex] {
+//   &:not([tabindex^="-"]) {
+//     // &:focus {}
+//     &:focused:not(:-moz-focusring),
+//     &:focused:not(:focus-visible) { outline: none; }
+//     &:-moz-focusring,
+//     &:focus-visible { box-shadow: 0 0 0 2px currentColor; }
+//   }
+// }
