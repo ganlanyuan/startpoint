@@ -24,51 +24,17 @@ svg {
   display: inline-block;
   path, circle, ellipse, polygon, polyline { vector-effect: non-scaling-stroke; }
 }
-#main {
-  img[src*=".png"],
-  img[src*=".gif"],
-  img[src*=".jpeg"],
-  img[src*=".jpg"] {
-    display: inline-block;
-    font-size: 0;
-    overflow: hidden;
-    &:after {
-      content: 'Broken image of ' attr(alt);
-      // content: url('../img/broken-chain.png') ' Broken image of ' attr(alt);
-      display: block;
-      width: 100%;
-      height: 0;
-      padding: 30% 20px 38%;
-      font-size: 16px;
-      text-align: center;
-      line-height: 1.3;
-      font-weight: 200;
-      color: $gray;
-      background: hsl(187, 0%, 94%);
-      box-sizing: border-box;
-    }
-  }
-  .ad img {
-    font-size: 1em;
-    &:after { display: none; }
-  }
-}
-
-
 .ad {
   @include center();
   margin: 0 auto em(20);
   > div, > iframe, > a, > img { margin: auto; }
 }
 .container {
-  max-width: 1200px;
   max-width: rem(1200px);
   margin: 0 auto;
-  padding: 0 ($global-gutter/2);
+  padding: 0 $global-gutter;
   box-sizing: border-box;
-  @include bp(500) { padding: 0 $global-gutter; }
 }
-// .clearfix { @extend %clearfix; }
 
 // == media ==
 .embedded-content {
