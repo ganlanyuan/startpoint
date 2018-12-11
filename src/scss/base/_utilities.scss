@@ -36,6 +36,19 @@ svg {
   box-sizing: border-box;
 }
 
+.no-bullet {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li { margin: 0; }
+}
+.not-button {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+
 // == media ==
 .embedded-content {
   margin-bottom: $global-gutter;
