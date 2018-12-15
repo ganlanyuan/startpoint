@@ -20,9 +20,8 @@
 {# primary search #}
 <form class="main-search" id="main-search" action="a.php" method="post" aria-label="Main Search">
   <div role="search">
-    <label class="visually-hidden" for="main-search-input">Search:
-      <p id="main-search-error" role="alert"></p>
-    </label>
+    <div class="visually-hidden" role="alert" aria-relevant="all"></div>
+    <label class="visually-hidden" for="main-search-input">Search:</label>
     <input id="main-search-input" type="search" placeholder="Search" required="">
     <button><span class="visually-hidden">Go</span></button>
   </div>
