@@ -225,7 +225,7 @@ function doNunjucks (input) {
     return str.slice(0, count || 5);
   });
   env.addFilter('nameToUrl', (str) => {
-    return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '');
+    return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '').replace("'", '');
   });
   env.addFilter('splitToArray', (str, separator) => {
     return str.split(separator);
