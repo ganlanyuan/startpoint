@@ -1,3 +1,6 @@
+/* :focus-visible polyfill */
+// import '../../node_modules/focus-visible/dist/focus-visible.js'
+
 let doc = document,
     html = doc.documentElement,
     body = doc.body;

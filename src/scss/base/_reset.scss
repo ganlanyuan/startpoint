@@ -33,21 +33,12 @@ a {
 [type="search"]::-webkit-search-results-button,
 [type="search"]::-webkit-search-results-decoration { display: none; }
 
-// area[href],
-// [contentEditable],
-// details,
-// a[href],
-// input:not([disabled]),
-// button:not([disabled]),
-// select:not([disabled]),
-// textarea:not([disabled]),
-// iframe,
-// [tabindex] {
-//   &:not([tabindex^="-"]) {
-//     // &:focus {}
-//     &:focused:not(:-moz-focusring),
-//     &:focused:not(:focus-visible) { outline: none; }
-//     &:-moz-focusring,
-//     &:focus-visible { box-shadow: 0 0 0 2px currentColor; }
-//   }
-// }
+// reset focus styles
+:focus { outline: none; }
+@mixin focus-visible () {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.focus-visible { @include focus-visible(); }
+:-moz-focusring { @include focus-visible(); }
+:focus-visible { @include focus-visible(); }
