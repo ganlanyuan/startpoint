@@ -16,15 +16,12 @@
 
   {%- if name === 'facebook' -%}
     http://www.facebook.com/sharer.php?u={{ crunchify(url) }}
-    {# https://www.facebook.com/dialog/share?app_id={{ appid }}&amp;display=page&amp;href={{ url }}&amp;redirect_uri={{ redirectUrl }} #}
   {%- elif name === 'twitter' -%}
     https://twitter.com/intent/tweet/?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }}
-    {# https://twitter.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }} #}
   {%- elif name === 'google+' -%}
     https://plus.google.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(desc) }}
   {%- elif name === 'pinterest' -%}
     https://pinterest.com/pin/create/button/?url={{ crunchify(url) }}&amp;media={{ crunchify(img) }}&amp;description={{ crunchify(title) }}&amp;is_video={{ crunchify(isVideo) }}
-    {# https://pinterest.com/pin/create/bookmarklet/?media={{ crunchify(img) }}&amp;url={{ crunchify(url) }}&amp;is_video={{ crunchify(isVideo) }}&amp;description={{ crunchify(title) }} #}
   {%- elif name === 'linkedin' -%}
     https://www.linkedin.com/shareArticle?mini=true&amp;url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}&amp;summary={{ crunchify(desc) }}&amp;source={{ crunchify(provider) }}
   {%- elif name === 'buffer' -%}
@@ -33,8 +30,6 @@
     http://digg.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
   {%- elif name === 'tumblr' -%}
     https://www.tumblr.com/widgets/share/tool?canonicalUrl={{ crunchify(url) }}&amp;title={{ crunchify(title) }}&amp;caption={{ crunchify(desc) }}
-    {# https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title={{ crunchify(title) }}&amp;caption={{ crunchify(desc) }}&amp;content={{ crunchify(url) }}&amp;canonicalUrl={{ crunchify(url) }}&amp;shareSource=tumblr_share_button #}
-    {# http://www.tumblr.com/share/link?url={{ crunchify(url) }}&amp;name={{ crunchify(title) }}&amp;description={{ crunchify(desc) }} #}
   {%- elif name === 'reddit' -%}
     http://reddit.com/submit?url={{ crunchify(url) }}&amp;title={{ crunchify(title) }}
   {%- elif name === 'stumbleupon' -%}
@@ -97,7 +92,13 @@
   {%- endif -%}
 {%- endmacro -%}
 
+    {# https://www.facebook.com/dialog/share?app_id={{ appid }}&amp;display=page&amp;href={{ url }}&amp;redirect_uri={{ redirectUrl }} #}
+    {# https://twitter.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }} #}
+    {# https://pinterest.com/pin/create/bookmarklet/?media={{ crunchify(img) }}&amp;url={{ crunchify(url) }}&amp;is_video={{ crunchify(isVideo) }}&amp;description={{ crunchify(title) }} #}
+    {# https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title={{ crunchify(title) }}&amp;caption={{ crunchify(desc) }}&amp;content={{ crunchify(url) }}&amp;canonicalUrl={{ crunchify(url) }}&amp;shareSource=tumblr_share_button #}
+    {# http://www.tumblr.com/share/link?url={{ crunchify(url) }}&amp;name={{ crunchify(title) }}&amp;description={{ crunchify(desc) }} #}
+
 {# crunchify string #}
 {% macro crunchify(str) %}
-  {{- str | replace(' ', '%20') | replace('/', '%2F') | replace(':', '%3A') -}}
+  {{- str | replace(' ', '%20') | replace('/', '%2F') | replace(':', '%3A') | replace('"', "'") -}}
 {% endmacro %}
