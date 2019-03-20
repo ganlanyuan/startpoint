@@ -118,7 +118,7 @@ switch (process.env.task) {
       });
 
     chokidar
-      .watch(htmlDir + '/**/*.html', {
+      .watch(htmlDir + '/*.html', {
         ignored: [htmlDir + '/amp.html', htmlDir + '/pages.html']
         // ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
