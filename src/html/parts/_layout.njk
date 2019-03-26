@@ -50,8 +50,21 @@
   
   <link rel="stylesheet" href="{{ root }}assets/css/main.css">
   <!--[if (lt IE 9)]>
-    <style>@media \0screen { img { width: auto; } }</style>
     <script src="{{ root }}assets/js/html5shiv.js"></script>
+    <script>
+      var sheets = document.styleSheets;
+      for (var i = sheets.length; i--;) {
+        sheets[i].disabled = true;
+      }
+    </script>
+    <style>
+      body { font-family: Helvetica, Arial, sans-serif; }
+      @media \0screen { img { width: auto; } }
+      img {
+        border: 0;
+        height: auto;
+      }
+    </style>
   <![endif]-->
 </head>
 <body class="{{ page + '-page'}}">
