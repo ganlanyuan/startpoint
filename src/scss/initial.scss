@@ -1,18 +1,14 @@
 // vendors
-@import "../../node_modules/rocket-sass/src/scss/_rocket.scss";
-@import "../../node_modules/tiny-slider/src/tiny-slider.scss";
-@import "vendors/ellipsis";
-@import "vendors/hide-text";
-@import "vendors/browsehappy";
+@import "common";
 @import "vendors/normalize";
 
 // base
-@import "base/variables";
 @import "base/reset";
 @import "base/typography";
 @import "base/utilities";
 
 // components
+@import "../../node_modules/tiny-slider/src/tiny-slider.scss";
 @import "components/fonts";
 @import "components/icon";
 @import "components/panel";
@@ -25,16 +21,3 @@
 @import "components/pagination";
 @import "components/dropdown";
 @import "components/popup";
-
-// layout
-@import "layout/header";
-@import "layout/footer";
-@import "layout/navigation";
-@import "layout/sidebar";
-
-// pages
-@import "pages/home";
-@import "pages/section";
-@import "pages/article";
-@import "pages/about";
-@import "pages/search";

@@ -32,7 +32,11 @@
 
   <!-- Subresources:  -->
   <!-- Identify the resources that are the highest priority and should be requested before prefetched items -->
-  <link rel="subresource" href="{{ root }}assets/css/main.css">
+  <link rel="subresource" href="{{ root }}assets/css/initial.css">
+  <link rel="subresource" href="{{ root }}assets/css/site-header.css">
+  <link rel="subresource" href="{{ root }}assets/css/main_home-section.css">
+  <link rel="subresource" href="{{ root }}assets/css/main_article.css">
+  <link rel="subresource" href="{{ root }}assets/css/site-footer.css">
   
   <!-- Prefetch DNS for external assets -->
   <!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
@@ -48,26 +52,13 @@
     /* endinject */
   </style>
   
-  <link rel="stylesheet" href="{{ root }}assets/css/main.css">
+  <link rel="stylesheet" href="{{ root }}assets/css/initial.css">
   <!--[if (lt IE 9)]>
     <script src="{{ root }}assets/js/html5shiv.js"></script>
-    <script>
-      var sheets = document.styleSheets;
-      for (var i = sheets.length; i--;) {
-        sheets[i].disabled = true;
-      }
-    </script>
-    <style>
-      body { font-family: Helvetica, Arial, sans-serif; }
-      @media \0screen { img { width: auto; } }
-      img {
-        border: 0;
-        height: auto;
-      }
-    </style>
   <![endif]-->
 </head>
 <body class="{{ page + '-page'}}">
+  <link rel="stylesheet" href="{{ root }}assets/css/site-header.css"><script> </script>
   {% include './_header.njk' %}
 
   {# main #}
@@ -81,6 +72,7 @@
   {% endblock %}
 
   {# page footer #}
+  <link rel="stylesheet" href="{{ root }}assets/css/site-footer.css"><script> </script>
   {% include "./_footer.njk" %}
 
   <!-- Placeholder polyfill for IE9- -->
@@ -110,5 +102,23 @@
     });
   </script> #}
 
+  <link rel="stylesheet" href="{{ root }}assets/css/print.css" media="print">
+
+  <!--[if (lt IE 9)]>
+    <script>
+      var sheets = document.styleSheets;
+      for (var i = 0, l = sheets.length; i < l; i++) {
+        sheets[i].disabled = true;
+      }
+    </script>
+    <style>
+      body { font-family: Helvetica, Arial, sans-serif; }
+      @media \0screen { img { width: auto; } }
+      img {
+        border: 0;
+        height: auto;
+      }
+    </style>
+  <![endif]-->
 </body>
 </html>
