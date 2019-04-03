@@ -1,12 +1,11 @@
-// == typography ==
-
 body { 
-  // use system font
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-
-  // removes the 300ms delay of click events when the user taps the screen
-  touch-action: manipulation; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  touch-action: manipulation; // removes the 300ms delay of click events when the user taps the screen
 }
+
+.link:hover { text-decoration: underline; }
+.center-align { text-align: center; }
+a img { vertical-align: bottom; }
 
 // heading-1 ~ 3
 // http://www.modularscale.com/?11&px&1.2&web&text

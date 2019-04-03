@@ -7,7 +7,8 @@
 
 let doc = document,
     html = doc.documentElement,
-    body = doc.body;
+    body = doc.body,
+    active_cl = 'open';
 
 // remove "no-script" class
 html.className = html.className.replace('no-script', '');
@@ -27,27 +28,27 @@ function btn_fns (str) {
       var target = doc.querySelector(btn.getAttribute(attr));
       if (target) {
         btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          btn_core(str, target);
+          if (btn.hasAttribute('href')) { e.preventDefault(); }
+          let cl = btn.getAttribute('data-toggle-class');
+          btn_core(btn, str, target, cl ? cl : active_cl);
         });
       }
     });
   }
 }
-function btn_core (str, target) {
+function btn_core (btn, str, target, cl) {
   switch(str) {
     case 'toggle':
-      target.classList.toggle(active_cl);
+      target.classList.toggle(cl);
       btn.classList.toggle('expanded');
       break;
     case 'add':
-      target.classList.add(active_cl);
+      target.classList.add(cl);
       break;
     case 'remove':
-      target.classList.remove(active_cl);
+      target.classList.remove(cl);
       break;
   }
-}
 btn_fns('toggle');
 btn_fns('add');
 btn_fns('remove');
