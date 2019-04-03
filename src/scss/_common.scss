@@ -1,5 +1,13 @@
 // vendors
-@import "../../node_modules/rocket-sass/src/scss/_rocket.scss";
+@import "../../node_modules/rocket-sass/src/scss/setting/variables";
+@import "../../node_modules/rocket-sass/src/scss/utilities/utilities";
+@import "../../node_modules/rocket-sass/src/scss/vendors/vendors";
+
+@import "../../node_modules/rocket-sass/src/scss/addons/breakpoint";
+@import "../../node_modules/rocket-sass/src/scss/layout/center";
+@import "../../node_modules/rocket-sass/src/scss/layout/justify";
+@import "../../node_modules/rocket-sass/src/scss/layout/gallery";
+
 @import "vendors/ellipsis";
 @import "vendors/hide-text";
 
