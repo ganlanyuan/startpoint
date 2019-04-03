@@ -37,7 +37,8 @@ const nunjucks = require('nunjucks'),
       fs = require('fs');
       path = require('path');
 
-let source = 'src',
+let baseurl = '/',
+    source = 'src',
     assets = 'assets',
     njkDir = source + '/html',
     htmlDir = 'public',
@@ -108,7 +109,7 @@ switch (process.env.task) {
     serverUp();
     // watch njk files
     chokidar
-      .watch([njkDir + '/**/*.njk', '*.njk'])
+      .watch([njkDir + '/*.njk', '*.njk'])
       .on('change', file => {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
@@ -491,11 +492,11 @@ function doAmp () {
       if (err) { return console.log(err); }
 
       let css = res.replace(/\s*\/\*.*\*\/\s*/g, '')
-                   .replace(/fonts\/mnr/g, 'assets/css/fonts/mnr')
                    .replace(/!important/g, '')
                    .replace(/\@page\{.+/, '')
                    .replace(/\@media\sprint\{.+/, '')
-                   .replace(/"..\/img/g, '"assets/img');
+                   .replace(/\.\.\/img/g, baseurl + 'assets/img')
+                   .replace(/\.\.\/fonts/g, baseurl + 'assets/fonts');
       fs.writeFile(ampfile, data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
         if (err) { return console.log(err); }
         _colorConsole(consoleHTML, 'amp.html');
