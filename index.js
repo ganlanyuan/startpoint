@@ -43,7 +43,7 @@ let baseurl = '/',
     njkDir = source + '/html',
     htmlDir = 'public',
     // htmlDir = '.',
-    ampfile = htmlDir + '/amp.html',
+    ampfile = htmlDir + '/_amp.html',
     sassDir = source + '/scss',
     cssDir = assets + '/css',
     jsDir = source + '/js',
@@ -497,7 +497,7 @@ function doAmp () {
                    .replace(/\@media\sprint\{.+/, '')
                    .replace(/\.\.\/img/g, baseurl + 'assets/img')
                    .replace(/\.\.\/fonts/g, baseurl + 'assets/fonts');
-      fs.writeFile(ampfile, data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
+      fs.writeFile(ampfile.replace('_', ''), data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
         if (err) { return console.log(err); }
         _colorConsole(consoleHTML, 'amp.html');
       });
