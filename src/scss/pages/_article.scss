@@ -13,6 +13,14 @@
   blockquote, 
   .flex-video, 
   .embedded-content { margin: $gap 0; }
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 rem(20px) 0;
+    line-height: 1.2;
+  }
+  blockquote {
+    padding-left: 1.2em;
+    border-left: 7px solid $c-border;
+  }
   a {
     color: $c-brand;
     &:hover { text-decoration: underline; }
