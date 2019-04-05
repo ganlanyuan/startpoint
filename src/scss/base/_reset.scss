@@ -9,6 +9,7 @@ img {
   max-width: 100%;
   height: auto;
 }
+iframe { border: 0; }
 
 // remove the white space under images
 figure img, a > img { vertical-align: bottom; }
