@@ -6,7 +6,13 @@
   > header {
     margin-bottom: $gap;
   }
-  p, ul, ol, address, blockquote { margin: $gap 0; }
+  p, 
+  ul, 
+  ol, 
+  address, 
+  blockquote, 
+  .flex-video, 
+  .embedded-content { margin: $gap 0; }
   a {
     color: $c-brand;
     &:hover { text-decoration: underline; }
