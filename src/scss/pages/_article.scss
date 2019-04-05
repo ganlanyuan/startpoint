@@ -1,12 +1,14 @@
 .full-article {
   @extend %clearfix;
-  ul, ol { padding-left: 2em; }
-  ul { list-style: disc; }
-  ol { list-style: decimal; }
-  li { margin: 0.4em 0; }
-  p, ul, ol, address { margin: rem($global-gutter) 0; }
-  p, li, address {
-    font-size: rem(18px);
-    line-height: 1.6;
+  $gap: rem($global-gutter);
+  font-size: rem(18px);
+  line-height: 1.6;
+  > header {
+    margin-bottom: $gap;
+  }
+  p, ul, ol, address, blockquote { margin: $gap 0; }
+  a {
+    color: $c-brand;
+    &:hover { text-decoration: underline; }
   }
 }
