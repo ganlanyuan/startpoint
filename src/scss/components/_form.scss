@@ -1,4 +1,4 @@
-input:not([type="checkbox"]):not([type="radio"]),
+input,
 button,
 select,
 textarea {
@@ -6,13 +6,17 @@ textarea {
   font-size: rem(16px);
   font-family: $helvetica;
   vertical-align: middle;
-  background: #fff;
+  background-color: #fff;
   border: 1px solid #bbb;
   box-sizing: border-box;
   border-radius: 0;
   &.error {
     border-color: map-get($alert, danger);
   }
+}
+[type="radio"],
+[type="checkbox"] {
+  padding: 0;
 }
 
 // select {
