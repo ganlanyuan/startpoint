@@ -1,67 +1,28 @@
+input:not([type="checkbox"]):not([type="radio"]),
 button,
-input,
 select,
 textarea {
-  font-size: 16px;
-  font-size: rem(16px);
-  box-sizing: border-box; // Core: use border-box to reduce the difference between browsers.
-  font-family: $helvetica;
-  box-sizing: border-box;
-}
-[type="text"],
-[type="email"],
-[type="tel"],
-[type="url"],
-[type="search"],
-button,
-select {
   padding: 0.5em 1em;
-  vertical-align: middle; 
-}
-
-[type="text"],
-[type="email"],
-[type="tel"],
-[type="url"],
-[type="search"],
-textarea,
-select {
+  font-size: rem(16px);
+  font-family: $helvetica;
+  vertical-align: middle;
   background: #fff;
   border: 1px solid #bbb;
+  box-sizing: border-box;
+  border-radius: 0;
   &.error {
     border-color: map-get($alert, danger);
   }
 }
 
-select {
-  background: #fff url('../img/down-angle1.svg') 100% 50% no-repeat;
-  background-position: calc(100% - 1.2em) 50%;
-  background-size: 20px;
-}
+// select {
+//   background: #fff url('../img/down-angle1.svg') 100% 50% no-repeat;
+//   background-position: calc(100% - 1.2em) 50%;
+//   background-size: 20px;
+// }
 
 textarea {
   padding: 1em;
-}
-
-.anti-button {
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-
-  // overlap "X" icon in webkit browsers
-  [type="search"] + & {
-    &:after {
-      content: '';
-      position: absolute;
-      left: 2px;
-      right: 2px;
-      top: 2px;
-      bottom: 2px;
-      background: #fff;
-    }
-    > span { z-index: 1; }
-    > :not(.visually-hidden) { position: relative; }
-  }
 }
 
 .form-one-row {
