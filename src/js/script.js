@@ -10,8 +10,8 @@ let doc = document,
     body = doc.body,
     active_cl = 'open';
 
-// remove "no-script" class
-html.className = html.className.replace('no-script', '');
+// remove "no-js" class
+html.className = html.className.replace('no-js', 'js');
 
 // skip link
 doc.querySelector('.skip-link').addEventListener('click', function(e) {
