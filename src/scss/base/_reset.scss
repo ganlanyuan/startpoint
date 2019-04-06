@@ -28,7 +28,6 @@ details > summary {
 details > summary::before { display: none; } 
 details > summary::-webkit-details-marker { display: none; }
 details:not([open]) > :not(summary) { display: none !important; }
-.no-js details:not([open]) > :not(summary) { display: block !important; }
 
 // remove "X" from search input field on Chrome and IE
 // for IE
