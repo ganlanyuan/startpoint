@@ -120,7 +120,7 @@ switch (process.env.task) {
 
     chokidar
       .watch(htmlDir + '/*.html', {
-        ignored: [htmlDir + '/amp.html', htmlDir + '/pages.html']
+        ignored: [ampfile, htmlDir + '/pages.html']
         // ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', file => { htmlValidator([file]); });
@@ -143,7 +143,7 @@ switch (process.env.task) {
     //   .on('change', () => doAmp());
 
     // chokidar
-    //   .watch('amp.html')
+    //   .watch(ampfile)
     //   .on('change', ampValidator);
       
     // watch JS
@@ -166,7 +166,7 @@ switch (process.env.task) {
     // watch server
     chokidar
       .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
-        ignored: [htmlDir + '/amp.html']
+        ignored: [ampfile]
         // ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', browserSync.reload);
