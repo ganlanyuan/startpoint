@@ -37,7 +37,7 @@ const nunjucks = require('nunjucks'),
       fs = require('fs');
       path = require('path');
 
-let baseurl = '/',
+let baseurl = 'https://www.site.com/',
     source = 'src',
     assets = 'assets',
     njkDir = source + '/html',
@@ -86,9 +86,9 @@ switch (process.env.task) {
   case 'htmlValidate':
     htmlValidator();
     break;
-  // case 'ampValidate':
-  //   ampValidator();
-  //   break;
+  case 'ampValidate':
+    ampValidator();
+    break;
   case 'sass':
     doSassAll();
     break;
@@ -101,9 +101,9 @@ switch (process.env.task) {
   case 'image':
     minifyImage();
     break;
-  // case 'amp':
-  //   doAmp();
-  //   break;
+  case 'amp':
+    doAmp();
+    break;
 
   default:
     serverUp();
@@ -139,7 +139,7 @@ switch (process.env.task) {
 
     // watch amp
     // chokidar
-    //   .watch(cssDir + '/main.css')
+    //   .watch([ampfile, cssDir + '/main.css'])
     //   .on('change', () => doAmp());
 
     // chokidar
