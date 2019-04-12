@@ -37,7 +37,7 @@ const nunjucks = require('nunjucks'),
       fs = require('fs');
       path = require('path');
 
-let baseurl = 'https://www.site.com/',
+let assets_baseurl = 'https://www.site.com/assets/',
     source = 'src',
     assets = 'assets',
     njkDir = source + '/html',
@@ -120,7 +120,7 @@ switch (process.env.task) {
 
     chokidar
       .watch(htmlDir + '/*.html', {
-        ignored: [ampfile, htmlDir + '/pages.html']
+        ignored: [ampfile, htmlDir + '/amp.html', htmlDir + '/pages.html']
         // ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', file => { htmlValidator([file]); });
@@ -491,12 +491,12 @@ function doAmp () {
     fs.readFile(ampfile, {encoding: 'utf-8'}, (err, data) => {
       if (err) { return console.log(err); }
 
-      let css = res.replace(/\s*\/\*.*\*\/\s*/g, '')
-                   .replace(/!important/g, '')
-                   .replace(/\@page\{.+/, '')
-                   .replace(/\@media\sprint\{.+/, '')
-                   .replace(/\.\.\/img/g, baseurl + 'assets/img')
-                   .replace(/\.\.\/fonts/g, baseurl + 'assets/fonts');
+      let css = res.replace(/\s*\/\*.*\*\/\s*/g, '') // remove comments /* */
+                   .replace(/(\s*|})img(\s|\{|\.|\#|\+|\~)/g, '$1' + 'amp-img' + '$2') // change img to amp-img
+                   .replace(/\.\.\//g, assets_baseurl) // update assets path: img, font
+                   .replace(/!important/g, '') // remove !important statement
+                   .replace(/\@page\{.+/, '') // remove @page
+                   .replace(/\@media\sprint\{.+/, ''); // remove @print styles
       fs.writeFile(ampfile.replace('_', ''), data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
         if (err) { return console.log(err); }
         _colorConsole(consoleHTML, 'amp.html');
