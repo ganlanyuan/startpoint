@@ -109,7 +109,7 @@ switch (process.env.task) {
     serverUp();
     // watch njk files
     chokidar
-      .watch([njkDir + '/*.njk', '*.njk'])
+      .watch([njkDir + '/**/*.njk', '*.njk'])
       .on('change', file => {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
