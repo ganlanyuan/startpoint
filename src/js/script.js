@@ -49,6 +49,7 @@ function btn_core (btn, str, target, cl) {
       target.classList.remove(cl);
       break;
   }
+}
 btn_fns('toggle');
 btn_fns('add');
 btn_fns('remove');
