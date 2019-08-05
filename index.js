@@ -347,7 +347,7 @@ function doSass (input) {
     });
 
     // postCSS
-    postcss([ autoprefixer, csso ]).process(result.css, {
+    postcss([ autoprefixer, csso({ restructure: false }) ]).process(result.css, {
       from: input,
       to: output,
       map: { inline: false }
