@@ -26,3 +26,26 @@
     &:hover { text-decoration: underline; }
   }
 }
+
+.flex-video {
+  @include flex-media( (9/16) );
+}
+.embedded-content {
+  margin-bottom: $global-gutter;
+  overflow: auto;
+  iframe { border: 0; }
+  .fluid {
+    &-wrapper {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+    }
+    &-item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+  }
+}
