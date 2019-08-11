@@ -8,6 +8,7 @@
 let doc = document,
     html = doc.documentElement,
     body = doc.body,
+    win = window,
     active_cl = 'open';
 
 // remove "no-js" class
