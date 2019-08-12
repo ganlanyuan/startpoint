@@ -101,7 +101,7 @@ function forEach (arr, callback, scope) {
 
 function lookupByClass (el, cla) {
   if (el === body) { return null; }
-  return typeof el.className !== 'string' || el.className.indexOf(cla) < 0 ? lookupByClass(el.parentNode, cla) : el;
+  return el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla);
 }
 
 function lookupByType (el, target_name, arr) {
