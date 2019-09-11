@@ -72,12 +72,13 @@ let dataInit = {
 };
 
 let htmlValidatorFilters = [
-      'The “banner” role is unnecessary for element “header”.', 
+      'The “banner” role is unnecessary for element “header”.',
       'The “navigation” role is unnecessary for element “nav”.',
       'The “main” role is unnecessary for element “main”.',
-      'The “contentinfo” role is unnecessary for element “footer”.'
+      'The “contentinfo” role is unnecessary for element “footer”.',
+      'Bad value “sponsored” for attribute “rel” on element “a”: The string “sponsored” is not a registered keyword.'
     ];
-  
+
 
 switch (process.env.task) {
   case 'njk':
@@ -124,7 +125,7 @@ switch (process.env.task) {
         // ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', file => { htmlValidator([file]); });
-      
+
     // watch sass
     chokidar
       .watch(sassDir + '/**/*.scss')
@@ -145,7 +146,7 @@ switch (process.env.task) {
     // chokidar
     //   .watch(ampfile)
     //   .on('change', ampValidator);
-      
+
     // watch JS
     chokidar
       .watch(jsDir + '/**/*.js')
@@ -273,7 +274,7 @@ function htmlValidator (arr) {
           res.messages.forEach(m => {
             // check if messages match filters
             if (htmlValidatorFilters.indexOf(m.message) < 0) {
-              str += m.type + ', line ' + m.lastLine + ', col ' + m.firstColumn + '-' + m.lastColumn + ', ' + m.message;
+              str += m.type + ', line ' + m.lastLine + ', col ' + m.firstColumn + '-' + m.lastColumn + ', ' + m.message + '\n';
             }
           });
 
@@ -580,8 +581,8 @@ function _getAllFilesFromFolder (dir, ext, filter, excludeDir) {
     let stat = fs.statSync(file);
 
     if (stat && stat.isDirectory()) {
-      results = 
-        !excludeDir || excludeDir.indexOf(file.replace(dir + '/', '')) < 0 ? 
+      results =
+        !excludeDir || excludeDir.indexOf(file.replace(dir + '/', '')) < 0 ?
         results.concat(_getAllFilesFromFolder(file, ext, filter, excludeDir)) :
         results;
     } else {
