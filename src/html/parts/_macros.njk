@@ -43,5 +43,12 @@
 
 
 {%- macro ad(size) -%}
-  {{- 'http://url.com/banner/' + size + '/' + get(size) + '.png' -}} 
+  {{- 'http://url.com/banner/' + size + '/' + get(size) + '.png' -}}
 {%- endmacro -%}
+
+{% macro ads(width = 300, height = 250, class = '') %}
+  {% set size_str = width + 'x' + height %}
+  {% set url_str = ad(size_str)  %}
+
+  <div class="ad {{ class }}"><a href="" {{ rel_str | safe }}><img src="{{ url_str }}" alt="" width="{{ width }}" height="{{ height }}"></a></div>
+{% endmacro %}
