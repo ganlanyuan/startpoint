@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frames</title>
+  <style>
+    body { margin: 10px; }
+    .frames {
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+    }
+    iframe {
+      float: left;
+      height: calc(100vh - 20px);
+      margin-right: 10px;
+      resize: horizontal;
+      overflow: auto;
+      border: 1px solid  #000;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      flex: 0 0 auto;
+    }
+    iframe:last-child { margin-right: 0; }
+  </style>
+</head>
+<body>
+  <div class="frames">
+    <iframe src="" frameborder="0" width="320" height="1200"></iframe>
+    <iframe src="" frameborder="0" width="768" height="1200"></iframe>
+    <iframe src="" frameborder="0" width="1024" height="1200"></iframe>
+  </div>
+  <script>
+    let l = location,
+        ori = l.origin,
+        page = l.search.replace('?', ''),
+        iframes = document.querySelectorAll('iframe'),
+        url;
+    if (page) {
+      url = ori + '/public/' + page + '.html';
+      for(let l = iframes.length; l--;) {
+        iframes[l].src = url;
+      }
+    }
+  </script>
+</body>
+</html>
