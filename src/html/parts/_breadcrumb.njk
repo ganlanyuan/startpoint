@@ -1,23 +1,26 @@
 {# breadcrumb #}
-<nav class="breadcrumb" role="navigation" aria-label="You are here:" 
+<nav class="breadcrumb" role="navigation" aria-label="You are here:"
   itemscope itemtype="http://schema.org/BreadcrumbList">
   <span itemprop="itemListElement"
         itemscope itemtype="http://schema.org/ListItem">
-    <a href="/" itemprop="url">
+    <a href="/" itemprop="item">
       <span itemprop="name">Home</span>
     </a>
+    <meta itemprop="position" content="1" />
   </span>
   <span itemprop="itemListElement"
         itemscope itemtype="http://schema.org/ListItem">
-    <a href="section.html" itemprop="url">
+    <a href="section.html" itemprop="item">
       <span itemprop="name">World</span>
     </a>
+    <meta itemprop="position" content="2" />
   </span>
   <span itemprop="itemListElement"
         itemscope itemtype="http://schema.org/ListItem">
-    <span class="is-active" itemprop="url">
+    <span class="is-active" itemprop="item">
       <span class="visually-hidden">Current: </span>
       <span itemprop="name">US</span>
     </span>
+    <meta itemprop="position" content="3" />
   </span>
 </nav>
