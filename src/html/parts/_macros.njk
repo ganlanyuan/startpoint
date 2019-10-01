@@ -1,3 +1,35 @@
+{% macro breadcrumb (arr) %}
+{# breadcrumb #}
+<nav class="breadcrumb" role="navigation" aria-label="You are here:"
+  itemscope itemtype="http://schema.org/BreadcrumbList">
+  {% if arr[0] !== 'bible portal' %}
+    {% set len = arr | unshiftToArray('bible portal') %}
+  {% endif %}
+
+  {% for item in arr %}
+  <span itemprop="itemListElement"
+        itemscope itemtype="http://schema.org/ListItem">
+
+    {% if not loop.last %}
+    <a href="/" itemprop="item">
+    {% else %}
+    <span class="is-active" itemprop="item">
+      <span class="visually-hidden">Current: </span>
+    {% endif %}
+      <span itemprop="name">{{ item | capitalize }}</span>
+
+    {% if not loop.last %}
+    </a>
+    {% else %}
+    </span>
+    {% endif %}
+
+    <meta itemprop="position" content="{{ loop.index }}" />
+  </span>
+  {% endfor %}
+
+</nav>
+{% endmacro %}
 
 
 
