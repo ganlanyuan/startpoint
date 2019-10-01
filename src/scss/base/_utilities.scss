@@ -16,7 +16,7 @@
   /* Deprecated clip property for older browsers */
   clip: rect(0 0 0 0);
   /* clip-path for newer browsers. inset(50%) defines an inset rectangle that makes the content disappear.  */
-  clip-path: inset(50%); 
+  clip-path: inset(50%);
     /* It seems like at the moment nobody is quite sure why margin: -1px is there. On top of that it seems to cause issues (see: https://github.com/h5bp/html5-boilerplate/issues/1985). */
   margin: -1px;
 }
@@ -32,7 +32,7 @@ svg {
 .container {
   max-width: rem(1200px);
   margin: 0 auto;
-  padding: 0 $global-gutter;
+  padding: 0 $gap;
 }
 
 .no-bullet {
@@ -41,7 +41,7 @@ svg {
   list-style: none;
   li { margin: 0; }
 }
-.not-button {
+.flat-button {
   border: 0;
   background: transparent;
   border-radius: 0;
