@@ -55,21 +55,26 @@ let assets_baseurl = 'https://www.site.com/assets/',
     consoleHTML = chalk.blue('<HTML>'),
     consoleCSS = chalk.green('/CSS/'),
     consoleJS = chalk.magenta('{JS}'),
-    consoleIMG = chalk.cyan('|IMG|');
+    consoleIMG = chalk.cyan('|IMG|'),
+    arr_njk = _getAllFilesFromFolder(source, '.njk', _checkUnderscorePrefix);
 
 // console.time("dbsave");
-// console.log(_getAllFilesFromFolder(source, '.scss', _checkUnderscorePrefix));
+// console.log(_getAllFilesFromFolder(source, '.njk', _checkUnderscorePrefix));
 // console.timeEnd("dbsave");
 let dataInit = {
-  is: (type, obj) => {
-    var clas = Object.prototype.toString.call(obj).slice(8, -1);
-    return obj !== undefined && obj !== null && clas === type;
-  },
-  keys: (obj) => { return Object.keys(obj); },
-  belongTo: (str, arr) => { return arr.indexOf(str) !== -1; },
-  push: (arr, str) => { arr.push(str); return arr; },
-  year: () => { return new Date().getFullYear(); }
-};
+      is: (type, obj) => {
+        var clas = Object.prototype.toString.call(obj).slice(8, -1);
+        return obj !== undefined && obj !== null && clas === type;
+      },
+      keys: (obj) => { return Object.keys(obj); },
+      belongTo: (str, arr) => { return arr.indexOf(str) !== -1; },
+      push: (arr, str) => { arr.push(str); return arr; },
+      year: () => { return new Date().getFullYear(); }
+    },
+    count_per_page = {
+      'I': 20,
+      'H': 5
+    };
 
 let htmlValidatorFilters = [
       'The “banner” role is unnecessary for element “header”.',
@@ -115,7 +120,7 @@ switch (process.env.task) {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
         } else {
-          return doNunjucks(njkDir + '/index.njk');
+          return doNunjucks(njkDir + '/devotionals.njk');
         }
       });
 
@@ -131,12 +136,13 @@ switch (process.env.task) {
       .watch(sassDir + '/**/*.scss')
       .on('change', file => {
         if (_checkUnderscorePrefix(file)) { return doSass(file); }
+        // doSass(sassDir + '/main.scss');
         doSassAll();
       });
 
-    chokidar
-      .watch(cssDir + '/**/*.css')
-      .on('change', file => { cssValidator([file]); });
+    // chokidar
+    //   .watch(cssDir + '/**/*.css')
+    //   .on('change', file => { cssValidator([file]); });
 
     // watch amp
     // chokidar
@@ -166,7 +172,8 @@ switch (process.env.task) {
 
     // watch server
     chokidar
-      .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
+      .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/main.css', assets + '/js/**/*.js'], {
+      // .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
         ignored: [ampfile]
         // ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
@@ -183,7 +190,9 @@ function doNunjucksAll () {
 function doNunjucks (input) {
   let output = input.replace(njkDir, htmlDir).replace('.njk', '.html'),
       data = _loadData(),
-      count = {};
+      count = {},
+      file_index = arr_njk.indexOf(input),
+      fi = file_index >= 0 ? file_index : 0;
 
   for(var item in data) {
     if (Array.isArray(data[item])) {
@@ -197,19 +206,9 @@ function doNunjucks (input) {
   initCount('728x90', 1 , 7);
   initCount('970x250', 1 , 3);
 
-  function initCount (str, min, max) {
-    if (min === undefined) { min = 0; }
-    if (max === undefined) { max = data[str].length - 1; }
-
-    count[str] = {
-      current: min,
-      min: min,
-      max: max
-    };
-  }
-
   data.get = (str) => {
-    let n = count[str].current;
+    let n = count[str].current,
+        plus = count_per_page[str] ? fi * count_per_page[str] : 0;
 
     if (count[str].current >= count[str].max) {
       count[str].current = count[str].min;
@@ -217,7 +216,7 @@ function doNunjucks (input) {
       count[str].current++;
     }
 
-    return data[str] ? data[str][n] : n;
+    return data[str] ? data[str][n + plus] : n + plus;
   }
 
   data = Object.assign(data, dataInit);
@@ -235,6 +234,9 @@ function doNunjucks (input) {
   env.addFilter('pushToArray', (arr, item) => {
     return arr.push(item);
   });
+  env.addFilter('unshiftToArray', (arr, item) => {
+    return arr.unshift(item);
+  });
   env.addFilter('removeFromArray', (arr, item) => {
     arr.splice(arr.indexOf(item), 1);
     return arr;
@@ -250,6 +252,18 @@ function doNunjucks (input) {
       });
     });
   });
+
+  function initCount (str, min, max) {
+    if (min === undefined) { min = 0; }
+    if (max === undefined) { max = data[str].length - 1; }
+
+    count[str] = {
+      current: min,
+      min: min,
+      max: max
+    };
+  }
+
 }
 
 function htmlValidator (arr) {
@@ -342,10 +356,10 @@ function doSass (input) {
     if (err) { return void console.log(err); }
 
     // SASS sourcemap
-    fs.writeFile(output + '.map', result.map, (err) => {
-      if (err) { return void console.log(err); }
-      _colorConsole(consoleCSS, output + '.map');
-    });
+    // fs.writeFile(output + '.map', result.map, (err) => {
+    //   if (err) { return void console.log(err); }
+    //   _colorConsole(consoleCSS, output + '.map');
+    // });
 
     // postCSS
     postcss([ autoprefixer, csso({ restructure: false }) ]).process(result.css, {
