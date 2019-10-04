@@ -120,7 +120,7 @@ switch (process.env.task) {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
         } else {
-          return doNunjucks(njkDir + '/devotionals.njk');
+          return doNunjucks(njkDir + '/quiz.njk');
         }
       });
 
@@ -208,15 +208,17 @@ function doNunjucks (input) {
 
   data.get = (str) => {
     let n = count[str].current,
-        plus = count_per_page[str] ? fi * count_per_page[str] : 0;
+        plus = count_per_page[str] ? fi * count_per_page[str] : 0,
+        min = count[str].min,
+        max = count[str].max;
 
-    if (count[str].current >= count[str].max) {
-      count[str].current = count[str].min;
+    if (count[str].current >= max) {
+      count[str].current = min;
     } else {
       count[str].current++;
     }
 
-    return data[str] ? data[str][n + plus] : n + plus;
+    return data[str] ? data[str][(n + plus)%max] : (n + plus)%max;
   }
 
   data = Object.assign(data, dataInit);
