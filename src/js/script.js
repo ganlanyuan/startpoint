@@ -101,7 +101,7 @@ function forEach (arr, callback, scope) {
 
 function lookupByClass (el, cla) {
   if (el === body) { return null; }
-  return el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla);
+  return el.classList && el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla);
 }
 
 function lookupByType (el, target_name, arr) {
@@ -120,7 +120,7 @@ function beforeprint () {
   if (body.classList.contains('article-page') ||
       body.classList.contains('static-page') ||
       body.classList.contains('search-results-page')) {
-    
+
     let mainClass = doc.querySelector('.full-article') ? '.full-article' : 'main',
         printStr = 'printlinks',
         printlinks = doc.querySelector(mainClass+' .'+printStr),
