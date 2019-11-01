@@ -37,7 +37,7 @@ const nunjucks = require('nunjucks'),
       fs = require('fs');
       path = require('path');
 
-let assets_baseurl = 'https://www.site.com/assets/',
+let assets_baseurl = 'https://www.hulabowl.com/assets/',
     source = 'src',
     assets = 'assets',
     njkDir = source + '/html',
@@ -120,7 +120,8 @@ switch (process.env.task) {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
         } else {
-          return doNunjucks(njkDir + '/quiz.njk');
+          return doNunjucksAll();
+          // return doNunjucks(njkDir + '/index.njk');
         }
       });
 
@@ -172,8 +173,8 @@ switch (process.env.task) {
 
     // watch server
     chokidar
-      .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/main.css', assets + '/js/**/*.js'], {
-      // .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
+      // .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/main.css', assets + '/js/**/*.js'], {
+      .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
         ignored: [ampfile]
         // ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
@@ -188,7 +189,7 @@ function doNunjucksAll () {
 }
 
 function doNunjucks (input) {
-  let output = input.replace(njkDir, htmlDir).replace('.njk', '.html'),
+  let output = htmlDir + '/' + path.basename(input, path.extname(input)) + '.html',
       data = _loadData(),
       count = {},
       file_index = arr_njk.indexOf(input),
@@ -276,7 +277,7 @@ function htmlValidator (arr) {
   }
 
   arr.forEach((file, index) => {
-    console.log(file);
+    // console.log(file);
 
     // output: json => Terminal
     w3cHtml.validate({
