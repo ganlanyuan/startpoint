@@ -6,34 +6,14 @@ baseurl: https://website.com
 
 nav:
   main:
-  - home
-  - church & ministry
-  - u.s.
-  - world
+  - news
   - politics
-  - entertainment
-  - living
-  - opinion
-  - voices
-  about:
-  - about us
-  - contact us
-  - careers
-  - terms of service
-  - privacy policy
-  connect:
-  - contact us
-  - advertise with us
-  - media kit
-  - archives
-  - corrections
-  - disclaimer
-  - careers
-  topics:
-  - velit quam
-  - tempore iusto
-  - haruma
-  - laudant magnam
+  - community
+  - life
+  - personal
+  - video
+  - shopping
+  - highline
   social:
     facebook: https://www.facebook.com
     twitter: https://twitter.com
