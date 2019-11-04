@@ -189,7 +189,8 @@ function doNunjucksAll () {
 }
 
 function doNunjucks (input) {
-  let output = htmlDir + '/' + path.basename(input, path.extname(input)) + '.html',
+  let dir = input === 'index.njk' ? '' : htmlDir + '/',
+      output = dir + path.basename(input, path.extname(input)) + '.html',
       data = _loadData(),
       count = {},
       file_index = arr_njk.indexOf(input),
