@@ -79,7 +79,7 @@ function makeEmbedFluid() {
 
           embed.classList.remove('flex-video');
           embed.style.maxWidth = width + 'px';
-          wrap.style.paddingTop = ratio + '%';
+          wrap.style.paddingBottom = ratio + '%';
           item.classList.add(itemClass);
 
           embed.insertBefore(wrap, item);
