@@ -84,10 +84,12 @@
     if (target) {
       e.preventDefault();
       var url = location.href + target.getAttribute('href'),
-          tab = e.altKey || e.shiftKey ? '_blank' : '_self';
+          tab = e.altKey || e.shiftKey || e.metaKey ? '_blank' : '_self';
 
       if (e.altKey) {
         url = url.replace('public', 'test/w3c/html');
+      } else if (e.metaKey) {
+        url = url.replace('public/', 'frame.html?').replace(/\.html$/, '');
       } else if (e.shiftKey) {
         url = 'https://search.google.com/structured-data/testing-tool?url=' + url;
       }
