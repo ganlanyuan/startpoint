@@ -1,4 +1,4 @@
-body { 
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   touch-action: manipulation; // removes the 300ms delay of click events when the user taps the screen
 }
@@ -6,6 +6,10 @@ body {
 .link:hover { text-decoration: underline; }
 .center-align { text-align: center; }
 a img { vertical-align: bottom; }
+p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
 // heading-1 ~ 3
 // http://www.modularscale.com/?11&px&1.2&web&text
