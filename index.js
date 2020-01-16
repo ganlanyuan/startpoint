@@ -39,15 +39,16 @@ const nunjucks = require('nunjucks'),
 
 let assets_baseurl = 'https://www.hulabowl.com/assets/',
     source = 'src',
-    assets = 'assets',
     njkDir = source + '/html',
-    htmlDir = 'public',
-    // htmlDir = '.',
-    ampfile = htmlDir + '/_amp.html',
     sassDir = source + '/scss',
-    cssDir = assets + '/css',
     jsDir = source + '/js',
     imageDir = source + '/img',
+    // htmlDir = '.',
+    htmlDir = 'public',
+    assets = 'public/assets',
+    ampfile = htmlDir + '/_amp.html',
+    cssDir = assets + '/css',
+    testDir = 'test',
     cssValidateLevel = 'css3',
     ampUncssIgnore = [],
     publicUrl = '',
@@ -128,7 +129,7 @@ switch (process.env.task) {
     chokidar
       .watch(htmlDir + '/*.html', {
         ignored: [ampfile, htmlDir + '/amp.html', htmlDir + '/pages.html']
-        // ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
+        // ignored: ['amp.html', 'pages.html', source + '/**/*', testDir + '/**/*', 'node_modules/**/*']
       })
       .on('change', file => { htmlValidator([file]); });
 
@@ -176,7 +177,7 @@ switch (process.env.task) {
       // .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/main.css', assets + '/js/**/*.js'], {
       .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
         ignored: [ampfile]
-        // ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
+        // ignored: ['index.js', 'amp.html', source + '/**/*', testDir + '/**/*', 'node_modules/**/*']
       })
       .on('change', browserSync.reload);
 }
@@ -274,7 +275,7 @@ function htmlValidator (arr) {
   if (!arr) {
     arr = _getAllFilesFromFolder(htmlDir, '.html', (file) => {
             return ['amp', 'pages'].indexOf(path.basename(file, '.html')) < 0;
-          }, ['assets', 'src', 'test', 'node_modules']);
+          }, [assets, source, testDir, 'node_modules']);
   }
 
   arr.forEach((file, index) => {
@@ -313,7 +314,7 @@ function htmlValidator (arr) {
 
         res = res.slice(0, 38) + '<meta charset="utf-8">' + res.slice(38); // add charset
 
-        let newDir = 'test/w3c/html/' + file.replace(htmlDir + '/', '');
+        let newDir = testDir + '/w3c/html/' + file.replace(htmlDir + '/', '');
         _checkDir(path.dirname(newDir), () => {
           fs.writeFile(newDir, res, err => {
             if(err) { return console.log(chalk.gray(err)); }
@@ -411,7 +412,7 @@ function cssValidator (arr) {
         _colorConsole(consoleCSS, 'validating: ' + file.replace('/www/web/', '') +  response.statusCode);
         // console.log('body:', body); // Print the HTML
       })
-      .pipe(fs.createWriteStream('test/w3c/css/' + path.parse(file).name + '.html'));
+      .pipe(fs.createWriteStream(testDir + '/w3c/css/' + path.parse(file).name + '.html'));
     });
   });
 }
