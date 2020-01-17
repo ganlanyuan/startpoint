@@ -1,8 +1,6 @@
 {%- set layoutHome = 1020 -%}
 {%- set container = 1200 -%}
 {%- set globalGutter = 30 -%}
-{% set root = '../' %}
-{% set imgpath = root + 'assets/img' %}
 
 {%- import './_share.njk' as share with context -%}
 {%- import './_macros.njk' as mc with context -%}
@@ -37,13 +35,13 @@
   <link rel="subresource" href="{{ root }}assets/css/main_home-section.css">
   <link rel="subresource" href="{{ root }}assets/css/main_article.css">
   <link rel="subresource" href="{{ root }}assets/css/site-footer.css">
-  
+
   <!-- Prefetch DNS for external assets -->
   <!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
 
   <!-- Preconnect for dynamic request URLs -->
   <!-- <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin> -->
-  
+
   <!-- Prefetch Resourses -->
   {# <link rel="prefetch" href="{{ root }}assets/svg/sprites.svg"> #}
 
@@ -51,7 +49,7 @@
     /* critical:css */
     /* endinject */
   </style>
-  
+
   <link rel="stylesheet" href="{{ root }}assets/css/initial.css">
   <!--[if (lt IE 9)]>
     <script src="{{ root }}assets/js/html5shiv.js"></script>
@@ -79,7 +77,7 @@
   <!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
 
   <script src="{{ root }}assets/js/script.js"></script>
-  
+
   {# accessibility test #}
   {# <script src="/node_modules/axe-core/axe.min.js" ></script>
   <script>
