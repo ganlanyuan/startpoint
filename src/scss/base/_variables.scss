@@ -79,6 +79,11 @@ $alert:(
 
 // clearfix
 %clearfix { @include clearfix; }
+%no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  &::-webkit-scrollbar { display: none; }
+}
 @mixin visually-hidden {
   /* Remove the item from normal flow */
   position: absolute;
