@@ -1,24 +1,21 @@
-{% macro breadcrumb (arr, class) %}
 {# breadcrumb #}
+{% macro breadcrumb (arr, class) %}
 <nav class="breadcrumb {{ class if class }}" role="navigation" aria-label="You are here:"
   itemscope itemtype="http://schema.org/BreadcrumbList">
-  {% if arr[0] !== 'Bible Portal' %}
-    {% set len = arr | unshiftToArray('Bible Portal') %}
+  {% if arr[0] !== 'Home' %}
+    {% set len = arr | unshiftToArray('Home') %}
   {% endif %}
 
   {% for item in arr %}
   <span itemprop="itemListElement"
         itemscope itemtype="http://schema.org/ListItem">
-
-    <a href="/"  {{ 'aria-current="page"' | safe if loop.last }} itemprop="item">
-      <span class="visually-hidden">Current: </span>
-      <span itemprop="name">{{ item | title }}</span>
+    <a href="{{ links[item] }}.html" {{ 'aria-current="page"' | safe if loop.last }} itemprop="item">
+      {% if loop.last %}<span class="visually-hidden">Current: </span>{% endif %}
+      <span itemprop="name">{{ item }}</span>
     </a>
     <meta itemprop="position" content="{{ loop.index }}" />
-
   </span>
   {% endfor %}
-
 </nav>
 {% endmacro %}
 
