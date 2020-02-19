@@ -9,10 +9,22 @@
   {% for item in arr %}
   <span itemprop="itemListElement"
         itemscope itemtype="http://schema.org/ListItem">
-    <a href="{{ links[item] }}.html" {{ 'aria-current="page"' | safe if loop.last }} itemprop="item">
+
+    {% if loop.last %}
+    <span {{ 'aria-current="page"' | safe if loop.last }} itemprop="item">
+    {% else %}
+    <a href="{{ links[item] }}.html" itemprop="item">
+    {% endif %}
+
       {% if loop.last %}<span class="visually-hidden">Current: </span>{% endif %}
       <span itemprop="name">{{ item }}</span>
+
+    {% if loop.last %}
+    </span>
+    {% else %}
     </a>
+    {% endif %}
+
     <meta itemprop="position" content="{{ loop.index }}" />
   </span>
   {% endfor %}

@@ -21,11 +21,23 @@ a {
   color: inherit;
 }
 
+.no-bullet {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li { margin: 0; }
+}
+.flat-button {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
 details > summary {
   list-style: none;
   cursor: pointer;
 }
-details > summary::before { display: none; } 
+details > summary::before { display: none; }
 details > summary::-webkit-details-marker { display: none; }
 details:not([open]) > :not(summary) { display: none !important; }
 
