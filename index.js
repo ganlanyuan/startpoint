@@ -235,11 +235,20 @@ function doNunjucks (input) {
   env.addFilter('nameToUrl', (str) => {
     return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '').replace("'", '');
   });
-  env.addFilter('getKey', (obj, index) => {
+  env.addFilter('getKeyByIndex', (obj, index) => {
     if (Object.prototype.toString.call(obj).slice(8, -1) === 'Object' && typeof index === "number" && index >= 0) {
       return Object.keys(obj)[index];
     } else {
       return false;
+    }
+  });
+  env.addFilter('getKeyByValue', (obj, val) => {
+    if (Object.prototype.toString.call(obj).slice(8, -1) === 'Object') {
+      for (let key in obj) {
+        if (obj[key] === val) {
+          return key;
+        }
+      }
     }
   });
   env.addFilter('splitToArray', (str, separator) => {
