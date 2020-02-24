@@ -191,7 +191,8 @@ function doNunjucksAll () {
 
 function doNunjucks (input) {
   let dir = input === 'index.njk' ? '' : htmlDir + '/',
-      output = dir + path.basename(input, path.extname(input)) + '.html',
+      filename = path.basename(input, path.extname(input)),
+      output = dir + filename + '.html',
       data = _loadData(),
       count = {},
       file_index = arr_njk.indexOf(input),
@@ -225,6 +226,7 @@ function doNunjucks (input) {
   }
 
   data = Object.assign(data, dataInit);
+  data.filename = filename;
 
   let env = new nunjucks.Environment(new nunjucks.FileSystemLoader());
   env.addFilter('shorten', (str, count) => {
@@ -232,6 +234,13 @@ function doNunjucks (input) {
   });
   env.addFilter('nameToUrl', (str) => {
     return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '').replace("'", '');
+  });
+  env.addFilter('getKey', (obj, index) => {
+    if (Object.prototype.toString.call(obj).slice(8, -1) === 'Object' && typeof index === "number" && index >= 0) {
+      return Object.keys(obj)[index];
+    } else {
+      return false;
+    }
   });
   env.addFilter('splitToArray', (str, separator) => {
     return str.split(separator);
