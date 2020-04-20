@@ -15,7 +15,8 @@ let doc = document,
 html.className = html.className.replace('no-js', 'js');
 
 // skip link
-doc.querySelector('.skip-link').addEventListener('click', function(e) {
+let skiplink = doc.querySelector('.skip-link');
+skiplink && skiplink.addEventListener('click', function(e) {
   e.preventDefault();
   doc.querySelector(e.target.getAttribute('href')).focus();
 });
