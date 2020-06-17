@@ -1,6 +1,48 @@
-@import "initial";
-@import "site-header";
-@import "main_home-section";
-@import "main_article";
-@import "site-footer";
-@import "print";
+// vendors
+@import "../../node_modules/rocket-sass/src/scss/setting/variables";
+@import "../../node_modules/rocket-sass/src/scss/utilities/utilities";
+@import "../../node_modules/rocket-sass/src/scss/vendors/vendors";
+
+@import "../../node_modules/rocket-sass/src/scss/addons/breakpoint";
+@import "../../node_modules/rocket-sass/src/scss/components/flex-media";
+@import "../../node_modules/rocket-sass/src/scss/layout/center";
+@import "../../node_modules/rocket-sass/src/scss/layout/justify";
+@import "../../node_modules/rocket-sass/src/scss/layout/grid";
+@import "../../node_modules/rocket-sass/src/scss/layout/gallery";
+@import "../../node_modules/rocket-sass/src/scss/layout/liquid";
+
+@import "vendors/ellipsis";
+@import "vendors/hide-text";
+@import "vendors/normalize";
+@import "vendors/browsehappy";
+
+// base
+@import "base/variables";
+@import "base/reset";
+@import "base/typography";
+@import "base/utilities";
+
+// components
+// @import "../../node_modules/tiny-slider/src/tiny-slider.scss";
+@import "components/fonts";
+@import "components/icon";
+@import "components/panel";
+@import "components/alert";
+@import "components/button";
+@import "components/form";
+@import "components/tabs";
+@import "components/table";
+@import "components/breadcrumb";
+@import "components/pagination";
+@import "components/dropdown";
+@import "components/popup";
+
+// layout
+@import "layout/header";
+@import "layout/sidebar";
+@import "layout/footer";
+
+// pages
+@import "pages/home";
+@import "pages/section";
+@import "pages/article";

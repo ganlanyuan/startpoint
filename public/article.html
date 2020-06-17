@@ -1,23 +1,17 @@
-
-
-
-
-
-
 <!doctype html>
-<!--[if (IE 8)&!(IEMobile)]><html class="no-script lt-ie10 lt-ie9" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]><html class="no-script lt-ie10" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
-<!--[if gt IE 9]><!--><html class="no-script" lang="en" itemscope itemtype="http://schema.org/WebPage"><!--<![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie10 lt-ie9" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-js lt-ie10" lang="en" itemscope itemtype="http://schema.org/WebPage"><![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en" itemscope itemtype="http://schema.org/WebPage"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="title" content="Site Title">
+  <meta name="title" content="Brand Name">
   <meta name="description" content="">
   <meta name="news_keywords" content="">
-  <title>Site Name</title>
-  <link rel="canonical" href="http://www.site.com/url/to/full/document.html">
-  <link itemprop="url" href="http://www.site.com/url/to/full/document.html">
-  <meta itemprop="name alternateName" content="Site Name">
+  <title>Brand Name</title>
+  <link rel="canonical" href="https://website.com/url/to/full/document.html">
+  <link itemprop="url" href="https://website.com/url/to/full/document.html">
+  <meta itemprop="name alternateName" content="Brand Name">
   <meta name="author" content="">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
@@ -30,57 +24,28 @@
 
   <!-- Subresources:  -->
   <!-- Identify the resources that are the highest priority and should be requested before prefetched items -->
-  <link rel="subresource" href="../assets/css/main.css">
-  
-  <!-- Prefetch DNS for external ../assets -->
+  <link rel="subresource" href="assets/css/main.css">
+
+  <!-- Prefetch DNS for external assets -->
   <!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
 
   <!-- Preconnect for dynamic request URLs -->
   <!-- <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin> -->
-  
+
   <!-- Prefetch Resourses -->
-  <link rel="prefetch" href="../assets/svg/sprites.svg">
-
-  <style>
-    /* critical:css */
-    .enable-js{background:#ffbf29;color:#000;font-size:14px;margin:0;padding:.5em;text-align:center;line-height:1.3;position:relative;z-index:99999}.enable-js a{font-weight:700;color:#000}body,html{min-width:320px}body,li,ul{margin:0}ul{padding:0;list-style:none}img{border:0}img{height:auto}img{max-width:100%}a{text-decoration:none;color:inherit}body{font-family:-apple-system,BlinkMacSystemFont,“Segoe UI”,Roboto,Helvetica,Arial,sans-serif;-ms-touch-action:manipulation;touch-action:manipulation}p{font-size:18px;font-size:1.125rem;line-height:1.4}p a{color:#238adc}li{margin-bottom:.5em}.visually-hidden{position:absolute;white-space:nowrap;width:1px;height:1px;overflow:hidden;border:0;padding:0;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);margin:-1px}svg{display:inline-block}
-    /* endinject */
-  </style>
   
-  <link rel="stylesheet" href="../assets/css/main.css">
-  <script>
-    /* svg4everybody:js */
-    !function(e,t){"function"==typeof define&&define.amd?define([],function(){return e.svg4everybody=t()}):"object"==typeof exports?module.exports=t():e.svg4everybody=t()}(this,function(){function e(e,t){if(t){var n=document.createDocumentFragment(),i=!e.getAttribute("viewBox")&&t.getAttribute("viewBox");i&&e.setAttribute("viewBox",i);for(var r=t.cloneNode(!0);r.childNodes.length;)n.appendChild(r.firstChild);e.appendChild(n)}}function t(t){t.onreadystatechange=function(){if(4===t.readyState){var n=t._cachedDocument;n||(n=t._cachedDocument=document.implementation.createHTMLDocument(""),n.body.innerHTML=t.responseText,t._cachedTarget={}),t._embeds.splice(0).map(function(i){var r=t._cachedTarget[i.id];r||(r=t._cachedTarget[i.id]=n.getElementById(i.id)),e(i.svg,r)})}},t.onreadystatechange()}function n(n){function i(){for(var n=0;n<h.length;){var d=h[n],s=d.parentNode;if(s&&/svg/i.test(s.nodeName)){var u=d.getAttribute("xlink:href")||d.getAttribute("href");if(r){var l=document.createElement("img");l.style.cssText="display:inline-block;",l.setAttribute("width",s.getAttribute("width")||s.clientWidth),l.setAttribute("height",s.getAttribute("height")||s.clientHeight),l.src=a(u,s,d),s.replaceChild(l,d)}else if(c&&(!o.validate||o.validate(u,s,d))){s.removeChild(d);var v=u.split("#"),b=v.shift(),f=v.join("#");if(b.length){var p=g[b];p||(p=g[b]=new XMLHttpRequest,p.open("GET",b),p.send(),p._embeds=[]),p._embeds.push({svg:s,id:f}),t(p)}else e(s,document.getElementById(f))}}else++n}m(i,67)}var r,a,o=Object(n);a=o.fallback||function(e){return e.replace(/\?[^#]+/,"").replace("#",".").replace(/^\./,"")+".png"+(/\?[^#]+/.exec(e)||[""])[0]},r="nosvg"in o?o.nosvg:/\bMSIE [1-8]\b/.test(navigator.userAgent),r&&(document.createElement("svg"),document.createElement("use"));var c,d=/\bMSIE [1-8]\.0\b/,s=/\bTrident\/[567]\b|\bMSIE (?:9|10)\.0\b/,u=/\bAppleWebKit\/(\d+)\b/,l=/\bEdge\/12\.(\d+)\b/;c="polyfill"in o?o.polyfill:d.test(navigator.userAgent)||s.test(navigator.userAgent)||(navigator.userAgent.match(l)||[])[1]<10547||(navigator.userAgent.match(u)||[])[1]<537;var g={},m=window.requestAnimationFrame||setTimeout,h=document.getElementsByTagName("use");c&&i()}return n});
-    /* endinject */
-    svg4everybody({
-      polyfill: true,
-      fallback: function (src, svg, use) {
-        // src: current xlink:href String 
-        // svg: current SVG Element 
-        // use: current USE Element 
 
-       var path = use.getAttribute('data-fallback');
-       if (path) {
-         return '../assets/svg/fallback/' + path + '.png';
-       } else {
-         return src.replace('sprites.svg#', 'fallback/') + '.png';
-       }
-      }
-    });
-    
-    /* modernizr:js */
-    /* endinject */
-  </script>
+  <link rel="stylesheet" href="assets/css/main.css">
   <!--[if (lt IE 9)]>
-    <style>
-      @media \0screen { img { width: auto; } }
-    </style>
-    <script src="../assets/js/html5shiv.js"></script>
+    <script src="assets/js/html5shiv.js"></script>
   <![endif]-->
 </head>
-<body class="article-page">
+<body>
+  <header class="site-header" role="banner">
   
-  <a href="#main" class="visually-hidden">Skip to main content</a>
+
+  
+  <a href="#main" class="skip-link visually-hidden">Skip to main content</a>
   <noscript>
     <p class="enable-js">
       To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
@@ -90,141 +55,172 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <header class="page-header" role="banner">
-  <div class="branding" id="branding" 
-  itemprop="publisher" 
+  <div class="container">
+    <button class="nav-toggle"><span>Menu</span></button> 
+    <div class="logo" id="logo"
+  itemprop="publisher"
   itemscope itemtype="http://schema.org/Organization"
-  itemid="CompanyName">
-  <a href="http://www.site.com" itemprop="url">
-    <meta itemprop="legalName name" content="Company Name">
-    <link itemprop="image" href="path/to/logo.png">
+  itemid="BrandName">
+  <a href="/" itemprop="url">
+    <meta itemprop="legalName name" content="Brand Name">
     <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img src="path/to/logo.png" alt="Company Name" itemprop="url" class="visually-hidden">
-      <img src="path/to/logo.svg" alt="Company Name" width="320" height="60">
+      <meta itemprop="url" content="https://address.com/img/logo.png">
+      <img src="assets/img/logo.svg" alt="Go to Homepage" width="320" height="60">
     </span>
   </a>
 </div>
-
-  
-  <nav role="navigation">
-    <ul>
-      <li><a href="">Lorem.</a></li>
-      <li><a href="">Odit.</a></li>
-      <li><a href="">Veniam.</a></li>
-      <li><a href="">Iure.</a></li>
-      <li><a href="">Id!</a></li>
-      <li><a href="">Quia.</a></li>
-      <li><a href="">A?</a></li>
-    </ul>
-  </nav>
-
-  
-  <form action="post" role="search">
-  </form>
+  </div>
 </header>
 
-  <div class="sec">
   
   
+<link rel="stylesheet" href="assets/css/main_article.css"><script> </script>
   <article class="full-article"
-           itemscope itemtype="http://schema.org/NewsArticle" 
-           itemid="http://www.site.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/"
-           itemref="branding">
-    <link itemprop="mainEntityOfPage" href="http://www.site.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/">
+    itemscope itemtype="http://schema.org/NewsArticle"
+    itemid="https://website.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/"
+    itemref="logo">
+    <link itemprop="mainEntityOfPage" href="https://website.com/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/">
+
+    
     <header>
-      <h1 class="heading" itemprop="headline"></h1>
+      <h1 class="article-title" itemprop="headline">Meet Sema Bal, Who Reads Fortunes Through Turkish Coffee Grounds</h1>
+      <meta itemprop="datePublished dateModified" content="2019-05-26">
       <div class="byline">
-        <span itemprop="author creator" 
-              itemscope itemtype="http://schema.org/Person" 
-              itemid="http://www.site.com/author/Ben-Chapman/">
-          <a class="reporter" href="http://www.site.com/author/Ben-Chapman/">
+        <span itemprop="author creator"
+              itemscope itemtype="http://schema.org/Person"
+              itemid="https://website.com/author/Ben-Chapman/">
+          <a class="reporter link" href="https://website.com/author/Ben-Chapman/">
             <meta itemprop="jobTitle" content="Company Name Contributor">
-            <span itemprop="name">Ben Chapman</span>
-          </a> 
+            <span itemprop="name">Akira Fukui</span>
+          </a>
         </span>
-        <time datetime="2017-05-26" itemprop="datePublished dateModified"> | Friday 26 May 2017 14:28 BST</time></div>
+        <a href="" class="section-name link"></a>
+        <time datetime="2017-05-26">Friday 26 May 2017 14:28 BST</time>
+      </div>
     </header>
 
     
-    <p>Is chaos life's one consistency? After another shocking turn in political events, prompting cheers from some, tears from others, one can't help wonder – was God at work in Britain's general election?</p>
-
-    
-    <figure class="centered" 
-      itemprop="image" 
-      itemscope itemtype="http://schema.org/ImageObject" 
-      itemid="?w=500&h=281&l=50&t=40">
-      <img 
-        src="?w=500&h=281&l=50&t=40"
+    <figure class="centered"
+      itemprop="image"
+      itemscope itemtype="http://schema.org/ImageObject"
+      itemid="https://img.huffingtonpost.com/asset/5b8f3679200000430034bf29.jpeg?ops=w=500&h=281&l=50&t=40">
+      <img
+        src="https://img.huffingtonpost.com/asset/5b8f3679200000430034bf29.jpeg?ops=w=500&h=281&l=50&t=40"
         srcset="
-          ?w=320&h=180&l=50&t=40 320w, 
-          ?w=680&h=382&l=50&t=40 680w, 
-          ?w=900&h=508&l=50&t=40 900w"
+          https://img.huffingtonpost.com/asset/5b8f3679200000430034bf29.jpeg?ops=w=320&h=180&l=50&t=40 320w,
+          https://img.huffingtonpost.com/asset/5b8f3679200000430034bf29.jpeg?ops=w=680&h=382&l=50&t=40 680w,
+          https://img.huffingtonpost.com/asset/5b8f3679200000430034bf29.jpeg?ops=w=900&h=508&l=50&t=40 900w"
         sizes="
           (max-width: 900px) 100vw,
           (max-width: 1120px) 60vw,
           680px"
-        alt="" 
-        itemprop="url">
+        alt=""
+        itemprop="contentUrl">
+        <meta itemprop="url" content="https://img.huffingtonpost.com/asset/5b8f3679200000430034bf29.jpeg?ops=w=500&h=281&l=50&t=40">
         <meta itemprop="width" content="900">
         <meta itemprop="height" content="508">
-      <figcaption itemprop="caption description"><span class="credit">Photo:  Reuters/Rick Wilking</span>The handcuffed suspected gunman at the Planned Parenthood clinic is moved to a police vehicle in Colorado Springs, November 27, 2015. </figcaption>
+      <figcaption class="caption" itemprop="caption description">Sema Bal reads fortunes using Turkish coffee grounds to guide and heal her clients, while keeping family traditions alive in Queens, New York.<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
     </figure>
-
-    <p>Oh, what a night. British Prime Minister Teresa May's gamble on a snap general election has spectacularly backfired: her shot at a sweeping parliamentary majority has left Britain with a hung parliament. Labour made surprising gains meanwhile, not winning but doing far better than expected. Jeremy Corbyn seems ready to lead the country, already declaring that 'we are ready to serve'.</p>
-    <p>When a previous shock election came – the rise of Donald Trump last year – it was a miracle many white evangelicals (who overwhelmingly backed Trump) discerned as the hand of God at work. Trump had promised power and protection for the Christian community and his victory was a divine vindication of that platform. Trump was frequently likened to King David – not perfect but nonetheless 'God's man of power for the hour'.</p>
-    <p>It's popular, particularly in conservative, Calvinist theology, to see God powerfully at work in politics. Of course, there is biblical precedent for the idea that God chooses, or deposes, certain rulers, but in contemporary terms this thinking is always a little fuzzy. Does God choose all political leaders? Does he elect dictators too? Why would we expect God to work especially through democracies, when in the Bible such models are never endorsed?</p>
-    <p>Perhaps it's inevitable that we look to higher powers when national futures are concerned. Many now suspect Russia to have had a meddling hand in Trump's surprise victory. Staunch Trump-ally and evangelist Franklin Graham offered a puzzling response to the notion on Twitter:</p>
-    <p>I recently spoke to an American academic who suspected that God was involved in Trump's triumph, but not as you might expect. He was flabbergasted by Christian enthusiasm for Trump, a man he described as 'the incarnation of greed, lust, selfishness and love of power'.</p>
-    <p>The only theological explanation he had for the phenomenon was that God had spiritually blinded evangelicals to Trump's folly, and that Trump, evidently unfit for office, was the embodiment of divine judgment on the United States.</p>
-    <p>It's understandable that we try and divine what God might be doing in the world, but it's hard to be objective. We often just see what we want to see.</p>
-    <p>Corbyn or May - does God have a favourite?Reuters</p>
-    <p>The awkwardness of it all is clearer in British politics – where we have more parties, and vote for local MPs, not a president. It subsequently lacks the rhetorical punch that the more polarised, zero-sum game the US system provides. When there's no clear 'winner', it gets confusing to think about what God might have been up to if he was involved.</p>
-    <p>Today, it looks like God 'chose' no one; the bogeyman of the 'coalition of chaos' looms large for the UK. Or perhaps that is the point? Maybe God doesn't choose winners and losers, but works through many, in diverse ways, and won't validate our desire for a 'Christian candidate'? Perhaps God wants to teach the UK about the value of cooperation, forcing warring parties to work together to govern well?</p>
-    <p>Perhaps May's gambling failure is a divine judgment on human hubris. The Corbyn-surge might be God's endorsement of an agenda that protects the NHS and a society 'for the many, not the privileged few'.</p>
 
     
-    <figure class="left" 
-      itemprop="image" 
-      itemscope itemtype="http://schema.org/ImageObject" 
-      itemid="?w=500&h=281&l=50&t=40">
-      <img src="?w=300&h=180&l=50&t=40" alt=""
-        itemprop="url">
+    <p>I’d like to believe that people will remember there’s a little guy with a big heart under all that glimmering gossamer, but I’m not sure I trust them to do so.</p>
+    
+    <p>There is a fine line between teaching kids to make good decisions and forcing them to think — and worry — like tiny grown-ups.</p>
+    
+    <p>We need to stop asserting that there is one universally grand and best way to experience love.</p>
+    
+    <p>I never felt right putting breath into what I felt was someone else’s body, as if I was held captive in it.</p>
+    
+
+    <ul>
+      
+      <li>If My Son Is A Princess For Halloween, Will He Get Tricks Or Treats?</li>
+      
+      <li>Active Shooter And Other Drills At School Are Giving Kids A Lifetime Of Anxiety</li>
+      
+      <li>No, I&#39;m Not Missing Out On The &#39;Ultimate Love&#39; Because I Chose Not To Be A Mom</li>
+      
+      <li>My Journey Embracing My Gender Identity To Teach And Embody Authentic Jewish Living</li>
+      
+    </ul>
+
+    
+    <p>I need to understand the answers to the questions that remain as I approach the first anniversary of the massacre that took place at my synagogue.</p>
+    
+    <p>Tanya Heath uses humor and &quot;science&quot; to wrangle the massive lines of people caught between having to pee and missing a single moment of the hit musical.</p>
+    
+    <p>I was following the promise of fortune and success as defined by my parents.</p>
+    
+
+    
+    <figure class="left"
+      itemprop="image"
+      itemscope itemtype="http://schema.org/ImageObject"
+      itemid="https://img.huffingtonpost.com/asset/5b8fbde91900003e0b5036cc.png?ops=w=500&h=281&l=50&t=40">
+      <img src="https://img.huffingtonpost.com/asset/5b8fbde91900003e0b5036cc.png?ops=w=300&h=180&l=50&t=40" alt=""
+        itemprop="contentUrl">
+        <meta itemprop="url" content="https://img.huffingtonpost.com/asset/5b8fbde91900003e0b5036cc.png?ops=w=500&h=281&l=50&t=40">
         <meta itemprop="width" content="300">
         <meta itemprop="height" content="180">
-      <figcaption itemprop="caption description"><span class="credit">Photo:  Reuters/Rick Wilking</span>The handcuffed suspected gunman at the Planned Parenthood clinic is moved to a police vehicle in Colorado Springs, November 27, 2015. </figcaption>
+      <figcaption class="caption" itemprop="caption description">Our school is the last hope in this city for teenagers who want to get a diploma and find their way out of poverty and abuse.<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
     </figure>
 
-    <p>Former Lib Dem leader Nick Clegg was unseated and gave a dramatic, scriptural interpretation of his loss: 'those who live by the sword, die by the sword'. The SNP lost seats – so is God against a second referendum on Scottish independence?</p>
-    <p>You can probably over-think it. We'll largely see what we want to, and that's OK too. What's crucial for Christians is that they remember the King that God truly has anointed. It feels cliché to invoke 'Jesus' as the answer, but he really is the one Christians are meant to be about. He didn't do party politics, but he certainly implored his followers to seek justice, pursue peace and pray for God's kingdom to come to earth as in heaven. It's worth taking the time to seriously ask what that might mean.</p>
-    <p>The Church remains God's truly chosen body through which to bless the world – we can forget the gravity of that.</p>
-    <p>Did God rig this election...or was it the Russians? We're at sea in a complex world that we barely understand, whose sands are shifting every day. We want political answers from God, to know the reason for the season – but he might not give us what we want.</p>
-    <p>Christian MP David Burrowes lost his seat last night. In his speech afterwards he praised democracy, wished his successor well, and thanked 'my sovereign Lord in whom I trust'. That seems like a wise, healthy politics.</p>
-    <p>Is God pulling strings? How could we ever know? Christians do know that God is for the world, and cares about politics because he cares about people. But I don't think he does divine endorsements.</p>
-    <!-- <h1>Quasi, ab. Quae illo, molestiae esse eveniet.</h1> -->
-    <h2>Laudantium aliquid, repudiandae recusandae inventore amet, a.</h2>
-    <h3>Nemo molestias aut voluptas ad asperiores amet.</h3>
-    <h4>Ratione, hic ullam qui voluptatum repudiandae ex.</h4>
-    <h5>Dolorem velit eligendi debitis maiores voluptas id.</h5>
-    <h6>Laudantium aliquid, repudiandae recusandae inventore amet, a.</h6>
-    <p>The Church remains God's truly chosen body through which to bless the world – we can forget the gravity of that.</p>
+    
+    <p>My 6-year-old Ojibwe daughter turned to me and said, “Mommy, that’s not okay. We’re people, not mascots.” And she&#39;s right.</p>
+    
+    <p>A year after my last date, my world probably looks the same from the outside. What’s different is how I’m now experiencing my life.</p>
+    
+    <p>Don&#39;t say “I’m sorry that happened to you, but that’s not what real Christianity is.”</p>
+    
+    <p>I could talk. I just didn&#39;t want to.</p>
+    
+
+    
+    <h2>This Is What Life Is Like For Us A Year After The Tree Of Life Synagogue Mass Shooting</h2>
+    <h3>Usher Who Heroically Keeps Colossal &#39;Hamilton&#39; Bathroom Line Moving Becomes Viral Star</h3>
+    <h4>Why I Dropped Out Of An Ivy League College 3 Weeks Into Freshman Year</h4>
+    <h5>This Is What It&#39;s Like To Be A Teacher At A &#39;Sober&#39; High School</h5>
+    <h6>It&#39;s Far Past Time For Washington&#39;s Football Team To Dump Its Racist Mascot</h6>
+
+    
+    <p>Growing up fat and trans, photographer Shoog McDaniel was constantly bullied. But when they found a batch of disposable cameras in their late teens, they found their calling. McDaniel now photographs nude, fat and trans models. With each photo shoot, McDaniel hopes to change the way society sees fat and other marginalized bodies.</p>
+    
+
     <ol>
-      <li>Omnis minima, pariatur et odit quisquam vel.</li>
-      <li>Provident officiis quaerat facere qui, excepturi, eligendi.</li>
-      <li>Deleniti dolorum, suscipit illum at, quas recusandae.</li>
-      <li>Doloremque officia sunt, fugiat aperiam temporibus dolorem?</li>
+      
+      <li>I Gave Up On Love And It Was One Of The Best Decisions I Ever Made</li>
+      
+      <li>Christians, Here’s How To Affirm Your Queer Friends</li>
+      
+      <li>I Wasn&#39;t A Shy Kid, I Had Selective Mutism. This Is What It Was Like.</li>
+      
+      <li>This Photographer Wants To Capture The Beauty Of Fat Bodies</li>
+      
+      <li>I Wish I Had Sesame Street&#39;s New Muppet When My Mom Was Struggling With Addiction</li>
+      
     </ol>
-    <p>Did God rig this election...or was it the Russians? We're at sea in a complex world that we barely understand, whose sands are shifting every day. We want political answers from God, to know the reason for the season – but he might not give us what we want.</p>
+
+    
+    <p>My life could&#39;ve been different if I had the resources to understand my experience.</p>
+    
+
     <blockquote>
-      <p>"Because the good news of Jesus Christ calls the Church to advocate (or "be a witness") for biblical truth and to care for the vulnerable, we, His followers, call for a justice system that is fair and redemptive for all. The Church has both the unique ability and unparalleled capacity to confront the staggering crisis of crime and incarceration in America and to respond with restorative solutions for communities, victims, and individuals responsible for crime.</p>
-      <p>Therefore, we make an urgent appeal to all who follow the Lord Jesus Christ to:</p>
+      
+      <p>I have consistently felt overlooked or placated by doctors when expressing pain or other symptoms.</p>
+      
+      <p>Growing up, photographer Shoog McDaniel was constantly bullied. But when they found a batch of disposable cameras in their late teens, they found their calling.</p>
+      
+
       <ul>
-        <li>Affirm that the God of the Bible is a just God: justice flows from God's very character, and the works of God's hands are faithful and just;</li>
-        <li>Treat every human being as a person made in God's own image, with a life worthy of respect, protection, and care; Foster just relationships between God, fellow human beings, and property, which will lead to human flourishing;</li>
-        <li>Redouble our efforts to prevent crime by cultivating the "seedbeds of virtue," including families, churches, neighborhoods, schools, and other sources of moral formation;</li>
-        <li>Celebrate redemption in our congregations and communities by welcoming back those who have paid their debt to society, and by providing opportunities for all persons to reach their God-given potential."</li>
+        
+        <li>I Was Relieved To Be Diagnosed With A Chronic Illness. Here&#39;s Why.</li>
+        
+        <li>This Photographer Wants To Capture The Beauty Of Fat Bodies</li>
+        
       </ul>
     </blockquote>
-    <div class="flex-video" itemscope itemtype="http://schema.org/VideoObject" itemid="https://www.youtube.com/embed/h1TzD0rxtiw">
+
+    <div class="embedded-content flex-video" itemscope itemtype="http://schema.org/VideoObject" itemid="https://www.youtube.com/embed/h1TzD0rxtiw">
       <meta itemprop="name" content="Google's AlphaGo Beats World Champion Lee Se-Dol">
       <meta itemprop="description" content="Watch Google's AlphaGo Beats World Champion Lee Se-Dol">
       <meta itemprop="uploadDate" content="2014-02-16">
@@ -233,21 +229,16 @@
     </div>
   </article>
 
-  </div>
 
   
-  <footer class="page-footer" role="contentinfo">
+  <footer class="site-footer" role="contentinfo">
+  <div class="container">
 
-  
-  <div class="copyright">
-    <div class="container">
-      Copyright &copy; 
-      <span itemprop="copyrightYear"></span> 
-      <span itemprop="copyrightHolder provider sourceOrganization" 
-            itemscope itemtype="http://schema.org/Organization" 
-            itemid="http://www.site.com">
-        <span itemprop="name">Company Name</span>
-      </span>. All Rights Reserved.
+    <div class="copyright">Copyright &copy;
+      <span itemprop="copyrightYear">2020</span>
+      <span itemprop="copyrightHolder provider sourceOrganization"
+            itemscope itemtype="http://schema.org/Organization"
+            itemid="https://website.com"><span itemprop="name">Brand Name</span></span>. All Rights Reserved.
     </div>
   </div>
 </footer>
@@ -255,7 +246,28 @@
   <!-- Placeholder polyfill for IE9- -->
   <!--[if lt IE 10]><script>(function () {[].forEach.call(document.querySelectorAll('.lt-ie10 [placeholder]'), function (el) {var text = el.getAttribute('placeholder'); if (text) { el.value = text; } el.onfocus = function(){if (el.value === text) { el.value = ''; } }; el.onblur = function(){if (el.value === "") { el.value = text; } }; }); })();</script> <![endif]-->
 
+  <script src="assets/js/script.js"></script>
+
   
-  <script src="../assets/js/test.js"></script>
+  
+
+  <link rel="stylesheet" href="assets/css/print.css" media="print">
+
+  <!--[if (lt IE 9)]>
+    <script>
+      var sheets = document.styleSheets;
+      for (var i = 0, l = sheets.length; i < l; i++) {
+        sheets[i].disabled = true;
+      }
+    </script>
+    <style>
+      body { font-family: Helvetica, Arial, sans-serif; }
+      @media \0screen { img { width: auto; } }
+      img {
+        border: 0;
+        height: auto;
+      }
+    </style>
+  <![endif]-->
 </body>
 </html>

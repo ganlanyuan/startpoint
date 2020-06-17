@@ -1,7 +1,3 @@
-{%- set layoutHome = 1020 -%}
-{%- set container = 1200 -%}
-{%- set globalGutter = 30 -%}
-
 {%- import './_share.njk' as share with context -%}
 {%- import './_macros.njk' as mc with context -%}
 <!doctype html>
@@ -30,11 +26,7 @@
 
   <!-- Subresources:  -->
   <!-- Identify the resources that are the highest priority and should be requested before prefetched items -->
-  <link rel="subresource" href="{{ root }}assets/css/initial.css">
-  <link rel="subresource" href="{{ root }}assets/css/site-header.css">
-  <link rel="subresource" href="{{ root }}assets/css/main_home-section.css">
-  <link rel="subresource" href="{{ root }}assets/css/main_article.css">
-  <link rel="subresource" href="{{ root }}assets/css/site-footer.css">
+  <link rel="subresource" href="{{ root }}assets/css/main.css">
 
   <!-- Prefetch DNS for external assets -->
   <!-- <link href="https://fontastic.s3.amazonaws.com" rel="dns-prefetch"> -->
@@ -45,18 +37,12 @@
   <!-- Prefetch Resourses -->
   {# <link rel="prefetch" href="{{ root }}assets/svg/sprites.svg"> #}
 
-  <style>
-    /* critical:css */
-    /* endinject */
-  </style>
-
-  <link rel="stylesheet" href="{{ root }}assets/css/initial.css">
+  <link rel="stylesheet" href="{{ root }}assets/css/main.css">
   <!--[if (lt IE 9)]>
     <script src="{{ root }}assets/js/html5shiv.js"></script>
   <![endif]-->
 </head>
-<body class="{{ page + '-page'}}">
-  <link rel="stylesheet" href="{{ root }}assets/css/site-header.css"><script> </script>
+<body>
   {% include './_header.njk' %}
 
   {# main #}
@@ -70,7 +56,6 @@
   {% endblock %}
 
   {# page footer #}
-  <link rel="stylesheet" href="{{ root }}assets/css/site-footer.css"><script> </script>
   {% include "./_footer.njk" %}
 
   <!-- Placeholder polyfill for IE9- -->

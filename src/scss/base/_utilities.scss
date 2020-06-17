@@ -12,7 +12,7 @@ svg {
   > div, > iframe, > a, > img { margin: auto; }
 }
 .container {
-  max-width: rem(1200px);
+  max-width: rem($container);
   margin: 0 auto;
   padding: 0 $gap;
 }
