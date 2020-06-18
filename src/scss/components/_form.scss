@@ -4,7 +4,7 @@ select,
 textarea {
   padding: 0.5em 1em;
   font-size: rem(16px);
-  font-family: $helvetica;
+  font-family: inherit;
   vertical-align: middle;
   background-color: #fff;
   border: 1px solid #bbb;
@@ -46,7 +46,6 @@ textarea {
 .message-error,
 .message-success {
   display: block;
-  font-family: $helvetica;
   font-weight: normal;
   margin: 10px 0;
   padding: 10px 16px;
