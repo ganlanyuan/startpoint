@@ -31,16 +31,10 @@ textarea {
 }
 
 .form-one-row {
-  position: relative;
-  input {
-    display: block;
-    width: 100%;
-  }
-  button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  input { flex: 5 1 auto; }
+  button { flex:1 0 auto; }
 }
 
 .message-error,
