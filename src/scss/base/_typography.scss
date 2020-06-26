@@ -3,7 +3,11 @@ body {
   touch-action: manipulation; // removes the 300ms delay of click events when the user taps the screen
 }
 
-.link:hover { text-decoration: underline; }
+.link:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
 .center-align { text-align: center; }
 a img { vertical-align: bottom; }
 p {
