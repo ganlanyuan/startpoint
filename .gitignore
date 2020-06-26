@@ -3,9 +3,9 @@
 *.scssc
 *.swp
 *.DS_Store
-yarn-error.log
-package-lock.json
+*.json
 .env
+yarn-error.log
 
 /bower_components/
 /node_modules/
