@@ -3,7 +3,7 @@
 *.scssc
 *.swp
 *.DS_Store
-*.json
+sftp-config.json
 .env
 yarn-error.log
 
