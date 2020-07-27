@@ -25,3 +25,8 @@ rocket-sass@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/rocket-sass/-/rocket-sass-4.0.1.tgz#0778c65193189a89bc92783b374856ccc0b05b27"
   integrity sha512-ZS/jsXWnek9nAKqNBysv18yfhpac4DPhnHfChDrlVB5OoU55f/e2UlzvZwBn570CBIHOs8W/PnhbK9LS0YZqpw==
+
+tiny-slider@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/tiny-slider/-/tiny-slider-2.9.2.tgz#dcd70ac79054a4d170bc2cfde3efbdaa2cc0c75f"
+  integrity sha512-2sgEJpVbpIbbgiYM/xGa0HMvvtUZSJvXeZJmLWBux6VgFqh/MQG8LXBR59ZLYpa/1OtwM0E6/ic55oLOJN9Mnw==
