@@ -92,7 +92,7 @@
       } else if (e.metaKey) {
         url = url.replace('public/', 'frame.html?').replace(/\.html$/, '');
       } else if (e.shiftKey) {
-        url = 'https://search.google.com/structured-data/testing-tool?url=' + url;
+        url = 'https://search.google.com/test/rich-results?utm_campaign=sdtt&utm_medium=url&url=' + url + '&user_agent=1';
       }
 
       win.open(url, tab);
