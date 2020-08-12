@@ -503,11 +503,6 @@ reporter:
 
 
 pages:
-- public/index: homepage
-  public/section: section
-  public/video: video
-  public/article: article
-- public/books: books
-  public/education: education
-  public/education-colleges: education / colleges
-  public/education-rankings: education / rankings
+  index: homepage
+  section: section
+  article: article
