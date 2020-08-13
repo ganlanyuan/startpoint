@@ -5,18 +5,22 @@ brand: "Brand Name"
 baseurl: https://website.com
 
 nav:
-  main:
-  - news
-  - politics
-  - community
-  - life
-  - personal
-  - video
-  - shopping
-  - highline
-  social:
-    facebook: https://www.facebook.com
-    twitter: https://twitter.com
+- news
+- politics
+- community
+- life
+- personal
+- video
+- shopping
+- highline
+static:
+- about
+- contact
+- terms
+- privacy
+social:
+  facebook: https://www.facebook.com
+  twitter: https://twitter.com
 
 
 # images
