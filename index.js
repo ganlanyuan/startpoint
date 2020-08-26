@@ -37,7 +37,7 @@ const nunjucks = require('nunjucks'),
       fs = require('fs');
       path = require('path');
 
-let assets_baseurl = 'https://www.example.com/assets/',
+let assets_baseurl = 'assets/',
     source = 'src',
     njkDir = source + '/html',
     sassDir = source + '/scss',
