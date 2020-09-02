@@ -73,8 +73,8 @@ function makeEmbedFluid() {
           item = embed.querySelector('iframe');
 
       if (item && !item.classList.contains(itemClass) && item.src.search(player) > 0) {
-        let width = item.width,
-            height = item.height;
+        let width = Number(item.width),
+            height = Number(item.height);
 
         if (height && width) {
           let ratio = (height / width) * 100,
