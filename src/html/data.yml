@@ -510,3 +510,7 @@ pages:
   index: homepage
   section: section
   article: article
+  about: about us
+  contact: contact us
+  privacy: privacy policy
+  terms: terms of service
