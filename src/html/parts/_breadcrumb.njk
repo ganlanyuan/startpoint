@@ -1,26 +1,35 @@
 {# breadcrumb #}
-<nav class="breadcrumb" role="navigation" aria-label="You are here:"
-  itemscope itemtype="http://schema.org/BreadcrumbList">
-  <span itemprop="itemListElement"
-        itemscope itemtype="http://schema.org/ListItem">
-    <a href="/" itemprop="item">
-      <span itemprop="name">Home</span>
-    </a>
-    <meta itemprop="position" content="1" />
-  </span>
-  <span itemprop="itemListElement"
-        itemscope itemtype="http://schema.org/ListItem">
-    <a href="section.html" itemprop="item">
-      <span itemprop="name">World</span>
-    </a>
-    <meta itemprop="position" content="2" />
-  </span>
-  <span itemprop="itemListElement"
-        itemscope itemtype="http://schema.org/ListItem">
-    <span class="is-active" itemprop="item">
-      <span class="visually-hidden">Current: </span>
-      <span itemprop="name">US</span>
-    </span>
-    <meta itemprop="position" content="3" />
-  </span>
+<nav class="breadcrumb" role="navigation" aria-label="You are here:">
+  <ol class="no-bullet">
+    <li><a href="/">Home</a></li>
+    <li><a href="section.html">World</a></li>
+    <li><a href="" aria-current="location">US</a></li>
+  </ol>
 </nav>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement":
+    [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item":
+        {
+          "@id": "{{ baseurl }}/dresses",
+          "name": "Dresses"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item":
+        {
+          "@id": "{{ baseurl }}/dresses/real",
+          "name": "Real Dresses"
+        }
+      }
+    ]
+  }
+</script>

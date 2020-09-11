@@ -1,124 +1,102 @@
 {% set page = 'article' %}
+
+{% set structureData = true %}
+{% set headline = get('H') %}
+{% set img = get('I') %}
+{% set author = get('reporter') %}
 {% extends "./parts/_layout.njk" %}
 
 {% block main %}
-<article class="full-article"
-  itemscope itemtype="http://schema.org/NewsArticle"
-  itemid="{{ baseurl }}/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/"
-  itemref="logo">
-  <link itemprop="mainEntityOfPage" href="{{ baseurl }}/news/trump-says-he-prayed-for-wisdom-from-god-while-touching-western-wall-184738/">
+<main id="main" role="main" tabindex="-1">
+  <div class="container">
+    <article class="full-article">
+      {# header #}
+      <header>
+        <h1 class="article-title">{{ get('H') }}</h1>
+        <div class="byline">
+          <a class="reporter link" href="">{{ get('reporter') }}</a>
+          <time datetime="{{ year() }}-05-26">May 26, {{ year() }} 14:28</time>
+        </div>
+      </header>
 
-  {# header #}
-  <header>
-    <h1 class="article-title" itemprop="headline">{{ get('H') }}</h1>
-    <meta itemprop="datePublished dateModified" content="2019-05-26">
-    <div class="byline">
-      <span itemprop="author creator"
-            itemscope itemtype="http://schema.org/Person"
-            itemid="{{ baseurl }}/author/Ben-Chapman/">
-        <a class="reporter link" href="{{ baseurl }}/author/Ben-Chapman/">
-          <meta itemprop="jobTitle" content="Company Name Contributor">
-          <span itemprop="name">{{ get('reporter') }}</span>
-        </a>
-      </span>
-      <time datetime="{{ year() }}-05-26">May 26, {{ year() }} 14:28</time>
-    </div>
-  </header>
+      {% set mainimg = get('I') %}
+      <figure class="centered">
+        <img
+          src="{{ mainimg }}w=500&h=281"
+          srcset="
+            {{ mainimg }}w=320&h=180 320w,
+            {{ mainimg }}w=680&h=382 680w,
+            {{ mainimg }}w=900&h=508 900w"
+          sizes="
+            (max-width: 900px) 100vw,
+            (max-width: 1120px) 60vw,
+            680px"
+          alt="">
+        <figcaption class="caption">{{ get('P') }}<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
+      </figure>
 
-  {% set mainimg = get('I') %}
-  <figure class="centered"
-    itemprop="image"
-    itemscope itemtype="http://schema.org/ImageObject"
-    itemid="{{ mainimg }}w=500&h=281">
-    <img
-      src="{{ mainimg }}w=500&h=281"
-      srcset="
-        {{ mainimg }}w=320&h=180 320w,
-        {{ mainimg }}w=680&h=382 680w,
-        {{ mainimg }}w=900&h=508 900w"
-      sizes="
-        (max-width: 900px) 100vw,
-        (max-width: 1120px) 60vw,
-        680px"
-      alt=""
-      itemprop="contentUrl">
-      <meta itemprop="url" content="{{ mainimg }}w=500&h=281">
-      <meta itemprop="width" content="900">
-      <meta itemprop="height" content="508">
-    <figcaption class="caption" itemprop="caption description">{{ get('P') }}<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
-  </figure>
-
-  {% for i in range(0, 3) %}
-  <p>{{ get('P') }}</p>
-  {% endfor %}
-
-  {# <h1>{{ get('H') }}</h1> #}
-  <h2>{{ get('H') }}</h2>
-  <h3>{{ get('H') }}</h3>
-  <h4>{{ get('H') }}</h4>
-  <h5>{{ get('H') }}</h5>
-  <h6>{{ get('H') }}</h6>
-
-  {% for i in range(0, 3) %}
-  <p>{{ get('P') }}</p>
-  {% endfor %}
-
-  <ul>
-    {% for i in range(0, 4) %}
-    <li>{{ get('H') }}</li>
-    {% endfor %}
-  </ul>
-
-  <ol>
-    {% for i in range(0, 5) %}
-    <li>{{ get('H') }}</li>
-    {% endfor %}
-  </ol>
-
-  {% for i in range(0, 3) %}
-  <p>{{ get('P') }}</p>
-  {% endfor %}
-
-  {% set leftimg = get('I') %}
-  <figure class="left"
-    itemprop="image"
-    itemscope itemtype="http://schema.org/ImageObject"
-    itemid="{{ leftimg }}w=500&h=281">
-    <img src="{{ leftimg }}w=300&h=180" alt=""
-      itemprop="contentUrl">
-      <meta itemprop="url" content="{{ leftimg }}w=500&h=281">
-      <meta itemprop="width" content="300">
-      <meta itemprop="height" content="180">
-    <figcaption class="caption" itemprop="caption description">{{ get('P') }}<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
-  </figure>
-
-  {% for i in range(0, 4) %}
-  <p>{{ get('P') }}</p>
-  {% endfor %}
-
-  <blockquote>
-    {% for i in range(0, 2) %}
-    <p>{{ get('P') }}</p>
-    {% endfor %}
-
-    <ul>
-      {% for i in range(0, 2) %}
-      <li>{{ get('H') }}</li>
+      {% for i in range(0, 3) %}
+      <p>{{ get('P') }}</p>
       {% endfor %}
-    </ul>
-  </blockquote>
 
-  <div class="embedded-content flex-video" itemscope itemtype="http://schema.org/VideoObject" itemid="https://www.youtube.com/embed/h1TzD0rxtiw">
-    <meta itemprop="name" content="Google's AlphaGo Beats World Champion Lee Se-Dol">
-    <meta itemprop="description" content="Watch Google's AlphaGo Beats World Champion Lee Se-Dol">
-    <meta itemprop="uploadDate" content="2014-02-16">
-    <link itemprop="thumbnailUrl" href="https://i.ytimg.com/vi/h1TzD0rxtiw/maxresdefault.jpg">
-    <iframe src="https://www.youtube.com/embed/h1TzD0rxtiw" allowfullscreen="" width="854" height="480"></iframe>
+      {# <h1>{{ get('H') }}</h1> #}
+      <h2>{{ get('H') }}</h2>
+      <h3>{{ get('H') }}</h3>
+      <h4>{{ get('H') }}</h4>
+      <h5>{{ get('H') }}</h5>
+      <h6>{{ get('H') }}</h6>
+
+      {% for i in range(0, 3) %}
+      <p>{{ get('P') }}</p>
+      {% endfor %}
+
+      <ul>
+        {% for i in range(0, 4) %}
+        <li>{{ get('H') }}</li>
+        {% endfor %}
+      </ul>
+
+      <ol>
+        {% for i in range(0, 5) %}
+        <li>{{ get('H') }}</li>
+        {% endfor %}
+      </ol>
+
+      {% for i in range(0, 3) %}
+      <p>{{ get('P') }}</p>
+      {% endfor %}
+
+      {% set leftimg = get('I') %}
+      <figure class="left">
+        <img src="{{ leftimg }}w=300&h=180" alt="">
+        <figcaption class="caption">{{ get('P') }}<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
+      </figure>
+
+      {% for i in range(0, 4) %}
+      <p>{{ get('P') }}</p>
+      {% endfor %}
+
+      <blockquote>
+        {% for i in range(0, 2) %}
+        <p>{{ get('P') }}</p>
+        {% endfor %}
+
+        <ul>
+          {% for i in range(0, 2) %}
+          <li>{{ get('H') }}</li>
+          {% endfor %}
+        </ul>
+      </blockquote>
+
+      <div class="embedded-content flex-video">
+        <iframe src="https://www.youtube.com/embed/h1TzD0rxtiw" allowfullscreen="" width="854" height="480"></iframe>
+      </div>
+
+      {% for i in range(0, 3) %}
+      <p>{{ get('P') }}</p>
+      {% endfor %}
+
+    </article>
   </div>
-
-  {% for i in range(0, 3) %}
-  <p>{{ get('P') }}</p>
-  {% endfor %}
-
-</article>
+</main>
 {% endblock %}
