@@ -1,0 +1,483 @@
+<!-- all pages -->
+{% macro organization () %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "{{ baseurl }}",
+  "logo": "{{ baseurl }}/assets/img/logo.png",
+  "name": "{{ brand }}"
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+
+<!-- all pages -->
+{% macro media_organization () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsMediaOrganization",
+  "name": "{{ brand }}",
+  "logo": {
+    "@context": "http://schema.org",
+    "@type": "ImageObject",
+    "url": "{{ baseurl }}/images/misc/logo_rss_250x40.png",
+    "height": 40,
+    "width": 250
+  },
+  "url": "{{ baseurl }}/",
+  "@id": "{{ baseurl }}/#publisher",
+  "diversityPolicy": "{{ baseurl }}/diversity-and-inclusion/",
+  "ethicsPolicy": "{{ baseurl }}/who-we-are/culture/standards-and-ethics/",
+  "masthead": "{{ baseurl }}/interactive/2019/admin/masthead.html",
+  "foundingDate": "1990-01-01",
+  "sameAs": [
+    {%- for item, url in social %}
+    "{{ url }}"{{ ', ' if not loop.last }}
+    {%- endfor %}
+  ],
+  "alternateName": [
+    "alt name 1",
+    "alt name 2",
+    "alt name 3",
+    "alt name 4"
+  ]
+  {# "sameAs": "https://en.wikipedia.org/wiki/{{ brand }}" #}
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- all pages -->
+{% macro website () %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "{{ baseurl }}/",
+  "name": "{{ brand }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ baseurl }}/search?&q={query}",
+    {# "query": "required", #}
+    "query-input": "required name=query"
+  }
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- homepage -->
+{% macro webpage () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebPage",
+  "image": [
+    {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/vi-assets/images/share/1200x675_nameplate-logo.png",
+      "height": 675,
+      "width": 1200
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/vi-assets/images/share/1200x900_logo.png",
+      "height": 900,
+      "width": 1200
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/vi-assets/images/share/1200x1200_logo.png",
+      "height": 1200,
+      "width": 1200
+    }
+  ],
+  "name": "{{ brand }}",
+  "mainEntity": {
+    "@context": "http://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/14/us/wildfires-live-updates.html",
+        "position": 1
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/live/2020/09/14/us/trump-vs-biden",
+        "position": 2
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/interactive/2020/us/fires-map-tracker.html",
+        "position": 3
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/14/us/prisons-fires-coronavirus.html",
+        "position": 4
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/14/us/politics/jerry-brown-on-a-california-exodus-tell-me-where-are-you-going-to-go.html",
+        "position": 5
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/13/us/politics/california-fires-trump-climate-change.html",
+        "position": 6
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/14/us/politics/florida-trump-biden-2020.html",
+        "position": 7
+      }
+    ],
+    "numberOfItems": 7
+  },
+  "publisher": "{{ baseurl }}/#publisher"
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- section page -->
+{% macro collection () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "CollectionPage",
+  "description": "{{ get('P') }}",
+  "url": "{{ baseurl }}/section/politics",
+  "inLanguage": "en",
+  "name": "Politics",
+  "mainEntity": {
+    "@context": "http://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/14/podcasts/the-daily/trump-immigration-nation.html",
+        "position": 1
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/10/opinion/sway-kara-swisher-trailer.html",
+        "position": 2
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/07/30/podcasts/nice-white-parents-serial.html",
+        "position": 3
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/2020/09/11/podcasts/daily-newsletter-breonna-taylor-police-killing.html",
+        "position": 4
+      }
+    ],
+    "numberOfItems": 4
+  },
+  "publisher": "{{ baseurl }}/#publisher",
+  "copyrightHolder": "{{ baseurl }}/#publisher",
+  "sourceOrganization": "{{ baseurl }}/#publisher",
+  "copyrightYear": {{ year() }}
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- video section page -->
+{% macro video_gallery () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "VideoGallery",
+  "url": "{{ baseurl }}/video",
+  "name": "Featured Videos",
+  "mainEntity": {
+    "@context": "http://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/video/arts/music/100000007249132/sam-hunt-hard-to-forget.html",
+        "position": 1
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/video/us/100000007081097/-coronavirus-stay-home-hospital.html",
+        "position": 2
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/video/us/100000007159353/george-floyd-arrest-death-video.html",
+        "position": 3
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/video/us/100000007165404/minneapolis-protests-george-floyd-video.html",
+        "position": 4
+      }
+    ],
+    "numberOfItems": 4
+  },
+  "publisher": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightHolder": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "sourceOrganization": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightYear": 2020
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- article page -->
+{% macro news_article () %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "description": "{{ get('P') }}",
+  {# "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ baseurl }}/article"
+  }, #}
+  "mainEntityOfPage": "{{ baseurl }}/article",
+  "image": [
+    {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/images/img1.jpg",
+      "height": 900,
+      "width": 1600,
+      "caption": "get('P')"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/images/img2.jpg",
+      "height": 1365,
+      "width": 2048,
+      "caption": "{{ get('P') }}"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/images/img3.jpg",
+      "height": 1800,
+      "width": 1800,
+      "caption": "{{ get('P') }}"
+    }
+  ],
+  "url": "{{ baseurl }}/2020/09/14/us/wildfires-live-updates.html",
+  "inLanguage": "en",
+  "author": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  {# "author": {
+      "@type": "Person",
+      "name": "{{ author }}"
+    }, #}
+  "dateModified": "{{ year() }}-09-14T14:24:46.000Z",
+  "datePublished": "{{ year() }}-09-14T13:13:12.000Z",
+  "headline": "{{ get('H') }}",
+  "alternativeHeadline": "{{ get('H') }}",
+  "video": [
+    {
+      "@id": "{{ baseurl }}/video/us/100000007339397/california-oregon-fires.html"
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ brand }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/assets/img/logo-amp.png"
+    }
+  },
+  "copyrightHolder": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "sourceOrganization": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightYear": {{ year() }},
+  "isAccessibleForFree": true,
+  "hasPart": {
+    "@type": "WebPageElement",
+    "isAccessibleForFree": true,
+    "cssSelector": ".meteredContent"
+  },
+  "isPartOf": {
+    "@type": [
+      "CreativeWork",
+      "Product"
+    ],
+    "name": "{{ brand }}",
+    "productID": "{{ baseurl }}:basic"
+  }
+}
+</script>
+{% endmacro %}
+{#
+  article image size:
+  min width: 696
+  width * height >= 300000
+  1x1: 548-548
+  4x3: 636-477
+  16x9: 736-414
+#}
+
+
+
+
+<!-- video page -->
+{% macro video () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "VideoObject",
+  "@id": "{{ baseurl }}/video/opinion/100000007308961/gwen-berry-olympics-protest.html",
+  "url": "{{ baseurl }}/video/opinion/100000007308961/gwen-berry-olympics-protest.html",
+  "name": "{{ get('H') }}",
+  "description": "{{ get('P') }}",
+  "thumbnailUrl": [
+    "{{ baseurl }}/images/2020/09/08/autossell/op-olympics-thumb-2-print/op-olympics-thumb-2-videoSixteenByNineJumbo1600.png",
+    "{{ baseurl }}/images/2020/09/08/autossell/op-olympics-thumb-2-print/op-olympics-thumb-2-superJumbo.png",
+    "{{ baseurl }}/images/2020/09/08/autossell/op-olympics-thumb-2-print/op-olympics-thumb-2-mediumSquareAt3X.png"
+  ],
+  "publisher": {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "{{ brand }}",
+    "logo": {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "url": "{{ baseurl }}/images/misc/logo_rss_250x40.png",
+      "height": 40,
+      "width": 250
+    },
+    "url": "{{ baseurl }}/"
+  },
+  "embedUrl": "{{ baseurl }}/video/players/offsite/index.html?videoId=100000007308961",
+  "uploadDate": "{{ year() }}-09-07T08:50:03.000Z",
+  "transcript": "{{ get('P') }}",
+  "duration": "PT5M30.497S"
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+
+
+
+<!-- audio page -->
+{% macro audio () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "AudioObject",
+  "@id": "{{ baseurl }}/episodes/fb681c6a-1855-42e4-a720-588049163ece.mp3",
+  "contentUrl": "{{ baseurl }}/episodes/fb681c6a-1855-42e4-a720-588049163ece.mp3",
+  "description": "{{ get('P') }}",
+  "name": "{{ get('H') }}",
+  "duration": "PT3.243S"
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- audio page -->
+{% macro audio_full () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "AudioObject",
+  "@id": "{{ baseurl }}/episodes/aa67b652-c5fa-49e2-9be5-a3f080cc1db9.mp3",
+  "contentUrl": "{{ baseurl }}/episodes/aa67b652-c5fa-49e2-9be5-a3f080cc1db9.mp3",
+  "uploadDate": "{{ year() }}-07-30T09:03:53.000Z",
+  "transcript": "{{ get('P') }}",
+  "duration": "PT3.743S"
+}
+</script>
+{% endmacro %}
+
+
+
+
+<!-- inner pages -->
+{% macro breadcrumb () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@context": "http://schema.org",
+      "@type": "ListItem",
+      "name": "Fashion",
+      "position": 1,
+      "item": "{{ baseurl }}/section/fashion"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "ListItem",
+      "name": "Love",
+      "position": 2,
+      "item": ""
+    }
+  ]
+}
+</script>
+{% endmacro %}

@@ -1,4 +1,5 @@
 {%- import './_share.njk' as share with context -%}
+{%- import './_schema.njk' as sc with context -%}
 {%- import './_macros.njk' as mc with context -%}
 <!doctype html>
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie10 lt-ie9" lang="en"><![endif]-->
@@ -12,45 +13,13 @@
   <meta name="news_keywords" content="">
   <title>{{ brand }}</title>
 
-  {#
-    min width: 696
-    width * height >= 300000
-    1x1: 548-548
-    4x3: 636-477
-    16x9: 736-414
-  #}
-  {% if structureData %}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "{{ baseurl }}/article"
-    },
-    "headline": "{{ headline }}",
-    "image": [
-      "{{ img | replace('---', 696) | replace('+++', 696) }}",
-      "{{ img | replace('---', 696) | replace('+++', 522) }}",
-      "{{ img | replace('---', 736) | replace('+++', 414) }}"
-     ],
-    "datePublished": "{{ year() }}-02-05T08:00:00+08:00",
-    "dateModified": "{{ year() }}-02-05T09:20:00+08:00",
-    "author": {
-      "@type": "Person",
-      "name": "{{ author }}"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "{{ brand }}",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "{{ baseurl }}/assets/img/logo-amp.png"
-      }
-    }
-  }
-  </script>
-  {% endif %}
+
+  {# schema #}
+  {% if type === 'home' %}{{ sc.webpage() }}{% endif %}
+  {% if type === 'section' %}{{ sc.collection() }}{% endif %}
+  {% if type === 'article' %}{{ sc.news_article() }}{% endif %}
+  {{ sc.media_organization() }}
+
 
   <link rel="canonical" href="{{ baseurl }}/url/to/full/document.html">
   <meta name="author" content="">
