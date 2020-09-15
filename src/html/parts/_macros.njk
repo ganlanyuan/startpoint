@@ -90,3 +90,9 @@
 
   <div class="ad {{ class }}"><a href="" {{ rel_str | safe }}><img src="{{ url_str }}" alt="" width="{{ width }}" height="{{ height }}"></a></div>
 {% endmacro %}
+
+{%- macro src(w, h, url=get('I')) -%}{{ url }}w={{ w }}&h={{ h }}{%- endmacro -%}
+
+{% macro img(w, h) %}
+<img src="{{ get('I') | replace('---', w) | replace('+++', h) }}" width="{{ w }}" height="{{ h }}" alt="">
+{% endmacro %}

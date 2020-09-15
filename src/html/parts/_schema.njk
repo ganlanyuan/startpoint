@@ -292,15 +292,15 @@
     {
       "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/images/img1.jpg",
+      "url": "{{ mc.src(1600, 900) }}",
       "height": 900,
       "width": 1600,
-      "caption": "get('P')"
+      "caption": "{{ get('P') }}"
     },
     {
       "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/images/img2.jpg",
+      "url": "{{ mc.src(2048, 1365) }}",
       "height": 1365,
       "width": 2048,
       "caption": "{{ get('P') }}"
@@ -308,7 +308,7 @@
     {
       "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/images/img3.jpg",
+      "url": "{{ mc.src(1800, 1800) }}",
       "height": 1800,
       "width": 1800,
       "caption": "{{ get('P') }}"
