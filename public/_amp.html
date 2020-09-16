@@ -59,20 +59,38 @@
     /* inject:css */
     /* endinject */
     a amp-img { vertical-align: bottom; }
+    amp-sidebar {
+      width: 100%;
+      max-width: 85vw;
+    }
   </style>
 </head>
 <body class="article-page">
-<noscript>
-  <p class="enable-js">
-    To enjoy our website, you'll need to enable <b>JavaScript</b> in your web browser. Please <a href="http://enable-javascript.com/" target="_blank"><b>click here</b></a> to learn how.
-  </p>
-</noscript>
-<header>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sed cum, consequuntur libero doloribus recusandae hic. Maiores quam necessitatibus quia. Velit, nisi omnis excepturi inventore aut accusamus officia deserunt dolores.</p>
-</header>
-<!--[if lt IE 9]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+  <!-- === img ===
+  <amp-img layout="intrinsic" src="https://1401700980.rsc.cdn77.org/data/thumbs/full/97331/359/269/50/40/finally-nintendos-upgraded-switch-set-to-excite-everyone-next-year.jpg" width="359" height="269" alt=""></amp-img>
+   -->
 
+  <!-- === form ===
+  <form action-xhr="https://example.com/action" target="_top" method="post">
+    <input type="email" placeholder="Email Address">
+    <button>Submit</button>
+  </form>
+   -->
+
+  <!-- === youtube ===
+  <amp-youtube
+    data-videoid="h1TzD0rxtiw"
+    layout="responsive"
+    width="854"
+    height="480"
+  ></amp-youtube>
+   -->
+
+  <!-- === sidebar ===
+  <button class="nav-toggle flat-button" on="tap:sidebar1.toggle"><span class="i-nav"><span></span></span></button>
+  <amp-sidebar id="sidebar1" layout="nodisplay" side="left">
+    <div class="off-canvas"></div>
+  </amp-sidebar>
+   -->
 </body>
 </html>
