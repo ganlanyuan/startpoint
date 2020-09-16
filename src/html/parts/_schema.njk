@@ -5,7 +5,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "url": "{{ baseurl }}",
-  "logo": "{{ baseurl }}/assets/img/logo.png",
+  "logo": "assets/img/static/logo-600x60.png",
   "name": "{{ brand }}"
 }
 </script>
@@ -26,16 +26,16 @@
   "logo": {
     "@context": "http://schema.org",
     "@type": "ImageObject",
-    "url": "{{ baseurl }}/images/misc/logo_rss_250x40.png",
-    "height": 40,
-    "width": 250
+    "url": "assets/img/static/logo-600x60.png",
+    "height": 60,
+    "width": 600
   },
   "url": "{{ baseurl }}/",
   "@id": "{{ baseurl }}/#publisher",
-  "diversityPolicy": "{{ baseurl }}/diversity-and-inclusion/",
-  "ethicsPolicy": "{{ baseurl }}/who-we-are/culture/standards-and-ethics/",
-  "masthead": "{{ baseurl }}/interactive/2019/admin/masthead.html",
-  "foundingDate": "1990-01-01",
+  "diversityPolicy": "{{ baseurl }}/diversity-policy.html",
+  "ethicsPolicy": "{{ baseurl }}/ethics-policy.html",
+  "masthead": "{{ baseurl }}/masthead.html",
+  "foundingDate": "2000-01-01",
   "sameAs": [
     {%- for item, url in social %}
     "{{ url }}"{{ ', ' if not loop.last }}
@@ -67,7 +67,6 @@
   "potentialAction": {
     "@type": "SearchAction",
     "target": "{{ baseurl }}/search?&q={query}",
-    {# "query": "required", #}
     "query-input": "required name=query"
   }
 }
@@ -88,21 +87,21 @@
     {
       "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/vi-assets/images/share/1200x675_nameplate-logo.png",
+      "url": "assets/img/static/nameplate_1200x675.png",
       "height": 675,
       "width": 1200
     },
     {
       "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/vi-assets/images/share/1200x900_logo.png",
+      "url": "assets/img/static/n_1200x900.png",
       "height": 900,
       "width": 1200
     },
     {
       "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/vi-assets/images/share/1200x1200_logo.png",
+      "url": "assets/img/static/n_1200x1200.png",
       "height": 1200,
       "width": 1200
     }
@@ -115,43 +114,43 @@
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/14/us/wildfires-live-updates.html",
+        "url": "{{ baseurl }}/news/article1.html",
         "position": 1
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/live/2020/09/14/us/trump-vs-biden",
+        "url": "{{ baseurl }}/news/article2.html",
         "position": 2
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/interactive/2020/us/fires-map-tracker.html",
+        "url": "{{ baseurl }}/news/article3.html",
         "position": 3
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/14/us/prisons-fires-coronavirus.html",
+        "url": "{{ baseurl }}/news/article4.html",
         "position": 4
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/14/us/politics/jerry-brown-on-a-california-exodus-tell-me-where-are-you-going-to-go.html",
+        "url": "{{ baseurl }}/news/article5.html",
         "position": 5
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/13/us/politics/california-fires-trump-climate-change.html",
+        "url": "{{ baseurl }}/news/article6.html",
         "position": 6
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/14/us/politics/florida-trump-biden-2020.html",
+        "url": "{{ baseurl }}/news/article7.html",
         "position": 7
       }
     ],
@@ -183,25 +182,25 @@
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/14/podcasts/the-daily/trump-immigration-nation.html",
+        "url": "{{ baseurl }}/news/article1.html",
         "position": 1
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/10/opinion/sway-kara-swisher-trailer.html",
+        "url": "{{ baseurl }}/news/article2.html",
         "position": 2
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/07/30/podcasts/nice-white-parents-serial.html",
+        "url": "{{ baseurl }}/news/article3.html",
         "position": 3
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/2020/09/11/podcasts/daily-newsletter-breonna-taylor-police-killing.html",
+        "url": "{{ baseurl }}/news/article4.html",
         "position": 4
       }
     ],
@@ -234,25 +233,25 @@
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/video/arts/music/100000007249132/sam-hunt-hard-to-forget.html",
+        "url": "{{ baseurl }}/video/article1.html",
         "position": 1
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/video/us/100000007081097/-coronavirus-stay-home-hospital.html",
+        "url": "{{ baseurl }}/video/article2.html",
         "position": 2
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/video/us/100000007159353/george-floyd-arrest-death-video.html",
+        "url": "{{ baseurl }}/video/article3.html",
         "position": 3
       },
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/video/us/100000007165404/minneapolis-protests-george-floyd-video.html",
+        "url": "{{ baseurl }}/video/article4.html",
         "position": 4
       }
     ],
@@ -267,7 +266,126 @@
   "sourceOrganization": {
     "@id": "{{ baseurl }}/#publisher"
   },
-  "copyrightYear": 2020
+  "copyrightYear": {{ year() }}
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+
+
+<!-- about us page -->
+{% macro about_page () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "AboutPage",
+  "url": "{{ baseurl }}/about",
+  "name": "About Us",
+  "mainContentOfPage": {
+    "@type": "WebPageElement",
+    "isAccessibleForFree": true,
+    "cssSelector": ".full-article"
+  },
+  "reviewedBy": "{{ baseurl }}",
+  "author": "{{ baseurl }}",
+  "publisher": "{{ baseurl }}/#publisher",
+  "copyrightHolder": "{{ baseurl }}/#publisher",
+  "sourceOrganization": "{{ baseurl }}/#publisher",
+  "copyrightYear": {{ year() }}
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- contact us page -->
+{% macro contact_page () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "ContactPage",
+  "url": "{{ baseurl }}/contact",
+  "name": "Contact Us",
+  "mainContentOfPage": {
+    "@type": "WebPageElement",
+    "isAccessibleForFree": true,
+    "cssSelector": ".full-article"
+  },
+  "reviewedBy": "{{ baseurl }}",
+  "author": "{{ baseurl }}",
+  "publisher": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightHolder": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "sourceOrganization": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightYear": {{ year() }}
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- search result page -->
+{% macro search_page () %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "SearchResultsPage",
+  "url": "{{ baseurl }}/search",
+  "name": "Search Results",
+  "mainEntity": {
+    "@context": "http://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/news/article1.html",
+        "position": 1
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/news/article2.html",
+        "position": 2
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/news/article3.html",
+        "position": 3
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "ListItem",
+        "url": "{{ baseurl }}/news/article4.html",
+        "position": 4
+      }
+    ],
+    "numberOfItems": 4
+  },
+  "publisher": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightHolder": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "sourceOrganization": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightYear": {{ year() }}
 }
 </script>
 {% endmacro %}
@@ -285,9 +403,9 @@
   "description": "{{ get('P') }}",
   {# "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ baseurl }}/article"
+    "@id": "{{ baseurl }}/news/article.html"
   }, #}
-  "mainEntityOfPage": "{{ baseurl }}/article",
+  "mainEntityOfPage": "{{ baseurl }}/news/article.html",
   "image": [
     {
       "@context": "http://schema.org",
@@ -314,7 +432,7 @@
       "caption": "{{ get('P') }}"
     }
   ],
-  "url": "{{ baseurl }}/2020/09/14/us/wildfires-live-updates.html",
+  "url": "{{ baseurl }}/news/article.html",
   "inLanguage": "en",
   "author": {
     "@id": "{{ baseurl }}/#publisher"
@@ -329,7 +447,7 @@
   "alternativeHeadline": "{{ get('H') }}",
   "video": [
     {
-      "@id": "{{ baseurl }}/video/us/100000007339397/california-oregon-fires.html"
+      "@id": "{{ baseurl }}/video/article.html"
     }
   ],
   "publisher": {
@@ -337,7 +455,7 @@
     "name": "{{ brand }}",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/assets/img/logo-amp.png"
+      "url": "assets/img/static/logo-600x60.png"
     }
   },
   "copyrightHolder": {
@@ -351,7 +469,7 @@
   "hasPart": {
     "@type": "WebPageElement",
     "isAccessibleForFree": true,
-    "cssSelector": ".meteredContent"
+    "cssSelector": ".full-article"
   },
   "isPartOf": {
     "@type": [
@@ -382,14 +500,14 @@
 {
   "@context": "http://schema.org",
   "@type": "VideoObject",
-  "@id": "{{ baseurl }}/video/opinion/100000007308961/gwen-berry-olympics-protest.html",
-  "url": "{{ baseurl }}/video/opinion/100000007308961/gwen-berry-olympics-protest.html",
+  "@id": "{{ baseurl }}/video/article.html",
+  "url": "{{ baseurl }}/video/article.html",
   "name": "{{ get('H') }}",
   "description": "{{ get('P') }}",
   "thumbnailUrl": [
-    "{{ baseurl }}/images/2020/09/08/autossell/op-olympics-thumb-2-print/op-olympics-thumb-2-videoSixteenByNineJumbo1600.png",
-    "{{ baseurl }}/images/2020/09/08/autossell/op-olympics-thumb-2-print/op-olympics-thumb-2-superJumbo.png",
-    "{{ baseurl }}/images/2020/09/08/autossell/op-olympics-thumb-2-print/op-olympics-thumb-2-mediumSquareAt3X.png"
+    "{{ baseurl }}/images/img-1600.png",
+    "{{ baseurl }}/images/img.png",
+    "{{ baseurl }}/images/img@3X.png"
   ],
   "publisher": {
     "@context": "http://schema.org",
@@ -398,13 +516,13 @@
     "logo": {
       "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ baseurl }}/images/misc/logo_rss_250x40.png",
-      "height": 40,
-      "width": 250
+      "url": "assets/img/static/logo-600x60.png",
+      "height": 60,
+      "width": 600
     },
     "url": "{{ baseurl }}/"
   },
-  "embedUrl": "{{ baseurl }}/video/players/offsite/index.html?videoId=100000007308961",
+  "embedUrl": "{{ baseurl }}/video/article.html?videoId=100000007308961",
   "uploadDate": "{{ year() }}-09-07T08:50:03.000Z",
   "transcript": "{{ get('P') }}",
   "duration": "PT5M30.497S"
@@ -425,8 +543,8 @@
 {
   "@context": "http://schema.org",
   "@type": "AudioObject",
-  "@id": "{{ baseurl }}/episodes/fb681c6a-1855-42e4-a720-588049163ece.mp3",
-  "contentUrl": "{{ baseurl }}/episodes/fb681c6a-1855-42e4-a720-588049163ece.mp3",
+  "@id": "{{ baseurl }}/episodes/588049163ece.mp3",
+  "contentUrl": "{{ baseurl }}/episodes/588049163ece.mp3",
   "description": "{{ get('P') }}",
   "name": "{{ get('H') }}",
   "duration": "PT3.243S"
@@ -444,8 +562,8 @@
 {
   "@context": "http://schema.org",
   "@type": "AudioObject",
-  "@id": "{{ baseurl }}/episodes/aa67b652-c5fa-49e2-9be5-a3f080cc1db9.mp3",
-  "contentUrl": "{{ baseurl }}/episodes/aa67b652-c5fa-49e2-9be5-a3f080cc1db9.mp3",
+  "@id": "{{ baseurl }}/episodes/a3f080cc1db9.mp3",
+  "contentUrl": "{{ baseurl }}/episodes/a3f080cc1db9.mp3",
   "uploadDate": "{{ year() }}-07-30T09:03:53.000Z",
   "transcript": "{{ get('P') }}",
   "duration": "PT3.743S"
