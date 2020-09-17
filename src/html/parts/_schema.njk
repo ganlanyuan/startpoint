@@ -401,39 +401,39 @@
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "description": "{{ get('P') }}",
-  {# "mainEntityOfPage": {
+  "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ baseurl }}/news/article.html"
-  }, #}
-  "mainEntityOfPage": "{{ baseurl }}/news/article.html",
+  },
+  "headline": "{{ get('H') }}",
+  "alternativeHeadline": "{{ get('H') }}",
+  "url": "{{ baseurl }}/news/article.html",
+  {% set img = get('I') %}
   "image": [
     {
-      "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ mc.src(1600, 900) }}",
+      "url": "{{ mc.src(1600, 900, img) }}",
       "height": 900,
-      "width": 1600,
-      "caption": "{{ get('P') }}"
+      "width": 1600{# ,
+      "caption": "{{ get('P') }}" #}
     },
     {
-      "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ mc.src(2048, 1365) }}",
-      "height": 1365,
-      "width": 2048,
-      "caption": "{{ get('P') }}"
+      "url": "{{ mc.src(2048, 1536, img) }}",
+      "height": 1536,
+      "width": 2048{# ,
+      "caption": "{{ get('P') }}" #}
     },
     {
-      "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "{{ mc.src(1800, 1800) }}",
+      "url": "{{ mc.src(1800, 1800, img) }}",
       "height": 1800,
-      "width": 1800,
-      "caption": "{{ get('P') }}"
+      "width": 1800{# ,
+      "caption": "{{ get('P') }}" #}
     }
   ],
-  "url": "{{ baseurl }}/news/article.html",
-  "inLanguage": "en",
+  "datePublished": "{{ year() }}-09-14T13:13:12.000Z",
+  "dateModified": "{{ year() }}-09-14T14:24:46.000Z",
   "author": {
     "@id": "{{ baseurl }}/#publisher"
   },
@@ -441,10 +441,7 @@
       "@type": "Person",
       "name": "{{ author }}"
     }, #}
-  "dateModified": "{{ year() }}-09-14T14:24:46.000Z",
-  "datePublished": "{{ year() }}-09-14T13:13:12.000Z",
-  "headline": "{{ get('H') }}",
-  "alternativeHeadline": "{{ get('H') }}",
+  "inLanguage": "en",
   "video": [
     {
       "@id": "{{ baseurl }}/video/article.html"
@@ -490,6 +487,216 @@
   4x3: 636-477
   16x9: 736-414
 #}
+
+
+
+
+{# li #}
+{% macro live_blog() %}
+<script data-rh="true" type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "LiveBlogPosting",
+  "description": "{{ get('P') }}",
+  "mainEntityOfPage": "{{ baseurl }}/news/article.html",
+  "url": "{{ baseurl }}/news/article.html",
+  "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
+  "datePublished": "{{ year() }}-09-17T09:12:15.000Z",
+  "headline": "{{ get('H') }}",
+  "publisher": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "articleBody": "{{ get('P') }}",
+  "copyrightHolder": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "sourceOrganization": {
+    "@id": "{{ baseurl }}/#publisher"
+  },
+  "copyrightYear": {{ year() }},
+  "coverageEndTime": "{{ year() }}-09-17T20:31:46.378Z",
+  "coverageStartTime": "{{ year() }}-09-17T09:12:15.000Z",
+  "liveBlogUpdate": [
+    {
+      {# "@context": "http://schema.org", #}
+      "@type": "BlogPosting",
+      {% set img = get('I') %}
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1600, 900, img) }}",
+          "height": 900,
+          "width": 1600
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(2048, 1536, img) }}",
+          "height": 1536,
+          "width": 2048
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1800, 1800, img) }}",
+          "height": 1800,
+          "width": 1800
+        }
+      ],
+      "mainEntityOfPage": "{{ baseurl }}/news/article.html",
+      "url": "{{ baseurl }}/news/article.html",
+      "author": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
+      "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
+      "headline": "{{ get('H') }}",
+      "publisher": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "articleBody": "{{ get('P') }}",
+      "copyrightHolder": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "sourceOrganization": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "copyrightYear": {{ year() }}
+    },
+    {
+      {# "@context": "http://schema.org", #}
+      "@type": "BlogPosting",
+      {% set img = get('I') %}
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1600, 900, img) }}",
+          "height": 900,
+          "width": 1600
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(2048, 1536, img) }}",
+          "height": 1536,
+          "width": 2048
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1800, 1800, img) }}",
+          "height": 1800,
+          "width": 1800
+        }
+      ],
+      "mainEntityOfPage": "{{ baseurl }}/news/article.html",
+      "url": "{{ baseurl }}/news/article.html",
+      "author": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
+      "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
+      "headline": "{{ get('H') }}",
+      "publisher": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "articleBody": "{{ get('P') }}",
+      "copyrightHolder": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "sourceOrganization": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "copyrightYear": {{ year() }}
+    },
+    {
+      {# "@context": "http://schema.org", #}
+      "@type": "BlogPosting",
+      {% set img = get('I') %}
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1600, 900, img) }}",
+          "height": 900,
+          "width": 1600
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(2048, 1536, img) }}",
+          "height": 1536,
+          "width": 2048
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1800, 1800, img) }}",
+          "height": 1800,
+          "width": 1800
+        }
+      ],
+      "mainEntityOfPage": "{{ baseurl }}/news/article.html",
+      "url": "{{ baseurl }}/news/article.html",
+      "author": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
+      "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
+      "headline": "{{ get('H') }}",
+      "publisher": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "articleBody": "{{ get('P') }}",
+      "copyrightHolder": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "sourceOrganization": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "copyrightYear": {{ year() }}
+    },
+    {
+      {# "@context": "http://schema.org", #}
+      "@type": "BlogPosting",
+      {% set img = get('I') %}
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1600, 900, img) }}",
+          "height": 900,
+          "width": 1600
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(2048, 1536, img) }}",
+          "height": 1536,
+          "width": 2048
+        },
+        {
+          "@type": "ImageObject",
+          "url": "{{ mc.src(1800, 1800, img) }}",
+          "height": 1800,
+          "width": 1800
+        }
+      ],
+      "mainEntityOfPage": "{{ baseurl }}/news/article.html",
+      "url": "{{ baseurl }}/news/article.html",
+      "author": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
+      "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
+      "headline": "{{ get('H') }}",
+      "publisher": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "articleBody": "{{ get('P') }}",
+      "copyrightHolder": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "sourceOrganization": {
+        "@id": "{{ baseurl }}/#publisher"
+      },
+      "copyrightYear": {{ year() }}
+    }
+  ]
+}
+</script>
+{% endmacro %}
 
 
 
@@ -596,6 +803,168 @@
       "item": ""
     }
   ]
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+<!-- Carousel -->
+{% macro carousel() %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "url":"http://example.com/peanut-butter-cookies.html"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "url":"http://example.com/triple-chocolate-chunk.html"
+    },
+    {
+      "@type":"ListItem",
+      "position":3,
+      "url":"http://example.com/snickerdoodles.html"
+    }
+  ]
+}
+</script>
+{% endmacro %}
+
+{% macro carousel_full() %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": "1",
+      "item": {
+        "@type": "Movie",
+        "url": "https://example.com/2019-best-picture-noms#a-star-is-born",
+        "name": "A Star Is Born",
+        "image": "https://example.com/photos/6x9/photo.jpg",
+        "dateCreated": "2018-10-05",
+        "director": {
+            "@type": "Person",
+            "name": "Bradley Cooper"
+          },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "John D."
+          },
+          "reviewBody": "Heartbreaking, inpsiring, moving. Bradley Cooper is a triple threat."
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "90",
+            "bestRating": "100",
+            "ratingCount": "19141"
+          }
+        }
+      },
+    {
+      "@type": "ListItem",
+      "position": "2",
+      "item": {
+        "@type": "Movie",
+        "name": "Bohemian Rhapsody",
+        "url": "https://example.com/2019-best-picture-noms#bohemian-rhapsody",
+        "image": "https://example.com/photos/6x9/photo.jpg",
+        "dateCreated": "2018-11-02",
+        "director": {
+            "@type": "Person",
+            "name": "Bryan Singer"
+          },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "3"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Vin S."
+          },
+          "reviewBody": "Rami Malek's performance is overrated, at best."
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "61",
+            "bestRating": "100",
+            "ratingCount": "21985"
+          }
+        }
+      },
+    {
+      "@type": "ListItem",
+      "position": "3",
+      "item": {
+        "@type": "Movie",
+        "name": "Black Panther",
+        "url": "https://example.com/2019-best-picture-noms#black-panther",
+        "image": "https://example.com/photos/6x9/photo.jpg",
+        "dateCreated": "2018-02-16",
+        "director": {
+            "@type": "Person",
+            "name": "Ryan Coogler"
+          },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "2"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Trevor R."
+          },
+          "reviewBody": "I didn't like the lighting and CGI in this movie."
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "96",
+            "bestRating": "100",
+            "ratingCount": "88211"
+          }
+        }
+      }
+  ]
+}
+</script>
+<body>
+</body>
+{% endmacro %}
+
+
+
+
+{% macro course() %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "{{ get('H') }}",
+  "description": "{{ get('P') }}",
+  "provider": {
+    "@type": "Organization",
+    "name": "{{ get('H') }}",
+    "sameAs": "{{ baseurl }}"
+  }
 }
 </script>
 {% endmacro %}

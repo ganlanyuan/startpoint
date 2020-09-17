@@ -94,5 +94,5 @@
 {%- macro src(w, h, url=get('I')) -%}{{ url }}w={{ w }}&h={{ h }}{%- endmacro -%}
 
 {% macro img(w, h) %}
-<img src="{{ get('I') | replace('---', w) | replace('+++', h) }}" width="{{ w }}" height="{{ h }}" alt="">
+<img src="{{ get('I') }}w={{ w }}&h={{ h }}" width="{{ w }}" height="{{ h }}" alt="">
 {% endmacro %}
