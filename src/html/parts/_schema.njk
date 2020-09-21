@@ -400,14 +400,31 @@
 {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
-  "description": "{{ get('P') }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ baseurl }}/news/article.html"
   },
+  "url": "{{ baseurl }}/news/article.html",
   "headline": "{{ get('H') }}",
   "alternativeHeadline": "{{ get('H') }}",
-  "url": "{{ baseurl }}/news/article.html",
+  "datePublished": "{{ year() }}-09-14T13:13:12.000Z",
+  "dateModified": "{{ year() }}-09-14T14:24:46.000Z",
+  "description": "{{ get('P') }}",
+  {# "author": {
+    "@id": "{{ baseurl }}/#publisher"
+  }, #}
+  "author": {
+      "@type": "Person",
+      "name": "{{ author }}"
+    },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ brand }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "assets/img/static/logo-600x60.png"
+    }
+  },
   {% set img = get('I') %}
   "image": [
     {
@@ -432,29 +449,12 @@
       "caption": "{{ get('P') }}" #}
     }
   ],
-  "datePublished": "{{ year() }}-09-14T13:13:12.000Z",
-  "dateModified": "{{ year() }}-09-14T14:24:46.000Z",
-  "author": {
-    "@id": "{{ baseurl }}/#publisher"
-  },
-  {# "author": {
-      "@type": "Person",
-      "name": "{{ author }}"
-    }, #}
   "inLanguage": "en",
   "video": [
     {
       "@id": "{{ baseurl }}/video/article.html"
     }
   ],
-  "publisher": {
-    "@type": "Organization",
-    "name": "{{ brand }}",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "assets/img/static/logo-600x60.png"
-    }
-  },
   "copyrightHolder": {
     "@id": "{{ baseurl }}/#publisher"
   },
