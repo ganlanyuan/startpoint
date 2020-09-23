@@ -31,7 +31,7 @@
     "width": 600
   },
   "url": "{{ baseurl }}/",
-  "@id": "{{ baseurl }}/#publisher",
+  "@id": "{{ baseurl }}/",
   "diversityPolicy": "{{ baseurl }}/diversity-policy.html",
   "ethicsPolicy": "{{ baseurl }}/ethics-policy.html",
   "masthead": "{{ baseurl }}/masthead.html",
@@ -156,7 +156,7 @@
     ],
     "numberOfItems": 7
   },
-  "publisher": "{{ baseurl }}/#publisher"
+  "publisher": "{{ baseurl }}/"
 }
 </script>
 {% endmacro %}
@@ -206,9 +206,9 @@
     ],
     "numberOfItems": 4
   },
-  "publisher": "{{ baseurl }}/#publisher",
-  "copyrightHolder": "{{ baseurl }}/#publisher",
-  "sourceOrganization": "{{ baseurl }}/#publisher",
+  "publisher": "{{ baseurl }}/",
+  "copyrightHolder": "{{ baseurl }}/",
+  "sourceOrganization": "{{ baseurl }}/",
   "copyrightYear": {{ year() }}
 }
 </script>
@@ -258,13 +258,13 @@
     "numberOfItems": 4
   },
   "publisher": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightHolder": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "sourceOrganization": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightYear": {{ year() }}
 }
@@ -292,9 +292,9 @@
   },
   "reviewedBy": "{{ baseurl }}",
   "author": "{{ baseurl }}",
-  "publisher": "{{ baseurl }}/#publisher",
-  "copyrightHolder": "{{ baseurl }}/#publisher",
-  "sourceOrganization": "{{ baseurl }}/#publisher",
+  "publisher": "{{ baseurl }}/",
+  "copyrightHolder": "{{ baseurl }}/",
+  "sourceOrganization": "{{ baseurl }}/",
   "copyrightYear": {{ year() }}
 }
 </script>
@@ -320,13 +320,13 @@
   "reviewedBy": "{{ baseurl }}",
   "author": "{{ baseurl }}",
   "publisher": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightHolder": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "sourceOrganization": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightYear": {{ year() }}
 }
@@ -377,13 +377,13 @@
     "numberOfItems": 4
   },
   "publisher": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightHolder": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "sourceOrganization": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightYear": {{ year() }}
 }
@@ -410,12 +410,9 @@
   "datePublished": "{{ year() }}-09-14T13:13:12.000Z",
   "dateModified": "{{ year() }}-09-14T14:24:46.000Z",
   "description": "{{ get('P') }}",
-  {# "author": {
-    "@id": "{{ baseurl }}/#publisher"
-  }, #}
   "author": {
       "@type": "Person",
-      "name": "{{ author }}"
+      "name": "{{ reporter[0] }}"
     },
   "publisher": {
     "@type": "Organization",
@@ -456,10 +453,10 @@
     }
   ],
   "copyrightHolder": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "sourceOrganization": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightYear": {{ year() }},
   "isAccessibleForFree": true,
@@ -504,14 +501,14 @@
   "datePublished": "{{ year() }}-09-17T09:12:15.000Z",
   "headline": "{{ get('H') }}",
   "publisher": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "articleBody": "{{ get('P') }}",
   "copyrightHolder": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "sourceOrganization": {
-    "@id": "{{ baseurl }}/#publisher"
+    "@id": "{{ baseurl }}/"
   },
   "copyrightYear": {{ year() }},
   "coverageEndTime": "{{ year() }}-09-17T20:31:46.378Z",
@@ -544,20 +541,20 @@
       "mainEntityOfPage": "{{ baseurl }}/news/article.html",
       "url": "{{ baseurl }}/news/article.html",
       "author": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
       "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
       "headline": "{{ get('H') }}",
       "publisher": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "articleBody": "{{ get('P') }}",
       "copyrightHolder": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "sourceOrganization": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "copyrightYear": {{ year() }}
     },
@@ -588,20 +585,20 @@
       "mainEntityOfPage": "{{ baseurl }}/news/article.html",
       "url": "{{ baseurl }}/news/article.html",
       "author": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
       "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
       "headline": "{{ get('H') }}",
       "publisher": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "articleBody": "{{ get('P') }}",
       "copyrightHolder": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "sourceOrganization": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "copyrightYear": {{ year() }}
     },
@@ -632,20 +629,20 @@
       "mainEntityOfPage": "{{ baseurl }}/news/article.html",
       "url": "{{ baseurl }}/news/article.html",
       "author": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
       "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
       "headline": "{{ get('H') }}",
       "publisher": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "articleBody": "{{ get('P') }}",
       "copyrightHolder": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "sourceOrganization": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "copyrightYear": {{ year() }}
     },
@@ -676,20 +673,20 @@
       "mainEntityOfPage": "{{ baseurl }}/news/article.html",
       "url": "{{ baseurl }}/news/article.html",
       "author": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "dateModified": "{{ year() }}-09-17T19:01:46.378Z",
       "datePublished": "{{ year() }}-09-17T19:01:46.378Z",
       "headline": "{{ get('H') }}",
       "publisher": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "articleBody": "{{ get('P') }}",
       "copyrightHolder": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "sourceOrganization": {
-        "@id": "{{ baseurl }}/#publisher"
+        "@id": "{{ baseurl }}/"
       },
       "copyrightYear": {{ year() }}
     }
