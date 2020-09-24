@@ -1,4 +1,4 @@
-<!-- all pages -->
+{# all pages #}
 {% macro organization () %}
 <script type="application/ld+json">
 {
@@ -16,7 +16,7 @@
 
 
 
-<!-- all pages -->
+{# all pages #}
 {% macro media_organization () %}
 <script type="application/ld+json">
 {
@@ -24,7 +24,6 @@
   "@type": "NewsMediaOrganization",
   "name": "{{ brand }}",
   "logo": {
-    "@context": "http://schema.org",
     "@type": "ImageObject",
     "url": "assets/img/static/logo-600x60.png",
     "height": 60,
@@ -56,7 +55,7 @@
 
 
 
-<!-- all pages -->
+{# all pages #}
 {% macro website () %}
 <script type="application/ld+json">
 {
@@ -77,84 +76,39 @@
 
 
 
-<!-- homepage -->
-{% macro webpage () %}
+{# homepage #}
+{% macro webpage (count=7) %}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "WebPage",
   "image": [
+    {%- for name, width, height in [
+      ['nameplate_1200x675', 1200, 675],
+      ['n_1200x900', 1200, 900],
+      ['n_1200x1200', 1200, 1200]
+      ] %}
     {
-      "@context": "http://schema.org",
       "@type": "ImageObject",
-      "url": "assets/img/static/nameplate_1200x675.png",
-      "height": 675,
-      "width": 1200
-    },
-    {
-      "@context": "http://schema.org",
-      "@type": "ImageObject",
-      "url": "assets/img/static/n_1200x900.png",
-      "height": 900,
-      "width": 1200
-    },
-    {
-      "@context": "http://schema.org",
-      "@type": "ImageObject",
-      "url": "assets/img/static/n_1200x1200.png",
-      "height": 1200,
-      "width": 1200
-    }
+      "url": "assets/img/static/{{ name }}.png",
+      "width": {{ width }},
+      "height": {{ height }}
+    }{{- ',' if not loop.last -}}
+    {%- endfor %}
   ],
   "name": "{{ brand }}",
   "mainEntity": {
-    "@context": "http://schema.org",
     "@type": "ItemList",
     "itemListElement": [
+      {%- for i in range(0, count) %}
       {
-        "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article1.html",
-        "position": 1
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article2.html",
-        "position": 2
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article3.html",
-        "position": 3
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article4.html",
-        "position": 4
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article5.html",
-        "position": 5
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article6.html",
-        "position": 6
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article7.html",
-        "position": 7
-      }
+        "url": "{{ baseurl }}/news/article{{ loop.index }}.html",
+        "position": {{ loop.index }}
+      }{{- ',' if not loop.last -}}
+      {%- endfor %}
     ],
-    "numberOfItems": 7
+    "numberOfItems": {{ count }}
   },
   "publisher": "{{ baseurl }}/"
 }
@@ -165,46 +119,28 @@
 
 
 
-<!-- section page -->
-{% macro collection () %}
+{# section page #}
+{% macro collection (name='Church & Ministries', category=true, count=4) %}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "CollectionPage",
   "description": "{{ get('P') }}",
-  "url": "{{ baseurl }}/section/politics",
+  "url": "{{ baseurl }}{{ '/category' if category }}{{ '/' + under_section | nameToUrl if under_section }}/{{ name | nameToUrl }}",
   "inLanguage": "en",
-  "name": "Politics",
+  "name": "{{ name }}",
   "mainEntity": {
-    "@context": "http://schema.org",
     "@type": "ItemList",
     "itemListElement": [
+      {%- for i in range(0, count) %}
       {
-        "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article1.html",
-        "position": 1
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article2.html",
-        "position": 2
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article3.html",
-        "position": 3
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article4.html",
-        "position": 4
-      }
+        "url": "{{ baseurl }}{{ '/' + under_section | nameToUrl if under_section }}/{{ name | nameToUrl }}/article{{ loop.index }}.html",
+        "position": {{ loop.index }}
+      }{{- ',' if not loop.last -}}
+      {%- endfor %}
     ],
-    "numberOfItems": 4
+    "numberOfItems": {{ count }}
   },
   "publisher": "{{ baseurl }}/",
   "copyrightHolder": "{{ baseurl }}/",
@@ -218,8 +154,8 @@
 
 
 
-<!-- video section page -->
-{% macro video_gallery () %}
+{# video section page #}
+{% macro video_gallery (count=4) %}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -227,45 +163,21 @@
   "url": "{{ baseurl }}/video",
   "name": "Featured Videos",
   "mainEntity": {
-    "@context": "http://schema.org",
     "@type": "ItemList",
     "itemListElement": [
+      {%- for i in range(0, count) %}
       {
-        "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/video/article1.html",
-        "position": 1
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/video/article2.html",
-        "position": 2
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/video/article3.html",
-        "position": 3
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/video/article4.html",
-        "position": 4
-      }
+        "url": "{{ baseurl }}/video/video{{ loop.index }}.html",
+        "position": {{ loop.index }}
+      }{{- ',' if not loop.last -}}
+      {%- endfor %}
     ],
-    "numberOfItems": 4
+    "numberOfItems": {{ count }}
   },
-  "publisher": {
-    "@id": "{{ baseurl }}/"
-  },
-  "copyrightHolder": {
-    "@id": "{{ baseurl }}/"
-  },
-  "sourceOrganization": {
-    "@id": "{{ baseurl }}/"
-  },
+  "publisher": "{{ baseurl }}/",
+  "copyrightHolder": "{{ baseurl }}/",
+  "sourceOrganization": "{{ baseurl }}/",
   "copyrightYear": {{ year() }}
 }
 </script>
@@ -277,7 +189,7 @@
 
 
 
-<!-- about us page -->
+{# about us page #}
 {% macro about_page () %}
 <script type="application/ld+json">
 {
@@ -304,7 +216,7 @@
 
 
 
-<!-- contact us page -->
+{# contact us page #}
 {% macro contact_page () %}
 <script type="application/ld+json">
 {
@@ -319,15 +231,9 @@
   },
   "reviewedBy": "{{ baseurl }}",
   "author": "{{ baseurl }}",
-  "publisher": {
-    "@id": "{{ baseurl }}/"
-  },
-  "copyrightHolder": {
-    "@id": "{{ baseurl }}/"
-  },
-  "sourceOrganization": {
-    "@id": "{{ baseurl }}/"
-  },
+  "publisher": "{{ baseurl }}/",
+  "copyrightHolder": "{{ baseurl }}/",
+  "sourceOrganization": "{{ baseurl }}/",
   "copyrightYear": {{ year() }}
 }
 </script>
@@ -337,7 +243,7 @@
 
 
 
-<!-- search result page -->
+{# search result page #}
 {% macro search_page () %}
 <script type="application/ld+json">
 {
@@ -394,7 +300,35 @@
 
 
 
-<!-- article page -->
+
+{# FAQ page #}
+{% macro faq (count=7) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for i in range(0, count) %}
+    {
+      "@type": "Question",
+      "name": "Question {{ loop.index }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Answer {{ loop.index }}"
+      }
+    }{{- ',' if not loop.last -}}
+    {%- endfor %}
+  ]
+}
+</script>
+{% endmacro %}
+
+
+
+
+
+
+{# article page #}
 {% macro news_article () %}
 <script type="application/ld+json">
 {
@@ -476,19 +410,11 @@
 }
 </script>
 {% endmacro %}
-{#
-  article image size:
-  min width: 696
-  width * height >= 300000
-  1x1: 548-548
-  4x3: 636-477
-  16x9: 736-414
-#}
 
 
 
 
-{# li #}
+{# live blog #}
 {% macro live_blog() %}
 <script data-rh="true" type="application/ld+json">
 {
@@ -698,7 +624,7 @@
 
 
 
-<!-- video page -->
+{# video page #}
 {% macro video () %}
 <script type="application/ld+json">
 {
@@ -741,7 +667,7 @@
 
 
 
-<!-- audio page -->
+{# audio page #}
 {% macro audio () %}
 <script type="application/ld+json">
 {
@@ -760,7 +686,7 @@
 
 
 
-<!-- audio page -->
+{# audio page #}
 {% macro audio_full () %}
 <script type="application/ld+json">
 {
@@ -778,7 +704,7 @@
 
 
 
-<!-- inner pages -->
+{# inner pages #}
 {% macro breadcrumb () %}
 <script type="application/ld+json">
 {
@@ -808,7 +734,7 @@
 
 
 
-<!-- Carousel -->
+{# Carousel #}
 {% macro carousel() %}
 <script type="application/ld+json">
 {

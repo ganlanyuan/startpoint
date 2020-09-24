@@ -1,10 +1,10 @@
 {# breadcrumb #}
 {% macro breadcrumb (arr, class) %}
-{% if arr[0] !== 'Home' %}{% set len = arr | unshiftToArray('Home') %}{% endif %}
 <nav class="breadcrumb {{ class }}" role="navigation" aria-label="You are here:">
   <ol class="no-bullet">
+    <li><a class="link" href="index.html">Home</a></li>
     {% for item in arr %}
-    <li><a href="" {{ 'aria-current="location"' | safe if loop.last }}>{{ item }}</a></li>
+    <li><a class="link" href="" {{ 'aria-current="location"' | safe if loop.last }}>{{ item }}</a></li>
     {% endfor %}
   </ol>
 </nav>
@@ -19,19 +19,24 @@
         "position": 1,
         "item":
         {
-          "@id": "{{ baseurl }}/dresses",
-          "name": "Dresses"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "item":
-        {
-          "@id": "{{ baseurl }}/dresses/real",
-          "name": "Real Dresses"
+          "@id": "{{ baseurl }}",
+          "name": "Homepage"
         }
       }
+      {%- set bdc_url = '' -%}
+      {%- for item in arr -%}
+      {%- set bdc_url = bdc_url + '/' + item | nameToUrl -%}
+      ,
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index + 1 }},
+        "item":
+        {
+          "@id": "{{ baseurl + bdc_url }}",
+          "name": "{{ item }}"
+        }
+      }
+      {%- endfor %}
     ]
   }
 </script>
