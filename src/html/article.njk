@@ -3,96 +3,73 @@
 {% extends "./parts/_layout.njk" %}
 
 {% block main %}
-<main id="main" role="main" tabindex="-1">
-  <div class="container">
-    <article class="full-article">
-      {# header #}
-      <header>
-        <h1 class="article-title">{{ get('H') }}</h1>
-        <div class="byline">
-          <a class="reporter link" href="">{{ get('reporter') }}</a>
-          <time datetime="{{ year() }}-05-26">May 26, {{ year() }} 14:28</time>
-        </div>
-      </header>
+<div class="container">
+  <article class="full-article">
+    {# header #}
+    <header>
+      <h1 class="article-title">{{ get('H') }}</h1>
+      <div class="byline">
+        <a class="reporter link" href="">{{ get('reporter') }}</a>
+        <time datetime="{{ year() }}-05-26">May 26, {{ year() }} 14:28</time>
+      </div>
+    </header>
 
-      {% set mainimg = get('I') %}
-      <figure class="centered">
-        <img
-          src="{{ mainimg }}w=500&h=281"
-          srcset="
-            {{ mainimg }}w=320&h=180 320w,
-            {{ mainimg }}w=680&h=382 680w,
-            {{ mainimg }}w=900&h=508 900w"
-          sizes="
-            (max-width: 900px) 100vw,
-            (max-width: 1120px) 60vw,
-            680px"
-          alt="">
-        <figcaption class="caption">{{ get('P') }}<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
-      </figure>
+    <figure class="center">
+      <img src="{{ get('I') }}w=680&h=382" width="680" height="382" alt="">
+      <figcaption class="caption">{{ get('H') }} <span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
+    </figure>
 
-      {% for i in range(0, 3) %}
-      <p>{{ get('P') }}</p>
+    {% for i in range(0, 6) %}
+    <p>{{ get('P') }}</p>
+    {% endfor %}
+    {# <h1>{{ get('H') }}</h1>
+    <h2>{{ get('H') }}</h2>
+    <h3>{{ get('H') }}</h3>
+    <h4>{{ get('H') }}</h4>
+    <h5>{{ get('H') }}</h5>
+    <h6>{{ get('H') }}</h6> #}
+    <ul>
+      {% for i in range(0, 4) %}
+      <li>{{ get('H') }}</li>
       {% endfor %}
+    </ul>
+    <ol>
+      {% for i in range(0, 5) %}
+      <li>{{ get('H') }}</li>
+      {% endfor %}
+    </ol>
+    {% for i in range(0, 3) %}
+    <p>{{ get('P') }}</p>
+    {% endfor %}
+    <figure class="left">
+      <img src="{{ get('I') }}w=600&h=360" width="600" height="360" alt="">
+      <figcaption class="caption">{{ get('H') }} <span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
+    </figure>
 
-      {# <h1>{{ get('H') }}</h1> #}
-      <h2>{{ get('H') }}</h2>
-      <h3>{{ get('H') }}</h3>
-      <h4>{{ get('H') }}</h4>
-      <h5>{{ get('H') }}</h5>
-      <h6>{{ get('H') }}</h6>
+    {% for i in range(0, 4) %}
+    <p>{{ get('P') }}</p>
+    {% endfor %}
 
-      {% for i in range(0, 3) %}
+    <blockquote>
+      {% for i in range(0, 2) %}
       <p>{{ get('P') }}</p>
       {% endfor %}
 
       <ul>
-        {% for i in range(0, 4) %}
+        {% for i in range(0, 2) %}
         <li>{{ get('H') }}</li>
         {% endfor %}
       </ul>
+    </blockquote>
 
-      <ol>
-        {% for i in range(0, 5) %}
-        <li>{{ get('H') }}</li>
-        {% endfor %}
-      </ol>
+    <div class="embedded-content flex-video">
+      <iframe src="https://www.youtube.com/embed/h1TzD0rxtiw" allowfullscreen="" width="854" height="480"></iframe>
+    </div>
 
-      {% for i in range(0, 3) %}
-      <p>{{ get('P') }}</p>
-      {% endfor %}
+    {% for i in range(0, 3) %}
+    <p>{{ get('P') }}</p>
+    {% endfor %}
 
-      {% set leftimg = get('I') %}
-      <figure class="left">
-        <img src="{{ leftimg }}w=300&h=180" alt="">
-        <figcaption class="caption">{{ get('P') }}<span class="credit">Photo:  Reuters/Rick Wilking</span></figcaption>
-      </figure>
-
-      {% for i in range(0, 4) %}
-      <p>{{ get('P') }}</p>
-      {% endfor %}
-
-      <blockquote>
-        {% for i in range(0, 2) %}
-        <p>{{ get('P') }}</p>
-        {% endfor %}
-
-        <ul>
-          {% for i in range(0, 2) %}
-          <li>{{ get('H') }}</li>
-          {% endfor %}
-        </ul>
-      </blockquote>
-
-      <div class="embedded-content flex-video">
-        <iframe src="https://www.youtube.com/embed/h1TzD0rxtiw" allowfullscreen="" width="854" height="480"></iframe>
-      </div>
-
-      {% for i in range(0, 3) %}
-      <p>{{ get('P') }}</p>
-      {% endfor %}
-
-    </article>
-  </div>
-</main>
+  </article>
+</div>
 {% endblock %}

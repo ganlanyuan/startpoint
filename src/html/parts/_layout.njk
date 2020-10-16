@@ -65,14 +65,12 @@
   {% include './_header.njk' %}
 
   {# main #}
+  {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
+  {# tabindex for Webkit based browsers: https://bugs.chromium.org/p/chromium/issues/detail?id=37721 #}
+  <main id="main" role="main" tabindex="-1">
   {% block main %}
-    {# skip-nav-link: http://a11yproject.com/posts/skip-nav-links/ #}
-    {# tabindex for Webkit based browsers: https://bugs.chromium.org/p/chromium/issues/detail?id=37721 #}
-    <main id="main" role="main" tabindex="-1">
-    </main>
-    <aside role="complementary" aria-label="advertisement">
-    </aside>
   {% endblock %}
+  </main>
 
   {# page footer #}
   {% include "./_footer.njk" %}

@@ -1,26 +1,38 @@
 .full-article {
   @extend %clearfix;
-  font-size: rem(18px);
-  line-height: 1.6;
   > header { margin-bottom: 1.6em; }
-  p,
-  ul,
-  ol,
-  address,
-  blockquote,
-  .flex-video,
-  .embedded-content { margin: 1.6em 0; }
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0 0 rem(20px) 0;
-    line-height: 1.2;
+}
+.article-content {
+  font-size: rem(16px);
+  line-height: (25/16);
+  p, ul, ol, address, blockquote, figure, .flex-video, .embedded-content { margin: 0 0 em(25, 16) 0; }
+  // h1, h2, h3, h4, h5, h6 {
+  //   margin: 0 0 rem(20px) 0;
+  //   line-height: 1.2;
+  // }
+  .center {
+    max-width: rem(560);
+    margin-left: auto;
+    margin-right: auto;
   }
   blockquote {
     padding-left: 1.2em;
-    border-left: 7px solid $c-border;
+    border-left: 1px solid #999;
   }
   a {
-    color: $c-brand;
+    color: $c-link;
     &:hover { text-decoration: underline; }
+  }
+  @include bp(560) {
+    .left, .right { max-width: rem(300); }
+    .left {
+      float: left;
+      margin-right: rem(20);
+    }
+    .right {
+      float: right;
+      margin-right: rem(20);
+    }
   }
 }
 

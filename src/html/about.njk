@@ -3,14 +3,12 @@
 {% extends "./parts/_layout.njk" %}
 
 {% block main %}
-<main id="main" role="main" tabindex="-1">
-  <div class="container">
-    <article class="full-article">
-      <h1>About Us</h1>
-      {% for i in range(0, 6) %}
-      <p>{{ get('P') }}</p>
-      {% endfor %}
-    </article>
-  </div>
-</main>
+<div class="container">
+  <article class="full-article">
+    <h1>About Us</h1>
+    {% for i in range(0, 6) %}
+    <p>{{ get('P') }}</p>
+    {% endfor %}
+  </article>
+</div>
 {% endblock %}
