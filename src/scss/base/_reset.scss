@@ -1,10 +1,9 @@
 // set min-width to 320
 html, body { min-width: 320px; }
 html { scroll-behavior: smooth; }
-body { margin: 0; }
+body, figure { margin: 0; }
 main { display: block; }
 
-figure { margin: 0; }
 img {
   border: 0;
   max-width: 100%;
