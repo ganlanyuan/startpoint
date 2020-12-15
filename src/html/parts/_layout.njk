@@ -11,8 +11,14 @@
   <meta name="title" content="{{ brand }}">
   <meta name="description" content="">
   <meta name="news_keywords" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <title>{{ brand }}</title>
-
+  <link rel="canonical" href="{{ baseurl }}/url/to/full/document.html">
 
   {# schema #}
   {% if type === 'home' %}{{ sc.webpage() }}{% endif %}
@@ -22,15 +28,6 @@
   {% if type === 'contact' %}{{ sc.contact_page() }}{% endif %}
   {% if type === 'search' %}{{ sc.search_page() }}{% endif %}
   {{ sc.media_organization() }}
-
-
-  <link rel="canonical" href="{{ baseurl }}/url/to/full/document.html">
-  <meta name="author" content="">
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   <!-- favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
