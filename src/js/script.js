@@ -108,11 +108,11 @@ function lookupByClass (el, cla) {
   return el.classList && el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla);
 }
 
-function lookupByType (el, target_name, arr) {
-  if (!arr.length) { arr.push('body'); }
+function lookupByType (el, node, arr) {
+  if (arr == null || !arr.length) { arr = ['body']; }
   var name = el.nodeName.toLowerCase();
   if (arr.indexOf(name) >= 0) { return null; }
-  return name !== target_name ? lookupByType(el.parentNode, target_name, arr) : el;
+  return name !== node ? lookupByType(el.parentNode, node, arr) : el;
 }
 
 function getOffsetTop (el) {
