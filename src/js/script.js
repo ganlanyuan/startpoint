@@ -12,7 +12,8 @@ let doc = document,
     html = doc.documentElement,
     body = doc.body,
     win = window,
-    active_cl = 'open';
+    active_cl = 'show',
+    data_cl_attrs = ['data-toggle', 'data-add', 'data-remove'];
 
 // remove "no-js" class
 html.className = html.className.replace('no-js', 'js');
@@ -25,40 +26,30 @@ skiplink && skiplink.addEventListener('click', function(e) {
 });
 
 // button functions
-function btn_fns (str) {
-  var attr = 'data-' + str,
-      btns = doc.querySelectorAll('[' + attr + ']');
-  if (btns.length) {
-    forEach(btns, function (btn) {
-      var target = doc.querySelector(btn.getAttribute(attr));
-      if (target) {
-        btn.addEventListener('click', function(e) {
-          if (btn.hasAttribute('href')) { e.preventDefault(); }
-          let cl = btn.getAttribute('data-toggle-class');
-          btn_core(btn, str, target, cl ? cl : active_cl);
-        });
-      }
-    });
-  }
-}
-function btn_core (btn, str, target, cl) {
-  switch(str) {
-    case 'toggle':
-      target.classList.toggle(cl);
-      btn.classList.toggle('expanded');
-      break;
-    case 'add':
-      target.classList.add(cl);
-      break;
-    case 'remove':
-      target.classList.remove(cl);
-      break;
-  }
-}
-btn_fns('toggle');
-btn_fns('add');
-btn_fns('remove');
+doc.addEventListener('click', (e) => {
+  let el = lookupByAttrs(e.target, data_cl_attrs);
+  if (el) {
+    let attr = el.hasAttribute(data_cl_attrs[0]) ? data_cl_attrs[0] :
+               el.hasAttribute(data_cl_attrs[1]) ? data_cl_attrs[1] :
+               data_cl_attrs[2],
+        target = doc.querySelector(el.getAttribute(attr));
 
+    if (target) {
+      let cl = el.getAttribute('data-toggle-class') || active_cl;
+
+      if (attr === data_cl_attrs[0]) {
+        target.classList.toggle(cl);
+        el.classList.toggle('expanded');
+      } else if (attr === data_cl_attrs[1]) {
+        target.classList.add(cl);
+      } else {
+        target.classList.remove(cl);
+      }
+
+      if (el.hasAttribute('href')) { e.preventDefault(); }
+    }
+  }
+});
 
 function makeEmbedFluid() {
   let embeds = doc.querySelectorAll('.embedded-content'),
@@ -106,6 +97,21 @@ function forEach (arr, callback, scope) {
 function lookupByClass (el, cla) {
   if (el === body) { return null; }
   return el.classList && el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla);
+}
+
+function lookupByAttr (el, attr) {
+  if (el === body) { return null; }
+  return el.hasAttribute(attr) ? el : lookupByAttr(el.parentNode, attr);
+}
+
+function lookupByAttrs (el, attrs) {
+  if (el === body) { return null; }
+
+  let returnel;
+  attrs.forEach((str) => {
+    if (!returnel && el.hasAttribute(str)) { returnel = el; }
+  });
+  return returnel || lookupByAttrs(el.parentNode, attrs);
 }
 
 function lookupByType (el, node, arr) {
