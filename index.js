@@ -222,7 +222,7 @@ function doNunjucks (input) {
       count[str].current++;
     }
 
-    return data[str] ? data[str][(n + plus)%max] : (n + plus)%max;
+    return data[str] ? data[str][(n + plus)%(max + 1)] : (n + plus)%(max + 1);
   }
 
   data = Object.assign(data, dataInit);
