@@ -89,8 +89,8 @@
 
       if (e.altKey) {
         url = url.replace('public', 'test/w3c/html');
-      } else if (e.metaKey) {
-        url = url.replace('public/', 'frame.html?').replace(/\.html$/, '');
+      // } else if (e.metaKey) {
+      //   url = url.replace('public/', 'frame.html?').replace(/\.html$/, '');
       } else if (e.shiftKey) {
         url = 'https://search.google.com/test/rich-results?utm_campaign=sdtt&utm_medium=url&url=' + url + '&user_agent=1';
       }
