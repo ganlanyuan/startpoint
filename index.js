@@ -69,6 +69,7 @@ let dataInit = {
       },
       keys: (obj) => { return Object.keys(obj); },
       belongTo: (str, arr) => { return arr.indexOf(str) !== -1; },
+      strIndexOf: (str2, str) => { return str2.indexOf(str); },
       push: (arr, str) => { arr.push(str); return arr; },
       year: () => { return new Date().getFullYear(); }
     },
@@ -121,8 +122,8 @@ switch (process.env.task) {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
         } else {
-          return doNunjucksAll();
-          // return doNunjucks(njkDir + '/index.njk');
+          // return doNunjucksAll();
+          doNunjucks(njkDir + '/news.njk');
         }
       });
 
@@ -258,11 +259,27 @@ function doNunjucks (input) {
     return arr.push(item);
   });
   env.addFilter('unshiftToArray', (arr, item) => {
-    return arr.unshift(item);
+    arr.unshift(item);
+    return arr;
+  });
+  env.addFilter('concat', (arr, item) => {
+    return arr.concat(item);
+  });
+  env.addFilter('concatReverse', (arr, item) => {
+    return item.concat(arr);
   });
   env.addFilter('removeFromArray', (arr, item) => {
     arr.splice(arr.indexOf(item), 1);
     return arr;
+  });
+  env.addFilter('isArray', (arr) => {
+    return Array.isArray(arr);
+  });
+  env.addFilter('objectKeys', (obj) => {
+    return Object.keys(obj);
+  });
+  env.addFilter('objectAssign', (obj, obj2) => {
+    return Object.assign(obj, obj2);
   });
 
   env.render(input, data, (err, res) => {
