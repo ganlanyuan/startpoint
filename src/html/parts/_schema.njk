@@ -120,22 +120,33 @@
 
 
 {# section page #}
-{% macro collection (name='Church & Ministries', category=true, count=4) %}
+{% macro collection (arr, count=4) %}
+{% set sec = arr[0] | nameToUrl %}
+{% set link = '' %}
+{% if arr.length > 1 %}
+  {% for item in arr %}
+    {% if loop.index > 1 %}
+      {% set link = link + '/' + item | nameToUrl %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% set url = baseurl | replace('//', '//' + sec +  '.') + link %}
+
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "CollectionPage",
   "description": "{{ get('P') }}",
-  "url": "{{ baseurl }}{{ '/category' if category }}{{ '/' + under_section | nameToUrl if under_section }}/{{ name | nameToUrl }}",
+  "url": "{{ url }}",
   "inLanguage": "en",
-  "name": "{{ name }}",
+  "name": "{{ arr[arr.length - 1] }}",
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": [
       {%- for i in range(0, count) %}
       {
         "@type": "ListItem",
-        "url": "{{ baseurl }}{{ '/' + under_section | nameToUrl if under_section }}/{{ name | nameToUrl }}/article{{ loop.index }}.html",
+        "url": "{{ url }}/article{{ loop.index }}.html",
         "position": {{ loop.index }}
       }{{- ',' if not loop.last -}}
       {%- endfor %}
@@ -244,41 +255,26 @@
 
 
 {# search result page #}
-{% macro search_page () %}
+{% macro search_page (section) %}
+{% set url = baseurl | replace('//', '//' + section | nameToUrl + '.') %}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "SearchResultsPage",
-  "url": "{{ baseurl }}/search",
+  "url": "{{ url }}/search",
   "name": "Search Results",
   "mainEntity": {
     "@context": "http://schema.org",
     "@type": "ItemList",
     "itemListElement": [
+      {%- for i in range(0, 4) %}
       {
         "@context": "http://schema.org",
         "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article1.html",
+        "url": "{{ url }}/article{{ loop.index }}.html",
         "position": 1
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article2.html",
-        "position": 2
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article3.html",
-        "position": 3
-      },
-      {
-        "@context": "http://schema.org",
-        "@type": "ListItem",
-        "url": "{{ baseurl }}/news/article4.html",
-        "position": 4
-      }
+      }{{- ',' if not loop.last -}}
+      {%- endfor %}
     ],
     "numberOfItems": 4
   },
@@ -412,6 +408,60 @@
 {% endmacro %}
 
 
+{# blog #}
+{% macro blog() %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Blog",
+  "headline": "Headline, your H1",
+  "url": "{{ baseurl | replace('//', '//blogs.') }}/blog-article.html",
+  "datePublished": "February 3, 2021",
+  "dateModified": "February 3, 2021",
+  "author": "Author name",
+  "publisher": {
+    "@type": "WebSite",
+    "name": "{{ brand }}",
+    "logo":
+    {
+      "@type": "imageObject",
+      "url": "http://example.com/images/logo.jpg"
+    }
+  },
+  "description": "{{ get('P') }}"
+}
+</script>
+{% endmacro %}
+
+{# blog posting #}
+{% macro blog_posting() %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "author": "Author name",
+  "datePublished": "February 3, 2021",
+  "headline": "Headline, your H1",
+  "image":
+  {
+    "@type": "imageObject",
+    "url": "http://example.com/images/image.png",
+    "height": "640",
+    "width": "800"
+  },
+  "publisher":
+  {
+    "@type": "Organization",
+    "name": "Publisher name",
+    "logo":
+    {
+      "@type": "imageObject",
+      "url": "http://example.com/images/logo.jpg"
+    }
+  }
+}
+</script>
+{% endmacro %}
 
 
 {# live blog #}
@@ -662,6 +712,31 @@
 
 
 
+{# podcast episode #}
+{% macro podcast_episode () %}
+{% set url = baseurl | replace('//', '//podcasts.') %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "PodcastEpisode",
+  "url": "{{ url }}/inquisitive/27",
+  "name": "#27: Behind the App #1: History",
+  "datePublished": "2021-02-18",
+  "timeRequired": "PT37M",
+  "description": "In the first episode of “Behind the App”, a special series of Inquisitive, we take a look at the beginnings of iOS app development, by focusing on the introduction of the iPhone and the App Store.",
+  "associatedMedia": {
+    "@type": "MediaObject",
+    "contentUrl": "{{ url }}/inquisitive/Inquisitive_027.mp3"
+  },
+  "partOfSeries": {
+    "@type": "PodcastSeries",
+    "name": "Inquisitive",
+    "url": "{{ url }}/inquisitive"
+  }
+}
+</script>
+{% endmacro %}
+
 
 
 
@@ -887,6 +962,107 @@
     "@type": "Organization",
     "name": "{{ get('H') }}",
     "sameAs": "{{ baseurl }}"
+  }
+}
+</script>
+{% endmacro %}
+
+
+{# book #}
+{% macro book() %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "breadcrumb": "Home > Books > Literature & Fiction > Classics",
+  "mainEntity": {
+    "@type": "Book",
+    "author": "/author/jd_salinger.html",
+    "bookFormat": "https://schema.org/Paperback",
+    "datePublished": "1991-05-01",
+    "image": "catcher-in-the-rye-book-cover.jpg",
+    "inLanguage": "English",
+    "isbn": "0316769487",
+    "name": "The Catcher in the Rye",
+    "numberOfPages": "224",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": "6.99",
+      "priceCurrency": "USD"
+    },
+    "publisher": "Little, Brown, and Company",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4",
+      "reviewCount": "3077"
+    },
+    "review": [{
+        "@type": "Review",
+        "author": "John Doe",
+        "datePublished": "2006-05-04",
+        "name": "A masterpiece of literature",
+        "reviewBody": "I really enjoyed this book. It captures the essential challenge people face as they try make sense of their lives and grow to adulthood.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": "Bob Smith",
+        "datePublished": "2006-06-15",
+        "name": "A good read.",
+        "reviewBody": "Catcher in the Rye is a fun book. It's a good book to read.",
+        "reviewRating": "4"
+      }
+    ]
+  }
+}
+</script>
+{% endmacro %}
+
+{% macro person () %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Seattle",
+    "addressRegion": "WA",
+    "postalCode": "98052",
+    "streetAddress": "20341 Whitworth Institute 405 N. Whitworth"
+  },
+  "colleague": [
+    "http://www.xyz.edu/students/alicejones.html",
+    "http://www.xyz.edu/students/bobsmith.html"
+  ],
+  "email": "mailto:jane-doe@xyz.edu",
+  "image": "janedoe.jpg",
+  "jobTitle": "Professor",
+  "name": "Jane Doe",
+  "telephone": "(425) 123-4567",
+  "url": "http://www.janedoe.com"
+}
+</script>
+{% endmacro %}
+
+
+{% macro podcast () %}
+{% set url = baseurl | replace('//', '//podcasts.') %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "PodcastSeries",
+  "image": "{{ url }}/inquisitive_artwork.png",
+  "url": "{{ url }}/inquisitive",
+  "name": "Inquisitive",
+  "description": "Inquisitive is a show for the naturally curious. Each week, Myke Hurley takes a look at what makes creative people successful and what steps they have taken to get there.",
+  "webFeed": "{{ url }}/inquisitive/feed",
+  "author": {
+    "@type": "Person",
+    "name": "Myke Hurley"
   }
 }
 </script>

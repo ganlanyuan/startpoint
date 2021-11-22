@@ -39,6 +39,13 @@
       margin-bottom: 1em !important;
       text-align: center;
     }
+    h3 {
+      font-weight: 600;
+      font-size: 2rem;
+      text-transform: capitalize;
+      margin: 2em 10px 0.5em;
+      color: #ddd;
+    }
     a {
       color: inherit;
       text-decoration: none;
@@ -52,6 +59,7 @@
       font-size: 24px;
       line-height: 1.2;
       text-transform: capitalize;
+      border-radius: 12px;
       background: #fff;
       transition: all 0.25s;
       -webkit-box-sizing: border-box;
@@ -60,7 +68,7 @@
     }
     .list a:hover {
       background: #CBEEFF;
-      background: hsl(200, 100%, 90%);
+      background: hsl(60, 100%, 95%);
     }
   </style>
 </head>
@@ -69,8 +77,12 @@
 <div class="container">
   <h2>Pages</h2>
   <div class="list">
-    {% for url, name in pages %}
-    <a href="public/{{ url }}.html">{{ name | capitalize }}</a>
+    {% for title, obj in pages %}
+    <h3>{{ title }}</h3>
+      {% for url in obj %}
+      {% set name = title if url === title else url | replace(title + '-', '') | replace('index', 'home') | capitalize %}
+      <a href="public/{{ url }}.html">{{ name }}</a>
+      {% endfor %}
     {% endfor %}
   </div>
 </div>
@@ -82,7 +94,7 @@
   win.addEventListener('click', function(e) {
     var target = lookupByTag(e.target, 'a');
     if (target) {
-      if (e.altKey || e.shiftKey || e.metaKey) { e.preventDefault(); }
+      if (e.altKey || e.shiftKey || e.metaKey) { e.preventDefault(); } // || e.metaKey
 
       var url = location.origin + '/' + target.getAttribute('href'),
           tab = e.altKey || e.shiftKey || e.metaKey ? '_blank' : '_self';
