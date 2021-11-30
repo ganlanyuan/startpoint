@@ -30,6 +30,12 @@
   {% if type === 'about' %}{{ sc.about_page() }}{% endif %}
   {% if type === 'contact' %}{{ sc.contact_page() }}{% endif %}
   {% if type === 'search' %}{{ sc.search_page(section) }}{% endif %}
+  {% if type === 'blog' %}{{ sc.blog() }}{% endif %}
+  {% if type === 'blog-posting' %}{{ sc.blog_posting() }}{% endif %}
+  {% if type === 'podcast-episode' %}{{ sc.podcast_episode() }}{% endif %}
+  {% if type === 'podcast' %}{{ sc.podcast() }}{% endif %}
+  {% if type === 'book' %}{{ sc.book() }}{% endif %}
+  {% if type === 'person' %}{{ sc.person() }}{% endif %}
   {{ sc.media_organization() }}
 
   <!-- favicons -->
