@@ -6,15 +6,68 @@ svg {
   display: inline-block;
   path, circle, ellipse, polygon, polyline { vector-effect: non-scaling-stroke; }
 }
-.ad {
-  @include center();
-  margin: 0 auto em(20);
-  > div, > iframe, > a, > img { margin: auto; }
-}
 .container {
   max-width: rem($container);
   margin: 0 auto;
   padding: 0 $gap;
+}
+
+.mg0 { margin: 0; }
+@each $num in (10, 20, 30, 40, 60, 80) {
+  .pd#{$num}, .pv#{$num}, .pt#{$num} { padding-top: rem($num); }
+  .pd#{$num}, .pv#{$num}, .pb#{$num} { padding-bottom: rem($num); }
+  .pd#{$num}, .ph#{$num}, .pl#{$num} { padding-left: rem($num); }
+  .pd#{$num}, .ph#{$num}, .pr#{$num} { padding-right: rem($num); }
+}
+@each $num in (10, 20, 30, 40, 60, 80) {
+  .mv#{$num}, .mt#{$num} { margin-top: rem($num); }
+  .mv#{$num}, .mb#{$num} { margin-bottom: rem($num); }
+}
+@each $num in (10, 15, 20, 30) {
+  .mh#{$num}, .ml#{$num} { margin-left: rem($num); }
+  .mh#{$num}, .mr#{$num} { margin-right: rem($num); }
+}
+
+
+.h-scrollbox {
+  @extend %no-scrollbar;
+  // display: table;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  word-wrap: normal; // for IE9-10
+  > li,
+  > div {
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+  }
+  // &-wp {
+  //   position: relative;
+  //   &:before, &:after {
+  //     content: '';
+  //     display: block;
+  //     position: absolute;
+  //     z-index: 2;
+  //     top: 0;
+  //     width: rem(20);
+  //     height: 100%;
+  //     background: linear-gradient(-90deg, Hsla(0, 0%, 100%, 0), Hsla(0, 0%, 100%, 1)) 0 0 no-repeat;
+  //   }
+  //   &:after {
+  //     right: 0;
+  //     background: linear-gradient(90deg, Hsla(0, 0%, 100%, 0), Hsla(0, 0%, 100%, 1)) 0 0 no-repeat;
+  //   }
+  //   &.dark {
+  //     &:before { background: linear-gradient(-90deg, Rgba(0, 0, 0, 0), Rgba(0, 0, 0, 1)) 0 0 no-repeat; }
+  //     &:after { background: linear-gradient(90deg, Rgba(0, 0, 0, 0), Rgba(0, 0, 0, 1)) 0 0 no-repeat; }
+  //   }
+  // }
+}
+.css-slider {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  > li, > th, > td { scroll-snap-align: start; }
 }
 
 

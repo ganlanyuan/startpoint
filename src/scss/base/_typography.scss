@@ -11,8 +11,51 @@ body {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
 }
-.center-align { text-align: center; }
 a img { vertical-align: bottom; }
+
+
+.quiet { opacity: 0.66; }
+.ttu { text-transform: uppercase; }
+.center-align { text-align: center; }
+.right-align { text-align: right; }
+.dib { display: inline-block; }
+a img { vertical-align: bottom; }
+.c-primary { color: $c-primary; }
+.c-link { color: $c-link; }
+.tdu { text-decoration: underline; }
+.fwn { font-weight: normal; }
+.vab { vertical-align: bottom; }
+.vam {
+  vertical-align: middle;
+  svg { vertical-align: middle; }
+}
+.h1, .h2, .h3, .h4, .h5, p { &:last-child { margin-bottom: 0; } }
+.h1, .h2, .h3 { line-height: 1.2; }
+.h4, .h5 { line-height: 1.3; }
+.h1 { font-size: rem(42); }
+.h2 { font-size: rem(32); }
+.h3 { font-size: rem(24); }
+.h4 { font-size: rem(20); }
+.h5 { font-size: rem(18); }
+@include bp(max 600) {
+  .h1 { font-size: rem(32); }
+  .h2 { font-size: rem(24); }
+}
+p, .p {
+  line-height: 1.5;
+  &:not(:last-child) { margin-bottom: 1.5em; }
+  a {
+    color: $c-link;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.fz12, .fz13, .fz14, .fz15, .fz16 { line-height: 1.5; }
+.fz12 { font-size: rem(12); }
+.fz13 { font-size: rem(13); }
+.fz14 { font-size: rem(14); }
+.fz15 { font-size: rem(15); }
+.fz16 { font-size: rem(16); }
 
 // heading-1 ~ 3
 // http://www.modularscale.com/?11&px&1.2&web&text
