@@ -94,31 +94,45 @@ function forEach (arr, callback, scope) {
   }
 }
 
-function lookupByClass (el, cla) {
-  if (el === body) { return null; }
-  return el.classList && el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla);
+function indexOf (array, item) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === item) { return i; }
+  }
+  return -1;
 }
 
-function lookupByAttr (el, attr) {
-  if (el === body) { return null; }
-  return el.hasAttribute(attr) ? el : lookupByAttr(el.parentNode, attr);
+function isNode(el, arr) {
+  // undefined, empty array, empty string, and other types of data
+  if (arr == null || !arr.length) {
+    arr = ['body'];
+  // string
+  } else if (typeof arr === 'string') {
+    arr = new Array(arr);
+  }
+  return arr.indexOf(el.nodeName.toLowerCase()) >= 0;
 }
 
-function lookupByAttrs (el, attrs) {
-  if (el === body) { return null; }
+function lookupByClass (el, cla, arr) {
+  if (isNode(el, arr)) { return null; }
+  return el.classList && el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla, arr);
+}
 
-  let returnel;
-  attrs.forEach((str) => {
-    if (!returnel && el.hasAttribute(str)) { returnel = el; }
-  });
-  return returnel || lookupByAttrs(el.parentNode, attrs);
+function lookupByAttr (el, attr, arr) {
+  if (isNode(el, arr)) { return null; }
+  return el.hasAttribute(attr) ? el : lookupByAttr(el.parentNode, attr, arr);
+}
+
+function lookupByAttrs (el, attrs, arr) {
+  if (isNode(el, arr)) { return null; }
+
+  let new_el;
+  attrs.forEach((str) => { if (!new_el && el.hasAttribute(str)) { new_el = el; } });
+  return new_el || lookupByAttrs(el.parentNode, attrs, arr);
 }
 
 function lookupByType (el, node, arr) {
-  if (arr == null || !arr.length) { arr = ['body']; }
-  var name = el.nodeName.toLowerCase();
-  if (arr.indexOf(name) >= 0) { return null; }
-  return name !== node ? lookupByType(el.parentNode, node, arr) : el;
+  if (isNode(el, arr)) { return null; }
+  return el.nodeName.toLowerCase() === node ? el : lookupByType(el.parentNode, node, arr);
 }
 
 function getOffsetTop (el) {
