@@ -103,12 +103,11 @@ function indexOf (array, item) {
 
 function isNode(el, arr) {
   // undefined, empty array, empty string, and other types of data
-  if (arr == null || !arr.length) {
-    arr = ['body'];
+  if (arr == null || !arr.length) { arr = ['body'];
   // string
-  } else if (typeof arr === 'string') {
-    arr = new Array(arr);
-  }
+  } else if (typeof arr === 'string') { arr = new Array(arr); }
+  if (arr.indexOf('body') < 0) { arr.push('body'); }
+
   return arr.indexOf(el.nodeName.toLowerCase()) >= 0;
 }
 
