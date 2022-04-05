@@ -64,8 +64,8 @@ function makeEmbedFluid() {
           item = embed.querySelector('iframe');
 
       if (item && !item.classList.contains(itemClass) && item.src.search(player) > 0) {
-        let width = Number(item.width),
-            height = Number(item.height);
+        let width = item.offsetWidth,
+            height = item.offsetHeight;
 
         if (height && width) {
           let ratio = (height / width) * 100,
@@ -73,7 +73,9 @@ function makeEmbedFluid() {
           wrap.className = wrapClass;
 
           embed.classList.remove('flex-video');
-          embed.style.maxWidth = width + 'px';
+          if (Number(item.width)) {
+            embed.style.maxWidth = Number(item.width) + 'px';
+          }
           wrap.style.paddingBottom = ratio + '%';
           item.classList.add(itemClass);
 
