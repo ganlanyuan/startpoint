@@ -10,6 +10,7 @@ textarea {
   border: 1px solid #bbb;
   box-sizing: border-box;
   border-radius: 0;
+  color: inherit;
   &.error {
     border-color: map-get($alert, danger);
   }
