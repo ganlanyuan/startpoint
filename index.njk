@@ -96,7 +96,7 @@
     if (target) {
       if (e.altKey || e.shiftKey || e.metaKey) { e.preventDefault(); } // || e.metaKey
 
-      var url = location.origin + '/' + target.getAttribute('href'),
+      var url = location.origin + '/' + location.pathname.replace(/^\//, '') + target.getAttribute('href'),
           tab = e.altKey || e.shiftKey || e.metaKey ? '_blank' : '_self';
 
       if (e.altKey) {
