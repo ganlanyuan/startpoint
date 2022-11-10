@@ -105,10 +105,11 @@ function indexOf (array, item) {
 
 function isNode(el, arr) {
   // undefined, empty array, empty string, and other types of data
-  if (arr == null || !arr.length) { arr = ['body'];
+  if (arr == null || !arr.length) { arr = ['body', 'html'];
   // string
   } else if (typeof arr === 'string') { arr = new Array(arr); }
   if (arr.indexOf('body') < 0) { arr.push('body'); }
+  if (arr.indexOf('html') < 0) { arr.push('html'); }
 
   return arr.indexOf(el.nodeName.toLowerCase()) >= 0;
 }
