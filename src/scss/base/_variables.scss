@@ -84,7 +84,8 @@ $alert:(
   // Remove the item from normal flow
   position: absolute;
   // fix a layout issue on Chrome
-  left: -10000px;
+  top: 0;
+  z-index: -1;
   // Workaround for falsely pronounced, smushed text
   white-space: nowrap;
   // Set it to the smallest possible size (some screen readers ignore elements with zero height and width)
