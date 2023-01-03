@@ -1,82 +1,78 @@
-      // HTML
-const nunjucks = require('nunjucks'),
-      w3cHtml = require('@ganlanyuan/w3cjs'),
-      amphtmlValidator = require('amphtml-validator'),
-      yaml = require('js-yaml'),
-      // CSS
-      sass = require('node-sass'),
-      // sass = require("sass"),
-      // Fiber = require("fibers"),
-      postcss = require('postcss'),
-      autoprefixer = require('autoprefixer'),
-      normalize = require('postcss-normalize'),
-      csso = require('postcss-csso'),
-      request = require('request'), // for w3cCSS
-      // localtunnel = require('localtunnel'),
-      // JS
-      rollup = require('rollup').rollup,
-      resolve = require('rollup-plugin-node-resolve'),
-      buble = require('rollup-plugin-buble'),
-      uglify = require('rollup-plugin-uglify').uglify,
-      globby = require('globby'), // for rollup
-      // image
-      imagemin = require('imagemin'),
-      imageminPngquant = require('imagemin-pngquant'),
-      // imageminJpegtran = require('imagemin-jpegtran'),
-      imageminJpegRecompress = require('imagemin-jpeg-recompress'),
-      imageminSvgo = require('imagemin-svgo'),
-      imageminGifsicle = require('imagemin-gifsicle'),
-      // amp
-      uncss = require('uncss'),
-      // server
-      browserSync = require('browser-sync').create(),
-      // helpers
-      chokidar = require('chokidar'),
-      chalk = require('chalk'),
-      rimraf = require('rimraf'),
-      fs = require('fs');
-      path = require('path');
+// HTML
+import nunjucks from '/usr/local/lib/node_modules/nunjucks/index.js';
+import w3cHtml from '/usr/local/lib/node_modules/@ganlanyuan/w3cjs/lib/w3cjs.js';
+import amphtmlValidator from '/usr/local/lib/node_modules/amphtml-validator/index.js';
+import yaml from '/usr/local/lib/node_modules/js-yaml/index.js';
+// CSS
+import sass from '/usr/local/lib/node_modules/node-sass/lib/index.js';
+import postcss from '/usr/local/lib/node_modules/postcss/lib/postcss.js';
+import autoprefixer from '/usr/local/lib/node_modules/autoprefixer/lib/autoprefixer.js';
+import normalize from '/usr/local/lib/node_modules/postcss-normalize/index.cjs';
+import csso from '/usr/local/lib/node_modules/postcss-csso/cjs/index.cjs';
+import request from '/usr/local/lib/node_modules/request/index.js';
+// JS
+import { rollup } from '/usr/local/lib/node_modules/rollup/dist/rollup.js';
+import resolve from '/usr/local/lib/node_modules/rollup-plugin-node-resolve/dist/rollup-plugin-node-resolve.cjs.js';
+import buble from '/usr/local/lib/node_modules/rollup-plugin-buble/dist/rollup-plugin-buble.cjs.js';
+import { uglify } from "/usr/local/lib/node_modules/rollup-plugin-uglify/index.js";
+import {globby} from '/usr/local/lib/node_modules/globby/index.js';
+import {globbySync} from '/usr/local/lib/node_modules/globby/index.js';
+// image
+import imagemin from '/usr/local/lib/node_modules/imagemin/index.js';
+import imageminPngquant from '/usr/local/lib/node_modules/imagemin-pngquant/index.js';
+import imageminJpegRecompress from '/usr/local/lib/node_modules/imagemin-jpeg-recompress/index.js';
+import imageminSvgo from '/usr/local/lib/node_modules/imagemin-svgo/index.js';
+import imageminGifsicle from '/usr/local/lib/node_modules/imagemin-gifsicle/index.js';
+// amp
+import uncss from '/usr/local/lib/node_modules/uncss/src/uncss.js';
+// server
+import browserSync from '/usr/local/lib/node_modules/browser-sync/dist/index.js';
+// helpers
+import chokidar from '/usr/local/lib/node_modules/chokidar/index.js';
+import chalk from '/usr/local/lib/node_modules/chalk/source/index.js';
+import rimraf from '/usr/local/lib/node_modules/rimraf/rimraf.js';
+import * as fs from 'node:fs';
+import * as http from 'node:http';
+import * as path from 'node:path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-let assets_baseurl = 'assets/',
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+let baseurl = '',
     source = 'src',
+    assets = 'assets',
     njkDir = source + '/html',
+    htmlDir = 'public',
+    ampfile = htmlDir + '/_amp.html',
     sassDir = source + '/scss',
+    cssDir = assets + '/css',
     jsDir = source + '/js',
     imageDir = source + '/img',
-    // htmlDir = '.',
-    htmlDir = 'public',
-    assets = 'public/assets',
-    ampfile = htmlDir + '/_amp.html',
-    cssDir = assets + '/css',
-    testDir = 'test',
     cssValidateLevel = 'css3',
-    ampUncssIgnore = ['a img'],
+    ampUncssIgnore = ['.img-on-left img', '.article-byline img', '.message-from img', '.topbar-news.slider-fallback li', '.slider-fallback'],
     publicUrl = '',
     tunnel,
     consoleHTML = chalk.blue('<HTML>'),
     consoleCSS = chalk.green('/CSS/'),
     consoleJS = chalk.magenta('{JS}'),
-    consoleIMG = chalk.cyan('|IMG|'),
-    arr_njk = _getAllFilesFromFolder(source, '.njk', _checkUnderscorePrefix);
+    consoleIMG = chalk.cyan('|IMG|');
 
 // console.time("dbsave");
-// console.log(_getAllFilesFromFolder(source, '.njk', _checkUnderscorePrefix));
+// console.log(_getAllFilesFromFolder(source, '.scss', _checkUnderscorePrefix));
 // console.timeEnd("dbsave");
 let dataInit = {
-      is: (type, obj) => {
-        var clas = Object.prototype.toString.call(obj).slice(8, -1);
-        return obj !== undefined && obj !== null && clas === type;
-      },
-      keys: (obj) => { return Object.keys(obj); },
-      belongTo: (str, arr) => { return arr.indexOf(str) !== -1; },
-      strIndexOf: (str2, str) => { return str2.indexOf(str); },
-      push: (arr, str) => { arr.push(str); return arr; },
-      year: () => { return new Date().getFullYear(); }
-    },
-    count_per_page = {
-      'I': 20,
-      'H': 5
-    };
+  is: (type, obj) => {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined && obj !== null && clas === type;
+  },
+  keys: (obj) => { return Object.keys(obj); },
+  belongTo: (str, arr) => { return arr.indexOf(str) !== -1; },
+  push: (arr, str) => { arr.push(str); return arr; },
+  date: () => { return new Date().toDateString().slice(4); },
+  year: () => { return new Date().getFullYear(); }
+};
 
 let htmlValidatorFilters = [
       'The “banner” role is unnecessary for element “header”.',
@@ -117,20 +113,20 @@ switch (process.env.task) {
     serverUp();
     // watch njk files
     chokidar
-      .watch([njkDir + '/**/*.njk', '*.njk'])
+      .watch([njkDir + '/**/*.njk', 'site/index.njk', '*.njk'])
       .on('change', file => {
         if (_checkUnderscorePrefix(file)) {
           return doNunjucks(file);
         } else {
           // return doNunjucksAll();
-          doNunjucks(njkDir + '/news.njk');
+          doNunjucks(njkDir + '/index.njk');
         }
       });
 
     chokidar
-      .watch(htmlDir + '/*.html', {
-        ignored: [ampfile, htmlDir + '/amp.html', htmlDir + '/pages.html']
-        // ignored: ['amp.html', 'pages.html', source + '/**/*', testDir + '/**/*', 'node_modules/**/*']
+      .watch(htmlDir + '/**/*.html', {
+        ignored: [htmlDir + '/amp.html', htmlDir + '/pages.html']
+        // ignored: ['amp.html', 'pages.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', file => { htmlValidator([file]); });
 
@@ -139,22 +135,22 @@ switch (process.env.task) {
       .watch(sassDir + '/**/*.scss')
       .on('change', file => {
         if (_checkUnderscorePrefix(file)) { return doSass(file); }
-        // doSass(sassDir + '/main.scss');
+        // doSass(sassDir + '/ad.scss');
         doSassAll();
       });
 
-    // chokidar
-    //   .watch(cssDir + '/**/*.css')
-    //   .on('change', file => { cssValidator([file]); });
+    chokidar
+      .watch(cssDir + '/**/*.css')
+      .on('change', file => { cssValidator([file]); });
 
     // watch amp
-    // chokidar
-    //   .watch([ampfile, cssDir + '/main.css'])
-    //   .on('change', () => doAmp());
+    chokidar
+      .watch([cssDir + '/main.css', ampfile])
+      .on('change', () => doAmp());
 
-    // chokidar
-    //   .watch(ampfile)
-    //   .on('change', ampValidator);
+    chokidar
+      .watch(ampfile)
+      .on('change', ampValidator);
 
     // watch JS
     chokidar
@@ -175,10 +171,9 @@ switch (process.env.task) {
 
     // watch server
     chokidar
-      // .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/main.css', assets + '/js/**/*.js'], {
       .watch([htmlDir + '/**/*.html', '*.html', cssDir + '/**/*.css', assets + '/js/**/*.js'], {
-        ignored: [ampfile]
-        // ignored: ['index.js', 'amp.html', source + '/**/*', testDir + '/**/*', 'node_modules/**/*']
+        ignored: [htmlDir + '/amp.html']
+        // ignored: ['index.js', 'amp.html', source + '/**/*', 'test/**/*', 'node_modules/**/*']
       })
       .on('change', browserSync.reload);
 }
@@ -195,9 +190,7 @@ function doNunjucks (input) {
       filename = path.basename(input, path.extname(input)),
       output = dir + filename + '.html',
       data = _loadData(),
-      count = {},
-      file_index = arr_njk.indexOf(input),
-      fi = file_index >= 0 ? file_index : 0;
+      count = {};
 
   for(var item in data) {
     if (Array.isArray(data[item])) {
@@ -211,19 +204,27 @@ function doNunjucks (input) {
   initCount('728x90', 1 , 7);
   initCount('970x250', 1 , 3);
 
-  data.get = (str) => {
-    let n = count[str].current,
-        plus = count_per_page[str] ? fi * count_per_page[str] : 0,
-        min = count[str].min,
-        max = count[str].max;
+  function initCount (str, min, max) {
+    if (min === undefined) { min = 0; }
+    if (max === undefined) { max = data[str].length - 1; }
 
-    if (count[str].current >= max) {
-      count[str].current = min;
+    count[str] = {
+      current: min,
+      min: min,
+      max: max
+    };
+  }
+
+  data.get = (str) => {
+    let n = count[str].current;
+
+    if (count[str].current >= count[str].max) {
+      count[str].current = count[str].min;
     } else {
       count[str].current++;
     }
 
-    return data[str] ? data[str][(n + plus)%(max + 1)] : (n + plus)%(max + 1);
+    return data[str] ? data[str][n] : n;
   }
 
   data = Object.assign(data, dataInit);
@@ -234,23 +235,7 @@ function doNunjucks (input) {
     return str.slice(0, count || 5);
   });
   env.addFilter('nameToUrl', (str) => {
-    return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '').replace("'", '');
-  });
-  env.addFilter('getKeyByIndex', (obj, index) => {
-    if (Object.prototype.toString.call(obj).slice(8, -1) === 'Object' && typeof index === "number" && index >= 0) {
-      return Object.keys(obj)[index];
-    } else {
-      return false;
-    }
-  });
-  env.addFilter('getKeyByValue', (obj, val) => {
-    if (Object.prototype.toString.call(obj).slice(8, -1) === 'Object') {
-      for (let key in obj) {
-        if (obj[key] === val) {
-          return key;
-        }
-      }
-    }
+    return str.toLowerCase().replace(/\s+[&]*\s*/g, '-').replace(/\.*/g, '');
   });
   env.addFilter('splitToArray', (str, separator) => {
     return str.split(separator);
@@ -258,28 +243,9 @@ function doNunjucks (input) {
   env.addFilter('pushToArray', (arr, item) => {
     return arr.push(item);
   });
-  env.addFilter('unshiftToArray', (arr, item) => {
-    arr.unshift(item);
-    return arr;
-  });
-  env.addFilter('concat', (arr, item) => {
-    return arr.concat(item);
-  });
-  env.addFilter('concatReverse', (arr, item) => {
-    return item.concat(arr);
-  });
   env.addFilter('removeFromArray', (arr, item) => {
     arr.splice(arr.indexOf(item), 1);
     return arr;
-  });
-  env.addFilter('isArray', (arr) => {
-    return Array.isArray(arr);
-  });
-  env.addFilter('objectKeys', (obj) => {
-    return Object.keys(obj);
-  });
-  env.addFilter('objectAssign', (obj, obj2) => {
-    return Object.assign(obj, obj2);
   });
 
   env.render(input, data, (err, res) => {
@@ -292,29 +258,17 @@ function doNunjucks (input) {
       });
     });
   });
-
-  function initCount (str, min, max) {
-    if (min === undefined) { min = 0; }
-    if (max === undefined) { max = data[str].length - 1; }
-
-    count[str] = {
-      current: min,
-      min: min,
-      max: max
-    };
-  }
-
 }
 
 function htmlValidator (arr) {
   if (!arr) {
     arr = _getAllFilesFromFolder(htmlDir, '.html', (file) => {
             return ['amp', 'pages'].indexOf(path.basename(file, '.html')) < 0;
-          }, [assets, source, testDir, 'node_modules']);
+          }, ['assets', 'src', 'test', 'node_modules']);
   }
 
   arr.forEach((file, index) => {
-    // console.log(file);
+    console.log(file);
 
     // output: json => Terminal
     w3cHtml.validate({
@@ -349,7 +303,7 @@ function htmlValidator (arr) {
 
         res = res.slice(0, 38) + '<meta charset="utf-8">' + res.slice(38); // add charset
 
-        let newDir = testDir + '/w3c/html/' + file.replace(htmlDir + '/', '');
+        let newDir = 'test/w3c/html/' + file.replace(htmlDir + '/', '');
         _checkDir(path.dirname(newDir), () => {
           fs.writeFile(newDir, res, err => {
             if(err) { return console.log(chalk.gray(err)); }
@@ -385,6 +339,7 @@ function doSassAll () {
 }
 
 function doSass (input) {
+  // let t = Date.now();
   let output = input.replace(source, assets).replace(/s[a|c]ss/g, 'css');
   sass.render({
     file: input,
@@ -394,15 +349,16 @@ function doSass (input) {
     precision: 7,
   }, (err, result) => {
     if (err) { return void console.log(err); }
+    // console.log(Date.now() - t);
 
     // SASS sourcemap
-    // fs.writeFile(output + '.map', result.map, (err) => {
-    //   if (err) { return void console.log(err); }
-    //   _colorConsole(consoleCSS, output + '.map');
-    // });
+    fs.writeFile(output + '.map', result.map, (err) => {
+      if (err) { return void console.log(err); }
+      _colorConsole(consoleCSS, output + '.map');
+    });
 
     // postCSS
-    postcss([ autoprefixer, csso({ restructure: false }) ]).process(result.css, {
+    postcss([ autoprefixer, csso ]).process(result.css, {
       from: input,
       to: output,
       map: { inline: false }
@@ -447,15 +403,14 @@ function cssValidator (arr) {
         _colorConsole(consoleCSS, 'validating: ' + file.replace('/www/web/', '') +  response.statusCode);
         // console.log('body:', body); // Print the HTML
       })
-      .pipe(fs.createWriteStream(testDir + '/w3c/css/' + path.parse(file).name + '.html'));
+      .pipe(fs.createWriteStream('test/w3c/css/' + path.parse(file).name + '.html'));
     });
   });
 }
 
 function doJsBundle (files) {
   if (!files) { files = jsDir + '/**/*.js'; }
-
-  return globby.sync(files).map((inputFile) => {
+  return globbySync(files).map((inputFile) => {
     if (_checkUnderscorePrefix(inputFile)) {
       let outputFile = inputFile.replace(source, assets),
           inputOptions = {
@@ -471,7 +426,7 @@ function doJsBundle (files) {
               buble(),
               uglify({
                 mangle: {
-                  keep_fnames: true, // keep function name
+                  keep_fnames: true,
                 }
               }),
             ],
@@ -507,17 +462,17 @@ function doJsBundle (files) {
 function minifyImage (files) {
   if (!files) { files = imageDir + '/**/*.{png,jpg,jpeg,svg,gif}'}
 
-  return globby.sync(files).map((input) => {
+  return globbySync(files).map((input) => {
     imagemin([input], {
       plugins: [
-        imageminPngquant({quality: '65-80'}),
+        imageminPngquant({quality: [0.65, 0.8]}),
         // imageminJpegtran(),
         imageminJpegRecompress(),
         imageminSvgo({
-          plugins: [
-            {removeViewBox: false},
-            {removeDimensions: false},
-          ]
+          plugins: [{
+            name: 'removeViewBox',
+            active: false
+          }]
         }),
         imageminGifsicle(),
       ]
@@ -546,12 +501,15 @@ function doAmp () {
     fs.readFile(ampfile, {encoding: 'utf-8'}, (err, data) => {
       if (err) { return console.log(err); }
 
-      let css = res.replace(/\s*\/\*.*\*\/\s*/g, '') // remove comments /* */
-                   .replace(/(\s*|})img(\s|\{|\.|\#|\+|\~)/g, '$1' + 'amp-img' + '$2') // change img to amp-img
-                   .replace(/\.\.\//g, assets_baseurl) // update assets path: img, font
-                   .replace(/!important/g, '') // remove !important statement
-                   .replace(/\@page\{.+/, '') // remove @page
-                   .replace(/\@media\sprint\{.+/, ''); // remove @print styles
+      let css = res.replace(/\s*\/\*.*\*\/\s*/g, '')
+                   .replace(/\.\.\/img/g, baseurl + 'assets/img')
+                   .replace(/\.\.\/fonts/g, baseurl + 'assets/fonts')
+                   .replace(/!important/g, '')
+                   .replace(/\@font-face\{[^\}]+\}/g, '')
+                   .replace(/\@page\{.+/, '')
+                   .replace(/\@media\sprint\{.+/, '')
+                   .replace('.img-slider>div{background:#f0f0f0}', '')
+                   .replace(/\simg/g, ' amp-img');
       fs.writeFile(ampfile.replace('_', ''), data.replace(/(\/\* inject:css \*\/)([\s|\S]*)(\/\* endinject \*\/)/, '$1\n    ' + css + '\n    $3'), (err) => {
         if (err) { return console.log(err); }
         _colorConsole(consoleHTML, 'amp.html');
@@ -586,7 +544,7 @@ function serverUp (callback) {
 
 
 
-function _loadData () { return yaml.safeLoad(fs.readFileSync(njkDir + '/data.yml', 'utf8')); }
+function _loadData () { return yaml.load(fs.readFileSync(njkDir + '/data.yml', 'utf8')); }
 
 function _colorConsole (lang, str) {
   console.log(lang, chalk.gray(str + ' ✓'));

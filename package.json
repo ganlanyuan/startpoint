@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "A simple boilerplate for websites.",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "watch": "node .",
+    "start": "nodemon --watch index.js --exec node .",
     "njk": "task=njk node .",
     "htmlValidate": "task=htmlValidate node .",
     "sass": "task=sass node .",
@@ -19,8 +20,8 @@
     "critical": "docker exec critical node test/critical/critical.js",
     "compare": "docker exec -e var=compare puppeteer node test/puppeteer/puppeteer.js",
     "clear": "node test/puppeteer/clear.js",
-    "pagespeed": "docker exec startpoint node test/pagespeed/pagespeed.js",
-    "lighthouse": "docker exec lighthouse node test/lighthouse/lighthouse.js"
+    "pagespeed": "node test/pagespeed/pagespeed.js",
+    "lighthouse": "node test/lighthouse/lighthouse.js"
   },
   "browserslist": [
     "> 0.01%",
@@ -38,7 +39,7 @@
     "url": "https://github.com/ganlanyuan/startpoint/issues"
   },
   "homepage": "https://github.com/ganlanyuan/startpoint#readme",
-  "dependencies": {
+  "devDependencies": {
     "dialog-polyfill": "^0.5.6",
     "icons": "https://github.com/ganlanyuan/icons.git",
     "normalize.css": "^8.0.0",
