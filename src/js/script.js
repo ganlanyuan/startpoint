@@ -112,21 +112,21 @@ function isNode(el, arr) {
     if (arr.indexOf(x) < 0) { arr.push(x); }
   });
 
-  return arr.indexOf(el.nodeName.toLowerCase()) >= 0;
+  return arr.indexOf(el ? el.nodeName.toLowerCase() : null) >= 0;
 }
 
 function lookupByClass (el, cla, arr) {
-  if (isNode(el, arr)) { return null; }
+  if (!el || isNode(el, arr)) { return null; }
   return el.classList && el.classList.contains(cla) ? el : lookupByClass(el.parentNode, cla, arr);
 }
 
 function lookupByAttr (el, attr, arr) {
-  if (isNode(el, arr)) { return null; }
+  if (!el || isNode(el, arr)) { return null; }
   return el.hasAttribute(attr) ? el : lookupByAttr(el.parentNode, attr, arr);
 }
 
 function lookupByAttrs (el, attrs, arr) {
-  if (isNode(el, arr)) { return null; }
+  if (!el || isNode(el, arr)) { return null; }
 
   let new_el;
   attrs.forEach((str) => { if (!new_el && el.hasAttribute(str)) { new_el = el; } });
@@ -134,7 +134,7 @@ function lookupByAttrs (el, attrs, arr) {
 }
 
 function lookupByType (el, node, arr) {
-  if (isNode(el, arr)) { return null; }
+  if (!el || isNode(el, arr)) { return null; }
   return el.nodeName.toLowerCase() === node ? el : lookupByType(el.parentNode, node, arr);
 }
 
