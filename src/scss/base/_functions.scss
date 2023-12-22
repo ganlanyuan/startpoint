@@ -1,0 +1,42 @@
+@function svgData($str) {
+  @return "data:image/svg+xml;utf8," + str-replace(str-replace(str-replace($str, '<', '%3C'), '>', '%3E'), '#', '%23');
+}
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+// strip unit
+@function strip-unit($val) {
+  @return ($val / ($val * 0 + 1));
+}
+
+// px to em/rem
+@function pxto($unit, $px-val, $base) {
+  // em or rem
+  @if unit($px-val) == 'em' or unit($px-val) == 'rem' {
+    @return strip-unit($px-val) * $unit;
+  // px or unitless
+  } @else {
+    @if unit($px-val) == 'px' or unitless($px-val) { $px-val: strip-unit($px-val); }
+    @if unit($base) == 'px' or unitless($base) { $base: strip-unit($base); }
+    @return ($px-val / $base) * $unit;
+  }
+}
+
+// px to em
+@function em($pxval, $base: $ro-em-base) {
+  @return pxto(1em, $pxval, $base);
+}
+
+// px to rem
+@function rem($pxval, $base: 16) {
+  @return pxto(1rem, $pxval, $base);
+}

@@ -40,7 +40,7 @@
   @include flex-media( (9/16) );
 }
 .embedded-content {
-  margin-bottom: $global-gutter;
+  margin-bottom: rem(30);
   overflow: auto;
   iframe { border: 0; }
   .fluid {

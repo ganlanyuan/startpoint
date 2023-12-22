@@ -1,25 +1,13 @@
 // vendors
-@import "../../node_modules/rocket-sass/src/scss/setting/variables";
-@import "../../node_modules/rocket-sass/src/scss/utilities/utilities";
-@import "../../node_modules/rocket-sass/src/scss/vendors/vendors";
-
-@import "../../node_modules/rocket-sass/src/scss/addons/breakpoint";
-@import "../../node_modules/rocket-sass/src/scss/addons/scale-type";
-@import "../../node_modules/rocket-sass/src/scss/addons/fluid-type";
-@import "../../node_modules/rocket-sass/src/scss/components/flex-media";
-@import "../../node_modules/rocket-sass/src/scss/layout/center";
-@import "../../node_modules/rocket-sass/src/scss/layout/justify";
-@import "../../node_modules/rocket-sass/src/scss/layout/grid";
-@import "../../node_modules/rocket-sass/src/scss/layout/gallery";
-@import "../../node_modules/rocket-sass/src/scss/layout/liquid";
-
 @import "vendors/ellipsis";
 @import "vendors/hide-text";
 @import "vendors/normalize";
 @import "vendors/browsehappy";
 
 // base
+@import "base/mixins";
 @import "base/variables";
+@import "base/functions";
 @import "base/reset";
 @import "base/typography";
 @import "base/utilities";
