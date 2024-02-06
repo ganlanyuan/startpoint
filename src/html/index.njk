@@ -1,8 +1,116 @@
-{% set page = 'home' %}
-{% set type = 'home' %}
-{% extends "./parts/_layout.njk" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>Pages</title>
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,700" rel="stylesheet">
+  <style>
+    body {
+      --bg: hsla(0, 0%, 0%, 0.04);
 
-{% block main %}
+      margin: 10px;
+      font-family: Montserrat, sans-serif;
+      font-weight: 300;
+      background: #eee;
+      background: var(--bg);
+    }
+    ul {
+      margin: 0 0 20px 0;
+      padding: 0;
+    }
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-transform: capitalize;
+    }
+    h2 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      text-transform: capitalize;
+      margin-bottom: 1em !important;
+      text-align: center;
+    }
+    h3 {
+      font-weight: 600;
+      font-size: 2rem;
+      text-transform: capitalize;
+      margin: 2em 10px 0.5em;
+      color: #ddd;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .container { margin: 30px 0; }
+    .container h2 { padding: 0 20px; }
+    .list a {
+      display: inline-block;
+      padding: 1em;
+      margin: 10px;
+      font-size: 24px;
+      line-height: 1.2;
+      text-transform: capitalize;
+      border-radius: 12px;
+      background: #fff;
+      transition: all 0.25s;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .list a:hover {
+      background: #CBEEFF;
+      background: hsl(60, 100%, 95%);
+    }
+  </style>
+</head>
+<body>
+
 <div class="container">
+  <h2>Pages</h2>
+  <div class="list">
+    {% for url, title in pages %}
+      <a href="{{ url }}.html">{{ title | capitalize }}</a>
+    {% endfor %}
+  </div>
 </div>
-{% endblock %}
+
+<script>
+  var doc = document,
+      win = window,
+      body = doc.body;
+  win.addEventListener('click', function(e) {
+    var target = lookupByTag(e.target, 'a');
+    if (target) {
+      if (e.altKey || e.shiftKey || e.metaKey) { e.preventDefault(); } // || e.metaKey
+
+      var url = location.origin + '/' + location.pathname.replace(/^\//, '') + target.getAttribute('href'),
+          tab = e.altKey || e.shiftKey || e.metaKey ? '_blank' : '_self';
+
+      if (e.altKey) {
+        url = url.replace('public', 'test/w3c/html');
+      // } else if (e.metaKey) {
+      //   url = url.replace('public/', 'frame.html?').replace(/\.html$/, '');
+      } else if (e.shiftKey) {
+        url = 'https://search.google.com/test/rich-results?utm_campaign=sdtt&utm_medium=url&url=' + url + '&user_agent=1';
+      }
+
+      win.open(url, tab);
+    }
+  });
+
+  function lookupByTag (el, t) {
+    if (el === body) { return null; }
+    return el.nodeName.toLowerCase() !== t ? lookupByTag(el.parentNode, t) : el;
+  }
+</script>
+</body>
+</html>

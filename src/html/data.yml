@@ -507,7 +507,7 @@ reporter:
 
 
 pages:
-  index: homepage
+  home: homepage
   section: section
   article: article
   about: about us

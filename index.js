@@ -523,7 +523,8 @@ function serverUp (callback) {
   return browserSync.init({
     server: { baseDir: './'},
     ghostMode: false,
-    open: false,
+    ui: false,
+    open: true,
     notify: false,
   }, () => { if (callback) { callback(); } });
 }

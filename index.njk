@@ -77,12 +77,8 @@
 <div class="container">
   <h2>Pages</h2>
   <div class="list">
-    {% for title, obj in pages %}
-    <h3>{{ title }}</h3>
-      {% for url in obj %}
-      {% set name = title if url === title else url | replace(title + '-', '') | replace('index', 'home') | capitalize %}
-      <a href="public/{{ url }}.html">{{ name }}</a>
-      {% endfor %}
+    {% for url, title in pages %}
+      <a href="public/{{ url }}.html">{{ title | capitalize }}</a>
     {% endfor %}
   </div>
 </div>
