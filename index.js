@@ -30,7 +30,8 @@ import browserSync from '/usr/local/lib/node_modules/browser-sync/dist/index.js'
 // helpers
 import chokidar from '/usr/local/lib/node_modules/chokidar/index.js';
 import chalk from '/usr/local/lib/node_modules/chalk/source/index.js';
-import rimraf from '/usr/local/lib/node_modules/rimraf/rimraf.js';
+import { rimraf } from '/usr/local/lib/node_modules/rimraf/dist/esm/index.js';
+
 import * as fs from 'node:fs';
 import * as http from 'node:http';
 import * as path from 'node:path';
