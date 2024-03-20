@@ -15,6 +15,11 @@ iframe { border: 0; }
 // reset form styles
 label { cursor: pointer; }
 [type="search"], select { -webkit-appearance: none; }
+[type="submit"], [type="submit"]:active,
+[type="menu"], [type="menu"]:active {
+  color: inherit;
+  font-weight: normal;
+}
 
 // reset link style
 a {
