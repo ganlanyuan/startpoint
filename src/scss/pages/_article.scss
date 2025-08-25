@@ -20,7 +20,7 @@
     border-left: 1px solid #999;
   }
   a {
-    color: $c-link;
+    color: $link;
     &:hover { text-decoration: underline; }
   }
   @include bp(560) {

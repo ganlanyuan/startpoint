@@ -20,8 +20,8 @@ a img { vertical-align: bottom; }
 .right-align { text-align: right; }
 .dib { display: inline-block; }
 a img { vertical-align: bottom; }
-.c-primary { color: $c-primary; }
-.c-link { color: $c-link; }
+.primary { color: $primary; }
+.link { color: $link; }
 .tdu { text-decoration: underline; }
 .fwn { font-weight: normal; }
 .vab { vertical-align: bottom; }
@@ -45,7 +45,7 @@ p, .p {
   line-height: 1.5;
   &:not(:last-child) { margin-bottom: 1.5em; }
   a {
-    color: $c-link;
+    color: $link;
     &:hover { text-decoration: underline; }
   }
 }

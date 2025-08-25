@@ -43,9 +43,9 @@ const __dirname = dirname(__filename);
 
 let baseurl = '',
     source = 'src',
-    assets = 'assets',
-    njkDir = source + '/html',
     htmlDir = 'public',
+    assets = htmlDir + '/assets',
+    njkDir = source + '/html',
     ampfile = htmlDir + '/_amp.html',
     sassDir = source + '/scss',
     cssDir = assets + '/css',

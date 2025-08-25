@@ -9,7 +9,7 @@ svg {
 .container {
   max-width: rem($container);
   margin: 0 auto;
-  padding: 0 $gap;
+  padding: 0 rem($gap);
 }
 
 .mg0 { margin: 0; }

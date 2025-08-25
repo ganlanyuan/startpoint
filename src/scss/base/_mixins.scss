@@ -73,22 +73,22 @@
 @mixin divider-bottom {
   margin-bottom: rem(15);
   padding-bottom: rem(15);
-  border-bottom: 1px solid $c-border-light;
+  border-bottom: 1px solid $border-light;
 }
 @mixin divider-bottom-wide {
   margin-bottom: rem(30);
   padding-bottom: rem(30);
-  border-bottom: 1px solid $c-border-light;
+  border-bottom: 1px solid $border-light;
 }
 @mixin divider-top {
   margin-top: rem(15);
   padding-top: rem(15);
-  border-top: 1px solid $c-border-light;
+  border-top: 1px solid $border-light;
 }
 @mixin divider-top-wide {
   margin-top: rem(30);
   padding-top: rem(30);
-  border-top: 1px solid $c-border-light;
+  border-top: 1px solid $border-light;
 }
 @mixin divider-top-bold {
   margin-top: rem(40);
