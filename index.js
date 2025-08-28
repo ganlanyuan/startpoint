@@ -8,7 +8,8 @@ import sass from '/usr/local/lib/node_modules/node-sass/lib/index.js';
 import postcss from '/usr/local/lib/node_modules/postcss/lib/postcss.js';
 import autoprefixer from '/usr/local/lib/node_modules/autoprefixer/lib/autoprefixer.js';
 import normalize from '/usr/local/lib/node_modules/postcss-normalize/index.cjs';
-import csso from '/usr/local/lib/node_modules/postcss-csso/cjs/index.cjs';
+// import csso from '/usr/local/lib/node_modules/postcss-csso/cjs/index.cjs';
+import cssnano from '/usr/local/lib/node_modules/cssnano/src/index.js';
 import request from '/usr/local/lib/node_modules/request/index.js';
 // JS
 import { rollup } from '/usr/local/lib/node_modules/rollup/dist/rollup.js';
@@ -44,7 +45,7 @@ const __dirname = dirname(__filename);
 let baseurl = '',
     source = 'src',
     htmlDir = 'public',
-    assets = htmlDir + '/assets',
+    assets = htmlDir + '/' + 'assets',
     njkDir = source + '/html',
     ampfile = htmlDir + '/_amp.html',
     sassDir = source + '/scss',
@@ -120,7 +121,7 @@ switch (process.env.task) {
           return doNunjucks(file);
         } else {
           // return doNunjucksAll();
-          doNunjucks(njkDir + '/index.njk');
+          doNunjucks(njkDir + '/home.njk');
         }
       });
 
@@ -359,7 +360,8 @@ function doSass (input) {
     });
 
     // postCSS
-    postcss([ autoprefixer, csso ]).process(result.css, {
+    // postcss([ autoprefixer, csso ]).process(result.css, {
+    postcss([ autoprefixer, cssnano ]).process(result.css, {
       from: input,
       to: output,
       map: { inline: false }
