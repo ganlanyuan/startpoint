@@ -19,7 +19,7 @@
 
   {%- if name === 'facebook' -%}
     http://www.facebook.com/sharer.php?u={{ crunchify(url) }}
-  {%- elif name === 'twitter' -%}
+  {%- elif ['twitter', 'x'].indexOf(name) >= 0 -%}
     https://twitter.com/intent/tweet/?url={{ crunchify(url) }}&amp;text={{ crunchify(title) }}&amp;via={{ crunchify(via) }}&amp;hashtags={{ crunchify(hashtags) }}
   {%- elif name === 'google+' -%}
     https://plus.google.com/share?url={{ crunchify(url) }}&amp;text={{ crunchify(desc) }}
